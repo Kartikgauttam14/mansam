@@ -369,9 +369,20 @@ def is_comparison_request(message):
 
 def is_perfume_list_request(message):
     normalized = normalize(message)
-    list_terms = ("list", "show me", "give me", "all", "catalog", "catalogue", "قائمة", "اعرض", "كل")
+    list_terms = ("list", "show me", "give me", "all", "catalog", "catalogue", "top", "قائمة", "اعرض", "كل", "أفضل", "افضل")
     perfume_terms = PERFUME_QUERY_TERMS | {"attar", "oil", "oils", "bukhoor", "عطار", "بخور", "زيت"}
     return any(term in normalized for term in list_terms) and any(term in normalized for term in perfume_terms)
+
+
+def requested_list_count(message):
+    """Return the requested top-N size, or None when the customer wants the full list."""
+    normalized = normalize(message)
+    match = re.search(r"\btop\s+(\d{1,2})\b", normalized)
+    if not match:
+        match = re.search(r"(?:أفضل|افضل)\s+(\d{1,2})", normalized)
+    if not match:
+        return None
+    return max(1, min(int(match.group(1)), 20))
 
 
 def phrase_matches(message, example):
@@ -604,6 +615,10 @@ def recipient_phrase(message, preferences, language):
          {"en": "for your cousin", "ar": "لابن أو ابنة عمك"}),
         (("partner", "my partner", "colleague", "my colleague"),
          {"en": "for your partner", "ar": "لشريكك"}),
+        (("myself", "for myself", "me", "for me", "نفسي", "لي"),
+         {"en": "for yourself", "ar": "لك"}),
+        (("them", "for them", "themselves", "for themselves", "لهم", "لهم"),
+         {"en": "for them", "ar": "لهم"}),
     )
     for aliases, labels in relationship_labels:
         if any(query_term_matches(normalized, alias) for alias in aliases):
@@ -993,6 +1008,7 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
         }, preferences, [str(product.get("id")) for product in comparison_products])
 
     if is_perfume_list_request(message):
+        requested_count = requested_list_count(message)
         list_query = f"{message} perfume"
         listed_products = unique_products([
             product for product in retrieve_products(list_query, limit=100)
@@ -1003,6 +1019,8 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
                 product for product in CATALOG_PRODUCTS
                 if normalize(product_value(product, "productLine", "en")).strip() in PERFUME_PRODUCT_LINES
             ])
+        if requested_count:
+            listed_products = listed_products[:requested_count]
         names = ", ".join(product_value(product, "name", language) for product in listed_products)
         list_label = preference_label(preferences, language)
         if language == "ar":
