@@ -223,6 +223,9 @@
     const launcher = document.querySelector(".mansam-chat-launcher");
     panel.hidden = !open;
     launcher.setAttribute("aria-expanded", String(open));
+    const launcherLabel = open ? "Close Mansam Concierge" : "Open Mansam Concierge";
+    launcher.setAttribute("aria-label", launcherLabel);
+    launcher.title = launcherLabel;
     if (!open) stopRecognition();
     if (open) (state.language ? panel.querySelector("[data-chat-input]") : panel.querySelector("[data-chat-language='en']")).focus();
   }
