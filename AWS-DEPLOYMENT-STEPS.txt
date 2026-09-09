@@ -1,0 +1,367 @@
+Mansam Project - AWS and Angular Deployment Guide
+=================================================
+
+This guide explains how to run the Mansam perfume finder project on an AWS
+server or inside an Angular application.
+
+The project can still be tested locally with run-website.bat, but that file is
+only for local development. On AWS, the project should run through the existing
+website or Angular application.
+
+
+1. Understand The Local And AWS Difference
+------------------------------------------
+On a local laptop, we use:
+
+  run-website.bat
+
+This starts a small local Python server. It helps the Arabic speaker work during
+local testing.
+
+On AWS or Angular production, do not use run-website.bat and do not use
+server.py as the production server. The project should be served by the already
+available AWS web server, Angular build, Nginx, Apache, CloudFront, or existing
+backend setup.
+
+
+2. Where Is /api/tts?
+---------------------
+/api/tts is not an HTML file and it is not inside the frontend pages.
+
+It is a backend API route.
+
+The Mansam frontend calls:
+
+  /api/tts?tl=ar&q=TEXT
+
+The backend receives that text, converts it into Arabic audio, and returns MP3
+audio to the browser.
+
+In this project, local testing is handled by server.py. I have also added
+/api/tts support there, so the local URL works like production:
+
+  http://127.0.0.1:5501/api/tts?tl=ar&q=مرحبا
+
+For AWS production, your existing backend must provide the same route.
+
+If your AWS app uses Node/Express, I added a ready route file here:
+
+  backend-examples/express-api-tts-route.js
+
+This file is not a new server. It is a route that your senior can add into the
+existing backend server.
+
+Your UAT result is currently:
+
+  GET https://uatuae.mansamworld.com/api/tts?... -> 403 Access Denied
+
+This proves that the browser is calling the correct URL, but the UAT backend
+security layer is denying it. The response format and security headers indicate
+that the existing UAT API is likely Spring Boot/Spring Security, not Node.
+
+For a Spring Boot backend, use these two project files instead:
+
+  backend-examples/spring-api-tts-controller.java
+  backend-examples/spring-security-tts-rule.java
+
+The controller creates the MP3 with AWS Polly. The security rule is essential:
+it permits only GET /api/tts, so the audio element can retrieve the MP3. Without
+that rule, Spring Security returns the exact 403 Access Denied response seen in
+the browser Network tab.
+
+Amazon Polly supports the Zeina standard voice for Arabic, and the Bahrain
+region (me-south-1) provides an Amazon Polly endpoint. Set AWS_REGION on the
+existing backend if it uses a different Polly-enabled region.
+
+
+3. Arabic Speaker Requirement
+-----------------------------
+The Arabic speaker needs one API endpoint in production:
+
+  GET /api/tts?tl=ar&q=TEXT
+
+This endpoint should return an MP3 audio response.
+
+Required response header:
+
+  Content-Type: audio/mpeg
+
+The frontend is already configured to call this production endpoint from:
+
+  js/config.js
+
+Do not use an unofficial Google Translate browser URL as a production fallback.
+It can return HTML or be blocked by browser security, which causes the 404/ORB
+error seen in UAT. The permanent and reliable solution is to deploy the existing
+backend /api/tts route with AWS Polly. It must return HTTP 200 and
+Content-Type: audio/mpeg.
+
+Current production setting:
+
+  window.MANSAM_CONFIG.arabicTtsEndpoint = "/api/tts";
+
+If your existing backend uses a different URL, update that value in js/config.js.
+
+Important: do not place AWS keys or any private TTS provider keys inside Angular
+or frontend JavaScript. The browser should call /api/tts, and the existing
+backend should call AWS Polly or any other TTS provider.
+
+Recommended flow:
+
+  Browser -> /api/tts -> Existing backend/API -> AWS Polly or TTS provider -> MP3
+
+
+4. Deploy Inside An Existing Angular App
+----------------------------------------
+Use this method if the main website is already an Angular application.
+
+Step 1:
+Copy the full Mansam project folder into Angular assets.
+
+Example:
+
+  src/assets/mansam/
+
+Step 2:
+Confirm these files exist after copying:
+
+  src/assets/mansam/dream.html
+  src/assets/mansam/discover.html
+  src/assets/mansam/gift.html
+  src/assets/mansam/voucher.html
+  src/assets/mansam/js/config.js
+  src/assets/mansam/js/i18n.js
+  src/assets/mansam/lang/en.json
+  src/assets/mansam/lang/ar.json
+
+Also make sure the images and fonts folders are copied.
+
+Step 3:
+Open:
+
+  src/assets/mansam/js/config.js
+
+Check this value:
+
+  window.MANSAM_CONFIG.arabicTtsEndpoint = "/api/tts";
+
+Keep it as /api/tts if your existing backend supports that path. If your backend
+uses another path, change it here.
+
+Step 4:
+Add the /api/tts backend route in the existing backend.
+
+For the Mansam UAT Spring Boot backend:
+
+1. Copy backend-examples/spring-api-tts-controller.java into the existing API
+   source folder and change its package declaration.
+2. Add the one /api/tts permitAll rule from
+   backend-examples/spring-security-tts-rule.java to the existing
+   SecurityFilterChain. Put it before any catch-all deny/authentication rule.
+3. Add the AWS SDK v2 Polly dependency to the existing backend build:
+
+   Maven:
+   <dependency>
+     <groupId>software.amazon.awssdk</groupId>
+     <artifactId>polly</artifactId>
+   </dependency>
+
+   Gradle:
+   implementation("software.amazon.awssdk:polly")
+
+4. Give the existing AWS EC2/ECS/Lambda role permission for
+   polly:SynthesizeSpeech, then deploy the existing backend normally.
+
+Do not use both the Spring and Node examples. Pick the one that matches the
+existing backend.
+
+For Node/Express, copy this route file into the existing backend:
+
+  backend-examples/express-api-tts-route.js
+
+Then install the AWS Polly SDK in the backend project:
+
+  npm install @aws-sdk/client-polly
+
+Then mount the route in the existing Express app:
+
+  const ttsRoute = require("./backend-examples/express-api-tts-route");
+  app.use(ttsRoute);
+
+The AWS server or IAM role must have permission for:
+
+  polly:SynthesizeSpeech
+
+Step 5:
+Build the Angular project.
+
+Common command:
+
+  npm install
+  npm run build
+
+If the project uses Angular CLI directly:
+
+  npx ng build --configuration production
+
+Step 6:
+Upload the Angular build output to AWS.
+
+Common build folders are:
+
+  dist/YOUR_APP_NAME/browser/
+  dist/YOUR_APP_NAME/
+
+Step 7:
+Open the Mansam flow in the browser:
+
+  https://YOUR_DOMAIN/assets/mansam/dream.html
+
+
+5. Deploy As A Static Folder On An Existing AWS Server
+-----------------------------------------------------
+Use this method if the AWS server already serves static files using Nginx,
+Apache, or another web server.
+
+Step 1:
+Upload the full Mansam folder to the server.
+
+Example location:
+
+  /var/www/html/mansam/
+
+Step 2:
+Confirm this file exists on the server:
+
+  /var/www/html/mansam/dream.html
+
+Step 3:
+Confirm the production TTS endpoint in:
+
+  /var/www/html/mansam/js/config.js
+
+It should normally be:
+
+  window.MANSAM_CONFIG.arabicTtsEndpoint = "/api/tts";
+
+Step 4:
+Open the project:
+
+  https://YOUR_DOMAIN/mansam/dream.html
+
+
+6. Nginx Example
+----------------
+If the server uses Nginx, the Mansam folder can be served as a static folder.
+
+Example:
+
+  location /mansam/ {
+      root /var/www/html;
+      try_files $uri $uri/ =404;
+  }
+
+If the existing backend is running on port 3000 and already handles /api/tts,
+Nginx can proxy the request like this:
+
+  location /api/tts {
+      proxy_pass http://127.0.0.1:3000/api/tts;
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+  }
+
+After editing the Nginx config, test and reload it:
+
+  sudo nginx -t
+  sudo systemctl reload nginx
+
+Change port 3000 only if the existing backend uses a different port.
+
+
+7. Apache Example
+-----------------
+If Apache already serves the website, place the folder here:
+
+  /var/www/html/mansam/
+
+Then open:
+
+  https://YOUR_DOMAIN/mansam/dream.html
+
+For /api/tts, use the existing Apache reverse proxy setup and forward the
+request to the backend/API that returns MP3 audio.
+
+
+8. Testing After Deployment
+---------------------------
+After uploading the project, test the complete flow.
+
+Step 1:
+Open one of these URLs:
+
+  https://YOUR_DOMAIN/mansam/dream.html
+
+or:
+
+  https://YOUR_DOMAIN/assets/mansam/dream.html
+
+Step 2:
+Select English and complete the flow.
+
+Step 3:
+Click the speaker button and confirm English text is spoken.
+
+Step 4:
+Go back and select Arabic.
+
+Step 5:
+Complete the flow again and confirm:
+
+  - Page text is showing in Arabic.
+  - The Your Dream section is not empty.
+  - The recommendation text is Arabic.
+  - The speaker reads Arabic.
+  - Browser network tab shows a request to /api/tts.
+  - /api/tts returns status 200.
+  - /api/tts returns Content-Type: audio/mpeg.
+
+Step 6:
+Use the browser back button and confirm the language does not mismatch between
+pages.
+
+
+9. Troubleshooting
+------------------
+If Arabic text is showing but the speaker does not read Arabic:
+
+  The /api/tts endpoint is probably missing, blocked, or not returning MP3 audio.
+
+If the Arabic speaker works locally but not on AWS:
+
+  Local testing uses server.py through run-website.bat. AWS must provide /api/tts
+  through the existing backend/API.
+
+If language files do not load:
+
+  Make sure the website is opened from http:// or https://.
+  Make sure lang/en.json and lang/ar.json were uploaded.
+
+If images or fonts are missing:
+
+  Make sure the full project folder was uploaded, including fonts, lang, js, and
+  image files.
+
+
+10. Files Used Only For Local Testing
+------------------------------------
+These files are useful on a local laptop, but AWS production should not depend
+on them:
+
+  run-website.bat
+  server.py
+  __pycache__/
+
+You may keep them in the shared folder, but the production deployment should use
+the existing AWS or Angular server.

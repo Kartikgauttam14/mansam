@@ -1,0 +1,29 @@
+{
+  "description": "Representative recipient phrases used to verify automatic gender preference detection.",
+  "cases": [
+    {
+      "message": "I want to buy a perfume for my girlfriend",
+      "expectedPreference": "feminine"
+    },
+    {
+      "message": "I want to buy a perfume for my wife",
+      "expectedPreference": "feminine"
+    },
+    {
+      "message": "I want to buy a perfume for my boyfriend",
+      "expectedPreference": "masculine"
+    },
+    {
+      "message": "I want to buy a perfume for my husband",
+      "expectedPreference": "masculine"
+    },
+    {
+      "message": "أريد شراء عطر لزوجتي",
+      "expectedPreference": "feminine"
+    },
+    {
+      "message": "أريد شراء عطر لزوجي",
+      "expectedPreference": "masculine"
+    }
+  ]
+}

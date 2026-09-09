@@ -1,0 +1,80 @@
+Mansam Angular/AWS Integration
+==============================
+
+Goal
+----
+Use this project inside an Angular application and AWS workflow without
+depending on the local Python helper as a production server.
+
+What changed
+------------
+Arabic speaker audio is now controlled from:
+
+js/config.js
+
+Default production endpoint:
+
+/api/tts
+
+Local website endpoint:
+
+/api/tts
+
+File-open fallback endpoint:
+
+http://127.0.0.1:5501/api/tts
+
+Recommended Angular workflow
+----------------------------
+1. Copy the static files into your Angular asset folder, for example:
+
+   src/assets/mansam/
+
+2. Load the page/assets through Angular or route to the static HTML from the
+   same AWS domain. Avoid file:// in production.
+
+3. Keep this config available before the discover page speaker is used:
+
+   window.MANSAM_CONFIG = {
+     arabicTtsEndpoint: "/api/tts"
+   };
+
+4. Reuse your existing AWS/backend/API route for:
+
+   GET /api/tts?tl=ar&q=TEXT
+
+   The response must be:
+
+   Content-Type: audio/mpeg
+
+5. Do not put AWS keys or TTS provider keys in Angular browser code. If you use
+   AWS Polly, call Polly from your existing backend/API layer and return MP3 to
+   the browser.
+
+AWS options without creating a separate new server
+-------------------------------------------------
+- Existing backend/API already deployed on AWS:
+  Add or reuse one route named /api/tts.
+
+- Existing API Gateway/Lambda workflow:
+  Add the /api/tts route there and point Angular config to it.
+
+- Existing CloudFront distribution:
+  Route /api/tts to the same origin/API that already handles backend calls.
+
+Important limitation
+--------------------
+A pure static Angular site cannot reliably force Arabic speech on every laptop
+by itself. Browser speech depends on installed Arabic voices, and direct calls
+to public TTS URLs can be blocked by browser security. For reliable Arabic
+speaker support, the browser needs a same-origin or CORS-enabled TTS endpoint.
+
+Local testing
+-------------
+For local testing only, run:
+
+run-website.bat
+
+This starts server.py and provides the local /api/tts endpoint. In Angular/AWS,
+server.py is not required when /api/tts is available from your existing app
+infrastructure.

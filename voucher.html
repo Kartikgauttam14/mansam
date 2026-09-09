@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mansam Gift Voucher</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <style>
+        @font-face {
+            font-family: 'BentonSans-Regular';
+            src: url('fonts/BentonSans-Regular.woff') format('woff');
+            font-style: normal;
+            font-weight: normal;
+        }
+
+        @font-face {
+            font-family: 'bentonsansmedium';
+            src: url('fonts/bentonsans_medium-webfont.woff2') format('woff2'),
+                url('fonts/bentonsans_medium-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'bentonsansbook_italic';
+            src: url('fonts/bentonsans_book_italic-webfont.woff2') format('woff2'),
+                url('fonts/bentonsans_book_italic-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'sackers_gothic_stdlight';
+            src: url('fonts/sackers_gothic_light-webfont.woff2') format('woff2'),
+                url('fonts/sackers_gothic_light-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'sackers_gothic_stdmedium';
+            src: url('fonts/sackers_gothic_medium-webfont.woff2') format('woff2'),
+                url('fonts/sackers_gothic_medium-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* body{
+    font-family:'Cormorant Garamond', serif;
+    background:
+        radial-gradient(circle at 50% 20%, rgba(255,240,210,0.55), transparent 60%),
+        radial-gradient(circle at 20% 80%, rgba(255,230,190,0.35), transparent 65%),
+        radial-gradient(circle at 80% 30%, rgba(255,235,200,0.25), transparent 70%),
+        linear-gradient(#e6d2b3, #d9c19d);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
+} */
+
+        body {
+            font-family: 'BentonSans-Regular';
+            min-height: 100vh;
+            align-items: center;
+            padding: 20px;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* CARD */
+
+        .voucher {
+            width: auto;
+            background: linear-gradient(160deg, #ffffff 0%, #f7ecd2 45%, #e9cd8f 100%);
+            border: 1px solid #3a2a17;
+            border-radius: 18px;
+            padding: 52px 20px 46px;
+            text-align: center;
+            position: relative;
+            line-height: 1.35;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.4) inset,
+                0 10px 40px rgba(120, 90, 40, 0.18);
+            overflow: hidden;
+        }
+
+        /* INNER BORDER */
+        .voucher:before {
+            content: "";
+            position: absolute;
+            inset: 12px;
+            border-radius: 14px;
+            border: 1px solid #3a2a17;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* TEXTURE */
+        .voucher:after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            pointer-events: none;
+            background-image: url("OurRoots_Banner.jpg");
+            opacity: 0.25;
+            mix-blend-mode: multiply;
+            background-size: cover;
+        }
+
+        /* =========================
+   REALISTIC TOP LEFT RIBBON
+========================= */
+
+        .ribbon-container {
+            position: absolute;
+            left: -35px;
+            top: 150px;
+            width: 200px;
+            height: 140px;
+            pointer-events: none;
+        }
+
+        /* Bow center */
+        .ribbon-knot {
+            position: absolute;
+            width: 60px;
+            height: 50px;
+            left: 80px;
+            top: 25px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 30% 30%, #fff2c9, #d6a44c 60%, #a87125);
+            box-shadow:
+                inset 0 2px 4px rgba(255, 255, 255, 0.6),
+                0 6px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Left loop */
+        .ribbon-loop-left {
+            position: absolute;
+            width: 100px;
+            height: 70px;
+            left: 20px;
+            top: 20px;
+            border-radius: 60% 40% 60% 40%;
+            transform: rotate(-20deg);
+            background:
+                linear-gradient(145deg, #f8d483, #c8923e 60%, #9c6a22);
+            box-shadow:
+                inset 0 4px 8px rgba(255, 255, 255, 0.5),
+                0 8px 12px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Tail */
+        .ribbon-tail {
+            position: absolute;
+            width: 140px;
+            height: 70px;
+            left: 30px;
+            top: 50px;
+            transform: rotate(-15deg);
+            border-radius: 10px;
+            background:
+                linear-gradient(135deg, #f7cf78, #c98e39 60%, #a36c22);
+            box-shadow:
+                inset 0 4px 8px rgba(255, 255, 255, 0.4),
+                0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* LOGO */
+
+        .logo-ar {
+            font-size: 32px;
+            color: #4b3213;
+            letter-spacing: 3px;
+        }
+
+        .logo-en {
+            font-size: 18px;
+            letter-spacing: 4px;
+            margin-bottom: 6px;
+        }
+
+        .title {
+            font-size: 30px;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #6c5430;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(150, 120, 70, 0.35);
+            margin: 14px auto;
+            width: 88%;
+            position: relative;
+        }
+
+        .divider:after {
+            content: "◆";
+            position: absolute;
+            left: 50%;
+            top: -11px;
+            transform: translateX(-50%);
+            background: #f7ead7;
+            padding: 0 12px;
+            font-size: 14px;
+            color: #b8955a;
+        }
+
+        .label {
+            font-size: 18px;
+            margin-top: 6px;
+        }
+
+        .dream {
+            font-size: 24px;
+            font-style: italic;
+            margin: 2px 0;
+        }
+
+        .perfume {
+            font-size: 22px;
+            font-weight: 200;
+            margin-top: 4px;
+        }
+
+        .brand {
+            margin-bottom: 16px;
+        }
+
+        .theme {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .gift {
+            font-size: 24px;
+            margin: 6px 0;
+        }
+
+
+        .details {
+            width: 88%;
+            margin: 14px auto 0;
+            text-align: center;
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        .note {
+            width: 88%;
+            margin: 18px auto 0;
+            font-size: 15.5px;
+            line-height: 1.6;
+        }
+
+        /* Buttons */
+
+        .actions-fixed {
+            position: fixed;
+            top: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9999;
+            flex-wrap: nowrap;
+            white-space: nowrap;
+            padding: 0;
+            border-radius: 40px;
+            display: flex;
+            gap: 15px;
+
+        }
+
+        .actions-fixed button {
+            padding: 5px 15px;
+            min-width: 97px;
+            border-radius: 30px;
+            border: 1px solid #3a2a17;
+            background: #fff;
+            color: #3a2a17;
+            font-family: 'BentonSans-Regular';
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        .actions-fixed select {
+            padding: 5px 10px;
+            min-width: 86px;
+            border-radius: 30px;
+            border: 1px solid #3a2a17;
+            background: #fff;
+            color: #3a2a17;
+            font-family: 'BentonSans-Regular';
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .actions-fixed button:hover {
+           transform: translateY(-2px);
+           box-shadow: 0 8px 16px rgba(0, 0, 0, .15);
+        }
+
+
+        .ribbon-img {
+            position: absolute;
+            top: -5px;
+            left: -10px;
+            width: 150px;
+            /* adjust size */
+            transform: rotate(-18deg);
+            /* diagonal angle */
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .term-condition ul {
+            text-align: justify;
+            font-size: 12px;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        
+    <div class="voucher" id="voucher">
+
+        <!-- Ribbon -->
+        <!-- Real Ribbon Image -->
+        <img src="golden-ribbon.png" class="ribbon-img" />
+
+        <br>
+
+        <div class="logo-ar"> <img src="logo3.png" alt="Mansam Logo" width="90"> </div>
+        <!-- <div class="logo-en">MANSAM</div> -->
+
+        <div class="title" data-i18n="voucher_title">GIFT VOUCHER</div>
+        <div class="divider"></div>
+        <div class="subtitle" data-i18n="voucher_subtitle">Your gift is uniquely reserved for you.</div>
+
+        <div class="divider"></div>
+
+        <div class="label" data-i18n="voucher_your_dream">Your Dream:</div>
+        <div class="dream"><span id="dreamText"></span> </div>
+
+        <div class="label" style="margin-top:10px;" data-i18n="discovered_perfume">Discovered Perfume:</div>
+        <div class="perfume" id="productName">Horr Fi Al Riyah</div>
+        <div class="brand" data-i18n="by_mansam">by Mansam</div>
+
+        <div class="divider"></div>
+
+        <div class="gift"><b data-i18n="voucher_gift_label">Gift: Complimentary 12ml EDP</b>
+            <br><span data-i18n="with_mansam_purchase">with your Mansam purchase</span></div>
+
+        <div class="divider"></div>
+
+        <div class="details">
+            <span data-i18n="voucher_number">Voucher Number:</span> <b id="refNo" style="font-family: none; font-weight: 500;"></b><br>
+            <span data-i18n="issued_on">Issued On:</span> <b id="issuedOn" style="font-family: none;font-weight: 500;"></b><br>
+            <span data-i18n="valid_till">Valid Till:</span> <b id="validTill" style="font-family: none;font-weight: 500;"></b>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="note">
+            <span data-i18n="redeem_note">Redeem your gift by visiting any Mansam boutique on or before the stated expiry date.</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="term-condition">
+            <b data-i18n="terms_title">Terms & Conditions:</b><br>
+            <ul>
+                <li data-i18n="term_1">Valid for one-time redemption at Mansam boutiques in KSA & UAE only, with in-person visit before expiry.</li>
+                <li data-i18n="term_2">Gift is non-transferable, not redeemable for cash, subject to availability, may be substituted, and carries no warranty.</li>
+                <li data-i18n="term_3">Customer data is securely held and used only for Mansam communication and promotions in line with applicable data protection laws.</li>
+            </ul>
+
+        </div>
+
+
+
+
+
+        <!-- FIXED BUTTONS -->
+        <div class="actions-fixed">
+            <select id="languageSwitcher">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+            </select>
+            <button id="savePdfBtn" data-i18n="save_pdf">Save PDF</button>
+            <button id="saveImageBtn" data-i18n="save_image">Save Image</button>
+             <button class="close-btn" type="button" data-i18n="close">close</button>
+        </div>
+
+    </div>
+
+        </main>
+
+    <script src="js/i18n.js"></script>
+
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const storedData = sessionStorage.getItem("giftData");
+
+            if (!storedData) {
+                alert(translate("no_gift_data", "No gift data found"));
+                return;
+            }
+
+            const data = JSON.parse(storedData);
+
+            console.log("Received Data:", data);
+
+            // === Bind data to UI ===
+
+            document.getElementById("dreamText").innerText = data.userDream;
+            document.getElementById("productName").innerText = data.productName || "";
+            document.getElementById("refNo").innerText = data.referenceNo;
+
+            // QR generate dynamically
+            //  document.getElementById("qrImage").src = "https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=" + data.referenceNo;
+
+        });
+
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const today = new Date();
+
+            function formatDate(date) {
+                const lang = localStorage.getItem("language") || "en";
+
+                return new Intl.DateTimeFormat(lang === "ar" ? "ar-AE" : "en-GB", {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric"
+                }).format(date);
+            }
+
+            // Issued On = Today
+            document.getElementById("issuedOn").innerText = formatDate(today);
+
+            // Valid Till = Today + 15 Days
+            const validDate = new Date();
+            validDate.setDate(today.getDate() + 15);
+
+            document.getElementById("validTill").innerText = formatDate(validDate);
+
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const voucher = document.getElementById("voucher");
+            const savePdfBtn = document.getElementById("savePdfBtn");
+            const saveImageBtn = document.getElementById("saveImageBtn");
+            const actionButtons = document.querySelector(".actions-fixed");
+
+            async function waitForImages() {
+                const images = [...voucher.querySelectorAll("img")];
+
+                await Promise.all(images.map(img => {
+                    if (img.complete) return Promise.resolve();
+
+                    return new Promise(resolve => {
+                        img.onload = resolve;
+                        img.onerror = resolve;
+                    });
+                }));
+
+                if (document.fonts) {
+                    await document.fonts.ready;
+                }
+            }
+
+            async function captureVoucher() {
+
+                await waitForImages();
+
+                actionButtons.style.visibility = "hidden";
+
+                // ===== Save Original Style =====
+                const oldTransform = voucher.style.transform;
+                const oldOrigin = voucher.style.transformOrigin;
+
+                // ===== Export Scale =====
+                voucher.style.transformOrigin = "top center";
+                voucher.style.transform = "scale(0.92)";
+
+                await new Promise(r => setTimeout(r, 200));
+
+                const rect = voucher.getBoundingClientRect();
+
+                const canvas = await html2canvas(voucher, {
+
+                    scale: 3,
+                    useCORS: true,
+                    allowTaint: false,
+                    backgroundColor: "#ffffff",
+                    logging: false,
+
+                    scrollX: 0,
+                    scrollY: -window.scrollY,
+
+                    width: rect.width,
+                    height: rect.height,
+
+                    windowWidth: document.documentElement.scrollWidth,
+                    windowHeight: document.documentElement.scrollHeight
+
+                });
+
+                // ===== Restore =====
+                voucher.style.transform = oldTransform;
+                voucher.style.transformOrigin = oldOrigin;
+
+                actionButtons.style.visibility = "visible";
+
+                return canvas;
+            }
+
+            // ==========================
+            // SAVE IMAGE
+            // ==========================
+
+            saveImageBtn.addEventListener("click", async () => {
+
+                try {
+
+                    const canvas = await captureVoucher();
+
+                    canvas.toBlob(function (blob) {
+
+                        const url = URL.createObjectURL(blob);
+
+                        const a = document.createElement("a");
+
+                        a.href = url;
+                        a.download = "mansam-voucher.png";
+
+                        document.body.appendChild(a);
+
+                        a.click();
+
+                        a.remove();
+
+                        URL.revokeObjectURL(url);
+
+                    }, "image/png");
+
+                }
+                catch (e) {
+
+                    console.error(e);
+                    alert(translate("image_generation_failed", "Image generation failed."));
+
+                }
+
+            });
+
+            // ==========================
+            // SAVE PDF
+            // ==========================
+
+            savePdfBtn.addEventListener("click", async () => {
+
+                try {
+
+                    const canvas = await captureVoucher();
+
+                    const imgData = canvas.toDataURL("image/png");
+
+                    const { jsPDF } = window.jspdf;
+
+                    const pdf = new jsPDF({
+
+                        orientation: "portrait",
+                        unit: "mm",
+                        format: "a4"
+
+                    });
+
+                    const pageWidth = pdf.internal.pageSize.getWidth();
+                    const pageHeight = pdf.internal.pageSize.getHeight();
+
+                    const margin = 12;
+
+                    const maxWidth = pageWidth - (margin * 2);
+                    const maxHeight = pageHeight - (margin * 2);
+
+                    const ratio = Math.min(
+                        maxWidth / canvas.width,
+                        maxHeight / canvas.height
+                    );
+
+                    const renderWidth = canvas.width * ratio;
+                    const renderHeight = canvas.height * ratio;
+
+                    const x = (pageWidth - renderWidth) / 2;
+                    const y = (pageHeight - renderHeight) / 2;
+
+                    pdf.addImage(
+
+                        imgData,
+                        "PNG",
+                        x,
+                        y,
+                        renderWidth,
+                        renderHeight,
+                        undefined,
+                        "FAST"
+
+                    );
+
+                    pdf.save("mansam-voucher.pdf");
+
+                }
+                catch (e) {
+
+                    console.error(e);
+                    alert(translate("pdf_generation_failed", "PDF generation failed."));
+
+                }
+
+            });
+
+        });
+
+         // *------------- Close button functionality -------------*
+    const closeBtn = document.querySelector('.close-btn');
+    closeBtn.addEventListener('click', () => {
+       console.log("close parent modal");
+       
+      window.parent.postMessage({
+        action: 'closeModal'
+       }, '*');
+
+    });
+
+    </script>
+<script src="js/chatbot.js?v=20260910-mobile-voice-final"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400&display=swap"
+    rel="stylesheet">
+
+  <title>Perfume Finder</title>
+
+  <style>
+
+    @font-face {
+    font-family: 'BentonSans-Regular';
+    src:url('fonts/BentonSans-Regular.woff') format('woff');
+    font-style: normal;
+    font-weight: normal;
+}
+	
+@font-face {
+    font-family: 'bentonsansmedium';
+    src: url('fonts/bentonsans_medium-webfont.woff2') format('woff2'),
+         url('fonts/bentonsans_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'bentonsansbook_italic';
+    src: url('fonts/bentonsans_book_italic-webfont.woff2') format('woff2'),
+         url('fonts/bentonsans_book_italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'sackers_gothic_stdlight';
+    src: url('fonts/sackers_gothic_light-webfont.woff2') format('woff2'),
+         url('fonts/sackers_gothic_light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'sackers_gothic_stdmedium';
+    src: url('fonts/sackers_gothic_medium-webfont.woff2') format('woff2'),
+         url('fonts/sackers_gothic_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'BentonSans-Regular';
+      background: transparent;
+      color: #3a2a17;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+      /* main */
+    .main{
+      padding: 3px;
+      background: linear-gradient(135deg, #b98b3e 0%, #f3e3ad 35%, #d8ad55 65%, #8a611f 100%);
+      border-radius: 18px;
+      margin-top: 50px;
+    }
+
+    /* CONTAINER */
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(160deg, #ffffff 0%, #f7ecd2 45%, #e9cd8f 100%);
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CLOSE */
+    .close {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* LANGUAGE SWITCHER */
+    #languageSwitcher {
+      padding: 5px 15px;
+      border-radius: 5px;
+      border: 1px solid #c9a98c;
+      background: #f3e3d4;
+      color: #3a2a17;
+      font-size: 14px;
+      position: relative;
+      right: 0;
+      left: 30px;
+    }
+
+    /* TITLE */
+    .title {
+      font-family: 'BentonSans-Regular';
+      font-size: 20px;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      margin-bottom: 20px;
+      margin-top: 0px;
+    }
+
+    /* PROGRESS BAR */
+    /* STEPS WRAPPER */
+    .steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 0 25px;
+    }
+
+    /* EACH STEP */
+    .step {
+      text-align: center;
+      font-size: 11px;
+      color: #a08a6a;
+      transition: 0.3s;
+    }
+
+    /* CIRCLE */
+    .step span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid #c9a98c;
+      margin: auto;
+      margin-bottom: 5px;
+      font-size: 12px;
+      background: #f3e3d4;
+    }
+
+    /* ACTIVE STEP */
+    .step.active span {
+      background: #3a2a17;
+      color: #fff;
+      border-color: #3a2a17;
+      box-shadow: 0 0 10px rgba(80, 55, 5, 0.4);
+    }
+
+    .step.active p {
+      color: #3a2a17;
+      font-weight: 500;
+    }
+
+    /* LINE BETWEEN */
+    .line {
+      width: 30px;
+      height: 1px;
+      background: #c9a98c;
+      margin: 0 5px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:480px) {
+      .line {
+        width: 15px;
+      }
+    }
+
+
+    /* DREAM SECTION */
+    .dream-title {
+      font-family: 'BentonSans-Regular';
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .dream-sub {
+      font-size: 13px;
+      margin-bottom: 0px;
+    }
+
+  /* BUTTON */
+    .btn {
+      margin-top: 20px;
+      width: 100%;
+    background: #fff;
+    color: #3a2a17;
+    font-family: 'bentonsansmedium';
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .05em;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 16px 44px;
+    border-radius: 10px;
+    border: 2px solid #3a2a17;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, .15);
+    }
+
+    /* Collapsible CARD */
+
+    /* card */
+    .dream-card {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 10px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(6px);
+      max-width: 420px;
+      margin: auto;
+      transition: 0.3s;
+    }
+
+    /* hover glow */
+    .dream-card:hover {
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+    }
+
+    /* heading */
+    .heading {
+      margin-bottom: 15px;
+    }
+
+    .info-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .label {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #b68b2c;
+      text-transform: uppercase;
+    }
+
+    .label::before {
+      content: '• ';
+      color: #d4af37;
+    }
+
+    .value {
+      font-size: 14px;
+      color: #3b2a12;
+      text-transform: capitalize;
+    }
+
+    /* divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, #d4af37, transparent);
+      margin: 10px 0;
+    }
+
+    /* text */
+    .text {
+      font-size: 14px;
+      color: #3b2a12;
+      line-height: 1.6;
+      text-align: left;
+      max-height: 90px;
+      overflow: hidden;
+      position: relative;
+      transition: 0.4s ease;
+    }
+
+    body.rtl .text {
+      direction: rtl;
+      text-align: right;
+    }
+
+    body.rtl .value {
+      direction: rtl;
+    }
+
+    .text p {
+      margin-bottom: 5px;
+    }
+
+    /* fade effect (light theme) */
+    .text::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 35px;
+      background: linear-gradient(to bottom, transparent, #d2b48c);
+    }
+
+    /* expanded */
+    .dream-card.active .text {
+      max-height: fit-content;
+    }
+
+    .dream-card.active .text::after {
+      display: none;
+    }
+
+    /* button */
+    .read-btn {
+      margin-top: 10px;
+      background: #3a2a17;
+      border: none;
+      color: #fff;
+      font-size: 12px;
+      cursor: pointer;
+      position: relative;
+      padding: 5px 20px;
+      border-radius: 20px;
+      font-weight: 400;
+    }
+
+    /* underline animation */
+    .read-btn::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0%;
+      height: 1px;
+      background: #b68b2c;
+      transition: 0.3s;
+    }
+
+    .read-btn:hover::after {
+      width: 100%;
+    }
+
+    .lang_voice {
+          display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    width: 100%;
+    position: relative;
+    top: -20px;
+    left: -20px;
+    }
+
+      .close-btn {
+    position: relative;
+    top: -40px;
+    right: -3px;
+    color: var(--brown-dark);
+    font-family: 'BentonSans-Regular';
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    border: none;
+    padding: 10px 22px 30px 22px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .12);
+    background: linear-gradient(135deg, #f4e6bd, #caa14b);
+    float: right;
+}
+
+/* hover effect */
+.close-btn:hover {
+  filter: brightness(1.05);
+}
+
+    /* responsive */
+    @media(max-width:480px) {
+      .dream-card {
+        padding: 15px;
+      }
+
+      .text {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="main">
+  
+        <button class="close-btn" type="button" data-i18n="close">close</button>
+
+    <div class="container">
+  
+      <!-- LANGUAGE SWITCHER -->
+      <div class="lang_voice">
+  
+        <select id="languageSwitcher">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+        </select>
+  
+        <button id="voiceBtn" type="button" style="padding: 3px 8px;border-radius: 5px; border: 1px solid #c9a98c;"
+          data-i18n-title="listen_recommendation" title="Listen">
+          🔊
+        </button>
+  
+      </div>
+  
+  
+  
+  
+      <!-- TITLE -->
+      <div class="title" data-i18n="discover_your_perfume">DISCOVER YOUR PERFUME</div>
+  
+      <!-- Progress Bar -->
+      <div class="steps">
+  
+        <div class="step ">
+          <span>1</span>
+          <p data-i18n="dream">Dream</p>
+        </div>
+  
+        <div class="line"></div>
+  
+        <div class="step active">
+          <span>2</span>
+          <p data-i18n="discover">Discover</p>
+        </div>
+  
+        <div class="line"></div>
+  
+        <div class="step">
+          <span>3</span>
+          <p data-i18n="gift">Gift</p>
+        </div>
+  
+      </div>
+  
+      <!-- <div class="dream-title">Crafting your discover ... </div> -->
+      <!-- <div class="dream-sub">Describe it in a few words</div> -->
+  
+  
+      <!-- Collapsible Card Section -->
+  
+      <div class="dream-card" id="dreamCard">
+  
+        <div class="heading">
+  
+          <div class="info-row">
+            <span class="label" data-i18n="your_dream">YOUR DREAM</span>
+            <span class="value"></span>
+          </div>
+          <div class="divider"></div>
+  
+        </div>
+  
+        <div class="text">
+          <p class="p3"></p>
+          <p class="p2"></p>
+          <p class="p1"></p>
+          <p class="p4"></p>
+          <p class="p5"></p>
+        </div>
+        <button class="read-btn" onclick="toggleRead()" data-i18n="read_more">Read More</button>
+      </div>
+      <br>
+  
+      <!-- Product Details -->
+      <div class="product-details">
+        <img src="https://ae.mansamworld.com/images/products/transparent/Safaa_Al_Nada_12ml_2.png" class="product-img"
+          width="100" alt="Perfume">
+        <div class="dream-sub"></div>
+      </div>
+  
+      <button class="btn" onclick="getMansamGift()" data-i18n="unlock_your_gift_option">Unlock Your Gift Option</button>
+  
+    </div>
+  
+  </main>
+
+  <!-- all scripts calls -->
+  <script>
+
+    function toggleRead() {
+      const card = document.getElementById("dreamCard");
+      const btn = card.querySelector(".read-btn");
+
+      card.classList.toggle("active");
+
+      btn.setAttribute(
+        "data-i18n",
+        card.classList.contains("active")
+          ? "show_less"
+          : "read_more"
+      );
+
+      loadLanguage(localStorage.getItem("language") || "en");
+    }
+
+
+    // ===== Page Load  APi Call =======================================================
+    let userDreamId = "";
+    let userRecommendedDream = "";
+
+
+    function getDiscoverParams() {
+      const params = new URLSearchParams(window.location.search);
+      const userDream = params.get("userDream") || "";
+      const category = params.get("Gender") || "";
+
+      return {
+        userDream: decodeURIComponent(userDream.replace(/\+/g, " ")),
+        category: decodeURIComponent(category.replace(/\+/g, " "))
+      };
+    }
+
+    function setDreamCardFallback(userDream) {
+      const dreamValue = document.querySelector(".value");
+
+      if (dreamValue) {
+        dreamValue.innerText = userDream || translate("no_dream_provided", "No dream provided");
+      }
+    }
+
+    function clearDiscoverSection() {
+      [".p1", ".p2", ".p3", ".p4", ".p5"].forEach(selector => {
+        const element = document.querySelector(selector);
+
+        if (element) {
+          element.innerHTML = "";
+        }
+      });
+
+      const productEl = document.querySelector(".dream-sub");
+      if (productEl) {
+        productEl.innerText = "";
+      }
+
+      userRecommendedDream = null;
+      userDreamId = "";
+    }
+
+    function escapeHtml(text) {
+      return String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function escapeRegex(text) {
+      return String(text || "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    function containsArabicText(text) {
+      return /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/.test(text || "");
+    }
+
+    function highlightProduct(text, productName, emotion) {
+      const safeText = escapeHtml(text);
+      const terms = [productName, emotion].filter(Boolean).map(escapeRegex);
+
+      if (!safeText || terms.length === 0) {
+        return safeText;
+      }
+
+      return safeText.replace(new RegExp(`(${terms.join("|")})`, "gi"), "<strong>$1</strong>");
+    }
+
+    function bindDiscoverSection(data) {
+      const productName = data?.recommended_perfume?.name || "";
+      const emotion = data?.dream_name || "";
+      const storytelling = data?.storytelling || {};
+      const perfumeReveal = storytelling?.perfume_reveal || {};
+
+      userRecommendedDream = data;
+      userDreamId = data?.dream_id || "";
+
+      const storyParts = {
+        ".p1": storytelling.opening,
+        ".p2": storytelling.emotional_bridge,
+        ".p3": perfumeReveal.headline,
+        ".p4": perfumeReveal.narrative,
+        ".p5": perfumeReveal.wearing_effect
+      };
+
+      Object.entries(storyParts).forEach(([selector, text]) => {
+        const element = document.querySelector(selector);
+
+        if (element) {
+          element.innerHTML = highlightProduct(text, productName, emotion);
+        }
+      });
+
+      const productEl = document.querySelector(".dream-sub");
+      if (productEl) {
+        productEl.innerText = productName;
+      }
+    }
+
+    let discoverLoadId = 0;
+
+    async function loadDiscoverSection() {
+      const loadId = ++discoverLoadId;
+      const { userDream, category } = getDiscoverParams();
+      const currentLang = getSavedLanguage();
+      const fallbackRecommendationQuery = translate(
+        "fallback_recommendation_query",
+        "I want a luxury fragrance that reflects my dream"
+      );
+      const shouldUseArabicFallback = currentLang === "ar" && userDream && !containsArabicText(userDream);
+      const recommendationQuery = shouldUseArabicFallback ? fallbackRecommendationQuery : (userDream || fallbackRecommendationQuery);
+      const recommendationGender = category || "unisex";
+
+      setDreamCardFallback(userDream);
+      clearDiscoverSection();
+
+      console.log("User Dream:", userDream);
+      console.log("Category:", category);
+
+      try {
+        const requestRecommendation = (query) => fetch("https://recommendation.mansamworld.com/recommend", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            query,
+            gender: recommendationGender,
+            language: currentLang
+          })
+        });
+
+        let response = await requestRecommendation(recommendationQuery);
+        let data = await response.json();
+
+        if (data.language !== currentLang && recommendationQuery !== fallbackRecommendationQuery) {
+          response = await requestRecommendation(fallbackRecommendationQuery);
+          data = await response.json();
+        }
+
+        console.log("API Response:", data);
+
+        if (loadId !== discoverLoadId) {
+          return;
+        }
+
+        if (data.language !== currentLang) {
+          sessionStorage.removeItem("recommendationData");
+          clearDiscoverSection();
+          return;
+        }
+
+        sessionStorage.setItem("recommendationData", JSON.stringify(data));
+        bindDiscoverSection(data);
+      } catch (err) {
+        console.error("API Error:", err);
+
+        const cachedData = JSON.parse(sessionStorage.getItem("recommendationData") || "null");
+        if (cachedData && cachedData.language === currentLang) {
+          bindDiscoverSection(cachedData);
+        }
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", loadDiscoverSection);
+
+    window.addEventListener("pageshow", function (event) {
+      syncLanguageSwitcher(getSavedLanguage());
+
+      if (event.persisted) {
+        loadDiscoverSection();
+      }
+    });
+
+    document.addEventListener("languageLoaded", function () {
+      const { userDream } = getDiscoverParams();
+      setDreamCardFallback(userDream);
+
+      if (userRecommendedDream && userRecommendedDream.language === getSavedLanguage()) {
+        bindDiscoverSection(userRecommendedDream);
+      }
+    });
+
+
+    // ==== Gift Dream ====
+    function getMansamGift() {
+
+      // Get data from current URL
+      const urlParams = new URLSearchParams(window.location.search);
+
+      const dreamId = urlParams.get("dreamId");
+      const userDream = urlParams.get("userDream");
+      const gender = urlParams.get("Gender");
+
+      // Create new params for next page
+      const newParams = new URLSearchParams({
+        userDream: userDream || "user dream missing", // default value if userDream is missing
+        dreamId: userDreamId || "", // default value if dreamId is missing
+        Gender: gender || "",
+      });
+
+      // Redirect to step4
+      window.location.href = `gift.html?${newParams.toString()}`;
+    }
+
+      // *------------- Close button functionality -------------*
+    const closeBtn = document.querySelector('.close-btn');
+    closeBtn.addEventListener('click', () => {
+       console.log("close parent modal");
+       
+      window.parent.postMessage({
+        action: 'closeModal'
+       }, '*');
+
+    });
+
+  </script>
+
+
+  <!-- Speech voice over -->
+  <script src="js/config.js"></script>
+ <script>
+  let speechUtterance = null, isPaused = false, isSpeaking = false;
+  let speechQueue = [], speechIndex = 0;
+  let audioPlayer = null, audioQueue = [], audioIndex = 0, activeSpeechMode = "";
+  let audioAttemptId = 0;
+  let isAudioFallbackRunning = false;
+
+  function getScreenSpeechText() {
+    const userDream = document.querySelector(".value")?.textContent?.trim() || "";
+    const productName = document.querySelector(".dream-sub")?.textContent?.trim() || "";
+    const storyText = [...document.querySelectorAll(".text p")]
+      .map(item => item.textContent.trim())
+      .filter(Boolean)
+      .join(" ");
+
+    const detectedLang = detectScreenLanguage([userDream, productName, storyText].join(" "));
+
+    if (detectedLang === "ar") {
+      return [
+        userDream ? `حلمك: ${userDream}.` : "",
+        productName ? `العطر المقترح لك هو: ${productName}.` : "",
+        storyText
+      ].filter(Boolean).join(" ");
+    }
+
+    return [
+      userDream ? `Your dream: ${userDream}.` : "",
+      productName ? `Your recommended perfume is: ${productName}.` : "",
+      storyText
+    ].filter(Boolean).join(" ");
+  }
+
+  function detectScreenLanguage(text) {
+    const arabicMatches = text.match(/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/g) || [];
+    const englishMatches = text.match(/[A-Za-z]/g) || [];
+
+    if (arabicMatches.length > 0 && arabicMatches.length >= englishMatches.length) {
+      return "ar";
+    }
+
+    if (englishMatches.length > 0) {
+      return "en";
+    }
+
+    return (document.documentElement.lang || getSavedLanguage() || "en").startsWith("ar") ? "ar" : "en";
+  }
+
+  function buildRecommendationSpeech() {
+    const screenText = getScreenSpeechText();
+    const lang = detectScreenLanguage(screenText);
+
+    if (screenText) {
+      return {
+        lang,
+        text: lang === "ar" ? normalizeArabicSpeechText(screenText) : screenText
+      };
+    }
+
+    return {
+      lang,
+      text: lang === "ar" ? "جاري تحميل التوصية." : "Recommendation is loading."
+    };
+  }
+
+  function normalizeArabicSpeechText(text) {
+    return text
+      .replace(/\bEDP\b/gi, "ماء عطر")
+      .replace(/\bml\b/gi, "مل")
+      .replace(/\bKSA\b/gi, "المملكة العربية السعودية")
+      .replace(/\bUAE\b/gi, "الإمارات العربية المتحدة")
+      .replace(/\s*\/\s*/g, "، ")
+      .replace(/&/g, " و ")
+      .replace(/%/g, " بالمئة ")
+      .replace(/\b0\.2\b/g, "صفر فاصلة اثنان")
+      .replace(/\b100\b/g, "مئة")
+      .replace(/\b12\b/g, "اثنا عشر")
+      .replace(/[A-Za-z]+/g, "")
+      .replace(/[()[\]{}<>]/g, " ")
+      .replace(/\s+/g, " ")
+      .replace(/\s+([.،؛؟])/g, "$1")
+      .trim();
+  }
+
+  function splitSpeechText(text, lang) {
+    const maxLength = lang === "ar" ? 140 : 220;
+    const chunks = [];
+    let remaining = text.replace(/\s+/g, " ").trim();
+
+    while (remaining.length > maxLength) {
+      const slice = remaining.slice(0, maxLength);
+      const punctuationIndex = Math.max(
+        slice.lastIndexOf("."),
+        slice.lastIndexOf("!"),
+        slice.lastIndexOf("?"),
+        slice.lastIndexOf("،"),
+        slice.lastIndexOf("؛"),
+        slice.lastIndexOf("؟")
+      );
+      const spaceIndex = slice.lastIndexOf(" ");
+      const cutIndex = punctuationIndex > 80 ? punctuationIndex + 1 : spaceIndex > 80 ? spaceIndex : maxLength;
+
+      chunks.push(remaining.slice(0, cutIndex).trim());
+      remaining = remaining.slice(cutIndex).trim();
+    }
+
+    if (remaining) {
+      chunks.push(remaining);
+    }
+
+    return chunks;
+  }
+
+  function getConfiguredArabicTtsEndpoint() {
+    const config = window.MANSAM_CONFIG || {};
+    const protocol = window.location.protocol;
+    const host = window.location.hostname;
+
+    if (protocol === "file:") {
+      return config.fileArabicTtsEndpoint || "http://127.0.0.1:5501/api/tts";
+    }
+
+    if (host === "127.0.0.1" || host === "localhost") {
+      return config.localArabicTtsEndpoint || "/api/tts";
+    }
+
+    return config.arabicTtsEndpoint || "/api/tts";
+  }
+
+  function appendQueryParams(url, params) {
+    return `${url}${url.includes("?") ? "&" : "?"}${params.toString()}`;
+  }
+
+  function getArabicTtsUrl(text, useFallbackEndpoint = false) {
+    const config = window.MANSAM_CONFIG || {};
+    const endpoint = useFallbackEndpoint
+      ? config.arabicTtsFallbackEndpoint
+      : getConfiguredArabicTtsEndpoint();
+
+    if (!endpoint) {
+      return "";
+    }
+
+    const params = new URLSearchParams({
+      tl: "ar",
+      q: text
+    });
+
+    return appendQueryParams(endpoint, params);
+  }
+
+  function waitForSpeechVoices() {
+    const voices = speechSynthesis.getVoices();
+
+    if (voices.length) {
+      return Promise.resolve(voices);
+    }
+
+    return new Promise(resolve => {
+      speechSynthesis.onvoiceschanged = () => resolve(speechSynthesis.getVoices());
+      setTimeout(() => resolve(speechSynthesis.getVoices()), 500);
+    });
+  }
+
+  async function getPreferredVoice(lang) {
+    const voices = await waitForSpeechVoices();
+    const preferredLangs = lang === "ar"
+      ? ["ar-SA", "ar-AE", "ar-EG", "ar-KW", "ar-QA", "ar"]
+      : ["en-US", "en-GB", "en"];
+
+    return preferredLangs
+      .map(code => voices.find(voice => voice.lang?.toLowerCase() === code.toLowerCase()))
+      .find(Boolean)
+      || voices.find(voice => voice.lang?.toLowerCase().startsWith(lang))
+      || null;
+  }
+
+  function speakNextChunk(lang, voice) {
+    if (speechIndex >= speechQueue.length) {
+      isSpeaking = false;
+      isPaused = false;
+      vb.innerHTML = "▶️";
+      return;
+    }
+
+    speechUtterance = new SpeechSynthesisUtterance(speechQueue[speechIndex]);
+    speechUtterance.lang = voice?.lang || (lang === "ar" ? "ar-SA" : "en-US");
+    try {
+      if (voice) {
+        speechUtterance.voice = voice;
+      }
+    } catch (error) {
+      console.warn("Selected speech voice could not be used. Falling back to language code.", error);
+      voice = null;
+    }
+    speechUtterance.rate = lang === "ar" ? 0.86 : 1;
+    speechUtterance.pitch = 1;
+    speechUtterance.onstart = () => { isSpeaking = true; isPaused = false; vb.innerHTML = "⏸"; };
+    speechUtterance.onend = () => {
+      speechIndex += 1;
+      speakNextChunk(lang, voice);
+    };
+    speechUtterance.onerror = () => {
+      speechIndex += 1;
+      speakNextChunk(lang, voice);
+    };
+
+    speechSynthesis.speak(speechUtterance);
+  }
+
+  function stopAudioSpeech() {
+    audioAttemptId += 1;
+
+    if (audioPlayer) {
+      audioPlayer.pause();
+      audioPlayer.src = "";
+      audioPlayer = null;
+    }
+
+    audioQueue = [];
+    audioIndex = 0;
+  }
+
+  function playNextArabicAudioChunk(useFallbackEndpoint = false) {
+    if (audioIndex >= audioQueue.length) {
+      isSpeaking = false;
+      isPaused = false;
+      activeSpeechMode = "";
+      vb.innerHTML = "▶️";
+      stopAudioSpeech();
+      return;
+    }
+
+    activeSpeechMode = "audio";
+    isSpeaking = true;
+    isPaused = false;
+    vb.innerHTML = "⏸";
+
+    const audioUrl = getArabicTtsUrl(audioQueue[audioIndex], useFallbackEndpoint);
+
+    if (!audioUrl) {
+      fallbackArabicToBrowserSpeech();
+      return;
+    }
+
+    const attemptId = ++audioAttemptId;
+    let hasHandledFailure = false;
+    const handleAudioFailure = () => {
+      if (attemptId !== audioAttemptId || hasHandledFailure) {
+        return;
+      }
+
+      hasHandledFailure = true;
+
+      if (!useFallbackEndpoint && (window.MANSAM_CONFIG || {}).arabicTtsFallbackEndpoint) {
+        console.warn("Primary Arabic TTS endpoint failed. Retrying the same text with the configured fallback.");
+        playNextArabicAudioChunk(true);
+        return;
+      }
+
+      console.warn("Arabic TTS audio could not be loaded. Trying an installed Arabic browser voice.");
+      fallbackArabicToBrowserSpeech();
+    };
+
+    audioPlayer = new Audio(audioUrl);
+    audioPlayer.preload = "auto";
+    audioPlayer.onended = () => {
+      if (attemptId !== audioAttemptId) {
+        return;
+      }
+
+      audioIndex += 1;
+      playNextArabicAudioChunk(useFallbackEndpoint);
+    };
+    audioPlayer.onerror = handleAudioFailure;
+
+    audioPlayer.play().catch(error => {
+      console.error("Arabic audio playback failed:", error);
+      handleAudioFailure();
+    });
+  }
+
+  async function fallbackArabicToBrowserSpeech() {
+    if (isAudioFallbackRunning) {
+      return;
+    }
+
+    isAudioFallbackRunning = true;
+    const remainingSpeech = audioQueue.slice(audioIndex).filter(Boolean);
+
+    stopAudioSpeech();
+    speechSynthesis.cancel();
+
+    activeSpeechMode = "speech";
+    speechQueue = remainingSpeech.length ? remainingSpeech : splitSpeechText(buildRecommendationSpeech().text, "ar");
+    speechIndex = 0;
+
+    const voice = await getPreferredVoice("ar");
+    isAudioFallbackRunning = false;
+
+    // Never pass Arabic to an English system voice. It commonly speaks only
+    // digits and punctuation, which sounds like a broken Arabic speaker.
+    if (!voice) {
+      isSpeaking = false;
+      isPaused = false;
+      activeSpeechMode = "";
+      vb.innerHTML = "▶️";
+      console.error("Arabic audio failed and no Arabic browser voice is installed.");
+      return;
+    }
+
+    speakNextChunk("ar", voice);
+  }
+
+  const vb = document.getElementById('voiceBtn');
+  vb.onclick = async function () {
+    if (isSpeaking && !isPaused) {
+      if (activeSpeechMode === "audio" && audioPlayer) {
+        audioPlayer.pause();
+      } else {
+        speechSynthesis.pause();
+      }
+
+      isPaused = true;
+      vb.innerHTML = '▶️';
+      return;
+    }
+
+    if (isSpeaking && isPaused) {
+      if (activeSpeechMode === "audio" && audioPlayer) {
+        audioPlayer.play();
+      } else {
+        speechSynthesis.resume();
+      }
+
+      isPaused = false;
+      vb.innerHTML = '⏸';
+      return;
+    }
+
+    const speech = buildRecommendationSpeech();
+    let lang = speech.lang;
+    let speechText = speech.text;
+
+    speechSynthesis.cancel();
+    stopAudioSpeech();
+
+    if (lang === "ar") {
+      // Do not await before audio.play(). Desktop Chrome can treat an awaited
+      // click handler as no longer user initiated and reject audio playback.
+      audioQueue = splitSpeechText(speechText, lang);
+      audioIndex = 0;
+      playNextArabicAudioChunk();
+      return;
+    }
+
+    const voice = await getPreferredVoice(lang);
+    activeSpeechMode = "speech";
+    speechQueue = splitSpeechText(speechText, lang);
+    speechIndex = 0;
+    speakNextChunk(lang, voice);
+  }
+</script>
+  <script src="js/i18n.js"></script>
+<script src="js/chatbot.js?v=20260910-mobile-voice-final"></script>
+</body>
+
+</html>

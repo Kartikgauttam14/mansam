@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400&display=swap"
+    rel="stylesheet">
+
+  <title>Perfume Finder</title>
+
+  <style>
+    @font-face {
+      font-family: 'BentonSans-Regular';
+      src: url('fonts/BentonSans-Regular.woff') format('woff');
+      font-style: normal;
+      font-weight: normal;
+    }
+
+    @font-face {
+      font-family: 'bentonsansmedium';
+      src: url('fonts/bentonsans_medium-webfont.woff2') format('woff2'),
+        url('fonts/bentonsans_medium-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'bentonsansbook_italic';
+      src: url('fonts/bentonsans_book_italic-webfont.woff2') format('woff2'),
+        url('fonts/bentonsans_book_italic-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'sackers_gothic_stdlight';
+      src: url('fonts/sackers_gothic_light-webfont.woff2') format('woff2'),
+        url('fonts/sackers_gothic_light-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: 'sackers_gothic_stdmedium';
+      src: url('fonts/sackers_gothic_medium-webfont.woff2') format('woff2'),
+        url('fonts/sackers_gothic_medium-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'BentonSans-Regular';
+      background: transparent;
+      color: #3a2a17;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* main */
+    .main {
+      padding: 3px;
+      background: linear-gradient(135deg, #b98b3e 0%, #f3e3ad 35%, #d8ad55 65%, #8a611f 100%);
+      border-radius: 18px;
+    }
+
+    /* CONTAINER */
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(160deg, #ffffff 0%, #f7ecd2 45%, #e9cd8f 100%);
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      animation: fadeIn 0.6s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CLOSE */
+    .close {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    /* LANGUAGE SWITCHER */
+    #languageSwitcher {
+      /* position: absolute;
+       left: 20px;
+       top: 15px; */
+      padding: 5px 15px;
+      border-radius: 5px;
+      border: 1px solid #c9a98c;
+      background: #f3e3d4;
+      color: #3a2a17;
+      font-size: 14px;
+      margin-bottom: 20px;
+      position: relative;
+      right: 0;
+      left: 30px;
+    }
+
+    /* TITLE */
+    .title {
+      font-family: 'BentonSans-Regular';
+      font-size: 20px;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      font-family: 'BentonSans-Regular';
+      font-size: 16px;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+
+    /* PROGRESS BAR */
+    /* STEPS WRAPPER */
+    .steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 0 25px;
+    }
+
+    /* EACH STEP */
+    .step {
+      text-align: center;
+      font-size: 11px;
+      color: #a08a6a;
+      transition: 0.3s;
+    }
+
+    /* CIRCLE */
+    .step span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid #3a2a17;
+      margin: auto;
+      margin-bottom: 5px;
+      font-size: 12px;
+      background: #f3e3d4;
+    }
+
+    /* ACTIVE STEP */
+    .step.active span {
+      background: #3a2a17;
+      color: #fff;
+      border-color: #3a2a17;
+      box-shadow: 0 0 10px rgba(58, 42, 23, 0.4);
+    }
+
+    .step.active p {
+      color: #3a2a17;
+      font-weight: 500;
+    }
+
+    /* LINE BETWEEN */
+    .line {
+      width: 30px;
+      height: 1px;
+      background: #c9a98c;
+      margin: 0 5px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:480px) {
+      .line {
+        width: 15px;
+      }
+    }
+
+    /* CARDS */
+    .cards {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      width: 100px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid transparent;
+    }
+
+    .card.active img {
+      border-color: #3a2a17;
+      box-shadow: 0 0 10px rgba(58, 42, 23, 0.5);
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    /* DREAM SECTION */
+    .dream-title {
+      font-family: 'BentonSans-Regular';
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .dream-sub {
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    /* INPUT */
+    .input-box {
+      background: #fff;
+      border-radius: 25px;
+      padding: 12px;
+      border: 1px solid #3a2a17;
+    }
+
+    .dream-input {
+      width: 100%;
+      border: none;
+      outline: none;
+      background: #fff;
+      color: #3a2a17;
+      font-size: 14px;
+      text-align: center;
+      resize: none;
+    }
+
+    .counter {
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    /* BUTTON */
+    .btn {
+      margin-top: 20px;
+      width: 100%;
+      background: #fff;
+      color: #3a2a17;
+      font-family: 'bentonsansmedium';
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .05em;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 16px 44px;
+      border-radius: 10px;
+      border: 2px solid #3a2a17;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, .15);
+    }
+
+    .close-btn {
+      position: relative;
+      top: -40px;
+      right: -3px;
+      color: var(--brown-dark);
+      font-family: 'BentonSans-Regular';
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      border: none;
+      padding: 10px 22px 30px 22px;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, .12);
+      background: linear-gradient(135deg, #f4e6bd, #caa14b);
+      float: right;
+    }
+
+    /* hover effect */
+    .close-btn:hover {
+      filter: brightness(1.05);
+    }
+
+
+    /* ERROR */
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      to {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <main class="main">
+
+    <button class="close-btn" type="button" data-i18n="close">close</button>
+
+    <div class="container">
+
+      <!-- LANGUAGE SWITCHER -->
+      <select id="languageSwitcher">
+        <option value="en">English</option>
+        <option value="ar">العربية</option>
+      </select>
+
+
+      <!-- TITLE -->
+      <div class="title" data-i18n="discover_your_perfume">DISCOVER YOUR PERFUME</div>
+
+      <!-- Progress Bar -->
+      <div class="steps">
+
+        <div class="step active">
+          <span>1</span>
+          <p data-i18n="dream">Dream</p>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+          <span>2</span>
+          <p data-i18n="discover">Discover</p>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="step">
+          <span>3</span>
+          <p data-i18n="gift">Gift</p>
+        </div>
+
+      </div>
+
+      <div class="dream-title" data-i18n="describe_your_dream">Describe your dream </div>
+      <div class="dream-sub" data-i18n="in_a_few_words">In a few words</div>
+
+      <div class="input-box">
+        <textarea id="dreamInput" class="dream-input"
+          placeholder="e.g. Bold and Confident, Peaceful Life, Luxury Lifestyle"
+          data-i18n-placeholder="dream_placeholder" rows="3"></textarea>
+
+        <!-- <input type="text" id="dreamInput" placeholder="Write your dream - 'I want to fly high'"> -->
+      </div>
+      <!-- <div class="counter" id="counter">0 / 5 words</div> -->
+      <div class="error" id="error"></div>
+
+
+
+      <!-- Cards -->
+      <div class="subtitle" data-i18n="is_it_for">Is it for ....</div>
+      <div class="cards">
+
+        <div class="card" onclick="selectCard(this,'Male')">
+          <img src="./forhim.png" alt="">
+          <div data-i18n="for_him">
+            For Him
+          </div>
+        </div>
+
+        <div class="card" onclick="selectCard(this,'Female')">
+          <img src="./forher.png" alt="">
+
+          <div data-i18n="for_her">
+            For Her
+          </div>
+        </div>
+
+      </div>
+
+
+      <button class="btn" onclick="submitForm()" data-i18n="discover_your_perfect_perfume">Discover Your Perfect
+        Perfume</button>
+    </div>
+  </main>
+
+
+  <script>
+
+    const dreamInput = document.getElementById("dreamInput");
+    const errorBox = document.getElementById("error");
+    let selected = null;
+
+    /* -----------------------------
+       WORD COUNT FUNCTION
+    --------------------------------*/
+    function getWords(text) {
+      return text.trim().split(/\s+/).filter(Boolean);
+    }
+
+    /* -----------------------------
+       MEANINGLESS CHECK
+    --------------------------------*/
+    /*
+    function isMeaningless(text) {
+      text = text.toLowerCase();
+    
+      // repeated characters
+      if (/(.)\1{4,}/.test(text)) return true;
+    
+      // only numbers
+      if (/^[0-9]+$/.test(text)) return true;
+    
+      // keyboard patterns
+      if (/asdf|qwer|zxcv|poiuy|lkjh/i.test(text)) return true;
+    
+      // no vowels (like dfjfkf)
+      if (!/[aeiou]/i.test(text)) return true;
+    
+      // too short
+      if (text.length < 3) return true;
+    
+      return false;
+    }
+    */
+    /* -----------------------------
+       INPUT CONTROL (max 10 words)
+    --------------------------------*/
+    dreamInput.addEventListener("input", () => {
+
+      let words = getWords(dreamInput.value);
+
+      if (words.length > 15) {
+        words = words.slice(0, 15);
+        dreamInput.value = words.join(" ");
+      }
+
+    });
+
+    /* -----------------------------
+       CARD SELECT
+    --------------------------------*/
+    function selectCard(el, type) {
+      document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      selected = type;
+    }
+
+    /* -----------------------------
+       BAD WORD API CHECK
+    --------------------------------*/
+    // async function checkProfanity(text) {
+
+    //   try {
+    //     const res = await fetch("https://vector.profanity.dev", {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json"
+    //       },
+    //       body: JSON.stringify({ message: text })
+    //     });
+
+    //     const data = await res.json();
+    //     return data.isProfanity;
+
+    //   } catch (err) {
+    //     return false; // fail safe
+    //   }
+    // }
+
+    /* -----------------------------
+       MAIN SUBMIT
+    --------------------------------*/
+    async function submitForm() {
+
+      errorBox.innerText = "";
+
+      const text = dreamInput.value.trim();
+      const words = getWords(text);
+
+      // Category check
+      if (!selected) {
+        errorBox.innerText = translate("select_gender_error", "Please select gender");
+        return;
+      }
+
+      // Word count validation
+      if (words.length < 5 || words.length > 15) {
+        errorBox.innerText = translate("dream_words_error", "Tell us a bit more about your dream so we can reveal your perfect fragrance.");
+        return;
+      }
+
+      // Meaningless check
+      // if (isMeaningless(text)) {
+      //   errorBox.innerText = "We couldn’t understand your input. Please describe your dream using meaningful words.";
+      //   return;
+      // }
+
+      // Bad words check
+      // const isBad = await checkProfanity(text);
+      // if (isBad) {
+      //   errorBox.innerText = "Some words in your input aren’t allowed. Please use respectful language to describe your dream.";
+      //   return;
+      // }
+
+      // Success
+      //alert("Category: " + selected + "\nDream: " + text);
+
+      // Redirect (optional)
+      setTimeout(() => {
+
+        const params = new URLSearchParams({
+          userDream: text || "",
+          Gender: selected || "",
+        });
+
+        window.location.href = `discover.html?${params.toString()}`;
+
+      }, 1000);
+    }
+
+    /* -----------------------------
+       ENTER KEY SUPPORT
+    --------------------------------*/
+    dreamInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        submitForm();
+      }
+    });
+
+    // *------------- Close button functionality -------------*
+    const closeBtn = document.querySelector('.close-btn');
+    closeBtn.addEventListener('click', () => {
+      console.log("close parent modal");
+
+      window.parent.postMessage({
+        action: 'closeModal'
+      }, '*');
+
+    });
+
+
+
+  </script>
+
+  <script>
+
+  </script>
+
+
+
+  <script src="js/i18n.js"></script>
+<script src="js/chatbot.js?v=20260910-mobile-voice-final"></script>
+</body>
+
+</html>

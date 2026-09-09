@@ -1,0 +1,189 @@
+Mansam Bilingual RAG Chatbot
+=============================
+
+What Is Included
+----------------
+The chatbot uses two grounded sources:
+
+1. The English and Arabic Mansam product booklets.
+2. The public Mansam live catalogue API at https://uatuae.mansamworld.com.
+
+It retrieves the most relevant products before answering. It understands
+product name, key notes, collection, emotion, product category, gender, season,
+size, price, and availability. It also keeps the most recent product as context,
+so customers can ask follow-up questions such as "What are its notes?" or
+"Is it available?".
+
+It supports English and Arabic automatically. When the website language changes,
+the chat panel changes its labels, suggestions, direction, and replies.
+
+Local Run
+---------
+1. Double-click run-website.bat.
+2. Open http://127.0.0.1:5501/dream.html.
+3. Select the Chat button at the bottom-right of the page.
+
+The local server in server.py provides:
+
+  POST /api/chat
+
+General conversation is trained from both data/general-chat-intents.json and
+general_qa_intents.json. Keep both files beside server.py when deploying.
+
+Example request:
+
+  {"message":"Which perfume has rose and oud?","language":"en"}
+
+Example Arabic request:
+
+  {"message":"أريد عطراً منعشاً للاستخدام اليومي","language":"ar"}
+
+Knowledge Sources
+-----------------
+The source PDFs are extracted under data/source-pdfs/Mansam Books/.
+The booklet knowledge is stored in:
+
+  data/product-knowledge.json
+
+The bilingual general-question training examples are stored in:
+
+  data/general-chat-intents.json
+
+This file covers greetings, good morning messages, help, thanks, goodbye, gift
+questions, delivery, and returns. Add verified English and Arabic examples here
+when new general customer questions need a guided response.
+
+Train/Test Evaluation
+---------------------
+Run this command after changing the general-question examples:
+
+  py train_test_general_intents.py --check
+
+It creates an 80% training split and a 20% untouched test split using a fixed
+seed, then trains and tests the bilingual intent classifier. Results are saved
+in reports/general-intents-evaluation.md. The production chatbot keeps using
+the full verified file, data/general-chat-intents.json, after the test.
+
+The current live Mansam catalogue snapshot is stored in:
+
+data/live-catalog.json
+
+The perfume-only live list is also saved in:
+
+  data/live-perfumes.json
+
+It contains the verified perfume, attar, oil, bukhoor, Luban, and Dehab
+products used to prioritize fragrance recommendations. The full live catalogue
+remains available for questions about candles, diffusers, and other products.
+
+It contains product details supplied by the live public API, including English
+and Arabic names, descriptions, notes, price, availability, product line,
+collection, emotion, gender, season, size, and packaging.
+
+Refresh Live Catalogue
+----------------------
+The server now refreshes the public Mansam catalogue automatically before chat
+requests, then keeps the result cached for five minutes. Product searches can
+therefore use current live products, prices, and availability without fetching
+the website for every message. To change the interval, set
+MANSAM_LIVE_REFRESH_SECONDS in seconds. Set it to 0 to disable automatic
+refreshing.
+
+You can also run this command before deploying, and whenever products or prices change:
+
+  py sync_live_catalog.py
+
+The command creates data/live-catalog.json. It uses only public product API
+endpoints from the Mansam website and does not need a login or API key.
+
+AWS / UAT Deployment
+--------------------
+The frontend requires these files:
+
+  js/chatbot.js
+  data/product-knowledge.json
+  data/live-catalog.json
+  dream.html
+  discover.html
+  gift.html
+  voucher.html
+
+The existing UAT backend must expose this endpoint on the same domain:
+
+  POST /api/chat
+
+It must use the retrieval approach in server.py or the same logic inside the
+existing Java/Spring backend. A static HTML deployment alone cannot answer chat
+requests because it has no server-side product search API.
+
+Answer Safety
+-------------
+The answer layer only uses facts from the product booklets and the latest local
+snapshot of the public Mansam catalogue. Price and availability are included
+only when the customer asks for them. Refresh the live catalogue before each
+deployment so the chatbot does not answer from an old snapshot.
+
+Optional Hugging Face Model
+---------------------------
+The chatbot can use a Hugging Face hosted model to phrase retrieved product
+recommendations more naturally. Product retrieval, prices, availability, and
+verified Mansam links remain controlled by server.py.
+
+Set these variables on the server, never in HTML or JavaScript:
+
+  HF_TOKEN=hf_your_secret_token
+  HF_MODEL=Qwen/Qwen3.8-27B:deepinfra
+  HF_API_URL=https://router.huggingface.co/v1/chat/completions
+  HF_TIMEOUT_SECONDS=20
+
+Restart server.py after setting the variables. If Hugging Face is unavailable,
+slow, or returns an error, the chatbot automatically uses its local RAG answer.
+
+Optional Hugging Face Gradio Space
+----------------------------------
+The chatbot can also call a Gradio Space that exposes a text endpoint, such as
+the /answer endpoint in a hosted chat Space. Install its client dependency:
+
+  py -3 -m pip install -r requirements.txt
+
+Set these server-only variables before starting server.py:
+
+  HF_GRADIO_SPACE=https://akhaliq-glm-5-3-flash.hf.space
+  HF_GRADIO_API_NAME=/answer
+  HF_GRADIO_TOKEN=hf_your_new_token
+  HF_TIMEOUT_SECONDS=20
+
+The Gradio Space requires a valid Hugging Face OAuth token. Do not place the
+token in HTML, JavaScript, browser storage, or a public repository. When
+HF_GRADIO_SPACE is set, it is used instead of the Hugging Face Router option
+above. The chatbot supplies only retrieved Mansam catalogue context to the
+model and falls back to the local RAG response if the Space is unavailable or
+the token is rejected.
+
+Voice Chat
+----------
+The chat panel has Chat and Voice modes. Voice mode uses the browser's native
+speech-recognition capability and sends the recognised Arabic or English text
+to the same grounded chat endpoint. Each assistant response has a read-aloud
+button. Arabic uses an installed Arabic device voice when available, otherwise
+it requests the configured /api/tts endpoint. The browser asks the customer
+for microphone permission only when the microphone button is selected.
+
+Conversation Memory
+-------------------
+The chatbot keeps a small fragrance profile in the customer's browser so later
+messages can remember preferences such as oud, floral, fresh, or who the gift
+is for. It also remembers the most recent suggested product for follow-up
+questions such as "How much is it?". Only these fragrance preferences and
+product IDs are stored in local browser storage; the raw conversation is not
+stored there. The reset icon in the chat header clears this memory.
+
+Recipient Gender Detection
+--------------------------
+The recommendation layer understands common relationship words automatically.
+"girlfriend", "wife", "lady", and similar words are treated as a feminine
+recipient, while "boyfriend", "husband", "man", and similar words are treated
+as a masculine recipient. Arabic relationship words such as "زوجتي" and
+"زوجي" are supported too. These signals are passed into the product search,
+so the customer can ask naturally instead of selecting a gender manually.
+Representative checks are stored in data/recipient-gender-tests.json.

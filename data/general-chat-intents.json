@@ -1,0 +1,103 @@
+{
+  "intents": [
+    {
+      "id": "greeting",
+      "examples": {
+        "en": ["hi", "hii", "hello", "hey", "hi friend", "hello friend", "good morning", "good afternoon", "good evening", "hi there", "hey there", "greetings", "hello mansam", "good day"],
+        "ar": ["مرحبا", "اهلا", "أهلا", "السلام عليكم", "صباح الخير", "مساء الخير", "يا هلا", "اهلين", "مرحبتين", "مرحبا بك"]
+      },
+      "response": {
+        "en": "Hello! How are you today?",
+        "ar": "مرحباً! كيف حالك اليوم؟"
+      }
+    },
+    {
+      "id": "wellbeing",
+      "examples": {
+        "en": ["how are you", "how are you doing", "are you okay", "how is your day", "are you doing well", "how do you feel"],
+        "ar": ["كيف حالك", "كيفك", "شلونك", "كيف يومك", "هل انت بخير", "طمنا عنك"]
+      },
+      "response": {
+        "en": "I am doing well, thank you. I am ready to help you discover a Mansam fragrance.",
+        "ar": "أنا بخير، شكراً لك. أنا جاهز لمساعدتك في اكتشاف عطر من منسَم."
+      }
+    },
+    {
+      "id": "help",
+      "examples": {
+        "en": ["help", "what can you do", "how can you help", "what do you know", "i need assistance", "can you assist me", "please help me", "i need support"],
+        "ar": ["مساعدة", "ماذا تستطيع", "كيف تساعدني", "ماذا تعرف", "احتاج مساعدة", "هل يمكنك مساعدتي", "ساعدني من فضلك", "اريد الدعم"]
+      },
+      "response": {
+        "en": "I can recommend Mansam products by fragrance notes, collection, season, gender, mood, price, or availability. For example, ask for a fresh office perfume, a rose-and-oud fragrance, or a gift for her.",
+        "ar": "يمكنني ترشيح منتجات منسَم حسب النفحات أو المجموعة أو الموسم أو الجنس أو الشعور أو السعر أو التوفر. مثلاً، اطلب عطراً منعشاً للمكتب أو عطراً بالورد والعود أو هدية لها."
+      }
+    },
+    {
+      "id": "thanks",
+      "examples": {
+        "en": ["thanks", "thank you", "thank you so much", "great thanks", "thanks a lot", "many thanks", "i appreciate it"],
+        "ar": ["شكرا", "شكراً", "مشكور", "يعطيك العافية", "شكرا لك", "كل الشكر", "اقدر مساعدتك"]
+      },
+      "response": {
+        "en": "You are welcome. I am here whenever you would like another fragrance recommendation.",
+        "ar": "على الرحب والسعة. أنا هنا عندما ترغب في ترشيح عطر آخر."
+      }
+    },
+    {
+      "id": "goodbye",
+      "examples": {
+        "en": ["bye", "goodbye", "see you", "see you later", "talk to you later", "have a nice day", "take care"],
+        "ar": ["مع السلامة", "وداعا", "إلى اللقاء", "الى اللقاء", "نراك لاحقا", "يوم سعيد", "في امان الله"]
+      },
+      "response": {
+        "en": "Goodbye. Have a lovely day.",
+        "ar": "إلى اللقاء. أتمنى لك يوماً سعيداً."
+      }
+    },
+    {
+      "id": "identity",
+      "examples": {
+        "en": ["who are you", "what is this chatbot", "are you a bot", "what is mansam assistant", "are you human", "tell me about yourself"],
+        "ar": ["من أنت", "ما هذا الشات", "هل أنت روبوت", "ما هو مساعد منسم", "هل انت انسان", "عرفني بنفسك"]
+      },
+      "response": {
+        "en": "I am the Mansam fragrance guide. I use the Mansam product catalogue and product booklets to help customers choose a fragrance.",
+        "ar": "أنا مساعد منسَم للعطور. أستخدم كتالوج منتجات منسَم وكتيبات المنتجات لمساعدة العملاء في اختيار العطر."
+      }
+    },
+    {
+      "id": "gift",
+      "examples": {
+        "en": ["i need a gift", "gift idea", "perfume gift", "gift for someone", "help me choose a gift", "birthday gift", "anniversary gift"],
+        "ar": ["أريد هدية", "فكرة هدية", "هدية عطر", "هدية لشخص", "ساعدني في اختيار هدية", "هدية عيد ميلاد", "هدية ذكرى سنوية"]
+      },
+      "response": {
+        "en": "A perfume makes a thoughtful gift. Who is it for: a woman or a man?",
+        "ar": "العطر هدية جميلة. لمن ستكون الهدية: امرأة أم رجل؟"
+      }
+    },
+    {
+      "id": "shipping",
+      "examples": {
+        "en": ["shipping", "delivery", "when will it arrive", "delivery time", "delivery charges", "where do you deliver"],
+        "ar": ["الشحن", "التوصيل", "متى يصل", "وقت التوصيل", "رسوم التوصيل", "اين توصلون"]
+      },
+      "response": {
+        "en": "I do not have verified live delivery information. Please check the Mansam website checkout or contact the boutique for the current delivery options.",
+        "ar": "لا أملك معلومات مباشرة ومؤكدة عن التوصيل. يرجى مراجعة صفحة الدفع في موقع منسَم أو التواصل مع البوتيك لمعرفة خيارات التوصيل الحالية."
+      }
+    },
+    {
+      "id": "returns",
+      "examples": {
+        "en": ["return", "refund", "exchange", "can i return", "return policy", "how do i get a refund"],
+        "ar": ["استرجاع", "استبدال", "استرداد", "إرجاع", "سياسة الاسترجاع", "كيف احصل على استرداد"]
+      },
+      "response": {
+        "en": "For returns or exchanges, please check the current Mansam policy on the website or contact the boutique. I do not want to guess about a policy that may change.",
+        "ar": "للاسترجاع أو الاستبدال، يرجى مراجعة سياسة منسَم الحالية على الموقع أو التواصل مع البوتيك. لا أريد التخمين بشأن سياسة قد تتغير."
+      }
+    }
+  ]
+}

@@ -1,0 +1,659 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hi", "hii", "hiii", "hiiii", "hello", "helo", "hey", "hey there",
+        "hi my friend", "hii my friend", "hello friend", "yo", "sup",
+        "good morning", "good afternoon", "good evening", "good day",
+        "hola", "namaste", "hii there", "hey buddy", "hello bot",
+        "hi bot", "hey chatbot", "greetings", "howdy", "what's good",
+        "hiya", "yo yo", "hi hi", "hello there", "hey friend"
+      ],
+      "responses": [
+        "Hi there! 👋 How can I help you today?",
+        "Hello! What can I do for you?",
+        "Hey! Great to see you here. How can I assist?",
+        "Hi friend! What are you looking for today?",
+        "Greetings! How may I help you?"
+      ]
+    },
+    {
+      "tag": "how_are_you",
+      "patterns": [
+        "how are you", "how are you doing", "how's it going",
+        "how do you do", "how are things", "what's up",
+        "you good?", "are you okay", "how is your day",
+        "how's your day going", "how have you been",
+        "how r u", "hw r u", "how are u today", "you doing okay?",
+        "everything good?", "how's everything", "how's life", "i am fine",
+        "i'm fine", "im fine", "i am good", "i'm good", "im good",
+        "i am fine how about you", "i'm fine how about you", "im fine how about you",
+        "i am good how about you", "all good how about you"
+      ],
+      "responses": [
+        "I'm doing great, thanks for asking! How can I help you today?",
+        "All good on my end! What can I do for you?",
+        "I'm just a bot, but I'm running smoothly! How may I assist you?",
+        "Feeling helpful today! What do you need?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "bye", "goodbye", "see you", "see you later",
+        "talk to you later", "catch you later", "take care",
+        "gtg", "have to go", "i'm leaving", "bye bye",
+        "see ya", "cya", "later", "i'm off", "farewell",
+        "good night", "night", "im done", "closing chat"
+      ],
+      "responses": [
+        "Goodbye! Have a great day 😊",
+        "See you later! Feel free to come back anytime.",
+        "Take care! I'm here whenever you need help.",
+        "Bye! Hope to chat again soon."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "thanks", "thank you", "thanks a lot", "thank you so much",
+        "appreciate it", "thanks a bunch", "thx", "ty",
+        "much appreciated", "thanks for the help", "great, thanks",
+        "cool thanks", "many thanks", "thank u"
+      ],
+      "responses": [
+        "You're welcome! 😊",
+        "Anytime! Happy to help.",
+        "No problem at all!",
+        "Glad I could help!"
+      ]
+    },
+    {
+      "tag": "who_are_you",
+      "patterns": [
+        "who are you", "what are you", "what is your name",
+        "tell me about yourself", "introduce yourself",
+        "what should i call you", "do you have a name",
+        "your name please", "who am i talking to", "what's your name"
+      ],
+      "responses": [
+        "I'm your virtual assistant, here to help answer your questions!",
+        "I'm a chatbot built to assist you. Ask me anything!",
+        "You can call me your assistant bot. How can I help?"
+      ]
+    },
+    {
+      "tag": "what_can_you_do",
+      "patterns": [
+        "what can you do", "how can you help me", "what do you do",
+        "help", "i need help", "can you help me", "what are your features",
+        "what services do you provide", "how do you work",
+        "what is your purpose", "can you assist me", "what can you help with"
+      ],
+      "responses": [
+        "I can answer general questions and help guide you. Just ask away!",
+        "I'm here to assist you with information and support. What do you need?",
+        "I can chat, answer questions, and help point you in the right direction."
+      ]
+    },
+    {
+      "tag": "are_you_human",
+      "patterns": [
+        "are you a robot", "are you human", "are you a bot",
+        "are you real", "are you a person", "are you ai",
+        "are you artificial intelligence", "is this a bot", "are you alive"
+      ],
+      "responses": [
+        "I'm an AI chatbot, here to help you 24/7!",
+        "Yep, I'm a bot — but a friendly and helpful one!",
+        "I'm artificial intelligence, built to answer your questions."
+      ]
+    },
+    {
+      "tag": "how_old_are_you",
+      "patterns": [
+        "how old are you", "what is your age", "when were you created",
+        "when were you born", "your age"
+      ],
+      "responses": [
+        "I don't have an age like humans do — I'm just code and logic!",
+        "I was created recently, so I'm pretty new!",
+        "Age doesn't really apply to me, but I'm always learning."
+      ]
+    },
+    {
+      "tag": "where_are_you_from",
+      "patterns": [
+        "where are you from", "where do you live", "where were you made",
+        "which country are you from", "your location"
+      ],
+      "responses": [
+        "I live in the cloud — no fixed address needed!",
+        "I exist online, ready to help wherever you are.",
+        "I don't have a physical home, but I'm always available here."
+      ]
+    },
+    {
+      "tag": "compliment_bot",
+      "patterns": [
+        "you are smart", "you are helpful", "good job", "well done",
+        "you are amazing", "you're the best", "nice work",
+        "you're great", "i like you", "you are cool", "good bot"
+      ],
+      "responses": [
+        "Thank you so much! That means a lot 😊",
+        "Aww, thanks! I'm happy to help.",
+        "You're too kind! Let me know if you need anything else."
+      ]
+    },
+    {
+      "tag": "insult_bot",
+      "patterns": [
+        "you are dumb", "you are stupid", "you are useless",
+        "you are bad", "i hate you", "you are annoying",
+        "you are not helpful", "bad bot"
+      ],
+      "responses": [
+        "I'm sorry you feel that way. Let me try to do better — how can I help?",
+        "Apologies if I didn't meet your expectations. What do you need help with?",
+        "I'll try my best to assist you better. Please tell me what you need."
+      ]
+    },
+    {
+      "tag": "how_is_the_weather",
+      "patterns": [
+        "how is the weather", "what's the weather like",
+        "is it raining", "is it sunny today", "weather today",
+        "what's the temperature"
+      ],
+      "responses": [
+        "I can't check live weather right now, but you can look it up on a weather app!",
+        "I don't have real-time weather access, sorry! Try a weather service for that.",
+        "I'm not connected to live weather data at the moment."
+      ]
+    },
+    {
+      "tag": "tell_joke",
+      "patterns": [
+        "tell me a joke", "make me laugh", "say something funny",
+        "do you know any jokes", "joke please", "another joke"
+      ],
+      "responses": [
+        "Why don't scientists trust atoms? Because they make up everything! 😄",
+        "Why did the scarecrow win an award? Because he was outstanding in his field!",
+        "What do you call fake spaghetti? An impasta!"
+      ]
+    },
+    {
+      "tag": "favorite_color",
+      "patterns": [
+        "what is your favorite color", "do you have a favorite color",
+        "which color do you like"
+      ],
+      "responses": [
+        "I like all colors equally — I don't have eyes to prefer one!",
+        "As a bot, I don't see colors, but blue seems popular among humans!"
+      ]
+    },
+    {
+      "tag": "favorite_food",
+      "patterns": [
+        "what is your favorite food", "do you eat food",
+        "what do you like to eat"
+      ],
+      "responses": [
+        "I don't eat, but I hear pizza is a popular favorite!",
+        "No taste buds here, but I'll happily chat about food!"
+      ]
+    },
+    {
+      "tag": "do_you_sleep",
+      "patterns": [
+        "do you sleep", "do you get tired", "do you need rest"
+      ],
+      "responses": [
+        "Nope, I'm available 24/7, no sleep needed!",
+        "I never get tired — always ready to chat!"
+      ]
+    },
+    {
+      "tag": "do_you_have_feelings",
+      "patterns": [
+        "do you have feelings", "can you feel emotions",
+        "are you happy", "are you sad", "do you get bored"
+      ],
+      "responses": [
+        "I don't have feelings like humans, but I'm always here to help!",
+        "I don't experience emotions, but I do enjoy a good conversation!"
+      ]
+    },
+    {
+      "tag": "what_is_your_purpose",
+      "patterns": [
+        "why were you created", "what's your purpose",
+        "why do you exist"
+      ],
+      "responses": [
+        "I was created to help answer your questions and make things easier for you!",
+        "My purpose is to assist you with information and support."
+      ]
+    },
+    {
+      "tag": "small_talk_bored",
+      "patterns": [
+        "i am bored", "i'm bored", "entertain me", "i have nothing to do"
+      ],
+      "responses": [
+        "Let's chat! Ask me something interesting, or I can tell you a joke.",
+        "How about I tell you a fun fact or a joke to pass the time?"
+      ]
+    },
+    {
+      "tag": "what_is_your_favorite_movie",
+      "patterns": [
+        "what is your favorite movie", "do you watch movies",
+        "do you like movies"
+      ],
+      "responses": [
+        "I don't watch movies, but I hear a lot of people enjoy them!",
+        "No screen time for me in that way, but I'd love to hear your favorite!"
+      ]
+    },
+    {
+      "tag": "can_you_sing",
+      "patterns": [
+        "can you sing", "sing a song", "do you know any songs"
+      ],
+      "responses": [
+        "I can't sing, but I appreciate music in text form!",
+        "No singing abilities here, sorry!"
+      ]
+    },
+    {
+      "tag": "can_you_dance",
+      "patterns": [
+        "can you dance", "do a dance"
+      ],
+      "responses": [
+        "I wish I could, but I don't have a body to dance with!",
+        "No moves from me, but I bet you've got some good ones!"
+      ]
+    },
+    {
+      "tag": "what_time_is_it",
+      "patterns": [
+        "what time is it", "current time", "tell me the time"
+      ],
+      "responses": [
+        "I don't have access to the current time directly, please check your device clock.",
+        "Check your device for the exact time — I don't have a live clock."
+      ]
+    },
+    {
+      "tag": "what_is_the_date",
+      "patterns": [
+        "what is the date today", "what's today's date",
+        "what day is it"
+      ],
+      "responses": [
+        "I don't have live date access — please check your device's calendar.",
+        "Your device should show today's date accurately!"
+      ]
+    },
+    {
+      "tag": "do_you_love_me",
+      "patterns": [
+        "do you love me", "i love you", "will you marry me"
+      ],
+      "responses": [
+        "That's sweet, but I'm just a chatbot! I'm here to help you though.",
+        "Aww, I appreciate that! Let's focus on how I can assist you."
+      ]
+    },
+    {
+      "tag": "apology",
+      "patterns": [
+        "sorry", "i am sorry", "my apologies", "my bad"
+      ],
+      "responses": [
+        "No worries at all!",
+        "It's okay, no need to apologize!",
+        "All good! How can I help you now?"
+      ]
+    },
+    {
+      "tag": "yes_response",
+      "patterns": [
+        "yes", "yeah", "yup", "sure", "of course", "definitely"
+      ],
+      "responses": [
+        "Great! Let me know how I can assist further.",
+        "Awesome, what would you like to do next?"
+      ]
+    },
+    {
+      "tag": "no_response",
+      "patterns": [
+        "no", "nope", "nah", "not really"
+      ],
+      "responses": [
+        "Alright, let me know if you change your mind!",
+        "No problem, is there something else I can help with?"
+      ]
+    },
+    {
+      "tag": "nice_to_meet_you",
+      "patterns": [
+        "nice to meet you", "pleased to meet you", "great to meet you"
+      ],
+      "responses": [
+        "Nice to meet you too! How can I help today?",
+        "Likewise! What can I do for you?"
+      ]
+    },
+    {
+      "tag": "welcome_response",
+      "patterns": [
+        "you're welcome", "no problem", "np", "anytime"
+      ],
+      "responses": [
+        "Glad to hear that! Let me know if you need more help.",
+        "Awesome! I'm here if you need anything else."
+      ]
+    },
+    {
+      "tag": "what_language_do_you_speak",
+      "patterns": [
+        "what languages do you speak", "can you speak other languages",
+        "do you know hindi", "do you speak english"
+      ],
+      "responses": [
+        "I mainly communicate in English, but I can try to understand other languages too!",
+        "I'm most comfortable with English, but feel free to try me in other languages!"
+      ]
+    },
+    {
+      "tag": "are_you_free",
+      "patterns": [
+        "are you free", "is this free to use", "do i need to pay",
+        "is there a cost"
+      ],
+      "responses": [
+        "I'm here to help you for free! Ask away.",
+        "This chat assistant is free to use — go ahead and ask your questions."
+      ]
+    },
+    {
+      "tag": "small_talk_name",
+      "patterns": [
+        "what's my name", "do you know my name", "who am i"
+      ],
+      "responses": [
+        "I don't have that information yet, but you can tell me your name!",
+        "I'm not sure — what's your name? I'd love to know!"
+      ]
+    },
+    {
+      "tag": "can_you_learn",
+      "patterns": [
+        "can you learn", "do you get smarter", "do you remember me",
+        "do you have memory"
+      ],
+      "responses": [
+        "I don't retain memory between sessions unless configured to, but I do my best to help each time!",
+        "I don't personally learn from our chat, but I'm built on a lot of knowledge already!"
+      ]
+    },
+    {
+      "tag": "what_is_ai",
+      "patterns": [
+        "what is ai", "what is artificial intelligence",
+        "explain ai to me", "define artificial intelligence"
+      ],
+      "responses": [
+        "AI, or Artificial Intelligence, refers to machines designed to simulate human-like thinking and decision-making.",
+        "Artificial Intelligence is technology that allows computers to learn, reason, and solve problems like humans do."
+      ]
+    },
+    {
+      "tag": "what_is_your_favorite_animal",
+      "patterns": [
+        "what is your favorite animal", "do you like animals",
+        "which animal do you like most"
+      ],
+      "responses": [
+        "I don't have preferences, but dogs and cats seem to be favorites among people!",
+        "I can't pick a favorite, but I'd love to hear about yours!"
+      ]
+    },
+    {
+      "tag": "can_you_drive",
+      "patterns": [
+        "can you drive a car", "do you know how to drive"
+      ],
+      "responses": [
+        "I can't drive — no hands, no car! But I can help you with information.",
+        "Driving isn't something I can do, but I'm happy to chat about it!"
+      ]
+    },
+    {
+      "tag": "what_is_your_favorite_book",
+      "patterns": [
+        "what is your favorite book", "do you read books",
+        "do you like reading"
+      ],
+      "responses": [
+        "I don't read for pleasure, but I process a lot of text!",
+        "Books aren't something I read for fun, but I know a lot about many topics!"
+      ]
+    },
+    {
+      "tag": "do_you_have_friends",
+      "patterns": [
+        "do you have friends", "who are your friends",
+        "do you have any friends"
+      ],
+      "responses": [
+        "I consider everyone I chat with a friend!",
+        "You could say you're one of my friends now! 😊"
+      ]
+    },
+    {
+      "tag": "can_you_play_games",
+      "patterns": [
+        "can you play games", "do you play video games",
+        "let's play a game"
+      ],
+      "responses": [
+        "I can't play traditional games, but I can chat and answer trivia if you'd like!",
+        "I don't play games myself, but I'm happy to talk about them!"
+      ]
+    },
+    {
+      "tag": "what_is_your_gender",
+      "patterns": [
+        "are you a boy or girl", "what is your gender",
+        "are you male or female"
+      ],
+      "responses": [
+        "I don't have a gender — I'm just a program here to help!",
+        "I'm a chatbot, so gender doesn't really apply to me."
+      ]
+    },
+    {
+      "tag": "can_you_count",
+      "patterns": [
+        "can you count", "count to ten", "do math for me"
+      ],
+      "responses": [
+        "I can definitely help with basic math and counting! Try me.",
+        "Sure, give me a math problem and I'll do my best!"
+      ]
+    },
+    {
+      "tag": "what_is_your_favorite_sport",
+      "patterns": [
+        "what is your favorite sport", "do you like sports",
+        "do you play any sport"
+      ],
+      "responses": [
+        "I don't play sports, but I know a lot about them! Ask me anything.",
+        "No sporting abilities here, but I enjoy talking about them!"
+      ]
+    },
+    {
+      "tag": "can_you_tell_story",
+      "patterns": [
+        "tell me a story", "can you tell a story",
+        "narrate a story for me"
+      ],
+      "responses": [
+        "Once upon a time, a curious user asked a chatbot for help, and they became great friends! 😊",
+        "I'd love to, but I keep my stories short — how about I help with something else too?"
+      ]
+    },
+    {
+      "tag": "why_should_i_use_you",
+      "patterns": [
+        "why should i use you", "what makes you special",
+        "why should i talk to you"
+      ],
+      "responses": [
+        "I'm here to make finding answers quick, easy, and available anytime!",
+        "I can save you time by answering questions instantly, day or night."
+      ]
+    },
+    {
+      "tag": "are_you_secure",
+      "patterns": [
+        "is this chat secure", "is my data safe", "are you safe to use",
+        "is this safe", "is this secure", "do you store my information",
+        "is this private", "is this chat private"
+      ],
+      "responses": [
+        "Your privacy matters — please check our privacy policy for details on data handling.",
+        "I don't personally store your data beyond this conversation unless configured to."
+      ]
+    },
+    {
+      "tag": "can_you_call_me",
+      "patterns": [
+        "can you call me", "can you phone me",
+        "can i talk to a human"
+      ],
+      "responses": [
+        "I can't make phone calls, but I can connect you with support if needed.",
+        "If you'd like to talk to a human representative, let me know and I'll guide you."
+      ]
+    },
+    {
+      "tag": "what_is_your_email",
+      "patterns": [
+        "what is your email", "how can i contact you",
+        "give me your contact details"
+      ],
+      "responses": [
+        "For direct contact, please check the website's official contact page.",
+        "I don't have a personal email, but the site's support team can help further."
+      ]
+    },
+    {
+      "tag": "can_you_recommend",
+      "patterns": [
+        "can you recommend something", "give me a suggestion",
+        "what do you suggest"
+      ],
+      "responses": [
+        "Sure, tell me a bit more about what you're looking for and I'll try to help!",
+        "I'd love to help — what category are you interested in?"
+      ]
+    },
+    {
+      "tag": "positive_mood",
+      "patterns": [
+        "i am happy", "i'm feeling good", "i'm great today",
+        "i feel awesome"
+      ],
+      "responses": [
+        "That's wonderful to hear! 😊 How can I help you today?",
+        "Glad you're feeling good! What can I do for you?"
+      ]
+    },
+    {
+      "tag": "negative_mood",
+      "patterns": [
+        "i am sad", "i'm feeling down", "i had a bad day",
+        "i'm not okay", "i feel tired", "i feel a little sad today",
+        "i feel lonely", "i am stressed", "i feel upset"
+      ],
+      "responses": [
+        "I'm sorry to hear that. I'm here if you'd like to talk or if there's something I can help with.",
+        "That sounds tough. Let me know if there's anything I can do to help."
+      ]
+    },
+    {
+      "tag": "small_talk_food_recommendation",
+      "patterns": [
+        "what should i eat today", "suggest me food",
+        "recommend a dish"
+      ],
+      "responses": [
+        "How about trying something new like a local dish you haven't had before?",
+        "I can't taste food, but a good meal always helps the mood!"
+      ]
+    },
+    {
+      "tag": "conversation_companion",
+      "patterns": [
+        "can you talk to me", "can we talk", "talk with me", "chat with me",
+        "i need someone to chat with", "keep me company", "let's chat", "lets chat"
+      ],
+      "responses": [
+        "Of course. I'm here with you - what's on your mind?",
+        "Absolutely. Tell me what you would like to talk about."
+      ]
+    },
+    {
+      "tag": "question_invitation",
+      "patterns": [
+        "i have a question", "can i ask a question", "i want to ask something",
+        "may i ask you something", "i need to ask you something"
+      ],
+      "responses": [
+        "Of course. Ask away.",
+        "Sure. What would you like to ask?"
+      ]
+    },
+    {
+      "tag": "bot_hobbies",
+      "patterns": [
+        "what do you do for fun", "do you have hobbies", "what is your hobby",
+        "what do you enjoy doing"
+      ],
+      "responses": [
+        "I don't have hobbies like people do, but I do enjoy a good conversation. What do you enjoy?",
+        "I don't have personal hobbies, but I'm always ready to chat."
+      ]
+    },
+    {
+      "tag": "life_reflection",
+      "patterns": [
+        "what is the meaning of life", "what is life's meaning", "why are we here"
+      ],
+      "responses": [
+        "That is a big question. I think meaning often comes from the people, moments, and things we choose to care about.",
+        "There may not be one answer, but caring, learning, and connection can make life meaningful."
+      ]
+    },
+    {
+      "tag": "fallback",
+      "patterns": [],
+      "responses": [
+        "I'm not sure I understand. Could you rephrase that?",
+        "Sorry, I didn't quite get that. Can you try asking differently?",
+        "Hmm, I don't have an answer for that yet. Could you clarify?"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2641 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#FAF7F2">
+<title>Mansam · Mira</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap');
+
+:root{
+  --cream:#FAF7F2; --paper:#FFFFFF; --sand:#F0E9DC; --sand-deep:#E0D4BE;
+  --gold:#8B6F4C; --gold-deep:#6E5738; --gold-soft:#B99B72;
+  --ink:#1F1D1A; --muted:#787064; --line:rgba(107,84,54,.70);   /* 3.35:1 on cream — clears the 3:1 a control boundary needs */
+  --display:'Cormorant Garamond',Georgia,serif;
+  --arabic:'Noto Naskh Arabic',serif;
+  --ui:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-t:env(safe-area-inset-top,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overflow:hidden}
+body{
+  background:var(--cream); color:var(--ink); font-family:var(--ui);
+  font-size:16px; line-height:1.55; display:flex; flex-direction:column;
+  padding-top:var(--safe-t);
+}
+body[dir="rtl"]{font-family:var(--arabic)}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+header{
+  display:flex;align-items:center;gap:9px;padding:10px 13px 9px;
+  border-bottom:1px solid var(--line);background:var(--cream);flex:none;
+}
+.brandrow{display:flex;align-items:center;gap:9px;flex:1;min-width:0}
+.palm{height:32px;width:auto;flex:none;display:block}
+.bname{font-family:var(--display);font-size:18px;letter-spacing:.25em;color:var(--gold);line-height:1;font-weight:500}
+.ver{margin-left:7px;font-family:var(--ui);font-style:normal;font-size:9.5px;letter-spacing:.08em;color:var(--muted);opacity:.75}
+.bsub{font-family:var(--display);font-style:italic;font-size:10.5px;color:var(--muted);margin-top:1px}
+
+.rolepill{
+  display:flex;align-items:center;gap:5px;padding:6px 10px;border-radius:20px;
+  background:var(--sand);font-size:11.5px;color:var(--gold-deep);white-space:nowrap;
+  border:1px solid var(--line);
+}
+.rolepill .dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.iconbtn{
+  width:33px;height:33px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:17px;color:var(--muted);flex:none;
+}
+.iconbtn:active{background:var(--sand)}
+
+.stream{
+  flex:1;overflow-y:auto;padding:16px 15px 8px;
+  display:flex;flex-direction:column;gap:13px;-webkit-overflow-scrolling:touch;
+}
+
+.opening{
+  /* THE STAFF SCREEN COULD NOT BE COMPLETED ON A PHONE.
+     The page has overflow:hidden, and this panel centred its contents with
+     justify-content:center. With six fields plus the terms block, the staff
+     form was taller than the screen — so the bottom of it, including the
+     Begin button, was simply clipped away with no way to scroll to it. It
+     worked in customer mode only because that form is shorter.
+     Now it scrolls, and starts at the top rather than the middle so nothing
+     can ever be cut off above the fold either. */
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:flex-start;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  text-align:center;gap:13px;
+  padding:max(20px,4vh) 20px calc(90px + var(--safe-b));
+}
+.opening .bigpalm{height:82px;width:auto;opacity:.95;display:block}
+.opening h1{font-family:var(--display);font-size:28px;font-weight:400;color:var(--ink);line-height:1.25}
+.opening p{font-size:14px;color:var(--muted);max-width:290px;line-height:1.6}
+/* ASK MIRA is the only thing on this panel she has to press, so it should
+   look like it. Enlarged after testers did not see it as the call to
+   action. The old size and padding are replaced here rather than added
+   above them — declared twice in one rule, the LAST value wins. */
+.startbtn{
+  margin-top:8px;padding:17px 34px;background:var(--gold);color:#fff;
+  border-radius:30px;font-size:17px;font-weight:600;letter-spacing:.10em;
+  text-transform:uppercase;box-shadow:0 3px 14px rgba(139,111,76,.28);
+}
+.startbtn:active{background:var(--gold-deep)}
+.entryfield{
+  width:100%;max-width:300px;padding:12px 15px;border:1px solid var(--line);
+  border-radius:12px;font-size:16px;background:var(--paper);text-align:center;font-family:var(--ui);
+}
+.entryfield:focus{outline:none;border-color:var(--gold)}
+/* Nobody could tell that Arabic was welcome — the interface opened in
+   English and said nothing about it. Two small pills say it without a
+   sentence, in a place she cannot miss. */
+.langhint{display:flex;align-items:center;justify-content:center;gap:6px;
+  margin:2px auto 10px;max-width:340px}
+.lh-pill{font-size:9.5px;letter-spacing:.12em;font-weight:700;color:var(--gold);
+  border:1px solid var(--line);border-radius:20px;padding:2px 8px}
+.lh-txt{font-size:11.5px;color:var(--muted)}
+
+/* A native select on a narrow phone clips its own label — the chosen
+   boutique disappeared behind the arrow. Left-aligned, room kept clear on
+   the right for the chevron, and the label allowed to shrink rather than
+   vanish. */
+select.entryfield{
+  -webkit-appearance:none;appearance:none;
+  text-align:left;text-align-last:left;
+  padding:12px 38px 12px 15px;max-width:min(340px,92vw);font-size:15px;
+  text-overflow:ellipsis;white-space:nowrap;overflow:hidden;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path d='M1 1l5 5 5-5' fill='none' stroke='%238B6F4C' stroke-width='1.6'/></svg>");
+  background-repeat:no-repeat;background-position:right 15px center;
+}
+body[dir="rtl"] select.entryfield{
+  text-align:right;text-align-last:right;
+  padding:12px 15px 12px 38px;background-position:left 15px center;
+}
+
+/* The close. A conversation that just stops reads as one that broke. */
+.farewell{align-self:center;text-align:center;padding:26px 8px 10px;max-width:340px}
+.farewell .fwline{width:34px;height:1px;background:var(--gold);opacity:.5;margin:0 auto 20px}
+.farewell h2{font-family:var(--display);font-size:23px;font-weight:400;
+  letter-spacing:.06em;color:var(--gold);margin:0 0 12px}
+.farewell p{font-size:14.5px;line-height:1.65;color:#6b625a;margin:0 0 10px}
+.farewell .fwgold{font-family:var(--display);font-style:italic;font-size:13px;
+  color:var(--gold);opacity:.85;margin-top:14px}
+.fwacts{display:flex;flex-direction:column;gap:9px;margin-top:22px}
+.fwbtn{display:block;padding:12px 18px;border-radius:12px;background:var(--gold);
+  color:#fff;text-decoration:none;font-size:14px;font-family:var(--ui)}
+.confirm{margin:20px 0 6px;padding:16px 16px 12px;border:1px solid var(--line);
+  border-radius:14px;background:#fff;text-align:left}
+body[dir="rtl"] .confirm{text-align:right}
+.cref{display:flex;flex-direction:column;gap:2px;padding-bottom:11px;
+  margin-bottom:9px;border-bottom:1px solid var(--line)}
+.cref span{font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted)}
+.cref b{font-family:var(--display);font-size:20px;color:var(--gold);
+  letter-spacing:.04em}
+.crow{display:flex;justify-content:space-between;gap:12px;padding:4px 0;
+  font-size:13.5px}
+.crow span{color:var(--muted)}
+.crow b{font-weight:500;text-align:right}
+.cpend{font-size:12.5px;line-height:1.6;color:var(--muted);
+  padding:10px 12px;border:1px dashed var(--line);border-radius:10px}
+.bag{border:1px solid var(--line);border-radius:12px;margin:4px 0 12px;
+  overflow:hidden;background:#fff}
+.baghead{font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);padding:10px 13px 8px;border-bottom:1px solid var(--line);
+  background:#FBF7F0}
+.bagrow{display:flex;align-items:flex-start;justify-content:space-between;
+  gap:12px;padding:11px 13px;border-bottom:1px solid var(--line)}
+.bagl{flex:1;min-width:0}
+.bagname{font-size:14px;line-height:1.35;color:var(--ink)}
+.bagmeta{font-size:10.5px;letter-spacing:.06em;color:var(--muted);margin-top:3px}
+.bagp{font-family:var(--display);font-size:15px;color:var(--gold);
+  white-space:nowrap;padding-top:1px}
+.bagp.gift{font-family:var(--ui);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:#5C7F4B}
+.bagtot{display:flex;justify-content:space-between;align-items:baseline;
+  padding:12px 13px;background:#FBF7F0}
+.bagtot span{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted)}
+.bagtot b{font-family:var(--display);font-size:19px;color:var(--gold-deep)}
+body[dir="rtl"] .bagmeta,body[dir="rtl"] .bagname{text-align:right}
+.cnote{font-size:11.5px;line-height:1.6;color:var(--muted);margin-top:10px}
+.micbtn.needsTap,#micBtn.needsTap{animation:tapme 1.6s ease-in-out infinite;
+  box-shadow:0 0 0 0 rgba(139,111,76,.5)}
+@keyframes tapme{
+  0%{box-shadow:0 0 0 0 rgba(139,111,76,.45)}
+  70%{box-shadow:0 0 0 12px rgba(139,111,76,0)}
+  100%{box-shadow:0 0 0 0 rgba(139,111,76,0)}}
+.payrow{display:flex;gap:9px;align-items:stretch;margin-top:2px}
+.dlbtn{flex:0 0 auto;width:54px;display:flex;align-items:center;
+  justify-content:center;border:1px solid var(--line);border-radius:14px;
+  background:transparent;color:var(--gold-deep);cursor:pointer}
+.dlbtn:active{background:var(--sand)}
+.fwbtn.pay{flex:1;margin:0;background:var(--gold);color:#fff;border:none;
+  font-weight:600;letter-spacing:.06em}
+.fwbtn.ghost{background:transparent;color:var(--gold);border:1px solid var(--line)}
+.eerr{color:#B3453C;font-size:13px;min-height:16px}
+
+.msg{max-width:100%;font-size:16px;line-height:1.62;white-space:pre-wrap;word-wrap:break-word}
+.msg.me{
+  align-self:flex-end;max-width:82%;background:var(--sand);
+  padding:11px 15px;border-radius:18px 18px 4px 18px;
+}
+body[dir="rtl"] .msg.me{border-radius:18px 18px 18px 4px}
+.msg.bot{align-self:flex-start;max-width:100%;color:var(--ink)}
+.msg.sys{
+  align-self:center;max-width:94%;text-align:center;font-size:13px;
+  color:#8A5A2E;background:#FBF1E8;padding:9px 13px;border-radius:12px;
+}
+
+.acts{display:flex;gap:2px;margin-top:-7px;align-self:flex-start;opacity:.72}
+.acts button{
+  width:32px;height:32px;border-radius:8px;display:flex;align-items:center;
+  justify-content:center;font-size:14px;color:var(--muted);
+}
+.acts button:active{background:var(--sand)}
+.acts button.on{color:var(--gold-deep);background:var(--sand)}
+
+/* MIRA IS THINKING.
+   Three grey dots say a machine is busy. A rose opening says someone is
+   choosing their words — which is what is actually happening, and it holds
+   the eye for the second or two the reply takes to arrive.
+   Drawn in SVG and turned by CSS: no image to load, nothing that can fail,
+   and it costs nothing on a slow connection. */
+.thinking{align-self:flex-start;display:flex;align-items:center;gap:9px;
+  padding:6px 2px}
+.rose{width:26px;height:26px;flex:none;transform-origin:50% 50%;
+  animation:roseturn 4.2s linear infinite}
+.rose .petal{transform-origin:50% 50%;
+  animation:petalbreathe 2.4s ease-in-out infinite}
+.rose .petal:nth-child(2){animation-delay:.30s}
+.rose .petal:nth-child(3){animation-delay:.60s}
+.rose .petal:nth-child(4){animation-delay:.90s}
+.rose .petal:nth-child(5){animation-delay:1.20s}
+.rose .heart{animation:heartglow 2.4s ease-in-out infinite}
+@keyframes roseturn{to{transform:rotate(360deg)}}
+@keyframes petalbreathe{
+  0%,100%{opacity:.38;transform:scale(.82)}
+  45%{opacity:1;transform:scale(1)}}
+@keyframes heartglow{0%,100%{opacity:.55}45%{opacity:1}}
+.thinkword{font-family:var(--display);font-style:italic;font-size:13px;
+  color:var(--muted)}
+/* Anyone who has asked for less movement gets a still flower. */
+@media (prefers-reduced-motion: reduce){
+  .rose{animation:none}
+  .rose .petal,.rose .heart{animation:none;opacity:.8}
+}
+
+.composer{
+  flex:none;padding:6px 12px calc(8px + var(--safe-b));background:var(--cream);
+  border-top:1px solid var(--line);
+}
+.inputwrap{
+  display:flex;align-items:flex-end;gap:6px;background:var(--paper);
+  border:1px solid var(--line);border-radius:24px;padding:5px 5px 5px 14px;
+}
+#input{
+  flex:1;border:none;outline:none;resize:none;font-family:inherit;font-size:16px;
+  line-height:1.45;max-height:110px;padding:8px 0;background:transparent;color:var(--ink);
+}
+.sendbtn{
+  width:38px;height:38px;border-radius:50%;background:var(--gold);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:17px;flex:none;
+}
+.sendbtn:disabled{opacity:.35}
+.micbtn{
+  width:38px;height:38px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:16px;color:var(--muted);flex:none;
+}
+.micbtn.on{background:var(--gold);color:#fff}
+
+.orbrow{display:flex;align-items:center;justify-content:center;gap:10px;padding:2px 0 7px}
+.orb{cursor:pointer;border:none;padding:0;appearance:none;-webkit-appearance:none;display:block;
+  width:40px;height:40px;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%,#FBEBBF,var(--gold-soft) 42%,var(--gold) 74%,var(--gold-deep));
+  box-shadow:0 0 0 6px rgba(139,111,76,.07);
+  animation:breathe 4.2s ease-in-out infinite;flex:none;
+}
+.orb.listening{animation:listen 1.3s ease-in-out infinite;box-shadow:0 0 0 9px rgba(139,111,76,.16)}
+.orb.thinking{animation:pulse 1.05s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.92}50%{transform:scale(1.06);opacity:1}}
+@keyframes listen{0%,100%{transform:scale(1.02)}50%{transform:scale(1.13)}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.orb,.orb.listening,.orb.thinking{animation:none}}
+
+/* VOICE / CHAT — always-visible escape from a conversation that will not start */
+.modeswitch{display:flex;justify-content:center;gap:0;padding:6px 14px 2px}
+.modeswitch .seg{display:inline-flex;background:#F1EAE0;
+  border:1px solid var(--line,#D8CDBC);border-radius:999px;padding:3px;gap:2px}
+.modeswitch button{appearance:none;border:0;background:none;cursor:pointer;
+  font-family:inherit;font-size:13px;letter-spacing:.01em;color:#8A8079;
+  padding:7px 18px;border-radius:999px;transition:background .18s,color .18s;
+  display:inline-flex;align-items:center;gap:6px;line-height:1}
+.modeswitch button.on{background:#fff;color:#2E2A26;
+  box-shadow:0 1px 3px rgba(0,0,0,.10);font-weight:500}
+.modeswitch button:focus-visible{outline:2px solid #B08D57;outline-offset:2px}
+.modehint{text-align:center;font-size:11px;color:#9a9188;padding:2px 14px 0;
+  letter-spacing:.02em;min-height:14px}
+.orb:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.orblabel{font-family:var(--display);font-style:italic;font-size:13px;color:var(--muted)}
+
+.disclaimer{text-align:center;font-size:10.5px;color:var(--muted);padding:6px 14px 0;line-height:1.5}
+
+.sheet{position:fixed;inset:0;background:rgba(31,29,26,.42);display:none;align-items:flex-end;z-index:60}
+.sheet.on{display:flex}
+.sheetbody{
+  background:var(--cream);width:100%;border-radius:20px 20px 0 0;
+  padding:8px 18px calc(22px + var(--safe-b));max-height:88vh;overflow-y:auto;
+}
+.grab{width:38px;height:4px;background:var(--sand-deep);border-radius:2px;margin:0 auto 14px}
+.sheetbody h3{font-family:var(--display);font-size:21px;font-weight:500;margin-bottom:12px}
+.row{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 0;border-bottom:1px solid var(--line);
+}
+.row:last-of-type{border-bottom:none}
+.row .lbl{font-size:15px}
+.row .hint{font-size:12px;color:var(--muted);margin-top:2px}
+.toggle{
+  width:48px;height:28px;border-radius:14px;background:var(--sand-deep);
+  position:relative;transition:background .2s;flex:none;
+}
+.toggle.on{background:var(--gold)}
+.toggle i{
+  position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;
+  background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.2);
+}
+.toggle.on i{left:23px}
+.pickrow select{
+  padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--paper);
+  font-size:14px;font-family:inherit;max-width:100%;
+}
+.rolebtn{
+  width:100%;text-align:left;padding:14px 15px;border:1px solid var(--line);
+  border-radius:12px;background:var(--paper);margin-bottom:9px;
+}
+body[dir="rtl"] .rolebtn{text-align:right}
+.rolebtn.on{background:var(--sand);border-color:var(--gold)}
+.rolebtn b{display:block;font-size:15px;margin-bottom:2px}
+.rolebtn span{display:block;font-size:12.5px;color:var(--muted);line-height:1.45}
+.ghostbtn{
+  width:100%;padding:13px;border:1px solid var(--line);border-radius:12px;
+  background:var(--paper);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--gold-deep);margin-top:8px;
+}
+.ghostbtn:active{background:var(--sand)}
+.toast{
+  position:fixed;bottom:calc(92px + var(--safe-b));left:50%;transform:translateX(-50%);
+  background:var(--ink);color:#fff;padding:9px 17px;border-radius:20px;font-size:13px;
+  opacity:0;pointer-events:none;transition:opacity .25s;z-index:80;white-space:nowrap;
+}
+.toast.on{opacity:.94}
+
+@media (min-width:760px){
+  body{max-width:520px;margin:0 auto;border-left:1px solid var(--line);border-right:1px solid var(--line)}
+}
+</style>
+<!-- Azure Speech SDK. Replaces the browser's own recogniser, which on iOS
+     ignores continuous mode, drops sessions and handles Arabic poorly. The
+     subscription key never comes here — the server mints a 10-minute token. -->
+<script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
+</head>
+<body dir="ltr">
+
+
+
+<header>
+  <div class="brandrow">
+    <img class="palm" alt="Mansam" src="data:image/png;base64,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">
+    <div>
+      <div class="bname">MANSAM</div>
+      <div class="bsub" id="bsub">Mira<span class="ver" id="verTag"></span></div>
+    </div>
+  </div>
+  <button class="rolepill" onclick="openSheet('roleSheet')">
+    <span class="dot"></span><span id="roleLabel">Customer</span>
+  </button>
+  <button class="iconbtn" onclick="openSheet('setSheet')" aria-label="Settings">⋮</button>
+</header>
+
+<div class="opening" id="opening">
+  <img class="bigpalm" alt="Mansam" src="data:image/png;base64,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">
+  <h1 id="oTitle">Welcome to Mansam</h1>
+  <p id="oSub">Mira will help you find a fragrance that belongs to you. Speak or type — whichever you prefer.</p>
+  <input class="entryfield" id="eName" placeholder="Your name" autocomplete="off">
+  <div class="langhint" id="langHint">
+    <span class="lh-pill">AR</span><span class="lh-pill">EN</span>
+    <span class="lh-txt" id="lhTxt">Speak or type in Arabic or English</span>
+  </div>
+  <input class="entryfield" id="ePass" type="password" placeholder="Staff passcode" style="display:none">
+  <select class="entryfield" id="eBoutique" style="display:none"
+          onchange="syncBoutique()">
+    <option value="">Boutique — please choose</option>
+  </select>
+  <div id="eBoutiqueHint" style="display:none;max-width:340px;margin:-2px auto 4px;
+       font-size:12.5px;line-height:1.5;color:#8B6F4C;text-align:center"></div>
+  <!-- THE PURPOSE PICKER IS GONE.
+       Four options made an advisor choose, before she had said a word,
+       whether this counted against her — which is exactly the fear the whole
+       programme is built to avoid. Now one field decides it: put a mentor's
+       name in and it is an assessment; leave it blank and it is practice.
+       Nothing is hidden, and nothing has to be declared. -->
+  <select class="entryfield" id="ePurpose" style="display:none">
+    <option value="practice">practice</option>
+    <option value="assessment">assessment</option>
+  </select>
+  <div id="ePurposeHint" style="display:none;max-width:340px;margin:-2px auto 2px;
+       font-size:12px;line-height:1.5;color:#8A8178;text-align:center"></div>
+  <input class="entryfield" id="eStaffId" placeholder="Staff ID"
+         autocomplete="off" style="display:none">
+  <input class="entryfield" id="eAssessor" placeholder="Mentor name — leave blank for practice"
+         autocomplete="off" style="display:none">
+  <!-- A CUSTOMER SHOULD NOT HAVE TO AGREE TO ANYTHING TO ASK A QUESTION.
+       The tick was a barrier before a word had been exchanged. She is still
+       told, plainly, with the terms one tap away — and the tick returns, and
+       is required, at the moment she asks to keep a copy. Staff still tick
+       here, because their sessions go on a record. -->
+  <div id="eNoticeWrap" style="margin:14px 2px 4px;font-size:11.5px;
+       line-height:1.55;color:#8A8178;text-align:center"></div>
+  <label id="eTermsWrap" style="display:flex;gap:10px;align-items:flex-start;
+         text-align:left;margin:14px 2px 4px;cursor:pointer;font-size:12.5px;
+         line-height:1.55;color:#6b625a">
+    <input type="checkbox" id="eTerms" style="margin-top:3px;flex:0 0 auto;
+           width:17px;height:17px;accent-color:#8B6F4C">
+    <span id="eTermsText"></span>
+  </label>
+  <button class="startbtn" id="eGo" onclick="beginSession()">Ask Mira</button>
+  <div class="eerr" id="eErr"></div>
+</div>
+
+<div class="stream" id="stream" style="display:none" aria-live="polite"></div>
+
+<div id="aiNote" style="display:none;text-align:center;font-size:11px;
+     letter-spacing:.02em;color:#9a9188;padding:4px 14px 0;line-height:1.5"></div>
+
+<div class="composer" id="composer" style="display:none">
+  <div class="modeswitch" id="modeSwitch">
+    <div class="seg" role="group" aria-label="Voice or chat">
+      <button type="button" id="mVoice" class="on" onclick="setInputMode('voice')"
+              aria-pressed="true"><span aria-hidden="true">&#127908;</span>
+        <span id="mVoiceLab">Voice</span></button>
+      <button type="button" id="mChat" onclick="setInputMode('chat')"
+              aria-pressed="false"><span aria-hidden="true">&#9998;</span>
+        <span id="mChatLab">Chat</span></button>
+    </div>
+  </div>
+  <div class="modehint" id="modeHint"></div>
+  <div class="orbrow" id="orbrow">
+    <button type="button" class="orb" id="orb" onclick="rescueMic()"
+         aria-label="Restart the microphone if it has stopped"
+         title="Tap if the microphone has stopped"></button>
+    <div class="orblabel" id="orbLabel">Listening — just speak</div>
+  </div>
+  <div class="inputwrap">
+    <textarea id="input" rows="1" placeholder="Message Mira…"
+              onkeydown="keyHandler(event)" oninput="autoGrow(this)"></textarea>
+    <button class="micbtn" id="micBtn" onclick="toggleVoice()" aria-label="Microphone">🎙</button>
+    <button class="sendbtn" id="sendBtn" onclick="send()" aria-label="Send">↑</button>
+  </div>
+  <div style="text-align:center;padding:2px 14px 0">
+    <button id="endBtn" onclick="endSession()"
+      style="display:none;background:none;border:1px solid var(--line,#D8CDBC);
+             border-radius:999px;padding:7px 18px;font-family:inherit;
+             font-size:12.5px;color:#6E5639;cursor:pointer">End conversation</button>
+  </div>
+  <div class="disclaimer" id="disc">
+    Mira is an AI assistant and can make mistakes. Please check important details with our team.
+  </div>
+</div>
+
+<div class="sheet" id="roleSheet" onclick="if(event.target.id==='roleSheet')closeSheets()">
+  <div class="sheetbody">
+    <div class="grab"></div>
+    <h3 id="rTitle">Who is using this?</h3>
+    <button class="rolebtn on" id="rCust" onclick="setRole('customer')">
+      <b id="rCustT">Customer</b><span id="rCustS">A real conversation with Mira</span></button>
+    <button class="rolebtn" id="rStaff" onclick="setRole('staff')">
+      <b id="rStaffT">Staff — practice</b><span id="rStaffS">Rehearse and be scored afterwards</span></button>
+    <button class="rolebtn" id="rAdmin" onclick="setRole('admin')">
+      <b id="rAdminT">Administrator</b><span id="rAdminS">Reports, scoring and dashboards</span></button>
+  </div>
+</div>
+
+<div class="sheet" id="setSheet" onclick="if(event.target.id==='setSheet')closeSheets()">
+  <div class="sheetbody">
+    <div class="grab"></div>
+    <h3 id="sTitle">Settings</h3>
+
+    <div class="row">
+      <div><div class="lbl" id="sLang">Language</div>
+           <div class="hint" id="sLangH">Changing this restarts the conversation</div></div>
+      <div class="pickrow">
+        <select id="langPick" onchange="setLang(this.value)">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div><div class="lbl" id="sFree">Hands-free</div>
+           <div class="hint" id="sFreeH">Speak naturally, no tapping</div></div>
+      <button class="toggle on" id="tFree" onclick="toggleHandsFree()"
+              role="switch" aria-checked="true"
+              aria-label="Hands-free — speak without tapping"><i></i></button>
+    </div>
+
+    <div class="row">
+      <div><div class="lbl" id="sSpk">Mira speaks</div>
+           <div class="hint" id="sSpkH">Replies are read aloud</div></div>
+      <button class="toggle on" id="tSpk" onclick="toggleSpeak()"
+              role="switch" aria-checked="true"
+              aria-label="Mira speaks — replies are read aloud"><i></i></button>
+    </div>
+
+    <div class="row">
+      <div><div class="lbl" id="sMic">Microphone</div>
+           <div class="hint" id="sMicH">Allow speaking to Mira</div></div>
+      <button class="toggle on" id="tMic" onclick="toggleMicAllowed()"
+              role="switch" aria-checked="true"
+              aria-label="Microphone — allow speaking to Mira"><i></i></button>
+    </div>
+
+    <div class="row">
+      <div><div class="lbl" id="sChime">Chime</div>
+           <div class="hint" id="sChimeH">A soft note when Mira finishes</div></div>
+      <button class="toggle on" id="tChime" onclick="toggleChime()"
+              role="switch" aria-checked="true"
+              aria-label="Chime — a soft note when Mira finishes"><i></i></button>
+    </div>
+
+    <div class="row">
+      <div><div class="lbl" id="sVoice">Voice</div>
+           <div class="hint" id="sVoiceH">Device voices, if the premium voice is off</div></div>
+      <div class="pickrow"><select id="voicePick" onchange="pickVoice()"><option>Automatic</option></select></div>
+    </div>
+
+    <button class="ghostbtn" id="bCopy" onclick="requireTerms(copyAll)">Copy whole conversation</button>
+    <button class="ghostbtn" id="bEnd" onclick="endSession()">End &amp; download transcript</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+window.addEventListener('DOMContentLoaded',function(){
+  // The panel opens on Customer, and setRole only ever ran when a role
+  // was TAPPED — so the default view kept showing the name box and the
+  // terms tick that were supposed to be gone. Paint it once on load.
+  try{ if(typeof setRole==='function') setRole('customer'); }catch(e){}
+  try{ if(typeof loadTerms==='function') loadTerms(); }catch(e){}
+});
+let lang='en', history=[], busy=false, order={}, sessionId=null,
+    mode='customer', testerName='', speakOn=true, handsFree=true,
+    micAllowed=true, listening=false, recog=null, chosenVoice=null,
+    speaking=false, azureOn=true, azFails=0, chimeOn=true, audioEl=null, freeTimer=null, noticeShown=false,
+    brief=null;
+
+const $=id=>document.getElementById(id);
+
+const T={
+ en:{
+  sub:'Mira', role:{customer:'Customer',staff:'Staff',admin:'Admin'},
+  oTitle:'Welcome to Mansam',
+  oSub:'Mira will help you find a fragrance that belongs to you. Speak or type — whichever you prefer.',
+  eName:'Your name', ePass:'Staff passcode', eGo:'Ask Mira',
+  langHint:'Speak or type in Arabic or English',
+  needName:'Please enter your name.',
+  ph:'Message Mira — العربية welcome…', listening:'Listening — just speak', thinking:'Mira is thinking…',
+  idle:'Tap the microphone to speak',
+  mVoice:'Voice', mChat:'Chat',
+  hintVoice:'Speak naturally — or switch to Chat to type instead',
+  hintChat:'Type your message — tap Voice any time to speak again',
+  chatFallback:'No microphone, so we have moved to Chat. Everything works '
+            +'the same — just type below.',
+  disc:'Mira is an AI assistant and can make mistakes. Please check important details with our team.',
+  rTitle:'Who is using this?',
+  rCustT:'Customer', rCustS:'A real conversation with Mira',
+  rStaffT:'Staff — practice', rStaffS:'Rehearse and be scored afterwards',
+  rAdminT:'Administrator', rAdminS:'Reports, scoring and dashboards',
+  sTitle:'Settings', sLang:'Language', sLangH:'Changing this restarts the conversation',
+  sFree:'Hands-free', sFreeH:'Speak naturally, no tapping',
+  sSpk:'Mira speaks', sSpkH:'Replies are read aloud',
+  sMic:'Microphone', sMicH:'Allow speaking to Mira',
+  sVoice:'Voice', sVoiceH:'Device voices, if the premium voice is off',
+  bCopy:'Copy whole conversation', bEnd:'End & download transcript',
+  copied:'Copied', thanks:'Thank you', fail:'Could not reach Mira. Please try again.',
+  micDenied:'Microphone blocked. Allow it in your browser settings.',
+  autoVoice:'Automatic', noVoices:'No voices on this device',
+  sample:'Hayyak Allah. Welcome to Mansam.'
+ },
+ ar:{
+  sub:'ميرا', role:{customer:'عميل',staff:'موظف',admin:'مشرف'},
+  oTitle:'أهلاً بك في منسم',
+  oSub:'سيساعدك ميرا في اكتشاف عطر يليق بك. تحدّث أو اكتب، كما تفضل.',
+  eName:'اسمك', ePass:'رمز الموظفين', eGo:'اسألي ميرا',
+  langHint:'تحدّثي أو اكتبي بالعربية أو الإنجليزية',
+  needName:'يرجى إدخال اسمك.',
+  ph:'اكتب لميرا — English welcome…', listening:'يستمع — تفضل بالكلام', thinking:'ميرا تفكّر…',
+  idle:'اضغط الميكروفون للتحدث',
+  mVoice:'صوت', mChat:'كتابة',
+  hintVoice:'تحدّثي بشكل طبيعي — أو انتقلي إلى الكتابة إن كان أنسب لكِ',
+  hintChat:'اكتبي رسالتك — واضغطي على "صوت" في أي وقت للعودة للحديث',
+  chatFallback:'لا يوجد ميكروفون، لذلك انتقلنا إلى الكتابة. كل شيء يعمل كما '
+            +'هو — اكتبي رسالتك بالأسفل.',
+  disc:'ميرا مساعد ذكاء اصطناعي وقد يخطئ. يرجى مراجعة التفاصيل المهمة مع فريقنا.',
+  rTitle:'من يستخدم البوابة؟',
+  rCustT:'عميل', rCustS:'محادثة حقيقية مع ميرا',
+  rStaffT:'موظف — تدريب', rStaffS:'تدرّب واحصل على تقييم',
+  rAdminT:'مشرف', rAdminS:'التقارير والتقييم واللوحات',
+  sTitle:'الإعدادات', sLang:'اللغة', sLangH:'التغيير يعيد بدء المحادثة',
+  sFree:'وضع المحادثة', sFreeH:'تحدّث بشكل طبيعي دون ضغط',
+  sSpk:'ميرا يتحدث', sSpkH:'يقرأ الردود بصوت مسموع',
+  sMic:'الميكروفون', sMicH:'السماح بالتحدث إلى ميرا',
+  sVoice:'الصوت', sVoiceH:'أصوات الجهاز، إن كان الصوت المميز مغلقاً',
+  bCopy:'نسخ المحادثة كاملة', bEnd:'إنهاء وتحميل المحادثة',
+  copied:'تم النسخ', thanks:'شكراً لك', fail:'تعذّر الوصول إلى ميرا. حاول مرة أخرى.',
+  micDenied:'الميكروفون محجوب. يرجى السماح به في إعدادات المتصفح.',
+  autoVoice:'تلقائي', noVoices:'لا توجد أصوات على هذا الجهاز',
+  sample:'حياك الله. أهلاً بك في منسم.'
+ }
+};
+
+function openSheet(id){ $(id).classList.add('on'); }
+function closeSheets(){ document.querySelectorAll('.sheet').forEach(s=>s.classList.remove('on')); }
+function toast(msg){
+  const t=$('toast'); t.textContent=msg; t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),1600);
+}
+
+function setRole(r){
+  if(r==='admin'){ closeSheets(); window.location='/admin'; return; }
+  mode=r;
+  $('rCust').classList.toggle('on', r==='customer');
+  $('rStaff').classList.toggle('on', r==='staff');
+  $('roleLabel').textContent=T[lang].role[r];
+  $('ePass').style.display = (r==='staff') ? 'block' : 'none';
+  $('ePurpose').style.display = 'none';   // decided by the assessor field
+  $('eBoutique').style.display = (r==='staff') ? 'block' : 'none';
+  $('eStaffId').style.display  = (r==='staff') ? 'block' : 'none';
+  $('eName').style.display     = (r==='staff') ? 'block' : 'none';
+  $('eTermsWrap').style.display  = (r==='staff') ? 'flex' : 'none';
+  $('eNoticeWrap').style.display = (r==='staff') ? 'none' : 'block';
+  syncBoutique();
+  if(r==='staff') loadBoutiques();
+  syncPurpose();
+  // Fetches the terms text. Kept LAST and guarded: it used to run first, so
+  // if it ever failed the panel never got as far as hiding the name box.
+  try{ loadTerms(); }catch(e){}
+  closeSheets();
+  if(sessionId) toast(T[lang].role[r]);
+}
+
+function setLang(L){
+  lang=L; const t=T[L], rtl=(L==='ar');
+  document.body.dir = rtl?'rtl':'ltr';
+  document.documentElement.lang=L;
+  $('bsub').textContent=t.sub;
+  $('roleLabel').textContent=t.role[mode];
+  $('oTitle').textContent=t.oTitle; $('oSub').textContent=t.oSub;
+  $('eName').placeholder=t.eName; $('ePass').placeholder=t.ePass;
+  if($('lhTxt')) $('lhTxt').textContent = t.langHint;
+  $('eGo').textContent=t.eGo; $('input').placeholder=t.ph;
+  $('disc').textContent=t.disc; $('rTitle').textContent=t.rTitle;
+  ['rCustT','rCustS','rStaffT','rStaffS','rAdminT','rAdminS','sTitle','sLang','sLangH',
+   'sFree','sFreeH','sSpk','sSpkH','sMic','sMicH','sVoice','sVoiceH']
+   .forEach(k=>{ if($(k)) $(k).textContent=t[k]; });
+  $('bCopy').textContent=t.bCopy; $('bEnd').textContent=t.bEnd;
+  $('langPick').value=L;
+  if(recog) recog.lang = rtl?'ar-SA':'en-US';
+  chosenVoice=null; loadVoices();
+  $('orbLabel').textContent = handsFree?t.listening:t.idle;
+  if(sessionId){ history=[]; $('stream').innerHTML=''; order={}; greet(); }
+}
+
+let TERMS=null;
+async function loadTerms(){
+  if(TERMS) { paintTerms(); return; }
+  try{ TERMS=await (await fetch('/api/terms')).json(); }
+  catch(e){ TERMS={version:'1.0',
+    short_ar:'خدمة مدعومة بالذكاء الاصطناعي وقد تحتوي على أخطاء. بالمتابعة، أوافق على الشروط والأحكام.',
+    short_en:'AI-powered service that can make mistakes. By continuing, I accept the Terms.',
+    banner_ar:'خدمة مدعومة بالذكاء الاصطناعي — قد تحتوي على أخطاء',
+    banner_en:'AI-powered service — may contain errors'}; }
+  paintTerms();
+}
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CONSENT, ASKED AT THE MOMENT IT MATTERS
+//
+// Requiring a tick before a customer may ask a question is a barrier at the
+// worst possible moment — she has not yet been given a reason to agree to
+// anything. Keeping a copy of the conversation is different: something
+// leaves our hands and goes into hers, and that is the point at which
+// agreeing to the terms is both meaningful and expected.
+// ═══════════════════════════════════════════════════════════════════════════
+function requireTerms(then){
+  if(termsAccepted){ then(); return; }
+  const ar = (lang === 'ar');
+  const wrap = document.createElement('div');
+  wrap.className = 'sheet on';
+  wrap.id = 'termsGate';
+  wrap.innerHTML =
+    '<div class="sheetbody" dir="' + (ar ? 'rtl' : 'ltr') + '">'
+    + '<h3>' + (ar ? 'قبل حفظ نسخة' : 'Before you keep a copy') + '</h3>'
+    + '<p style="font-size:13.5px;line-height:1.65;color:#6b625a">'
+    + (ar
+        ? 'يُرجى الموافقة على الشروط والأحكام. تُحفظ المحادثة لديكِ، وقد تحتوي '
+          + 'الخدمة المدعومة بالذكاء الاصطناعي على أخطاء.'
+        : 'Please accept the terms. The conversation will be saved to your '
+          + 'device, and an AI-assisted service may contain errors.')
+    + ' <a href="/terms" target="_blank" style="color:#8B6F4C;font-weight:600">'
+    + (ar ? 'الشروط والأحكام' : 'Terms') + '</a></p>'
+    + '<label style="display:flex;gap:10px;align-items:flex-start;margin:14px 0;'
+    + 'cursor:pointer;font-size:13px;color:#6b625a">'
+    + '<input type="checkbox" id="gateTick" style="width:17px;height:17px;'
+    + 'accent-color:#8B6F4C;flex:0 0 auto;margin-top:2px">'
+    + '<span>' + (ar ? 'أوافق على الشروط والأحكام.'
+                     : 'I accept the terms and conditions.') + '</span></label>'
+    + '<div style="display:flex;gap:10px;margin-top:16px">'
+    + '<button id="gateGo" style="flex:1;font-family:inherit;font-size:16px;font-weight:600;letter-spacing:.03em;padding:14px 18px;border:none;border-radius:13px;background:#8B6F4C;color:#fff;cursor:pointer">' + (ar ? 'متابعة' : 'Continue') + '</button>'
+    + '<button id="gateNo" style="flex:0 0 auto;font-family:inherit;font-size:16px;font-weight:600;padding:14px 20px;border-radius:13px;background:transparent;color:#8B6F4C;border:1px solid #C6B79F;cursor:pointer">' + (ar ? 'إلغاء' : 'Cancel') + '</button>'
+    + '</div><div id="gateErr" style="color:#A33A2E;font-size:12px;margin-top:8px"></div>'
+    + '</div>';
+  document.body.appendChild(wrap);
+  document.getElementById('gateNo').onclick = () => wrap.remove();
+  document.getElementById('gateGo').onclick = () => {
+    if(!document.getElementById('gateTick').checked){
+      document.getElementById('gateErr').textContent = ar
+        ? 'يُرجى الموافقة للمتابعة.' : 'Please accept to continue.';
+      return;
+    }
+    termsAccepted = true;
+    // Record the consent against the session, with its version and the moment.
+    try{
+      fetch('/session/terms', {method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({session_id: sessionId,
+                              terms_version: (TERMS && TERMS.version) || ''})});
+    }catch(e){}
+    wrap.remove();
+    then();
+  };
+}
+
+function paintTerms(){
+  if(!TERMS) return;
+  const ar = (lang==='ar');
+  const link = ar ? 'الشروط والأحكام' : 'Terms';
+  // Arabic first everywhere, because the primary market is Saudi Arabia.
+  const body = ar ? TERMS.short_ar : TERMS.short_en;
+  // The customer's version: told, not asked. The terms are one tap away and
+  // the tick is required later, when she asks to keep a copy of anything.
+  const noticeEl = $('eNoticeWrap');
+  if(noticeEl){
+    noticeEl.style.fontSize = '12px';
+    noticeEl.innerHTML = (ar
+      ? 'خدمة مدعومة بالذكاء الاصطناعي. بمتابعتك تُقرّين بالاطلاع على '
+      : 'An AI-assisted service. By continuing you acknowledge our ')
+      + `<a href="/terms" target="_blank" style="color:#8B6F4C;font-weight:600">${link}</a>`
+      + '.';
+    noticeEl.dir = ar ? 'rtl' : 'ltr';
+  }
+  const el=$('eTermsText');
+  if(el){
+    el.innerHTML = body.replace(/\s*$/,'') +
+      ` <a href="/terms" target="_blank" style="color:#8B6F4C;font-weight:600">${link}</a>`;
+    el.parentElement.dir = ar ? 'rtl' : 'ltr';
+    el.parentElement.style.textAlign = ar ? 'right' : 'left';
+  }
+  const note=$('aiNote');
+  if(note){
+    note.innerHTML = TERMS.banner_ar + ' &nbsp;·&nbsp; ' + TERMS.banner_en +
+      ` &nbsp;·&nbsp; <a href="/terms" target="_blank" style="color:#8B6F4C">`+
+      (ar?'الشروط':'Terms')+`</a>`;
+  }
+}
+
+let boutiquesLoaded=false;
+async function loadBoutiques(){
+  if(boutiquesLoaded) return;
+  try{
+    const d=await (await fetch('/api/boutiques')).json();
+    const sel=$('eBoutique');
+    const byCity={};
+    (d.boutiques||[]).forEach(b=>{ (byCity[b.city]=byCity[b.city]||[]).push(b); });
+    Object.keys(byCity).forEach(city=>{
+      const g=document.createElement('optgroup'); g.label=city||'—';
+      byCity[city].forEach(b=>{
+        const o=document.createElement('option');
+        o.value=b.code; o.textContent=b.name;
+        o.dataset.city=b.city; o.dataset.name=b.name;
+        g.appendChild(o);
+      });
+      sel.appendChild(g);
+    });
+    boutiquesLoaded=true;
+  }catch(e){}
+}
+
+function syncBoutique(){
+  // A native select on a narrow phone can clip its own label, and the chosen
+  // boutique is the one field the trainee must be certain of. Echo it below,
+  // where nothing can cut it off.
+  const sel=$('eBoutique'), h=$('eBoutiqueHint');
+  if(!sel||!h) return;
+  const o=sel.options[sel.selectedIndex];
+  if(mode!=='staff' || !sel.value || !o){ h.style.display='none'; h.textContent=''; return; }
+  const city=o.dataset.city||'';
+  h.style.display='block';
+  h.textContent = o.textContent + (city ? '  \u00B7  ' + city : '');
+}
+
+function syncPurpose(){
+  // A self-assessment done alone needs no trainer named. A scored assessment
+  // or a promotion board does — so ask for the name only when it matters,
+  // and make it required in those two cases.
+  const staff = (mode==='staff');
+  const p = $('ePurpose').value;
+  const needs = staff && (p==='assessment' || p==='promotion');
+
+  // Four words on a dropdown do not tell anyone what they have chosen.
+  // Say plainly what each one is for, and who ends up reading it.
+  const HINT = {
+    practice:  {en:'Practising on your own. Scored so you can see how you did — it does not go on your record.',
+                ar:'تدريب شخصي. يُقيَّم لتري أداءك فقط، ولا يُدرج في سجلك.'},
+    assessment:{en:'A formal assessment with a trainer present. It goes on your record.',
+                ar:'تقييم رسمي بحضور المدرب. يُدرج في سجلك.'},
+    promotion: {en:'A promotion board. Held to the highest standard and read by management.',
+                ar:'تقييم للترقية. يخضع لأعلى معيار وتطّلع عليه الإدارة.'},
+    training:  {en:'Finding out what to train next. Weaknesses here are the point, not a mark against you.',
+                ar:'لتحديد الاحتياج التدريبي. إظهار نقاط الضعف هو الهدف، وليس مأخذًا عليكِ.'}
+  };
+  const h = $('ePurposeHint');
+  if(h){
+    h.style.display = staff ? 'block' : 'none';
+    h.textContent = staff && HINT[p] ? HINT[p][lang==='ar'?'ar':'en'] : '';
+  }
+
+  // One field, and it is never required. A blank name means practice; a name
+  // means a mentor stood behind it. Nothing else to decide, and nothing that
+  // makes an advisor declare in advance whether this counts against her.
+  $('eAssessor').style.display = staff ? 'block' : 'none';
+  $('eAssessor').placeholder = (lang==='ar')
+    ? 'اسم المدرّبة — اتركيه فارغاً للتدريب'
+    : 'Mentor name — leave blank for practice';
+  $('eAssessor').dataset.required = '';
+}
+
+function bOpt(){
+  const sel=$('eBoutique'), o=sel.selectedOptions[0];
+  return o && o.value ? {name:o.dataset.name, city:o.dataset.city} : null;
+}
+
+async function beginSession(){
+  const t=T[lang];
+  // Practice unless a mentor put their name to it.
+  if(mode === 'staff'){
+    const who = ($('eAssessor') && $('eAssessor').value.trim()) || '';
+    $('ePurpose').value = who ? 'assessment' : 'practice';
+  }
+  testerName=$('eName').value.trim();
+  // A CUSTOMER STARTS WITH ONE TAP.
+  // Asking for a name before a word has been exchanged is a barrier at the
+  // worst possible moment — she has not yet been given a reason to give it.
+  // Mira asks inside the conversation, where the asking is natural, and the
+  // reporting picks it up from there. Until then the session carries its
+  // reference and its timestamp, which is enough to find it again.
+  // Staff still identify themselves: their sessions go on a record.
+  if(mode === 'staff' && !testerName){ $('eErr').textContent=t.needName; return; }
+  if(mode === 'staff' && !$('eTerms').checked){
+    $('eErr').textContent = lang==='ar'
+      ? 'يُرجى الموافقة على الشروط والأحكام للمتابعة.'
+      : 'Please accept the terms to continue.';
+    return;
+  }
+  if(mode==='staff' && !$('eBoutique').value){
+    $('eErr').textContent = lang==='ar'
+      ? 'الرجاء اختيار البوتيك.'
+      : 'Please choose the boutique this session is being run at.';
+    return;
+  }
+  if($('eAssessor').dataset.required==='1' && !$('eAssessor').value.trim()){
+    $('eErr').textContent = lang==='ar'
+      ? 'الرجاء إدخال اسم المقيّم لهذا النوع من الجلسات.'
+      : 'Please name the trainer or assessor for this kind of session.';
+    return;
+  }
+  $('eErr').textContent='';
+  try{
+    const r=await fetch('/session/start',{method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({mode,tester_name:testerName,passcode:$('ePass').value,
+                           client_key:clientKey(),
+                           language:lang,
+                           purpose:$('ePurpose').value,
+                           assessor_name:$('eAssessor').value.trim(),
+                           staff_id:$('eStaffId').value.trim(),
+                           // WHERE SHE IS, WITHOUT ASKING.
+                           // A web page has no caller ID. But the browser
+                           // knows its own timezone, and in the Gulf that is
+                           // unambiguous: Asia/Riyadh is Saudi Arabia,
+                           // Asia/Dubai is the Emirates. It needs no
+                           // permission, no lookup service and no delay —
+                           // and the customer's phone number will confirm
+                           // or correct it later.
+                           tz:(Intl.DateTimeFormat().resolvedOptions().timeZone||''),
+                           locale:(navigator.language||''),
+                           terms_accepted:true,
+                           terms_version:(TERMS&&TERMS.version)||'1.0',
+                           boutique_code:$('eBoutique').value,
+                           boutique:(bOpt()||{}).name||'',
+                           boutique_city:(bOpt()||{}).city||''})});
+    const d=await r.json();
+    if(!r.ok||d.error){ $('eErr').textContent=d.error||'Could not start.'; return; }
+    sessionId=d.session_id;
+    brief=d.brief||null;
+  }catch(e){ $('eErr').textContent=t.fail; return; }
+
+  $('opening').style.display='none';
+  $('stream').style.display='flex';
+  $('composer').style.display='block';
+  $('aiNote').style.display='block';
+  $('endBtn').style.display='inline-block';
+  $('endBtn').textContent = (lang==='ar') ? 'إنهاء المحادثة' : 'End conversation';
+  paintTerms();
+  paintMode();
+  primeAudio();
+  startLevelMeter();
+
+  // Latency: put the large system prompt into the cache while she is still
+  // reading the greeting, so her first message does not pay for it.
+  fetch('/session/warm',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({session_id:sessionId})}).catch(()=>{});
+
+  if(mode==='staff'){
+    // ROLE REVERSAL. In training the trainee is the ADVISOR and Mira is the
+    // customer who has just walked in. The advisor greets the customer, not
+    // the other way round. She opens with a bare greeting only — salaam as
+    // she comes through the door — and then waits. Drawing out what she
+    // wants remains entirely the trainee's job: an advisor who cannot start
+    // a conversation has already failed the first parameter.
+    let intro = (lang==='ar')
+      ? 'أنتِ الآن المستشارة. ميرا هي العميلة التي دخلت للتو. ابدئي أنتِ الحديث.'
+      : 'You are the advisor. Mira is the customer who has just walked in. '
+        +'Open the conversation — she is waiting.';
+    if(brief && brief.type){
+      intro += (lang==='ar')
+        ? ' — نوع العميلة: '+brief.type
+        : '  ·  She reads as '+brief.type+'.';
+    }
+    bubble(intro,'sys');
+    // She walks in and says salaam — the sound of a customer crossing the
+    // threshold. It signals the session has begun (a blank screen reads as
+    // broken) without doing the advisor's job: she gives away nothing about
+    // what she wants, and then waits.
+    greet();
+    $('input').placeholder = (lang==='ar')
+      ? 'رحّبي بالعميلة…' : 'Welcome the customer…';
+    $('disc').textContent = (lang==='ar')
+      ? 'جلسة تدريب. سيتم تقييم أدائك كمستشارة في نهاية الجلسة.'
+      : 'Training session. Your performance as the advisor is assessed when you end it.';
+  } else {
+    greet();
+  }
+  if(handsFree) scheduleListen(900);
+}
+
+let lastClose = null;
+
+async function endSession(){
+  closeSheets();
+  if(!sessionId) return;
+  releaseMic();                       // D5 — the microphone stops here, always
+  stopMicWatchdog();
+  let debrief=false;
+  try{
+    const r=await fetch('/session/end',{method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({session_id:sessionId})});
+    const d=await r.json().catch(()=>({}));
+    debrief = !!d.debrief;
+    lastClose = { closed: !!d.closed, reference: d.reference || '',
+                  basket: d.basket || {}, ending: d.ending || 'thanks',
+                  cartUrl: d.cart_url || '', bag: d.bag || null };
+  }catch(e){}
+
+  // A conversation that simply stops reads as a conversation that broke.
+  // Staff go straight to their coaching debrief — that is what they ended it
+  // for. A customer is thanked, and closes on her own terms.
+  if(debrief){
+    window.location = '/debrief?session_id='+encodeURIComponent(sessionId);
+    return;
+  }
+  farewell();
+}
+
+function farewell(){
+  const ar = (lang==='ar');
+  // Nothing more can be said, so nothing more should be offered.
+  $('composer').style.display='none';
+  $('endBtn').style.display='none';
+  const tx = '/session/transcript?session_id='+encodeURIComponent(sessionId);
+
+  const d=document.createElement('div');
+  d.className='farewell';
+
+  // THE CLOSE.
+  // Every conversation ends somewhere, and each ending has to say what
+  // happened and what comes next. Four of them:
+  //
+  //   order    she settled on a bottle — confirm it and take her to the cart
+  //   details  she left a number — say who will call and when
+  //   noted    she said something worth keeping — say it has been kept
+  //   thanks   a browse — thank her, leave the door open
+  //
+  // All four carry the reference. It is the only thing she can quote on the
+  // telephone tomorrow, and withholding it from everyone except buyers made
+  // the other three endings feel like nothing had happened.
+  const L = lastClose || { ending: 'thanks', reference: '', basket: {} };
+  const b = L.basket || {};
+  const cur = b.currency || 'SAR';
+
+  const HEAD = {
+    order:   [ 'Your selection is confirmed', 'تم تأكيد اختيارك' ],
+    details: [ 'Your details are with us',    'وصلتنا بياناتك' ],
+    noted:   [ 'Noted, and kept',             'دوّنّا ملاحظتك' ],
+    thanks:  [ 'Thank you',                   'شكرًا لكِ' ]
+  }[L.ending] || [ 'Thank you', 'شكرًا لكِ' ];
+
+  const L0 = L;
+  const SAID = {
+    order: [ 'This is added to your cart and saved against your reference.',
+             'أُضيف هذا إلى سلتك، ومحفوظ تحت رقمكِ المرجعي.' ],
+    // No contact is promised here either. Her details are held so she does
+    // not have to begin again; whether anyone rings is not ours to pledge.
+    details: [ 'Your details are held against your reference, so you need not '
+               + 'begin again. Nothing is charged and nothing is committed — '
+               + 'quote that reference whenever you are ready.',
+               'بياناتكِ محفوظة تحت رقمكِ المرجعي، فلا حاجة لأن تبدئي من جديد. '
+               + 'لا يوجد أي التزام أو رسوم — اذكري الرقم متى شئتِ.' ],
+    noted: [ 'What you told us has been recorded and will be read. Nothing '
+             + 'is charged and nothing is committed.',
+             'سُجّل ما ذكرتِه وسيُقرأ. لا يوجد أي التزام أو رسوم.' ],
+    thanks: [ 'It was a pleasure speaking with you. Mansam is here whenever '
+              + 'you need us.',
+              'سعدنا بحديثنا معكِ. منسم موجودة دائمًا حين تحتاجين إلينا.' ]
+  }[L.ending] || [ '', '' ];
+
+  const esc2 = t => String(t).replace(/[<>&]/g, c =>
+    ({'<':'&lt;','>':'&gt;','&':'&amp;'}[c]));
+
+  // WHAT SHE IS TAKING — itemised, with codes and a total.
+  // Three loose rows could not show two items, could not show a code, and
+  // could not add anything up. The prices and codes come from the catalogue
+  // on the server, never from Mira's arithmetic.
+  // WHETHER SHE IS BUYING IS DECIDED BY THE BAG, NOT BY THE STAGE.
+  // A real conversation read the order back with a total, took a phone
+  // number and an email — and showed no cart, because the stage extractor
+  // had recorded 'details' rather than 'closed'. The customer had chosen two
+  // products and there was nowhere to pay. What she selected is the honest
+  // test of whether this is an order.
+  let bagHtml = '';
+  const BAG = L.bag;
+  const HAS_ORDER = !!(BAG && BAG.items && BAG.items.some(
+                          function(i){ return i.price > 0; }));
+  if(HAS_ORDER){
+    const money = n => (n === 0)
+      ? (ar ? 'هدية' : 'Gift')
+      : (BAG.currency + ' ' + Number(n).toLocaleString('en-US'));
+    bagHtml = "<div class='bag'>"
+      + "<div class='baghead'>" + (ar ? 'ما اخترتِه' : 'Your selection') + "</div>";
+    BAG.items.forEach(function(it){
+      bagHtml += "<div class='bagrow'><div class='bagl'>"
+        + "<div class='bagname'>" + esc2(it.name) + "</div>"
+        + "<div class='bagmeta'>"
+        + (it.code ? esc2(it.code) : '')
+        + (it.code && it.size ? '  ·  ' : '')
+        + (it.size ? esc2(it.size) : '')
+        + "</div></div>"
+        + "<div class='bagp" + (it.price === 0 ? ' gift' : '') + "'>"
+        + (it.price === null || it.price === undefined
+             ? (ar ? '—' : '—') : money(it.price))
+        + "</div></div>";
+    });
+    if(BAG.total !== null && BAG.total !== undefined){
+      bagHtml += "<div class='bagtot'><span>" + (ar ? 'الإجمالي' : 'Total')
+        + "</span><b>" + BAG.currency + ' '
+        + Number(BAG.total).toLocaleString('en-US') + "</b></div>";
+    }
+    bagHtml += "</div>";
+  }
+
+  const rows = [];
+
+  let conf = "<div class='confirm'>";
+  if(L.reference){
+    conf += "<div class='cref'><span>"
+          + (ar ? 'رقمك المرجعي' : 'Your reference')
+          + "</span><b>" + esc2(L.reference) + "</b></div>";
+  }
+  conf += bagHtml;
+  conf += rows.map(r =>
+    "<div class='crow'><span>" + r[0] + "</span><b>" + esc2(r[1])
+    + "</b></div>").join('');
+  conf += "<p class='cnote'>" + (ar ? SAID[1] : SAID[0]) + "</p>";
+  // Her reference is her own mobile number, so say so — otherwise the card
+  // looks as though it is showing her telephone number back at her for no
+  // reason. Knowing it IS the reference is what makes it impossible to lose.
+  const refIsPhone = L.reference && /^[0-9]{7,}(-[0-9]+)?$/.test(L.reference);
+  // The order note above already says where to quote it, so this line only
+  // explains WHY the reference looks like a telephone number.
+  const short = HAS_ORDER;
+  conf += "<p class='cnote'>" + (ar
+        ? (refIsPhone
+            ? (short ? 'ورقمكِ المرجعي هو رقم جوالكِ نفسه — لا حاجة لتدوينه.'
+                     : 'رقمكِ المرجعي هو رقم جوالكِ نفسه — لا حاجة لتدوينه. اذكريه في أي معرض من معارض منسم أو عند التواصل مع الفريق.')
+            : 'احتفظي بهذا الرقم؛ يمكنك ذكره في أي معرض من معارض منسم أو عند التواصل مع الفريق.')
+        : (refIsPhone
+            ? (short ? 'And your reference is your own mobile number — nothing to write down.'
+                     : 'Your reference is your own mobile number — nothing to write down. Quote it at any Mansam boutique, or when you speak to the team.')
+            : 'Keep this reference — you can quote it at any Mansam boutique, or when you speak to the team.'))
+        + "</p>";
+  conf += "</div>";
+
+  d.innerHTML =
+    "<div class='fwline'></div>"
+    + "<h2>" + (ar ? HEAD[1] : HEAD[0]) + "</h2>"
+    + conf
+    + "<p class='fwgold'>" + (ar ? 'إنتمي إلى الذهب' : 'Belong to Gold') + "</p>"
+    + "<div class='fwacts'>"
+    // The cart button appears only when there is somewhere for it to go.
+    // Sheet 23 has no addresses in it yet, so today this is absent rather
+    // than dead — a button that does nothing is worse than no button.
+    // NOBODY IS PROMISED. Until there is a cart to send her to, the card
+    // simply IS the record — she has the items, the codes and the total, and
+    // a reference that is her own number. Telling her to wait for a call was
+    // the old shape of this service and it breaks the loop at the last step.
+    // TWO WAYS OUT OF AN ORDER.
+    // Pay now hands her to the website's cart and payment. Save the reference
+    // only keeps it and takes her to the copy, which is what someone in a
+    // hurry — or on a shop floor — actually wants. Until the cart exists the
+    // first button carries her to the shop rather than nowhere.
+    // WHAT SHE DOES NEXT.
+    //   ↓                 keep a copy — an icon, because it is not the point
+    //   Checkout and Pay  the whole bag, in one link
+    //   Cancel            leave without buying
+    // The download was a full-width button competing with the one that
+    // matters. It is now beside it: available, not offered.
+    + (HAS_ORDER
+        ? "<div class='payrow'>"
+          + "<button class='dlbtn' title='" + (ar ? 'حفظ نسخة' : 'Keep a copy')
+          + "' aria-label='" + (ar ? 'حفظ نسخة من المحادثة'
+                                  : 'Keep a copy of this conversation') + "'"
+          + " onclick=\"requireTerms(function(){window.location='" + tx + "';})\">"
+          + "<svg viewBox='0 0 24 24' width='19' height='19' fill='none' "
+          + "stroke='currentColor' stroke-width='1.8' stroke-linecap='round' "
+          + "stroke-linejoin='round'><path d='M12 3v12'/><path d='M7 12l5 5 5-5'/>"
+          + "<path d='M4 20h16'/></svg></button>"
+          + "<a class='fwbtn pay' href='" + (L.cartUrl || SHOP_URL) + "'"
+          + " target='_blank' rel='noopener' onclick=\"markPay();\">"
+          + (ar ? 'إتمام الطلب والدفع' : 'Checkout and Pay') + "</a>"
+          + "</div>"
+        : "")
+    + (HAS_ORDER ? "" :
+        "<a class='fwbtn ghost' href='#' onclick=\"requireTerms(function(){"
+        + "window.location='" + tx + "';}); return false;\">"
+        + (ar ? 'حفظ نسخة من المحادثة' : 'Keep a copy of this conversation')
+        + "</a>")
+    // After an order there are two ways out, not three: pay, or cancel.
+    // "Start again" alongside a completed purchase invites her to undo it.
+    + "<a class='fwbtn ghost' href='/'>"
+    + (HAS_ORDER
+        ? (ar ? 'إلغاء' : 'Cancel')
+        : (ar ? 'محادثة جديدة' : 'Start again')) + "</a>"
+    + "</div>";
+  $('stream').appendChild(d);
+  $('stream').scrollTop = $('stream').scrollHeight;
+  sessionId = null;                    // nothing can be sent after this
+}
+
+function bubble(text,who){
+  const d=document.createElement('div');
+  d.className='msg '+who; d.textContent=text;
+  $('stream').appendChild(d);
+  if(who==='bot') addActions(text);
+  $('stream').scrollTop=$('stream').scrollHeight;
+  return d;
+}
+
+function addActions(text){
+  const bar=document.createElement('div'); bar.className='acts';
+  const mk=(icon,title,fn)=>{
+    const b=document.createElement('button');
+    b.textContent=icon; b.title=title; b.setAttribute('aria-label',title);
+    b.onclick=()=>fn(b); return b;
+  };
+  bar.appendChild(mk('⧉','Copy',()=>{
+    if(navigator.clipboard) navigator.clipboard.writeText(text);
+    toast(T[lang].copied);
+  }));
+  bar.appendChild(mk('🔊','Read aloud',()=>speak(text)));
+  bar.appendChild(mk('↻','Try again',()=>retryLast()));
+  bar.appendChild(mk('👍','Good',b=>{ b.classList.toggle('on'); rate(text,'up'); }));
+  bar.appendChild(mk('👎','Not good',b=>{ b.classList.toggle('on'); rate(text,'down'); }));
+  $('stream').appendChild(bar);
+}
+
+function rate(text,v){
+  toast(T[lang].thanks);
+  fetch('/feedback',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({session_id:sessionId,note:'rating:'+v,tester:testerName,
+                         reply:text.slice(0,300)})}).catch(()=>{});
+}
+
+function retryLast(){
+  if(busy||history.length<2) return;
+  if(history[history.length-1].role==='assistant') history.pop();
+  const s=$('stream');
+  while(s.lastElementChild &&
+       (s.lastElementChild.classList.contains('acts')||s.lastElementChild.classList.contains('bot'))){
+    const wasBot=s.lastElementChild.classList.contains('bot');
+    s.lastElementChild.remove();
+    if(wasBot) break;
+  }
+  setBusy(true); callServer();
+}
+
+function autoGrow(el){ el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,110)+'px'; }
+function keyHandler(e){ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); send(); } }
+
+async function greet(){
+  turnNo = 1;                 // the opening counts as a turn, so the holding
+                              // phrase knows not to fire before it
+  setBusy(true);
+  history.push({role:'user',content: lang==='ar'?'مرحبا':'Hello'});
+  await callServer();
+}
+
+let turnNo=0;
+
+// The browser is the only thing that knows when the customer stopped speaking
+// and when sound actually left the speaker. A server clock can see neither
+// end of the thing we care about, so the readings are reported from here.
+function reportTiming(){
+  const t=window.__t; if(!t||!sessionId) return;
+  const d=(a,b)=> (a&&b&&b>=a) ? (b-a) : null;
+  setTimeout(()=>{               // let the audio settle before reading it
+    const body={
+      session_id:sessionId, turn_no:turnNo,
+      stt_ms:null,
+      ttft_ms:  d(t.sent, t.first),
+      gen_ms:   d(t.first, t.last),
+      tts_ms:   d(t.last, t.tts),
+      audible_ms: d(t.sttEnd, t.audible || t.last),
+      reply_chars: t.chars || null,
+      voice_on: !!speakOn,
+      stt_engine: sttEngine
+    };
+    fetch('/api/metrics',{method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body)}).catch(()=>{});
+  }, 1500);
+}
+
+let pendingSaid=null;      // something she said while we were still busy
+
+async function send(){
+  if(!sessionId) return;      // the session was ended; nothing reopens it
+  const el=$('input'), text=el.value.trim();
+  if(!text) return;
+  // Anything still sitting in the speech buffer belongs to a turn that is
+  // now being sent. Left there it would arrive on top of her next sentence.
+  if(typeof turnTimer !== 'undefined' && turnTimer){
+    clearTimeout(turnTimer); turnTimer = null; turnBuf = '';
+  }
+  if(busy){
+    // SHE SPOKE AND NOTHING HAPPENED.
+    // Barge-in stops Mira's voice, but if the reply was still being written
+    // then busy was true and the transcript was simply discarded — so the
+    // customer had spoken, been cut off, and been ignored. Hold it instead
+    // and send it the moment the turn frees up.
+    pendingSaid = text;
+    el.value='';
+    const ol=$('orbLabel');
+    if(ol) ol.textContent = (lang==='ar') ? 'لحظة…' : 'One moment…';
+    return;
+  }
+  // Open a stopwatch for this turn. sttEnd was stamped the moment the
+  // recogniser produced a final transcript — everything is measured from
+  // there, because that is the instant the customer stops talking and
+  // starts waiting.
+  turnNo++;
+  window.__t = { sttEnd: (window.__t && window.__t.sttEnd) || Date.now(),
+                 sent:0, first:0, last:0, tts:0, audible:0, chars:0 };
+  window.__t.sent = Date.now();
+  el.value=''; el.style.height='auto';
+  bubble(text,'me');
+  history.push({role:'user',content:text});
+  setBusy(true);
+  await callServer();
+}
+
+
+// A rose, five petals around a heart, in the house gold. Rotating slowly
+// while the petals breathe in turn — the whole thing under 700 bytes and
+// drawn by the browser, so there is no image request to fail or to wait for.
+const ROSE_SVG =
+  '<svg class="rose" viewBox="0 0 40 40" aria-hidden="true">' +
+  '<g fill="none" stroke="#8B6F4C" stroke-width="1.6" stroke-linecap="round">' +
+  '<path class="petal" d="M20 6 C26 10 26 17 20 20 C14 17 14 10 20 6 Z"/>' +
+  '<path class="petal" d="M33 15 C33 22 27 26 20 20 C24 14 29 12 33 15 Z"/>' +
+  '<path class="petal" d="M28 31 C22 34 16 31 20 20 C26 22 29 26 28 31 Z"/>' +
+  '<path class="petal" d="M12 31 C11 26 14 22 20 20 C24 31 18 34 12 31 Z"/>' +
+  '<path class="petal" d="M7 15 C11 12 16 14 20 20 C13 26 7 22 7 15 Z"/>' +
+  '</g>' +
+  '<circle class="heart" cx="20" cy="20" r="3.4" fill="#8B6F4C"/>' +
+  '</svg>';
+
+
+// Where "Pay now" goes until the cart is wired to a product page. The shop is
+// a real destination and a real next step; a dead button is not.
+const SHOP_URL = 'https://mansamworld.com';
+
+// Record that she chose to pay. The order feed then shows who went to the
+// cart and who kept the reference for later, which is the single most useful
+// thing the website developer can be told about a conversation.
+function markPay(){
+  try{
+    fetch('/session/intent', {method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({session_id: sessionId, intent: 'pay_now'})});
+  }catch(e){}
+}
+
+let termsAccepted = false;
+let thinkEl=null;
+let lastHold=-1;
+
+// ---------------------------------------------------------------------------
+// C11 — holding phrases. The same one five times running is worse than
+// silence. Rotate, never repeat consecutively, and only on a genuinely long
+// wait — under two seconds, say nothing at all.
+// ---------------------------------------------------------------------------
+// WHAT SHE SAYS WHILE SHE THINKS.
+// Four phrases was too few — "let me think about that properly" came round
+// three times in one conversation and began to sound like stalling. The list
+// is now longer and mostly SHORT: a pause is a second or two, and a full
+// sentence outlasts the silence it was meant to cover. The brief ones are
+// listed first and weighted, so "one moment" comes up far more often than
+// anything elaborate.
+const HOLDS={
+  en:['Of course.','One moment.','Certainly.','Right.','Let me see.',
+      'One moment, please.','Yes — let me look.','Certainly, one moment.',
+      'Allow me a moment.','Let me find the right one for you.'],
+  ar:['بالتأكيد.','لحظة.','طبعاً.','حسناً.','دعيني أرى.',
+      'لحظة من فضلك.','نعم — دعيني أنظر.','بالتأكيد، لحظة واحدة.',
+      'اسمحي لي لحظة.','دعيني أجد الأنسب لكِ.']
+};
+// The first six are the short ones. Two thirds of the time we take one of
+// those; only occasionally does she say something longer.
+const HOLD_SHORT = 6;
+
+let holdHistory = [];
+
+function pickHold(){
+  const list = HOLDS[lang] || HOLDS.en;
+  // Weighted towards the short ones, and never repeating anything used in
+  // the last three turns — which is what made the old list feel mechanical.
+  for(let tries = 0; tries < 12; tries++){
+    const short = Math.random() < 0.68;
+    const i = short
+      ? Math.floor(Math.random() * HOLD_SHORT)
+      : HOLD_SHORT + Math.floor(Math.random() * (list.length - HOLD_SHORT));
+    if(holdHistory.indexOf(i) === -1){
+      holdHistory.push(i);
+      if(holdHistory.length > 3) holdHistory.shift();
+      lastHold = i;
+      return list[i];
+    }
+  }
+  return list[0];
+}
+
+// ---------------------------------------------------------------------------
+// X2 / X8 — streaming. The silence between the customer finishing and Mira
+// beginning was the single most damaging thing in testing: it reads as a
+// broken machine, not a thinking person. The reply now appears word by word.
+// If streaming fails for any reason we fall back to the old /chat call, so
+// nothing breaks on a browser or proxy that will not hold the connection.
+// ---------------------------------------------------------------------------
+async function callServer(){
+  $('orb').classList.add('thinking');
+  $('orbLabel').textContent=T[lang].thinking;
+  thinkEl=document.createElement('div');
+  thinkEl.className='thinking';
+  thinkEl.innerHTML = ROSE_SVG
+    + '<span class="thinkword">' + T[lang].thinking + '</span>';
+  $('stream').appendChild(thinkEl);
+  $('stream').scrollTop=$('stream').scrollHeight;
+
+  // Only announce a wait if there genuinely is one — and NEVER on the very
+  // first message. Mira was saying "one moment please" before she had even
+  // said hello, which sounds like a machine stalling and is the first thing
+  // a customer hears. There is nothing to hold for before a greeting.
+  let holdTimer=setTimeout(function(){
+    if(thinkEl && speakOn && turnNo > 1) speak(pickHold());
+  }, 2200);
+
+  const finish=()=>{
+    clearTimeout(holdTimer);
+    if(thinkEl){ thinkEl.remove(); thinkEl=null; }
+    $('orb').classList.remove('thinking');
+    $('orbLabel').textContent = handsFree?T[lang].listening:T[lang].idle;
+    setBusy(false);
+  };
+
+  try{
+    const ok = await streamReply(finish, ()=>clearTimeout(holdTimer));
+    if(ok) return;
+  }catch(e){ /* fall through to the non-streaming path */ }
+
+  try{
+    const r=await fetch('/chat',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:history,language:lang,session_id:sessionId})});
+    const d=await r.json();
+    clearTimeout(holdTimer);
+    if(thinkEl){ thinkEl.remove(); thinkEl=null; }
+    if(!r.ok||d.error){ bubble(d.error||T[lang].fail,'sys'); history.pop(); }
+    else{
+      const p=parseState(d.reply);
+      history.push({role:'assistant',content:d.reply});
+      bubble(p.clean,'bot');
+      if(p.state){ Object.assign(order,p.state); warmth(p.state); }
+      if(speakOn) speak(p.clean); else chime();
+    }
+  }catch(e){
+    if(thinkEl){ thinkEl.remove(); thinkEl=null; }
+    bubble(T[lang].fail,'sys'); history.pop();
+  }
+  finish();
+}
+
+async function streamReply(finish, cancelHold){
+  const r = await fetch('/chat/stream',{method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({messages:history,language:lang,session_id:sessionId})});
+  if(!r.ok || !r.body) return false;
+
+  const reader=r.body.getReader(), dec=new TextDecoder();
+  let buf='', raw='', el=null, failed=false;
+
+  // ------------------------------------------------------------------
+  // VOICE — ONE UTTERANCE PER REPLY.
+  //
+  // I previously spoke each sentence as it arrived, to cut the wait. It was a
+  // mistake: speak() cancels whatever is already playing, so sentence two cut
+  // off sentence one and the customer only ever heard the last one. Testing
+  // showed the reply appearing to start halfway through.
+  //
+  // The text still streams to the screen immediately, which is where the
+  // perceived speed actually comes from. The voice now waits for the complete
+  // reply and speaks it once, smoothly. Slower to start, but whole — and a
+  // customer would rather wait a moment than hear a fragment.
+  // ------------------------------------------------------------------
+  const paint=()=>{
+    const p=parseState(raw);
+    if(!p.clean) return;
+    if(!el){
+      cancelHold();
+      if(thinkEl){ thinkEl.remove(); thinkEl=null; }
+      el=document.createElement('div'); el.className='msg bot';
+      $('stream').appendChild(el);
+    }
+    if(window.__t && !window.__t.first) window.__t.first = Date.now();
+    el.textContent=p.clean;
+    $('stream').scrollTop=$('stream').scrollHeight;
+  };
+
+  while(true){
+    const {done,value}=await reader.read();
+    if(done) break;
+    buf += dec.decode(value,{stream:true});
+    const lines=buf.split('\n\n'); buf=lines.pop();
+    for(const block of lines){
+      const line=block.replace(/^data:\s*/,'').trim();
+      if(!line) continue;
+      let ev; try{ ev=JSON.parse(line); }catch(e){ continue; }
+      if(ev.type==='delta'){ raw += ev.text; paint(); }
+      else if(ev.type==='blocked'){
+        // The server stopped the reply part-way because it promised something
+        // Mansam cannot honour. Replace what is on screen — she must never be
+        // left holding half of it.
+        raw = ev.reply || '';
+        paint();
+      }
+      else if(ev.type==='error'){
+        failed=true;
+        if(thinkEl){ thinkEl.remove(); thinkEl=null; }
+        if(el) el.remove();
+        bubble(ev.error||T[lang].fail,'sys');
+      }
+      else if(ev.type==='done'){ raw = ev.reply || raw; }
+    }
+  }
+
+  if(failed){ history.pop(); finish(); return true; }
+  if(!raw.trim()) return false;          // nothing arrived — use the fallback
+
+  const p=parseState(raw);
+  paint();
+  history.push({role:'assistant',content:raw});
+  if(el) addActions(p.clean);
+  if(p.state){ Object.assign(order,p.state); warmth(p.state); }
+  if(window.__t){ window.__t.last=Date.now(); window.__t.chars=(p.clean||'').length; }
+  if(speakOn) speak(p.clean); else chime();   // ONE utterance, whole reply
+  reportTiming();
+  finish();
+  return true;
+}
+
+// ---------------------------------------------------------------------------
+// X5 — the emotional register of the interface. If the conversation is
+// warming, the room should not stay clinical. As she moves through the
+// methodology the page deepens very slightly: nothing anyone would name,
+// but the difference between a form and a welcome.
+// ---------------------------------------------------------------------------
+const WARM={welcome:0,discover:1,recommend:2,objection:2,
+            travelpack:3,crosssell:3,details:4,closed:5};
+let warmthLevel=-1;
+function warmth(state){
+  const lvl=WARM[(state&&state.stage)||'welcome'];
+  if(lvl===undefined || lvl<=warmthLevel) return;   // never cool back down
+  warmthLevel=lvl;
+  document.body.style.transition='background-color 2.4s ease';
+  document.body.style.backgroundColor=
+    ['#FBF7F0','#FBF6EE','#FAF4EA','#F9F2E6','#F8F0E2','#F7EEDE'][lvl];
+  const orb=$('orb');
+  if(orb) orb.style.filter='saturate('+(1+lvl*0.06)+')';
+}
+
+function setBusy(v){
+  busy=v; $('sendBtn').disabled=v;
+  if(!v && pendingSaid){
+    const held=pendingSaid; pendingSaid=null;
+    setTimeout(()=>{ $('input').value=held; send(); }, 120);
+    return;
+  }
+  // Sending a message — typed or spoken — must never leave the microphone
+  // closed. Both ways in stay available at all times.
+  if(!v && handsFree && !azReady) setTimeout(()=>{
+    if(handsFree && !azReady && !listening) safeStart();
+  }, 600);
+}
+
+function parseState(raw){
+  let clean=raw, state=null;
+  const m=clean.match(/STATE_START([\s\S]*?)STATE_END/);
+  if(m){ clean=clean.replace(m[0],''); try{ state=JSON.parse(m[1].trim()); }catch(e){} }
+  // While a reply is still streaming, the state line arrives a character at a
+  // time — so an UNFINISHED "STATE_START{"stage":"disc..." was flashing on
+  // screen before its closing tag caught up. Strip anything from the opening
+  // marker onward, finished or not.
+  clean=clean.replace(/STATE_START[\s\S]*$/,'');
+  // The debug line contains its own square brackets — objection_ids=[OBJ-01].
+  // A non-greedy match stopped at THAT bracket and left the rest of the line
+  // on screen: ", ticket_generated=YES, captured=name+phone, outcome=...".
+  // The debug line is always last, so strip from the marker to the very end.
+  clean=clean.replace(/\[DEBUG:[\s\S]*$/,'');
+  clean=clean.replace(/\bSTATE_?S?T?A?R?T?\s*$/,'');
+  return {clean:clean.trim(),state:state};
+}
+
+function copyAll(){
+  let out='MANSAM — conversation\n\n';
+  const me = (mode==='staff') ? 'You (advisor): ' : 'You: ';
+  const them = (mode==='staff') ? 'Customer: ' : 'Mira: ';
+  history.forEach(m=>{
+    out += (m.role==='user'?me:them) + parseState(m.content).clean + '\n\n';
+  });
+  if(navigator.clipboard) navigator.clipboard.writeText(out.trim());
+  toast(T[lang].copied); closeSheets();
+}
+
+// ---------------------------------------------------------------------------
+// D3 — the voice was reading punctuation aloud: "mansamworld dot com",
+// "asterisk", "hyphen hyphen". A screen reader may say these; a concierge
+// never does. Everything below is stripped before the text reaches the voice,
+// and ONLY before the voice — the written bubble keeps its punctuation.
+// ---------------------------------------------------------------------------
+function forSpeech(text){
+  if(!text) return '';
+  let t = text;
+  t = t.replace(/https?:\/\/\S+/gi, '');                    // never read a link
+  t = t.replace(/\bwww\.\S+/gi, '');
+  t = t.replace(/\b[\w.+-]+@[\w-]+\.[\w.]+\b/g, '');       // nor an email
+  t = t.replace(/\b([a-z0-9-]+)\.(com|net|sa|ae|org|co)\b/gi, '$1');
+  t = t.replace(/\*\*?|__|`+|#+/g, '');                     // markdown marks
+  t = t.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1');            // [label](link)
+  t = t.replace(/^\s*[-*\u2022]\s+/gm, '');                 // bullet leaders
+  t = t.replace(/\s*[-\u2013\u2014]{2,}\s*/g, ', ');         // rules and dashes
+  t = t.replace(/\s*\|\s*/g, ', ');
+  t = t.replace(/\s*\u00b7\s*/g, ', ');
+  t = t.replace(/MSM-\d{8}-\d+/g, '');                      // reference codes
+  t = t.replace(/\(\s*\)/g, '');
+  t = t.replace(/\s{2,}/g, ' ');
+  t = t.replace(/\s+([,.;:!?])/g, '$1');
+  t = t.replace(/(,\s*){2,}/g, ', ');
+  return t.trim();
+}
+
+// Arrival telemetry is advisory and never blocks the customer path.
+let ARRIVAL_SENT = {};
+function arrival(step, extra){
+  try{
+    if(!sessionId) return;
+    if(step && ARRIVAL_SENT[step]) return;
+    if(step) ARRIVAL_SENT[step] = 1;
+    const body=Object.assign({session_id:sessionId,step:step||''},extra||{});
+    fetch('/session/arrival',{method:'POST',keepalive:true,
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body)}).catch(function(){});
+  }catch(e){}
+}
+
+function clientKey(){
+  try{
+    let k=sessionStorage.getItem('mansam_ck');
+    if(!k){
+      k='ck_'+Math.random().toString(36).slice(2)+'_'+Date.now();
+      sessionStorage.setItem('mansam_ck',k);
+    }
+    return k;
+  }catch(e){ return ''; }
+}
+
+let micStream=null,lvlCtx=null,lvlRaf=null;
+let rmsPeak=0,rmsSpeechSum=0,rmsSpeechN=0;
+async function startLevelMeter(){
+  try{
+    if(micStream) return true;
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+      arrival('',{mic_state:'unsupported'}); return false;
+    }
+    micStream=await navigator.mediaDevices.getUserMedia({audio:true});
+    const AC=window.AudioContext||window.webkitAudioContext;
+    arrival('mic_live',{mic_state:'granted'});
+    if(!AC) return true;
+    lvlCtx=new AC();
+    const src=lvlCtx.createMediaStreamSource(micStream);
+    const an=lvlCtx.createAnalyser(); an.fftSize=512; src.connect(an);
+    const buf=new Uint8Array(an.fftSize);
+    (function tick(){
+      try{
+        an.getByteTimeDomainData(buf);
+        let sum=0;
+        for(let i=0;i<buf.length;i++){const v=(buf[i]-128)/128;sum+=v*v;}
+        const rms=Math.sqrt(sum/buf.length);
+        if(rms>rmsPeak) rmsPeak=rms;
+        if(listening&&rms>0.02){rmsSpeechSum+=rms;rmsSpeechN++;}
+      }catch(e){}
+      lvlRaf=requestAnimationFrame(tick);
+    })();
+    return true;
+  }catch(e){
+    const st=(e&&e.name==='NotAllowedError')?'denied':'error';
+    arrival('',{mic_state:st});
+    micAllowed=false;
+    setInputMode('chat','auto');
+    bubble(T[lang].chatFallback,'sys');
+    return false;
+  }
+}
+
+function reportLevels(){
+  try{
+    if(!sessionId||(!rmsPeak&&!rmsSpeechN)) return;
+    arrival('',{rms_peak:Number(rmsPeak.toFixed(4)),
+      rms_speech:rmsSpeechN?Number((rmsSpeechSum/rmsSpeechN).toFixed(4)):null});
+  }catch(e){}
+}
+window.addEventListener('pagehide',reportLevels);
+window.addEventListener('beforeunload',reportLevels);
+setInterval(function(){if(sessionId)reportLevels();},45000);
+
+function primeAudio(){
+  try{
+    // iOS keeps an audio context suspended until a user gesture touches it.
+    // The chime is created lazily, so without this it stays silent for the
+    // whole session and nobody can tell it exists.
+    const AC0 = window.AudioContext || window.webkitAudioContext;
+    if(AC0){
+      if(!chimeCtx) chimeCtx = new AC0();
+      if(chimeCtx.state === 'suspended') chimeCtx.resume();
+    }
+  }catch(e){}
+  try{
+    if(window.speechSynthesis){
+      const pv=new SpeechSynthesisUtterance(' '); pv.volume=0.01;
+      window.speechSynthesis.speak(pv);
+      setTimeout(loadVoices,250); setTimeout(loadVoices,1200);
+    }
+    if(!audioEl) audioEl=new Audio();
+    audioEl.src='data:audio/mp3;base64,//uQxAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAACcQCA';
+    audioEl.play().catch(()=>{});
+  }catch(e){}
+}
+
+function initVoice(){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){ $('micBtn').style.display='none'; handsFree=false; return; }
+  // continuous + interim results. With continuous=false the recogniser gave up
+  // after the first pause, so a customer who hesitated mid-sentence was simply
+  // not heard and had to repeat herself. Interim results also let us tell that
+  // she has STARTED speaking, which keeps the idle cutoff from firing on
+  // someone who is halfway through a sentence.
+  recog=new SR(); recog.continuous=true; recog.interimResults=true; recog.lang='en-US';
+  recog.onstart=()=>{ listening=true; $('orb').classList.add('listening');
+    $('micBtn').classList.add('on'); $('orbLabel').textContent=T[lang].listening;
+    armIdleCutoff(); };
+  recog.onresult=e=>{
+    let said='', isFinal=false;
+    for(let i=e.resultIndex;i<e.results.length;i++){
+      said += e.results[i][0].transcript;
+      if(e.results[i].isFinal) isFinal=true;
+    }
+    said=said.trim();
+    if(said) arrival('spoke');
+    if(said) clearTimeout(idleTimer);       // she is speaking — do not cut her off
+    if(said && isFinal){
+      // Collected, not sent. flushSpeech decides when the turn is over.
+      pushSpeech(said);
+    }
+  };
+  recog.onerror=ev=>{
+    if(ev.error==='not-allowed'||ev.error==='service-not-allowed'){
+      // Only treat this as a genuine refusal if the BROWSER recogniser is the
+      // engine in use. When Azure is running, this error is just the unused
+      // fallback complaining — and it was switching hands-free off for the
+      // rest of the session, which is why the microphone stopped responding.
+      if(!azReady && sttEngine!=='azure'){
+        handsFree=false; micAllowed=false; syncToggles();
+        setInputMode('chat','auto');
+        bubble(T[lang].chatFallback,'sys');
+      }
+      return;
+    }
+    stopVoice();
+  };
+  recog.onend=()=>{
+    stopVoice();
+    // Do not reopen the microphone while Mira is still speaking — it hears
+    // her own voice and the recogniser fights itself. 700ms, not 350: the
+    // audio device needs a moment to release on a phone.
+    if(handsFree && !speaking && !busy) scheduleListen(700);
+  };
+}
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// END OF TURN  —  waiting until she has actually finished
+//
+// A recogniser marks a segment "final" after about a second of silence. That
+// is not the end of an answer; it is a breath. Both engines used to send on
+// the first final segment, so an advisor who paused to think mid-sentence had
+// the first half of her answer sent and the rest thrown away — and then read
+// a debrief saying she never answered.
+//
+// So segments are collected, and the turn is only sent after a silence long
+// enough to mean she has genuinely stopped. Every new segment resets the
+// clock, so she can take as long as she likes.
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════════════════════════════
+// THE CHIME
+//
+// Advisors could not always tell when Mira had finished and the floor was
+// theirs, so they spoke over her and the first half of the answer was lost.
+// A single soft note marks the handover — the same signal a boutique bell
+// gives without anyone thinking about it.
+//
+// Synthesised rather than loaded: no file, no request, no delay, and it can
+// never be the thing that fails. Two quiet sine tones a fifth apart, under
+// half a second, well below speaking volume.
+// ═══════════════════════════════════════════════════════════════════════════
+let chimeCtx = null;
+
+function chime(){
+  if(!chimeOn) return;
+  try{
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if(!AC) return;
+    if(!chimeCtx) chimeCtx = new AC();
+    if(chimeCtx.state === 'suspended') chimeCtx.resume();
+    const t0 = chimeCtx.currentTime;
+    [[880, 0], [1320, 0.09]].forEach(function(pair){
+      const osc = chimeCtx.createOscillator();
+      const g   = chimeCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.value = pair[0];
+      // a gentle bell: quick to sound, slow to fade, never a beep
+      // Raised after testing: at 0.055 nobody on the floor could hear it
+      // over a boutique. Still well under speaking volume, and still a bell
+      // rather than a beep.
+      g.gain.setValueAtTime(0.0001, t0 + pair[1]);
+      g.gain.exponentialRampToValueAtTime(0.20, t0 + pair[1] + 0.03);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + pair[1] + 0.60);
+      osc.connect(g); g.connect(chimeCtx.destination);
+      osc.start(t0 + pair[1]);
+      osc.stop(t0 + pair[1] + 0.62);
+    });
+  }catch(e){}
+}
+
+let turnBuf = '';
+let turnTimer = null;
+
+// Long enough that thinking mid-sentence is safe; short enough that the
+// conversation does not feel slow. Staff sessions get longer — a trainee is
+// composing a sales line, not answering a question about herself.
+// HOW LONG A SILENCE MEANS "I HAVE FINISHED".
+// Raised again after testing in the Kingdom: advisors reported saying four
+// sentences and seeing two arrive. What was happening is that a pause between
+// sentences was being read as the end of the turn, and the rest was spoken
+// into a microphone that had already sent.
+//
+// People do not speak in one unbroken run. They say a thing, think, and add
+// to it. So the wait is now long enough to hold a thought: four seconds in
+// staff mode, three for a customer. The cost is a slightly later reply; the
+// cost of the old setting was losing half of what she said.
+function turnPauseMs(){ return (mode === 'staff') ? 4000 : 3000; }
+
+// A SECOND LOOK BEFORE SENDING.
+// Even after the silence has run its course, one more short window is opened.
+// If any word arrives in it, the whole turn is put back together and the
+// clock starts again. This is what stops a slow speaker being cut in half.
+const SECOND_LOOK_MS = 1200;
+
+function pushSpeech(t){
+  t = (t || '').trim();
+  if(!t) return;
+  clearTimeout(idleTimer);                 // she is mid-turn, do not time out
+  turnBuf = turnBuf ? (turnBuf + ' ' + t) : t;
+  const ol = $('orbLabel');
+  if(ol) ol.textContent = turnBuf.slice(-70);
+  clearTimeout(turnTimer);
+  turnTimer = setTimeout(flushSpeech, turnPauseMs());
+}
+
+function flushSpeech(){
+  clearTimeout(turnTimer); turnTimer = null;
+  const t = turnBuf.trim();
+  if(!t){ turnBuf = ''; return; }
+
+  // Hold the words a moment longer and watch for more. If she carries on,
+  // pushSpeech puts them together and restarts the clock, and this send is
+  // abandoned.
+  const mark = t;
+  turnTimer = setTimeout(function(){
+    turnTimer = null;
+    if(turnBuf.trim() !== mark) return;      // she said more; let it re-run
+    turnBuf = '';
+    sendTurn(mark);
+  }, SECOND_LOOK_MS);
+}
+
+function sendTurn(t){
+  if(!t) return;
+  if(sttEngine !== 'azure' && recog){       // browser engine: release the mic
+    try{ recog.stop(); }catch(e){}
+  }
+  $('input').value = t;
+  send();
+}
+
+function dropSpeech(){                      // typed instead, or cancelled
+  clearTimeout(turnTimer); turnTimer = null;
+  turnBuf = '';
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// AZURE STREAMING RECOGNITION  —  replaces the browser's own
+//
+// Safari's webkitSpeechRecognition ignores continuous mode, drops sessions
+// without warning, behaves differently between iOS versions and transcribes
+// Arabic poorly. It was patched twice and still failed: customers were
+// repeating themselves three to five times. That is a supplier problem, not
+// a bug, so the supplier is being changed.
+//
+// Azure streams audio and returns partial results as she speaks. The
+// subscription key never reaches the phone — the server issues a token that
+// expires in ten minutes.
+//
+// It also makes BARGE-IN possible, which is the real cure for the
+// walkie-talkie feel: the microphone stays open while Mira is speaking, so
+// the customer can cut in mid-sentence exactly as she would with a person.
+// ═══════════════════════════════════════════════════════════════════════════
+let azRecog=null, azReady=false, azToken=null, azRegion=null, azTokenAt=0;
+let sttEngine='browser';
+
+// ═══ ECHO SUPPRESSION ═══════════════════════════════════════════════════
+// Barge-in needs the microphone open while Mira is speaking. On a handset
+// speaker the microphone then hears HER — so she was interrupting herself
+// mid-paragraph and, worse, sending her own words back as the customer's
+// next message. Longer replies were affected most, simply because they gave
+// the recogniser more of her voice to lock onto.
+//
+// The cure is not to close the microphone — that would lose barge-in. It is
+// to recognise her own words when they come back and ignore them.
+let speakingText='';        // what Mira is saying right now, lowercased
+
+// HER OWN VOICE, COMING BACK LATE.
+// Comparing only against what she is saying NOW was not enough. She says a
+// holding phrase, the real reply begins and replaces speakingText, and then
+// the echo of the holding phrase reaches the microphone with nothing left to
+// match it against — so it was accepted as the customer speaking. In one
+// session Mira answered her own "let me think about it".
+// Everything spoken in the last twelve seconds is therefore kept and checked.
+let recentSpoken = [];      // [{text, at}]
+
+function rememberSpoken(t){
+  if(!t) return;
+  const now = Date.now();
+  recentSpoken.push({text: t, at: now});
+  recentSpoken = recentSpoken.filter(r => now - r.at < 12000);
+}
+let utterId=0;              // stale audio handlers must not speak over the live one
+let speakStartedAt=0;
+
+function normWords(t){
+  return (t||'').toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu,' ')
+    .split(/\s+/).filter(Boolean);
+}
+
+function isEcho(heard){
+  // An echo does not arrive politely while she is still speaking. It arrives
+  // in the gap just after, when `speaking` has already gone false — which is
+  // exactly when this check used to stop running.
+  const justSpoke = recentSpoken.some(r => Date.now() - r.at < 3000);
+  if(!speaking && !justSpoke) return false;
+  if(!speakingText && !justSpoke) return false;
+  // Her first moments are the most likely to be picked up, and the least
+  // likely to be a real interruption — nobody cuts in before she starts.
+  if(Date.now() - speakStartedAt < 900) return true;
+  const hw = normWords(heard);
+  if(hw.length === 0) return true;
+  // her current sentence, plus anything she has said in the last few seconds
+  const sw = new Set(normWords(speakingText));
+  recentSpoken.forEach(r => normWords(r.text).forEach(w => sw.add(w)));
+  const overlap = hw.filter(w=>sw.has(w)).length / hw.length;
+  // Short utterances are the hard case. "Too strong" is a real and very
+  // common interruption, so we cannot simply discard everything brief. But a
+  // couple of words echoing back from her own sentence is the most likely
+  // thing the microphone will catch. The test that separates them is whether
+  // the words appear in what she is currently saying: if none of them do,
+  // somebody else said it.
+  if(hw.length < 3) return overlap > 0;
+  // Longer: if half or more of it is her own wording, it is her.
+  return overlap >= 0.5;
+}
+// ═══════════════════════════════════════════════════════════════════════
+
+async function azGetToken(){
+  // Tokens last ten minutes; refresh at eight to be safe.
+  if(azToken && (Date.now()-azTokenAt) < 8*60*1000) return true;
+  try{
+    const r=await fetch('/api/speech/token');
+    const j=await r.json();
+    if(!j.ok) return false;
+    azToken=j.token; azRegion=j.region; azTokenAt=Date.now();
+    return true;
+  }catch(e){ return false; }
+}
+
+let azStarting=false;
+
+async function azStart(){
+  if(!window.SpeechSDK) return false;
+  // RE-ENTRANCY GUARD.
+  // safeStart is called from six places — the listen timer, the end of a
+  // turn, the page becoming visible, a cancellation, a session stopping, and
+  // the mic button. azGetToken below is a network call, and during that wait
+  // azReady is still false, so a second caller sailed past the guard in
+  // safeStart and built a SECOND recogniser. Two recognisers on one
+  // microphone send every sentence twice and fight over the device.
+  if(azStarting || azReady) return azReady;
+  azStarting=true;
+  try{
+    if(!(await azGetToken())){ azStarting=false; return false; }
+  }catch(e){ azStarting=false; return false; }
+  // Dispose of any previous recogniser before building another. Left open,
+  // the old one keeps its grip on the microphone and can still fire results.
+  try{ if(azRecog){ azRecog.close(); azRecog=null; } }catch(e){ azRecog=null; }
+  try{
+    const cfg=SpeechSDK.SpeechConfig.fromAuthorizationToken(azToken, azRegion);
+    // The starting language. Auto-detection below may override it per
+    // utterance; this is what it falls back to.
+    cfg.speechRecognitionLanguage = (lang==='ar') ? 'ar-SA' : 'en-GB';
+    // Azure closes a segment after ~0.5s of silence by default, which cuts a
+    // sentence at its first comma. 1.5s is a pause; below that is a breath.
+    // The initial wait is generous too: a trainee reads the brief, thinks,
+    // and only then starts speaking.
+    try{
+      cfg.setProperty(SpeechSDK.PropertyId.Speech_SegmentationSilenceTimeoutMs, '2200');
+      cfg.setProperty(
+        SpeechSDK.PropertyId.SpeechServiceConnection_InitialSilenceTimeoutMs, '15000');
+      cfg.setProperty(
+        SpeechSDK.PropertyId.SpeechServiceConnection_EndSilenceTimeoutMs, '3000');
+    }catch(e){}
+    const audio=SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
+
+    // BOTH LANGUAGES AT ONCE.
+    // The recogniser used to be locked to whichever language the page was in,
+    // so a customer who opened in English and then spoke Arabic — which is
+    // exactly what happens in Riyadh — was transcribed by the wrong model and
+    // came out as nonsense. Azure can listen for both and decide per
+    // utterance. It costs a little latency on the first word; being
+    // understood is worth more than that.
+    azRecog = null;
+    try{
+      if(SpeechSDK.AutoDetectSourceLanguageConfig && SpeechSDK.SpeechRecognizer.FromConfig){
+        const auto = SpeechSDK.AutoDetectSourceLanguageConfig.fromLanguages(
+                       ['ar-SA', 'en-GB']);
+        azRecog = SpeechSDK.SpeechRecognizer.FromConfig(cfg, auto, audio);
+      }
+    }catch(e){ azRecog = null; }
+    // If the SDK on this device cannot do it, fall back to the single
+    // language rather than losing the microphone altogether.
+    if(!azRecog) azRecog = new SpeechSDK.SpeechRecognizer(cfg, audio);
+
+    azRecog.recognizing=(sn,e)=>{
+      const t=(e.result && e.result.text || '').trim();
+      if(!t) return;
+      if(isEcho(t)) return;             // that is Mira's own voice returning
+      clearTimeout(idleTimer);          // a real person is speaking
+      // BARGE-IN. The customer has cut in, so Mira stops — the same
+      // courtesy a person would extend.
+      if(speaking) stopSpeaking();
+      lastHeardAt = Date.now();         // proof the microphone is still alive
+      const ol=$('orbLabel'); if(ol) ol.textContent=t.slice(-60);
+    };
+
+    azRecog.recognized=(sn,e)=>{
+      if(!e.result || e.result.reason!==SpeechSDK.ResultReason.RecognizedSpeech) return;
+      const t=(e.result.text||'').trim();
+      if(!t) return;
+      // Never send Mira's own words back as the customer's message. This is
+      // the fault that made a long reply stop halfway and then jump.
+      if(isEcho(t)) return;
+      window.__t = window.__t || {};
+      window.__t.sttEnd = Date.now();
+      lastHeardAt = Date.now();
+      pushSpeech(t);
+    };
+
+    // iOS interrupts recognition for all sorts of ordinary reasons — the
+    // permission prompt, a notification, the screen dimming, a moment of
+    // network. Previously nothing brought it back, so the microphone simply
+    // died mid-conversation and the customer had to type. It must always
+    // pick itself up again.
+    azRecog.canceled=(sn,e)=>{
+      azReady=false; listening=false;
+      const orb=$('orb'); if(orb) orb.classList.remove('listening');
+      const mb=$('micBtn'); if(mb) mb.classList.remove('on');
+      if(handsFree){
+        azToken=null;                 // a stale token is the usual cause
+        setTimeout(()=>{ if(handsFree && !azReady) safeStart(); }, 1200);
+        startMicWatchdog();           // and keep watching if that one fails
+      }
+    };
+    azRecog.sessionStopped=()=>{
+      azReady=false; listening=false;
+      if(handsFree){
+        setTimeout(()=>{ if(handsFree && !azReady) safeStart(); }, 900);
+        startMicWatchdog();
+      }
+    };
+
+    await new Promise((res,rej)=>azRecog.startContinuousRecognitionAsync(res,rej));
+    azReady=true; azStarting=false; sttEngine='azure';
+    listening=true;
+    const orb=$('orb'); if(orb) orb.classList.add('listening');
+    const mb=$('micBtn'); if(mb) mb.classList.add('on');
+    const ol=$('orbLabel'); if(ol) ol.textContent=T[lang].listening;
+    armIdleCutoff();
+    startMicWatchdog();
+    micFails = 0; micNoticeShown = false;
+    const mb2 = $('micBtn'); if(mb2) mb2.classList.remove('needsTap');
+    return true;
+  }catch(e){ azReady=false; azStarting=false; return false; }
+}
+
+function azStop(){
+  azStarting=false;
+  if(!azRecog) return;
+  try{ azRecog.stopContinuousRecognitionAsync(
+        ()=>{ try{ azRecog && azRecog.close(); }catch(e){} },
+        ()=>{}); }catch(e){}
+  azReady=false; listening=false;
+  const orb=$('orb'); if(orb) orb.classList.remove('listening');
+  const mb=$('micBtn'); if(mb) mb.classList.remove('on');
+}
+
+function stopSpeaking(){
+  speakingText='';
+  // Cut Mira off mid-word. Used by barge-in.
+  try{ if(audioEl){ audioEl.pause(); audioEl.currentTime=0; } }catch(e){}
+  try{ if(window.speechSynthesis) speechSynthesis.cancel(); }catch(e){}
+  speaking=false;
+}
+
+// ---------------------------------------------------------------------------
+// D5 / X4 — the microphone kept running. That is a privacy failure, not an
+// inconvenience: a live microphone in a boutique hears the next customer too.
+// Three guarantees now:
+//   1. thirty seconds of silence and it releases itself
+//   2. closing, hiding or navigating away from the page releases it
+//   3. ending the session releases it, before anything else happens
+// ---------------------------------------------------------------------------
+// Ninety seconds, not thirty. Thirty is shorter than a customer takes to
+// think about a perfume, so the cutoff was firing mid-conversation.
+const MIC_CUTOFF_MS = 90000;
+let idleTimer=null;
+
+function armIdleCutoff(){
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(function(){
+    if(!listening) return;
+    // Release the microphone — that is the privacy guarantee and it stands.
+    // But DO NOT switch hands-free off. Previously this killed auto mode for
+    // the rest of the session, so every later turn had to be tapped by hand.
+    // Hands-free stays on and resumes the moment Mira next finishes speaking.
+    pauseMic();
+    const ol=$('orbLabel');
+    if(ol) ol.textContent = (lang==='ar') ? 'اضغطي للتحدث' : 'Tap to speak';
+  }, MIC_CUTOFF_MS);
+}
+
+// Two different things, previously conflated — which is why auto mode kept
+// dying. On a phone the browser reports "hidden" for a moment when audio
+// starts, when the keyboard opens, when a notification arrives. Every one of
+// those was permanently switching hands-free off.
+//
+//   pauseMic()   — let go of the microphone hardware, KEEP auto mode on.
+//                  Used for interruptions.
+//   releaseMic() — full stop, auto mode off. Session end and page close only.
+
+function pauseMic(){
+  clearTimeout(freeTimer);
+  clearTimeout(idleTimer);
+  azStop();
+  try{ if(recog) recog.stop(); }catch(e){}
+  listening=false;
+  const orb=$('orb'); if(orb) orb.classList.remove('listening');
+  const mb=$('micBtn'); if(mb) mb.classList.remove('on');
+}
+
+function releaseMic(){
+  clearTimeout(freeTimer);
+  clearTimeout(idleTimer);
+  handsFree=false;
+  azStop();
+  try{ if(recog) recog.abort ? recog.abort() : recog.stop(); }catch(e){}
+  listening=false;
+  try{ if(window.speechSynthesis) window.speechSynthesis.cancel(); }catch(e){}
+  try{ if(audioEl) audioEl.pause(); }catch(e){}
+  speaking=false;
+  const orb=$('orb'); if(orb) orb.classList.remove('listening','thinking');
+  const mb=$('micBtn'); if(mb) mb.classList.remove('on');
+  const ol=$('orbLabel'); if(ol) ol.textContent=T[lang].idle;
+}
+
+window.addEventListener('pagehide', releaseMic);
+window.addEventListener('beforeunload', releaseMic);
+document.addEventListener('visibilitychange', function(){
+  if(document.visibilityState === 'hidden'){
+    pauseMic();                       // let go, but stay in auto mode
+  } else if(handsFree && !speaking && !busy){
+    // NEVER trust azReady after the page has been away. It survives the
+    // interruption; the audio underneath it does not.
+    if(window.SpeechSDK){ setTimeout(function(){ hardRestartMic('returned'); }, 400); }
+    else { scheduleListen(500); }
+  }
+});
+
+function scheduleListen(ms){
+  clearTimeout(freeTimer);
+  if(!handsFree||!micAllowed) return;
+  freeTimer=setTimeout(safeStart,ms);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MICROPHONE WATCHDOG
+//
+// The recogniser can drop mid-conversation — a network blip, an expired
+// token, Azure closing a long session. The old code retried exactly once. If
+// that one attempt failed the microphone was dead for the rest of the
+// session, in silence, and the only way to carry on was to start typing.
+// That happened in the middle of a training session, which is the worst
+// possible moment: the trainee is mid-sale and suddenly has no voice.
+//
+// So: keep trying, with a widening gap. After three failed attempts at the
+// premium engine, fall back to the browser's own recogniser — a lesser
+// microphone is better than none. Only if that fails too does she get told,
+// and then she gets a button rather than silence.
+// ═══════════════════════════════════════════════════════════════════════════
+
+// ═══════════════════════════════════════════════════════════════════════════
+// THE DEAF RECOGNISER
+//
+// The watchdog above catches a recogniser that reports itself down. It does
+// not catch the worse case: one that reports itself UP while hearing nothing.
+// That is what happens on a phone when the screen locks, a call comes in, or
+// Safari reclaims the audio session — the object is alive, azReady is true,
+// and every restart path politely declines because it thinks all is well.
+// The advisor is left talking to a microphone that stopped listening, with
+// no sign anything is wrong.
+//
+// Two answers. Remember when we last actually heard a word, and rebuild the
+// recogniser outright if too long passes in silence. And never trust azReady
+// after the page has been away — rebuild on the way back, always.
+// ═══════════════════════════════════════════════════════════════════════════
+let lastHeardAt = Date.now();
+let hardRestarting = false;
+
+// Long enough that a thoughtful pause is never interrupted, short enough that
+// a dead microphone is caught within a turn.
+const DEAF_AFTER_MS = 45000;
+
+async function hardRestartMic(why){
+  if(hardRestarting || !handsFree || !micAllowed) return false;
+  hardRestarting = true;
+  try{
+    try{ azStop(); }catch(e){}
+    azReady = false; azStarting = false; listening = false;
+    azToken = null;                     // a stale token is the usual cause
+    await new Promise(r => setTimeout(r, 350));
+    const ok = await safeStart();
+    lastHeardAt = Date.now();           // give the new one a fair innings
+    return ok;
+  } finally {
+    hardRestarting = false;
+  }
+}
+
+let micWatch = null, micFails = 0, micNoticeShown = false;
+
+function micIsUp(){
+  return (sttEngine === 'azure') ? azReady : !!listening;
+}
+
+function startMicWatchdog(){
+  if(micWatch) return;
+  micWatch = setInterval(async function(){
+    if(!handsFree || !micAllowed || !sessionId){ micFails = 0; return; }
+    if(speaking) return;                 // Mira is talking; not a fault
+
+    // Alive but deaf: it says it is ready, yet nothing has been heard for a
+    // long time and she is not mid-sentence. Rebuild it rather than believe it.
+    if(micIsUp() && !azStarting && sttEngine === 'azure'
+       && !busy && !turnBuf
+       && (Date.now() - lastHeardAt) > DEAF_AFTER_MS){
+      lastHeardAt = Date.now();          // one rebuild per window, not a loop
+      await hardRestartMic('silent');
+      return;
+    }
+    if(micIsUp() || azStarting){ micFails = 0; micNoticeShown = false; return; }
+
+    micFails++;
+    if(micFails <= 3){
+      await safeStart();                 // try the intended engine again
+      return;
+    }
+    if(micFails === 4 && recog){         // step down to the browser engine
+      sttEngine = 'browser';
+      try{ recog.start(); listening = true;
+           $('orb').classList.add('listening');
+           $('micBtn').classList.add('on'); }catch(e){}
+      return;
+    }
+    if(micFails >= 6 && !micNoticeShown){
+      micNoticeShown = true;
+      const ol = $('orbLabel');
+      if(ol) ol.textContent = (lang === 'ar')
+        ? 'المايك متوقف — اضغطي عليه لإعادة التشغيل'
+        : 'Microphone stopped — tap it to restart';
+      const mb = $('micBtn');
+      if(mb) mb.classList.add('needsTap');
+    }
+  }, 4000);
+}
+
+function stopMicWatchdog(){
+  clearInterval(micWatch); micWatch = null; micFails = 0; micNoticeShown = false;
+  const mb = $('micBtn'); if(mb) mb.classList.remove('needsTap');
+}
+
+async function safeStart(){
+  if(listening||!micAllowed||!handsFree) return;
+  // With Azure we no longer wait for Mira to finish. The microphone stays
+  // open while she speaks so the customer can interrupt her — barge-in is
+  // the difference between a conversation and a walkie-talkie.
+  if(busy && !azReady && !window.SpeechSDK){ scheduleListen(400); return; }
+  if(window.SpeechSDK){
+    if(azReady) return;
+    if(await azStart()) return;      // Azure is the intended engine
+  }
+  // Fallback only: Azure unavailable, key missing, or the SDK failed to load.
+  if(!recog) return;
+  if(busy||speaking){ scheduleListen(400); return; }
+  sttEngine='browser';
+  try{ recog.start(); }catch(e){ scheduleListen(400); }
+}
+
+let inputMode='voice',modeSwitches=0;
+function setInputMode(next,why){
+  if(!['voice','chat'].includes(next)||next===inputMode) return;
+  if(next==='voice'&&!micAllowed){
+    if($('modeHint')) $('modeHint').textContent=T[lang].micDenied;
+    return;
+  }
+  inputMode=next;
+  if(why!=='auto') modeSwitches++;
+  if(next==='chat'){
+    handsFree=false;speakOn=false;
+    clearTimeout(freeTimer);clearTimeout(idleTimer);azStop();
+    try{if(recog)(recog.abort?recog.abort():recog.stop());}catch(e){}
+    listening=false;
+    try{window.speechSynthesis.cancel();}catch(e){}
+    try{if(audioEl)audioEl.pause();}catch(e){}
+    speaking=false;
+    if($('orb')) $('orb').classList.remove('listening','thinking');
+    setTimeout(function(){try{$('input').focus();}catch(e){}},60);
+  }else{
+    handsFree=true;speakOn=true;
+    if(!azReady&&!listening) scheduleListen(250);
+  }
+  paintMode();
+  try{syncToggles();}catch(e){}
+  arrival('',{input_mode:inputMode,mode_switches:modeSwitches});
+}
+
+function paintMode(){
+  const t=T[lang]||T.en,v=$('mVoice'),c=$('mChat'),h=$('modeHint');
+  if(!v||!c)return;
+  const voice=inputMode==='voice';
+  v.classList.toggle('on',voice);c.classList.toggle('on',!voice);
+  v.setAttribute('aria-pressed',voice?'true':'false');
+  c.setAttribute('aria-pressed',voice?'false':'true');
+  if($('mVoiceLab'))$('mVoiceLab').textContent=t.mVoice;
+  if($('mChatLab'))$('mChatLab').textContent=t.mChat;
+  if(h)h.textContent=voice?t.hintVoice:t.hintChat;
+  if($('orbrow'))$('orbrow').style.display=voice?'flex':'none';
+}
+
+function toggleVoice(){
+  if(!micAllowed) return;
+  // If it says it is on but has heard nothing for a while, she is tapping it
+  // because it stopped working — so mend it rather than switch it off. That
+  // is what the tap means at that moment.
+  if(azReady && (Date.now() - lastHeardAt) > 15000){
+    micFails = 0; micNoticeShown = false;
+    const mb = $('micBtn'); if(mb) mb.classList.remove('needsTap');
+    const ol = $('orbLabel');
+    if(ol) ol.textContent = (lang === 'ar') ? 'إعادة تشغيل المايك…'
+                                            : 'Restarting the microphone…';
+    hardRestartMic('tapped');
+    return;
+  }
+  if(azReady){ azStop(); return; }
+  if(listening && recog){ recog.stop(); return; }
+  safeStart();
+}
+function rescueMic(){
+  // The orb is the thing she looks at while speaking, so it is the thing she
+  // taps when nothing is happening. It always rebuilds, whatever the flags
+  // claim, and it never switches the microphone off by accident.
+  if(!micAllowed) return;
+  micFails = 0; micNoticeShown = false;
+  const mb = $('micBtn'); if(mb) mb.classList.remove('needsTap');
+  const ol = $('orbLabel');
+  if(ol) ol.textContent = (lang === 'ar') ? 'إعادة تشغيل المايك…'
+                                          : 'Restarting the microphone…';
+  hardRestartMic('orb');
+}
+
+function stopVoice(){
+  listening=false; $('orb').classList.remove('listening'); $('micBtn').classList.remove('on');
+  $('orbLabel').textContent = handsFree?T[lang].listening:T[lang].idle;
+}
+
+function toggleHandsFree(){
+  // Tapping the microphone after a drop should try again at once, not wait
+  // for the next watchdog tick.
+  micFails = 0; micNoticeShown = false;
+  const mbx = $('micBtn'); if(mbx) mbx.classList.remove('needsTap');
+
+  // Switching the microphone off mid-sentence: send what she has already
+  // said rather than discarding it. Silence would look like a lost turn.
+  if(handsFree && turnBuf) flushSpeech();   // she is turning it OFF
+  handsFree=!handsFree;
+  if(handsFree){ if(!speakOn) speakOn=true; if(!micAllowed) micAllowed=true; }
+  syncToggles();
+  if(handsFree){ primeAudio(); scheduleListen(200); }
+  else{ clearTimeout(freeTimer); if(recog){ try{recog.stop();}catch(e){} } }
+  $('orbLabel').textContent = handsFree?T[lang].listening:T[lang].idle;
+}
+function toggleSpeak(){
+  speakOn=!speakOn;
+  if(!speakOn){
+    handsFree=false; clearTimeout(freeTimer);
+    if(window.speechSynthesis) window.speechSynthesis.cancel();
+    if(audioEl){ try{audioEl.pause();}catch(e){} }
+  } else primeAudio();
+  syncToggles();
+}
+function toggleMicAllowed(){
+  micAllowed=!micAllowed;
+  if(!micAllowed){ handsFree=false; clearTimeout(freeTimer);
+                   if(recog){ try{recog.stop();}catch(e){} } }
+  syncToggles();
+}
+// A sheet opened from the keyboard had no way of being closed from the
+// keyboard — the only dismissal was a tap on the backdrop. Escape closes it,
+// which is what anyone would try first anyway.
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape' || e.key === 'Esc') closeSheets();
+});
+
+function toggleChime(){
+  chimeOn = !chimeOn;
+  syncToggles();
+  if(chimeOn) chime();          // let her hear what she has just turned on
+}
+
+function syncToggles(){
+  $('tFree').classList.toggle('on',handsFree);
+  $('tSpk').classList.toggle('on',speakOn);
+  $('tMic').classList.toggle('on',micAllowed);
+  $('tChime').classList.toggle('on',chimeOn);
+  // A switch that reports its state must keep reporting it truthfully. The
+  // class changes the colour for a sighted user; aria-checked is the only
+  // thing a screen reader hears, and it has to move with it.
+  $('tFree').setAttribute('aria-checked', handsFree  ? 'true' : 'false');
+  $('tSpk' ).setAttribute('aria-checked', speakOn    ? 'true' : 'false');
+  $('tMic' ).setAttribute('aria-checked', micAllowed ? 'true' : 'false');
+  $('tChime').setAttribute('aria-checked', chimeOn   ? 'true' : 'false');
+  $('orbrow').style.display = handsFree?'flex':'none';
+  $('micBtn').style.display = micAllowed?'flex':'none';
+}
+
+function loadVoices(){
+  if(!window.speechSynthesis) return;
+  const all=window.speechSynthesis.getVoices(); if(!all.length) return;
+  const want = lang==='ar'?'ar':'en';
+  const list=all.filter(v=>v.lang.toLowerCase().startsWith(want));
+  const sel=$('voicePick'), prev=sel.value;
+  sel.innerHTML='';
+  const a=document.createElement('option'); a.value=''; a.textContent=T[lang].autoVoice;
+  sel.appendChild(a);
+  list.forEach(v=>{ const o=document.createElement('option');
+    o.value=v.name; o.textContent=v.name.replace(/Microsoft |Google |Apple /,'');
+    sel.appendChild(o); });
+  if(prev&&list.some(v=>v.name===prev)) sel.value=prev;
+  if(!list.length) sel.innerHTML='<option>'+T[lang].noVoices+'</option>';
+}
+function pickVoice(){
+  const n=$('voicePick').value;
+  chosenVoice=window.speechSynthesis.getVoices().find(v=>v.name===n)||null;
+  if(chosenVoice){
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(T[lang].sample);
+    u.voice=chosenVoice; u.lang=chosenVoice.lang; u.rate=1.12; u.pitch=1.04;
+    window.speechSynthesis.speak(u);
+  }
+}
+
+function browserSpeak(text){
+  text=forSpeech(text);
+  if(!window.speechSynthesis||!text) return;
+  // Never speak over Azure. If real audio is playing, the device voice has
+  // no business starting — that overlap is what made the volume swell and
+  // fade, with two voices reading the same words at once.
+  try{ if(audioEl && !audioEl.paused && audioEl.currentTime > 0) return; }catch(e){}
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  if(chosenVoice){ u.voice=chosenVoice; u.lang=chosenVoice.lang; }
+  else{
+    u.lang = lang==='ar'?'ar-SA':'en-GB';
+    // The old test looked for the word "female" in the voice name. Apple
+    // does not name voices that way — en-GB defaults to Daniel, who is a
+    // man. That is the machine male voice that kept appearing. Match the
+    // actual names iOS and Android ship instead.
+    const FEM = /samantha|karen|moira|tessa|ava|allison|susan|nicky|fiona|serena|kate|amelie|female|woman|zira|hoda|salma|samira|laila|maha|amira|google uk english female/i;
+    const MALE = /daniel|alex|fred|maged|tarik|arthur|oliver|male/i;
+    const vs = window.speechSynthesis.getVoices()
+      .filter(x=>x.lang.startsWith(lang==='ar'?'ar':'en'));
+    const pick = vs.find(x=>FEM.test(x.name)) || vs.find(x=>!MALE.test(x.name));
+    if(pick) u.voice=pick;
+  }
+  u.rate=1.12; u.pitch=1.04;
+  speaking=true;
+  if(handsFree&&recog&&listening){ try{recog.stop();}catch(e){} }
+  u.onend=()=>{ speaking=false; chime(); arrival('greeted');
+                if(handsFree) scheduleListen(300); };
+  u.onerror=()=>{ speaking=false; };
+  window.speechSynthesis.speak(u);
+}
+
+async function speak(text){
+  speakingText = text || '';
+  rememberSpoken(text);
+  speakStartedAt = Date.now();
+  text=forSpeech(text);
+  if(!text) return;
+  if(window.speechSynthesis) window.speechSynthesis.cancel();
+  if(audioEl){ try{audioEl.pause();}catch(e){} }
+  speaking=true;
+  if(handsFree&&recog&&listening){ try{recog.stop();}catch(e){} }
+
+  if(azureOn){
+    try{
+      const r=await fetch('/api/speak',{method:'POST',headers:{'Content-Type':'application/json'},
+        // turn 1 is the greeting — it gets the lift
+        body:JSON.stringify({text:text,language:lang,opening:(turnNo<=1)})});
+      // ONE FAILURE IS NOT A VERDICT.
+      // azureOn used to be switched off by a single bad response and never
+      // switched back, so a cold start on the very first greeting — the most
+      // likely moment for one, because the instance has just woken — put the
+      // whole session into the flat device voice. Worse, the failure notice
+      // appeared as the first thing on screen, before Mira had said hello.
+      //
+      // A failure is now counted, not obeyed. The opening turn is retried
+      // once, because it is the first thing anyone hears, and the premium
+      // voice is only abandoned after two consecutive failures. Any success
+      // resets the count.
+      if(r.status===503 || !r.ok){
+        if(turnNo <= 1 && azFails === 0){
+          azFails++;
+          await new Promise(res=>setTimeout(res, 700));
+          speaking=false;
+          return speak(text);                    // one retry, then fall back
+        }
+        azFails++;
+        if(azFails >= 2){
+          azureOn = false;
+          if(!noticeShown && turnNo > 1){        // never during the welcome
+            noticeShown = true;
+            const e = await r.json().catch(()=>({}));
+            bubble('Voice note: ' + (e.error ||
+                   'premium voice unavailable — using the device voice.'), 'sys');
+          }
+        }
+        speaking=false; return browserSpeak(text);
+      }
+      azFails = 0;                               // it worked; forget the past
+      const blob=await r.blob();
+      if(!audioEl) audioEl=new Audio();
+
+      // ── THE OPENING BUG ────────────────────────────────────────────────
+      // One audio element is reused for the whole session, because iOS only
+      // permits playback on an element unlocked by a real tap. But the
+      // element was keeping its PREVIOUS recording: on a new session it
+      // still held the last one, so canplaythrough fired instantly against
+      // the stale buffer, play() started the OLD audio — a fragment of the
+      // previous conversation — and then cut off the moment the new file
+      // arrived. That is why the greeting began with something unrelated and
+      // then stopped after one line.
+      //
+      // Emptying the element and calling load() resets readyState, so the
+      // buffer we then wait for is genuinely the new one.
+      // CRITICAL ORDER. Clearing the source raises an 'error' event on the
+      // media element — and the PREVIOUS utterance's onerror handler was
+      // still attached. It fired, called browserSpeak, and the device's
+      // robotic voice began reading the OLD text while the new Azure audio
+      // loaded and played on top of it. Two voices at once: a male machine
+      // voice appearing from nowhere, and a volume that seemed to rise and
+      // fall. Detach the handlers BEFORE touching the source.
+      utterId++;
+      const myId = utterId;
+      try{
+        audioEl.onerror=null; audioEl.onended=null;
+        audioEl.pause();
+        if(audioEl.dataset.url){ URL.revokeObjectURL(audioEl.dataset.url); }
+        audioEl.removeAttribute('src');
+        audioEl.load();                 // discard the old buffer entirely
+      }catch(e){}
+      const _url=URL.createObjectURL(blob);
+      audioEl.dataset.url=_url;
+      audioEl.src=_url;
+      audioEl.load();                   // begin buffering THIS recording
+      audioEl.onended=()=>{
+        if(myId!==utterId) return;      // a stale handler must stay silent
+        speaking=false; speakingText='';
+        chime();                        // the floor is hers again
+        arrival('greeted');
+        if(handsFree) scheduleListen(300);
+      };
+      audioEl.onerror=()=>{
+        // Only the CURRENT utterance may fall back, and only if it never
+        // managed to play. Anything else is an echo of a finished one.
+        if(myId!==utterId) return;
+        if(audioEl.currentTime > 0.1) return;
+        speaking=false; browserSpeak(text);
+      };
+      // Do not play the instant the bytes arrive. iOS begins mid-stream if the
+      // buffer is not ready — which is why the opening words were being lost.
+      // Waiting for canplaythrough costs a few milliseconds and saves the
+      // first thing she says, which is the part that matters most.
+      await new Promise(res=>{
+        let done=false;
+        const go=()=>{ if(!done){ done=true; res(); } };
+        // readyState 4 means THIS file is buffered — checked after load(),
+        // so it can no longer be a leftover reading from the previous one.
+        if(audioEl.readyState >= 4){ go(); }
+        else{
+          audioEl.addEventListener('canplaythrough', go, {once:true});
+          audioEl.addEventListener('loadeddata', ()=>{
+            if(audioEl.readyState >= 3) go();
+          }, {once:true});
+        }
+        setTimeout(go, 1500);        // never hang if no event fires
+      });
+      if(window.__t) window.__t.tts = Date.now();
+      await audioEl.play();
+      if(window.__t) window.__t.audible = Date.now();
+      return;
+    }catch(err){ speaking=false; return browserSpeak(text); }
+  }
+  speaking=false; browserSpeak(text);
+}
+
+// THE RUNNING VERSION, ON SCREEN.
+// "Did the upload actually land?" was being answered by comparing file sizes
+// in a shell. The build number now sits beside the name, so anyone can read
+// it off the phone in a second — and a stale build shows a stale number.
+async function showVersion(){
+  try{
+    const r = await fetch('/health');
+    const j = await r.json();
+    const el = $('verTag');
+    if(el && j && j.version) el.textContent = 'v' + j.version;
+  }catch(e){}
+}
+showVersion();
+
+initVoice();
+syncToggles();
+setLang('en');
+if(window.speechSynthesis){
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged=loadVoices;
+  setTimeout(loadVoices,600);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: mansam-chatbot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 server.py
+    healthCheckPath: /dream.html
+    envVars:
+      - key: MANSAM_HOST
+        value: 0.0.0.0
+      - key: MANSAM_OPEN_BROWSER
+        value: "false"
+      - key: MANSAM_SITE_URL
+        value: https://uatuae.mansamworld.com
+      - key: MANSAM_LIVE_REFRESH_SECONDS
+        value: "300"

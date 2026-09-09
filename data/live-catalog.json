@@ -1,0 +1,5381 @@
+{
+  "generatedAt": "2026-09-09T06:31:34.051688+00:00",
+  "source": "https://uatuae.mansamworld.com",
+  "productLines": [
+    {
+      "id": 1,
+      "name": {
+        "en": "Eau de Parfum 100ml",
+        "ar": "ماء عطر  100 مل"
+      },
+      "description": {
+        "en": "An exquisite Eau De Parfum collection with enduring allure, boasting aromatic uniqueness and Arabian roots.",
+        "ar": "ماء عطر رائع مع جاذبية دائمة ، يتميز بتفرد عطري وجذور عربية."
+      }
+    },
+    {
+      "id": 7,
+      "name": {
+        "en": "Eau de Parfum 12ml",
+        "ar": "ماء عطر  12 مل"
+      },
+      "description": {
+        "en": "An exquisite Eau De Parfum collection with enduring allure, boasting aromatic uniqueness and Arabian roots.",
+        "ar": "ماء عطر رائع مع جاذبية دائمة ، يتميز بتفرد عطري وجذور عربية."
+      }
+    },
+    {
+      "id": 2,
+      "name": {
+        "en": "Signature Blends (Attar) ",
+        "ar": "عطار"
+      },
+      "description": {
+        "en": "Mansam's signature Attars: an aromatic masterpiece blending the finest ingredients, elevating the art of Arabian perfumery.",
+        "ar": " العطار المميز لدينا عبارة عن روائع عطرية تمزج بين أجود المكونات، وترتقي بفن العطور العربية."
+      }
+    },
+    {
+      "id": 3,
+      "name": {
+        "en": "Natural Oils and Blends",
+        "ar": "الزيوت الطبيعية والخلطات"
+      },
+      "description": {
+        "en": "Pristine essential oils meticulously extracted at their source for unparalleled purity.",
+        "ar": " الزيوت الأساسية البكر المستخرجة بدقة من مصدرها لنقاوة لا مثيل لها."
+      }
+    },
+    {
+      "id": 4,
+      "name": {
+        "en": "Scented Candles ",
+        "ar": "شموع"
+      },
+      "description": {
+        "en": "Mansam's Scented Candles: Handcrafted ceramic pots encase luxury, creating a cozy and opulent ambiance for homes.",
+        "ar": "شموع منسم المعطرة موجودة داخل أواني خزفية مصنوعة يدويا تغلف الفخامة، مما يخلق أجواء مريحة وفخمة للمنازل."
+      }
+    },
+    {
+      "id": 5,
+      "name": {
+        "en": "Luban",
+        "ar": "لبان"
+      },
+      "description": {
+        "en": "Our Luban is sourced and crafted with precision for a premium, spiritually enriching experience",
+        "ar": "يتم الحصول على لبان وصنعه بدقة للحصول على تجربة متميزة وغنية روحيا."
+      }
+    },
+    {
+      "id": 6,
+      "name": {
+        "en": "Maamoul Bukhoor",
+        "ar": "معمول بخور"
+      },
+      "description": {
+        "en": "Indulge in the allure of MANSAM Maamoul Bukhoor Collection, crafted and sourced with meticulous care to offer a unique and unforgettable olfactory journey",
+        "ar": "استمتع بسحر مجموعة معمول بخور من منسَم، المصنوعة والمختارة بعناية فائقة لتمنحك رحلة عطرية متفرّدة ولا تُنسى."
+      }
+    },
+    {
+      "id": 10,
+      "name": {
+        "en": "Piano Collection",
+        "ar": "مجموعة بيانو"
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      }
+    },
+    {
+      "id": 9,
+      "name": {
+        "en": "SILK SCARVES & POCKET SQUARE",
+        "ar": "أوشحة حريرية ومنايل الجيب"
+      },
+      "description": {
+        "en": "SILK SCARVES & POCKET SQUARE MANSAM’s Silk Scarves and Pocket Square, handcrafted from the finest quality twirl silk",
+        "ar": "أوشحة حريرية ومناديل الجيب أوشحة ومناديل الجيب من منسَم، مصنوعة يدويًا من حرير طبيعي فاخر بلمسة ناعمة وأناقة خالدة."
+      }
+    },
+    {
+      "id": 8,
+      "name": {
+        "en": "Rare Handicraft Boxes",
+        "ar": "صناديق خشبية مصنوعة يدويًا"
+      },
+      "description": {
+        "en": "Exquisite inlay and marquetry work on walnut wood. Handcrafted by traditional Arab artisans",
+        "ar": "تحف نادرة مصنوعة يدويًا زخارف دقيقة مصنوعة يدويًا من خشب الجوز الفاخر ، بإتقان الحرفيين العرب التقليديين، لتجسد فنًا أصيلًًيروي حكاية التراث"
+      }
+    },
+    {
+      "id": 11,
+      "name": {
+        "en": "Dehab",
+        "ar": "ذهب"
+      },
+      "description": {
+        "en": "An exquisite way to experience MANSAM fragrances.A gift for others. A treat for yourself.",
+        "ar": "طريقة فاخرة لاكتشاف عطور منسَم.أهديه لمن تحب، أو دلّل به نفسك."
+      }
+    },
+    {
+      "id": 12,
+      "name": {
+        "en": "DIFFUSER",
+        "ar": "معطر الجو المنزلي"
+      },
+      "description": {
+        "en": "Elevate your everyday moments with the refined elegance of the MANSAM Home Fragrance Diffuser. More than a scent, it is a decorative statement piece designed to enhance every room with effortless sophistication.",
+        "ar": "معطر الجو المنزلي ارتقِ بلحظاتك اليومية مع الأناقة الراقية لمعطر الجو المنزلي من منسَم، ليس مجرد عطر بل قطعة فنية تضيف لمسة من الفخامة الهادئة والرقي إلى كل مساحة."
+      }
+    },
+    {
+      "id": 13,
+      "name": {
+        "en": "QAMAR BOX",
+        "ar": "قمر بوكس"
+      },
+      "description": {
+        "en": "An exquisite way to experience MANSAM fragrances. A gift for others. A treat for yourself.",
+        "ar": "\r\nطريقة فاخرة لاكتشاف عطور منسَم.أهديه لمن تحب، أو دلّل به نفسك."
+      }
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "productId": 1,
+      "code": "ABM017",
+      "name": {
+        "en": "Al Rawd",
+        "ar": "الروض"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "'A gourmand takes on preciousness, expression of a fragrance that exudes sophistication, elegance, and a touch of decadence. It wraps you in an invisible embrace, whisking you away to a moment of blissful indulgence. This scent is perfect for those seeking a luxurious and inviting fragrance that captures the irresistible edible note anchored in a comforting musk tone. '",
+        "ar": "يأخذ الغورماند النفاسة والتعبير عن العطر الذي ينضح بالرقي والأناقة ولمسة من الانحطاط. إنه يلفك في حضن غير مرئي، وينقلك بعيدًا إلى لحظة من الانغماس السعيد. هذه الرائحة مثالية لأولئك الذين يبحثون عن عطر فاخر وجذاب يجسد رائحة صالحة للأكل لا تقاوم ومرتكزة على نغمة المسك المريحة."
+      },
+      "notes": {
+        "en": [
+          "Cinnamon",
+          "Bergamot",
+          "Cardamom",
+          "Anis",
+          "Incense",
+          "Praline",
+          "Orris",
+          "Leather",
+          "Tonka",
+          "Vanilla",
+          "Musk"
+        ],
+        "ar": [
+          "قرفة، برغموت، هيل، يانسون، البخور، برالين، سوسن، جلد، التونكا، فانيليا، مسك"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 400.0,
+      "currency": "AED",
+      "stockQuantity": 90,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/1"
+    },
+    {
+      "id": "2",
+      "productId": 2,
+      "code": "ABM018",
+      "name": {
+        "en": "Al Sharfa",
+        "ar": "الشرفة"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "A captivating Oud Elixir. This captivating scent is a complex and sophisticated blend of warm and woody notes, with a touch of sweetness and sensuality. Sweetness of plum unveil a rich blend of saffron and sensual flowers, over a lingering oud deepness. ",
+        "ar": "إكسير العود الآسر. هذه الرائحة الآسرة عبارة عن مزيج معقد ومتطور من الروائح الدافئة والخشبية، مع لمسة من الحلاوة والشهوانية. تكشف حلاوة البرقوق عن مزيج غني من الزعفران والزهور الحسية، فوق عمق العود الذي يدوم طويلاً."
+      },
+      "notes": {
+        "en": [
+          "Cardamom",
+          "Floral",
+          "Citruses",
+          "Cumin",
+          "Cinnamon",
+          "Nutmeg",
+          "Leather",
+          "Incense",
+          "Cedarwood",
+          "Patchouli"
+        ],
+        "ar": [
+          "الخوخ، الهيل، زهري، حمضيات، الكمون، القرفة، جوزة الطيب، جلد، البخور، خشب الأرز، باتشولي"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 400.0,
+      "currency": "AED",
+      "stockQuantity": 86,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/2"
+    },
+    {
+      "id": "3",
+      "productId": 3,
+      "code": "ABM019",
+      "name": {
+        "en": "Ibtissam Al Zahr",
+        "ar": "ابتسام الزهر"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "An alluring watery & woody signature. Watery notes open the fragrance with a kick of freshness, followed by a sensual heart of rich woods and leather. Its heart unfolds the aromatic and herbal scent of lavender, balanced by the woody and slightly spicy aroma of geranium, provide a sense of grounding and balance.",
+        "ar": "تجانس مائي وخشبي جذاب. تفتتح الروائح المائية العطر بنفحة من الانتعاش، يتبعها قلب حسي من الأخشاب الغنية والجلود. قلبه يكشف عن رائحة اللافندر العطرية والعشبية، المتوازنة مع رائحة إبرة الراعي الخشبية والحارة قليلاً، مما يوفر إحساسًا  والتوازن."
+      },
+      "notes": {
+        "en": [
+          "Bergamot",
+          "aquatic",
+          "Black Pepper",
+          "Incense",
+          "Pear",
+          "Galbanum",
+          "Genievre",
+          "Jasmine",
+          "Leather",
+          "Lavender",
+          "Oakmoss",
+          "Patchouli",
+          "Musk"
+        ],
+        "ar": [
+          "برغموت، مائي، فلفل أسود، بخور، كمثرى، جالبانوم، جينيفر، ياسمين، جلد، الخزامى، نجيل البلور، باتشولي، مسك"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 400.0,
+      "currency": "AED",
+      "stockQuantity": 92,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/3"
+    },
+    {
+      "id": "4",
+      "productId": 4,
+      "code": "ABM020",
+      "name": {
+        "en": "Loughat Al Zouhour",
+        "ar": "لغة الزهور"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "The hymn of rosy Oud. Refreshing fruits surround precious spices, enhancing a magnificent oud. Soft musk and rich amber exalt the signature.",
+        "ar": "نشيد العود الوردي. تحيط به الفواكه المنعشة بالتوابل الثمينة، مما يعزز رائحة العود الرائعة. المسك الناعم والعنبر الغني يزيدان من التجانس."
+      },
+      "notes": {
+        "en": [
+          "Oud",
+          "Floral",
+          "Pear",
+          "Raspberry",
+          "Saffron",
+          "Orange Blossom",
+          "Rose",
+          "Musk",
+          "Agarwood",
+          "Amber"
+        ],
+        "ar": [
+          "عود، زهري، كمثرى، توت التوت، زعفران، زهرة البرتقال، ورد، مسك، عود، عنبر"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 300.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/4"
+    },
+    {
+      "id": "5",
+      "productId": 5,
+      "code": "ABM022",
+      "name": {
+        "en": "Zahr Al Thalj",
+        "ar": "زهر الثلج"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "The wilderness of the sea. Marine notes come as waves crashing on a rich land of warm woods, leaving an addictive base of ambergris. This scent exudes freshness, vitality. Perfect for the refreshing and the uplifting scent of the sea with a modern and sophisticated metallic twist unfolded by oakmoss.",
+        "ar": "تأتي النوتات البحرية مع تحطم الأمواج على أرض غنية بالأخشاب الدافئة، تاركة قاعدة من العنبر مسببة للمجد. هذه الرائحة تنضح بالنضارة والحيوية. مثالي لرائحة البحر المنعشة مع لمسة معدنية حديثة ومتطورة يكشف عنها."
+      },
+      "notes": {
+        "en": [
+          "Woody Floral",
+          "Sea Notes",
+          "Lemon",
+          "Patchouli",
+          "White Flowers",
+          "Ambergris",
+          "Woody",
+          "Oakmoss"
+        ],
+        "ar": [
+          "زهور خشبية، ملاحظات بحرية، ليمون، باتشولي، زهور بيضاء، عنبر الحوت، خشبي، نجيل البلور."
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 400.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/5"
+    },
+    {
+      "id": "6",
+      "productId": 6,
+      "code": "ABM023",
+      "name": {
+        "en": "Al Shawk",
+        "ar": "الشوق"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Like a spell, it leaves strangers enchanted in your presence. An enchanting fragrance, where mysterious oud and sensual musk reveal the mesmerizing allure of rose. The woody and resinous facets of oud create a captivating foundation, drawing you deeper into its spellbinding embrace. This fragrance celebrates the beauty and allure of the past while embracing the enchantment of the present",
+        "ar": "مثل السحر، فإنه يترك مسحورين في حضورك. عطر ساحر، حيث يكشف العود الغامض والمسك الحسي عن جاذبية الورد الساحرة. تخلق الجوانب الخشبية والراتنجية للعود أساسًا آسرًا، وتجذبك بشكل أعمق في أحضانه الساحرة. يحتفل هذا العطر بجمال وجاذبية الماضي بينما يحتضن سحر الحاضر"
+      },
+      "notes": {
+        "en": [
+          "Nectarine",
+          "Jasmine",
+          "Rose",
+          "Oud",
+          "Cypriol Vanilla",
+          "Cedarwood",
+          "Heliotrope",
+          "Musk"
+        ],
+        "ar": [
+          "الدهيد، النكتارين الياسمين، الورد، العود، السيبريول، الفانيليا، خشب الأرز، الهيليوتروب، المسك"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 400.0,
+      "currency": "AED",
+      "stockQuantity": 92,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/6"
+    },
+    {
+      "id": "7",
+      "productId": 7,
+      "code": "ABM024",
+      "name": {
+        "en": "Ward Yali Al Nada ",
+        "ar": "ورد ياللي الندى"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "The timeless captivating allure adds an irresistible grace to your aura. The freshness of hyacinth with a delicate floral heart of Iris and jasmine, spiced by Pink Pepper, infused with a decadent mist of earthy Vetiver and a warm mix of Patchouli. From the initial vibrant burst to a warm embrace of the oriental base, this potion provokes a sense of perplexing, irrational happiness that is so hard to achieve. ",
+        "ar": "يضيف الجاذبية الآسرة الخالدة نعمة لا تقاوم إلى هالتك. نضارة الصفير مع قلب زهري رقيق من السوسن والياسمين، متبل بالفلفل الوردي، ممزوج برذاذ منعش من نجيل الهند الترابي ومزيج دافئ من الباتشولي. من الاندفاع الأولي النابض بالحياة إلى الاحتضان الدافئ للقاعدة الشرقية، تثير هذه الجرعة إحساسًا بالسعادة المحيرة وغير العقلانية التي يصعب تحقيقها."
+      },
+      "notes": {
+        "en": [
+          "Bergamot",
+          "Mandarin",
+          "Rose Lily of the valley",
+          "Peony",
+          "Vanilla",
+          "amber",
+          "Woods"
+        ],
+        "ar": [
+          "برغموت، يوسفي، ورد، زنبق الوادي، بيوني، فانيليا، عنبر، أخشاب"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 300.0,
+      "currency": "AED",
+      "stockQuantity": 75,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/7"
+    },
+    {
+      "id": "65",
+      "productId": 65,
+      "code": "ABM021",
+      "name": {
+        "en": "Al Nafoura",
+        "ar": "النافورة"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Sparkling woods in a bottle. A refined opening of citruses lingers into sweet addictive notes. Woods and vanilla give an elegant twist and reveals deeper layers that evoke warm and resinous notes such as amber, patchouli, or benzoin may be present, providing a velvety richness that complements the sparkling wood accord.",
+        "ar": "أخشاب متلألئة في زجاجة. افتتاحية راقية من الحمضيات تبقى في نفحات حلوة مسببة للإدمان. تضفي الأخشاب والفانيليا لمسة أنيقة وتكشف عن طبقات أعمق تستحضر روائح دافئة وراتنجية مثل العنبر أو الباتشولي أو الجاوي، مما يوفر ثراءً مخمليًا يكمل رائحة الخشب المتلألئة."
+      },
+      "notes": {
+        "en": [
+          "Woody",
+          "Citrus Floral",
+          "Saffron",
+          "Bergamot",
+          "Praline",
+          "Jasmine",
+          "Cedar",
+          "Vanilla"
+        ],
+        "ar": [
+          "خشبي، زهري حمضياتي زعفران، برغموت، برالين، ياسمين، خشب الأرز، فانيليا"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 400.0,
+      "currency": "AED",
+      "stockQuantity": 97,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/65"
+    },
+    {
+      "id": "8",
+      "productId": 8,
+      "code": "ABM025",
+      "name": {
+        "en": "Al Rawd",
+        "ar": "الروض"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "A gourmand takes on preciousness, expression of a fragrance that exudes sophistication, elegance, and a touch of decadence. It wraps you in an invisible embrace, whisking you away to a moment of blissful indulgence. This scent is perfect for those seeking a luxurious and inviting fragrance that captures the irresistible edible note anchored in a comforting musk tone.",
+        "ar": "يأخذ الغورماند النفاسة والتعبير عن العطر الذي ينضح بالرقي والأناقة ولمسة من الانحطاط. إنه يلفك في حضن غير مرئي، وينقلك بعيدًا إلى لحظة من الانغماس السعيد. هذه الرائحة مثالية لأولئك الذين يبحثون عن عطر فاخر وجذاب يجسد رائحة جميلة لا تقاوم ومرتكزة على نغمة المسك."
+      },
+      "notes": {
+        "en": [
+          "Cinnamon",
+          "Bergamot",
+          "Cardamom",
+          "Anis",
+          "Incense",
+          "Praline",
+          "Orris",
+          "Leather",
+          "Tonka",
+          "Vanilla",
+          "Musk"
+        ],
+        "ar": [
+          "قرفة، برغموت، هيل، يانسون، البخور، برالين، سوسن، جلد، التونكا، فانيليا، مسك"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 780.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/8"
+    },
+    {
+      "id": "9",
+      "productId": 9,
+      "code": "ABM026",
+      "name": {
+        "en": "Al Sharfa",
+        "ar": "الشرفة"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "A captivating Oud Elixir. This captivating scent is a complex and sophisticated blend of warm and woody notes, with a touch of sweetness and sensuality. Sweetness of plum unveil a rich blend of saffron and sensual flowers, over a lingering oud deepness. ",
+        "ar": "إكسير العود الآسر. هذه الرائحة الآسرة عبارة عن مزيج معقد ومتطور من الروائح الدافئة والخشبية، مع لمسة من الحلاوة والشهوانية. تكشف حلاوة البرقوق عن مزيج غني من الزعفران والزهور الحسية، على عمق العود العالقة.."
+      },
+      "notes": {
+        "en": [
+          "Cardamom",
+          "Floral",
+          "Citruses",
+          "Cumin",
+          "Cinnamon",
+          "Nutmeg",
+          "Leather",
+          "Incense",
+          "Cedarwood",
+          "Patchouli"
+        ],
+        "ar": [
+          "الخوخ، الهيل، زهري، حمضيات، الكمون، القرفة، جوزة الطيب، جلد، البخور، خشب الأرز، باتشولي"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 780.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/9"
+    },
+    {
+      "id": "10",
+      "productId": 10,
+      "code": "ABM027",
+      "name": {
+        "en": "Ibtissam Al Zahr",
+        "ar": "ابتسام الزهر"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "An alluring watery & woody signature. Watery notes open the fragrance with a kick of freshness, followed by a sensual heart of rich woods and leather. Its heart unfolds the aromatic and herbal scent of lavender, balanced by the woody and slightly spicy aroma of geranium, provide a sense of grounding and balance.",
+        "ar": "تجانس مائي وخشبي جذاب. تفتتح الروائح المائية العطر بنفحة من الانتعاش، يتبعها قلب حسي من الأخشاب الغنية والجلود. قلبه يكشف عن رائحة اللافندر العطرية والعشبية، المتوازنة مع رائحة إبرة الراعي الخشبية والحارة قليلاً، مما يوفر إحساسًا بالتأريض والتوازن."
+      },
+      "notes": {
+        "en": [
+          "Bergamot",
+          "aquatic",
+          "Black Pepper",
+          "Incense",
+          "Pear",
+          "Galbanum",
+          "Genievre",
+          "Jasmine",
+          "Leather",
+          "Lavender",
+          "Oakmoss",
+          "Patchouli",
+          "Musk"
+        ],
+        "ar": [
+          "برغموت، مائي، فلفل أسود، بخور، كمثرى، جالبانوم، جينيفر، ياسمين، جلد، الخزامى، نجيل البلور، باتشولي، مسك"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 780.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/10"
+    },
+    {
+      "id": "11",
+      "productId": 11,
+      "code": "ABM028",
+      "name": {
+        "en": "Loughat Al Zouhour",
+        "ar": "لغة الزهور"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "The hymn of rosy Oud. Refreshing fruits surround precious spices, enhancing a magnificent oud. Soft musk and rich amber exalt the signature.",
+        "ar": "نشيد العود الوردي. تحيط الفواكه المنعشة بالتوابل الثمينة، مما يعزز رائحة العود الرائعة. المسك الناعم والعنبر الغني يزيدان من التجانس."
+      },
+      "notes": {
+        "en": [
+          "Oud",
+          "Floral",
+          "Pear",
+          "Raspberry",
+          "Saffron",
+          "Orange blossom",
+          "Rose",
+          "Musk",
+          "Agarwood",
+          "Amber"
+        ],
+        "ar": [
+          "عود، زهري، كمثرى، توت التوت، زعفران، زهرة البرتقال، ورد، مسك، عود، عنبر"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 680.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/11"
+    },
+    {
+      "id": "12",
+      "productId": 12,
+      "code": "ABM029",
+      "name": {
+        "en": "Al Nafoura",
+        "ar": "النافورة"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Sparkling woods in a bottle. A refined opening of citruses lingers into sweet addictive notes. Woods and vanilla give an elegant twist and reveals deeper layers that evoke warm and resinous notes such as amber, patchouli, or benzoin may be present, providing a velvety richness that complements the sparkling wood accord.",
+        "ar": "أخشاب متلألئة في زجاجة. افتتاحية راقية من الحمضيات تبقى في نفحات حلوة مسببة للإدمان. تضفي الأخشاب والفانيليا لمسة أنيقة وتكشف عن طبقات أعمق تثير نفحات دافئة وراتنجية مثل العنبر. الباتشولي أو الجاوي قد يكون موجودا، مما يوفر ثراءً مخمليًا يكمل رائحة الخشب المتلألئة."
+      },
+      "notes": {
+        "en": [
+          "Woody",
+          "Citrus Floral",
+          "Saffron",
+          "Bergamot",
+          "Praline",
+          "Jasmine",
+          "Cedar",
+          "Vanilla"
+        ],
+        "ar": [
+          "خشبي، زهري حمضياتي زعفران، برغموت، برالين، ياسمين، خشب الأرز، فانيليا"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 680.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/12"
+    },
+    {
+      "id": "13",
+      "productId": 13,
+      "code": "ABM030",
+      "name": {
+        "en": "Zahr Al Thalj",
+        "ar": "زهر الثلج"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "The wilderness of the sea. Marine notes come as waves crashing on a rich land of warm woods, leaving an addictive base of ambergris. This scent exudes freshness, vitality. Perfect for the refreshing and the uplifting scent of the sea with a modern and sophisticated metallic twist unfolded by oakmoss.",
+        "ar": "قفرالبحر. تأتي ملحوظات البحرية مع تحطم الأمواج على أرض غنية بالأخشاب الدافئة، تاركة قاعدة من العنبر مسببة للإدمان. هذه الرائحة تنضح بالنضارة والحيوية. مثالي لرائحة البحر المنعشة والمنعشة مع لمسة معدنية حديثة ومتطورة يكشف عنها طحلب السنديان."
+      },
+      "notes": {
+        "en": [
+          "Woody Floral",
+          "Sea Notes",
+          "Lemon",
+          "Patchouli",
+          "White Flowers",
+          "Ambergris",
+          "Woody",
+          "Oakmoss"
+        ],
+        "ar": [
+          "زهور خشبية، ملاحظات بحرية، ليمون، باتشولي، زهور بيضاء، عنبر الحوت، خشبي، نجيل البلور."
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 780.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/13"
+    },
+    {
+      "id": "14",
+      "productId": 14,
+      "code": "ABM031",
+      "name": {
+        "en": "Al Shawk",
+        "ar": "الشوق"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Like a spell, it leaves strangers enchanted in your presence. An enchanting fragrance, where mysterious oud and sensual musk reveal the mesmerizing allure of rose. The woody and resinous facets of oud create a captivating foundation, drawing you deeper into its spellbinding embrace. This fragrance celebrates the beauty and allure of the past while embracing the enchantment of the present",
+        "ar": "مثل السحر، فإنه يترك مسحورين في حضورك. عطر ساحر، حيث يكشف العود الغامض والمسك الحسي عن جاذبية الورد الساحرة. تخلق الجوانب الخشبية والراتنجية للعود أساسًا آسرًا، وتجذبك بشكل أعمق في أحضانه الساحرة. يحتفل هذا العطر بجمال وجاذبية الماضي بينما يحتضن سحر الحاضر"
+      },
+      "notes": {
+        "en": [
+          "Nectarine",
+          "Jasmine",
+          "Rose",
+          "Oud",
+          "Cypriol",
+          "Vanilla",
+          "Cedarwood",
+          "Heliotrope",
+          "Musk"
+        ],
+        "ar": [
+          "الدهيد، النكتارين الياسمين، الورد، العود، السيبريول، الفانيليا، خشب الأرز، الهيليوتروب، المسك"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 780.0,
+      "currency": "AED",
+      "stockQuantity": 98,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/14"
+    },
+    {
+      "id": "15",
+      "productId": 15,
+      "code": "ABM032",
+      "name": {
+        "en": "Ward Yali Al Nada ",
+        "ar": "ورد ياللي الندى"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "The timeless captivating allure adds an irresistible grace to your aura. The freshness of hyacinth with a delicate floral heart of Iris and jasmine, spiced by Pink Pepper, infused with a decadent mist of earthy Vetiver and a warm mix of Patchouli. From the initial vibrant burst to a warm embrace of the oriental base, this potion provokes a sense of perplexing, irrational happiness that is so hard to achieve. ",
+        "ar": "يضيف الجاذبية الآسرة الخالدة نعمة لا تقاوم إلى شخصيتك. نضارة الصفير مع قلب الأزهار رقيق من السوسن والياسمين، متبل بالفلفل الوردي، ممزوج برذاذ منعش من نجيل الهند الترابي ومزيج دافئ من الباتشولي. مما يجعل الاندفاع الأولي النابض بالحياة إلى الاحتضان الدافئ للقاعدة الشرقية، تثير هذه الجرعة إحساسًا بالسعادة المحيرة وغير العقلانية التي يصعب تحقيقها."
+      },
+      "notes": {
+        "en": [
+          "Bergamot",
+          "Mandarin",
+          "Rose",
+          "Lily of the valley",
+          "Peony",
+          "Vanilla",
+          "amber",
+          "Woods"
+        ],
+        "ar": [
+          "برغموت، يوسفي، ورد، زنبق الوادي، بيوني، فانيليا، عنبر، أخشاب"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Signature Blends (Attar) ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 680.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/15"
+    },
+    {
+      "id": "16",
+      "productId": 16,
+      "code": "CDM001",
+      "name": {
+        "en": "Defe' Al Anbar",
+        "ar": "دفء العنبر"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "A luxurious fragrance evoking the richness and sensuality of amber.   Mandarin and cinnamon are paired to create a contrasted opening. As the fragrance develops, a delicate floral heart of jasmine and orange blossom comes to life while vanilla and musk provide a soft sillage. ",
+        "ar": "أناقة الورود الخالدة مع لمسة عصرية. يبدأ العطر بنفحة من الفواكه اللذيذة مع محمل بجوهر الورد الرقيق والرومانسي، تبدأ الغابات الغنية والدافئة في الظهور، مما يضيف تعقيدًا إلى العطر، بينما توفر نفحات العود المتطورة الكثافة."
+      },
+      "notes": {
+        "en": [
+          "Mandarin",
+          "Spicy",
+          "Floral Jasmine",
+          "Vanilla",
+          "Amber",
+          "Balsamic"
+        ],
+        "ar": [
+          "اليوسفي، التوابل، ياسمين زهري، فانيليا، عنبر، بلسمي"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Scented Candles ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 350.0,
+      "currency": "AED",
+      "stockQuantity": 98,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/16"
+    },
+    {
+      "id": "17",
+      "productId": 17,
+      "code": "CDM002",
+      "name": {
+        "en": "Walaa Al Ward",
+        "ar": "ولع الورد"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "A timeless elegance of roses with a modern twist.   The fragrance opens with a burst of juicy fruits, infused with a delicate and romantic essence of roses.   Rich and warm woods begin to emerge, adding complexity to the fragrance, while sophisticated oud notes provide intensity. \r\n",
+        "ar": "أناقة الورود الخالدة مع لمسة عصرية. يبدأ العطر بنفحة من الفواكه اللذيذة مع محمل بجوهر الورد الرقيق والرومانسي، تبدأ الغابات الغنية والدافئة في الظهور، مما يضيف تعقيدًا إلى العطر، بينما توفر نفحات العود المتطورة الكثافة."
+      },
+      "notes": {
+        "en": [
+          "Rose",
+          "Spices",
+          "Woods",
+          "Oud"
+        ],
+        "ar": [
+          "ورد، توابل، أخشاب، عود"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Scented Candles ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 350.0,
+      "currency": "AED",
+      "stockQuantity": 96,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/17"
+    },
+    {
+      "id": "18",
+      "productId": 18,
+      "code": "CDM003",
+      "name": {
+        "en": "Atmat Al Ghabat",
+        "ar": " عتمة الغابات"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "A journey through the mystical and enchanting depths of the forest.   Transported to a world of dark woods, where blooming flowers blend perfectly with earthy and citrusy notes. The tantalizing spices add a touch of sensuality, creating a truly unforgettable experience.",
+        "ar": "رحلة عبر أعماق الغابة الغامضة والساحرة. تم نقله إلى عالم من الأخشاب الداكنة، حيث تمتزج الزهور المتفتحة بشكل مثالي مع الروائح الترابية والحمضية. تضيف التوابل المثيرة لمسة من الإثارة، مما يخلق تجربة لا تُنسى حقًا."
+      },
+      "notes": {
+        "en": [
+          "Citrus",
+          "Spices",
+          "Moss",
+          "Patchouli",
+          "Woods"
+        ],
+        "ar": [
+          "حمضيات، توابل، طحلب، باتشولي، أخشاب"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Scented Candles ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 350.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/18"
+    },
+    {
+      "id": "19",
+      "productId": 19,
+      "code": "CDM004",
+      "name": {
+        "en": "Lahab Al Yasmeen",
+        "ar": "لهب الياسمين "
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "An exquisite fragrance that captures the beauty of dazzling jasmine.  Crispy bamboo and addictive fruits celebrate a hypnotic floral bouquet.    Combined with creamy vanilla and vibrant woods, the composition unveils the magic of a lush garden.",
+        "ar": "عطر رائع يجسد جمال الياسمين المبهر. يحتفل الخيزران المقرمش والفواكه المدمنة بباقة زهور منومة. مع الفانيليا الكريمية والأخشاب النابضة بالحياة، تكشف التركيبة عن سحر الحديقة المورقة."
+      },
+      "notes": {
+        "en": [
+          "Green",
+          "Floral",
+          "Jasmine",
+          "White floral",
+          "Vanilla",
+          "Woody"
+        ],
+        "ar": [
+          "أخضر، زهري، ياسمين، زهور بيضاء، فانيليا، خشبي"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Scented Candles ",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 350.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/19"
+    },
+    {
+      "id": "20",
+      "productId": 20,
+      "code": "EOM001",
+      "name": {
+        "en": "Zayt Ruh Al Ward Hindi ",
+        "ar": "زيـــت روح الـــورد الهنـــدي"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": "(NULL)"
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "3ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 1590.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/20"
+    },
+    {
+      "id": "21",
+      "productId": 21,
+      "code": "EOM002",
+      "name": {
+        "en": "Zayt Al Ward Al Bulghari",
+        "ar": "زيـــت الـــورد البلغـــاري"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "3ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 1260.0,
+      "currency": "AED",
+      "stockQuantity": 98,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/21"
+    },
+    {
+      "id": "22",
+      "productId": 22,
+      "code": "EOM003",
+      "name": {
+        "en": "Oud Al Hindi ('Asam) ",
+        "ar": "عـــود الهنـــدي (آســـام)"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "3ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 1980.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/22"
+    },
+    {
+      "id": "23",
+      "productId": 23,
+      "code": "EOM004",
+      "name": {
+        "en": "Zayt Yasmin Al Hindi (Sambak) ",
+        "ar": "زيـــت ياسمين الهنـــدي (صمبك)"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "3ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 660.0,
+      "currency": "AED",
+      "stockQuantity": 98,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/23"
+    },
+    {
+      "id": "24",
+      "productId": 24,
+      "code": "EOM005",
+      "name": {
+        "en": "Zayt Yasmin Al Misri Al Mutlaq",
+        "ar": "زيـــت الياسمين المصري المطلق"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "3ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 660.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/24"
+    },
+    {
+      "id": "25",
+      "productId": 25,
+      "code": "EOM007",
+      "name": {
+        "en": "Zayt Ruh Al Ward Hindi",
+        "ar": "زيـــت روح الـــورد الهنـــدي"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "6ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 2880.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": false,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/25"
+    },
+    {
+      "id": "26",
+      "productId": 26,
+      "code": "EOM008",
+      "name": {
+        "en": "Zayt Al Ward Al Bulghari",
+        "ar": "زيـــت الـــورد البلغـــاري"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "6ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 2280.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": false,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/26"
+    },
+    {
+      "id": "27",
+      "productId": 27,
+      "code": "EOM009",
+      "name": {
+        "en": "Oud Al Hindi ('Asam) ",
+        "ar": "عـــود الهنـــدي (آســـام)"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "6ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 3600.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": false,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/27"
+    },
+    {
+      "id": "28",
+      "productId": 28,
+      "code": "EOM010",
+      "name": {
+        "en": "Zayt Yasmin Al Hindi (Sambak) ",
+        "ar": "زيـــت ياسمين الهنـــدي (صمبك)"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "6ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 1200.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": false,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/28"
+    },
+    {
+      "id": "29",
+      "productId": 29,
+      "code": "EOM011",
+      "name": {
+        "en": "Zayt Yasmin Al Misri Al Mutlaq",
+        "ar": "زيـــت الياسمين المصري المطلق"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "6ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 1200.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": false,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/29"
+    },
+    {
+      "id": "66",
+      "productId": 66,
+      "code": "EOM006",
+      "name": {
+        "en": "Zayt Najil Al Hind ",
+        "ar": "زيـــت النجـــيل الهنـــدي"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "3ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 200.0,
+      "currency": "AED",
+      "stockQuantity": 98,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/66"
+    },
+    {
+      "id": "35",
+      "productId": 35,
+      "code": "EOM019",
+      "name": {
+        "en": "Zayt Ruh Al Ward Hindi",
+        "ar": "زيـــت روح الـــورد الهنـــدي"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 4800.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/35"
+    },
+    {
+      "id": "36",
+      "productId": 36,
+      "code": "EOM020",
+      "name": {
+        "en": "Zayt Al Ward Al Bulghari ",
+        "ar": "زيـــت الـــورد البلغـــاري"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 3800.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/36"
+    },
+    {
+      "id": "37",
+      "productId": 37,
+      "code": "EOM021",
+      "name": {
+        "en": "Oud Al Hindi ('Asam) Kuppi",
+        "ar": "عـــود الهنـــدي (آســـام)"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 6000.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/37"
+    },
+    {
+      "id": "38",
+      "productId": 38,
+      "code": "EOM022",
+      "name": {
+        "en": "Zayt Yasmin Al Hindi (Sambak) ",
+        "ar": "زيـــت ياسمين الهنـــدي (صمبك)"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 2000.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/38"
+    },
+    {
+      "id": "39",
+      "productId": 39,
+      "code": "EOM023",
+      "name": {
+        "en": "Zayt Yasmin Al Misri Al Mutlaq",
+        "ar": "زيـــت الياسمين المصري المطلق"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 2000.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/39"
+    },
+    {
+      "id": "40",
+      "productId": 40,
+      "code": "EOM024",
+      "name": {
+        "en": "Zayt Najil Al Hind ",
+        "ar": "زيـــت النجـــيل الهنـــدي"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 600.0,
+      "currency": "AED",
+      "stockQuantity": 98,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/40"
+    },
+    {
+      "id": "30",
+      "productId": 30,
+      "code": "EOM014",
+      "name": {
+        "en": "Zayt Al Ward Al Bulghari",
+        "ar": "زيـــت الـــورد البلغـــاري"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 4180.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/30"
+    },
+    {
+      "id": "31",
+      "productId": 31,
+      "code": "EOM015",
+      "name": {
+        "en": "Oud Al Hindi ('Asam)  Crystal",
+        "ar": "عـــود الهنـــدي (آســـام)"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 6380.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/31"
+    },
+    {
+      "id": "32",
+      "productId": 32,
+      "code": "EOM016",
+      "name": {
+        "en": "Zayt Yasmin Al Hindi (Sambak) ",
+        "ar": "زيـــت ياسمين الهنـــدي (صمبك)"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 2380.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/32"
+    },
+    {
+      "id": "33",
+      "productId": 33,
+      "code": "EOM017",
+      "name": {
+        "en": "Zayt Yasmin Al Misri Al Mutlaq",
+        "ar": "زيـــت الياسمين المصري المطلق"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 2380.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/33"
+    },
+    {
+      "id": "34",
+      "productId": 34,
+      "code": "EOM018",
+      "name": {
+        "en": "Zayt Najil Al Hind ",
+        "ar": "زيـــت النجـــيل الهنـــدي"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Natural Oils and Blends",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 980.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/34"
+    },
+    {
+      "id": "89",
+      "productId": 89,
+      "code": "MPM001",
+      "name": {
+        "en": "Safaa Al Nada",
+        "ar": "صفاء الندى"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Safaa Al Nada celebrates your presence as the tranquil shimmer of twilight, embodying the serenity it brings. Through a fragrance, experience the indulgence of lemon, bergamot, and mint, revealing the purity and clarity of your heart. The heart of the fragrance dances to the harmonious notes of rose and orange blossom, while the base of sandalwood is enriched with luxurious leather accents. A final touch of iris of the valley greets everything that is pure, completing this aromatic journey.",
+        "ar": "انت بريق الشفق وهدوئه. اخترت ان تلامس الطبيعة بنعومة تعبّر عن نقاء وصفاء قلبك.  استمتع بعبير الليمون، البرغموت والنعناع الراقي.   اكتشف عطرًا يتأرجح قلبه بنغمات الورد وزهرة البرتقال،   مع أساس من خشب الصندل المليء بالنفحات الجلدية الفاخرة.   تضاف اليها تحية نهائية من زهرة السوسن لكل ما هو نقي."
+      },
+      "notes": {
+        "en": [
+          "Galbanum",
+          "Iris",
+          "Tonka",
+          "Benzoin",
+          "Petit Grain",
+          "Leather",
+          "Woods"
+        ],
+        "ar": [
+          "الجالبانوم، السوسن، التونكا، البنزوين، البتيتغرين، الجلد، والأخشاب."
+        ]
+      },
+      "collection": {
+        "en": "Qanun (Amber & Spices)",
+        "ar": "قانون"
+      },
+      "emotion": {
+        "en": "Desire",
+        "ar": "الرغبة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 93,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/89"
+    },
+    {
+      "id": "90",
+      "productId": 90,
+      "code": "MPM002",
+      "name": {
+        "en": "Shatha Biladi",
+        "ar": "شذى بلادي"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Shatha Biladi celebrates a life embraced with pride, nobility, Arabism, openness, and growth, representing a harmonious balance of rootedness and liberation. Experience a captivating scent that intertwines sensual and sophisticated woody notes, merging citrus freshness with the creamy embrace of sandalwood. The journey of the senses is enhanced by the presence of musk, evoking a connection to one's roots and heritage.",
+        "ar": "بفخر ونبل، بعروبة وانفتاح وتطوّر، اخترت أن تحيا.متجذّر ومتحرّر.اكتشف عطرًا ينبض بتوافق خشبي حسّي وراقٍ، حيث تتوازن نغمات الحمضيات المنعشة مع دفء خشب الصندل الناعم والحليبي.ويأخذك عبير المسك في رحلة حسية عميقة نحو الجذور"
+      },
+      "notes": {
+        "en": [
+          "Citrus",
+          "Amber",
+          "Oud",
+          "Musk",
+          "Sandalwood",
+          "Leather"
+        ],
+        "ar": [
+          "مكونات العطر: حمضيات، عنبر، عود، مسك، خشب الصندل، جلد"
+        ]
+      },
+      "collection": {
+        "en": "Oud  (Oud & Agarwood)",
+        "ar": "العود"
+      },
+      "emotion": {
+        "en": "Nobility",
+        "ar": "النبل"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 90,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/90"
+    },
+    {
+      "id": "91",
+      "productId": 91,
+      "code": "MPM003",
+      "name": {
+        "en": " Hams Min Al Sahraa",
+        "ar": "همس من الصحراء"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Hams Min Al Sahraa transports you to the kingdom of the desert, where you can immerse yourself in its pureness and listen to the innocent tales whispered by its silence. Experience the captivating fragrance of your favorite fruits and the regal essence of roses, harmoniously blending with luminous florals, musk, and oud, creating a serene ambiance that embraces your skin.",
+        "ar": "استمع إلى صمتها، وهو يروي بهمسات بريئة عبير الفواكه المفضلة، ويستحضر نكهات ورد الملكي."
+      },
+      "notes": {
+        "en": [
+          "Citrus",
+          "Bergamot",
+          "Lavender",
+          "Jasmin",
+          "Oudh",
+          "Musk",
+          "Powdery"
+        ],
+        "ar": [
+          "حمضيات، برغموت، الخزامى، الياسمين، عود، مسك، بودرة"
+        ]
+      },
+      "collection": {
+        "en": "Oud  (Oud & Agarwood)",
+        "ar": "العود"
+      },
+      "emotion": {
+        "en": "Nobility",
+        "ar": "النبل"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 93,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/91"
+    },
+    {
+      "id": "92",
+      "productId": 92,
+      "code": "MPM004",
+      "name": {
+        "en": "Al Hawa Ghallab",
+        "ar": "الهوى غلّاب"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Al Hawa Ghallab introduces a love of a different kind, inviting it to freely flow. The intoxicating fragrances of neroli and saffron captivate the senses, while the exquisite and balanced bouquet leaves a magnetic impression. Through a blend of enchanting woody scents, the fragrance promises an aesthetic experience, allowing you to write a love story anew, where the merging of amber and oud creates a magical perfume with a delightful and fulfilling ending.",
+        "ar": "يا كاتب الأشعار، يا من سهرت الليالي تحت شبّاك الحبيب… إليك حبٌ من نوعٍ آخر. تنفّس عبير النيرولي والزعفران الساحر، ودع قلبك يخفق أمام باقة راقية تنسج توازناً مغناطيسياً بين الروائح الخشبية الجذابة.اكتب قصة الحب من جديد  حيث يلتقي العنبر بالعود ليُبدعا معًا عطراً آسراً ونهاية سعيدة تُروى كل مرّة."
+      },
+      "notes": {
+        "en": [
+          "Juniper",
+          "Mandarin",
+          "Neroli",
+          "Saffron",
+          "Jasmine",
+          "Davana",
+          "Rose",
+          "Amber",
+          "Oudh"
+        ],
+        "ar": [
+          "عرعر، يوسفي، نيرولي، زعفران، ياسمين، دافانا، وردة، عنبر، عود"
+        ]
+      },
+      "collection": {
+        "en": "Qanun (Amber & Spices)",
+        "ar": "قانون"
+      },
+      "emotion": {
+        "en": "Desire",
+        "ar": "الرغبة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 98,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/92"
+    },
+    {
+      "id": "93",
+      "productId": 93,
+      "code": "MPM005",
+      "name": {
+        "en": " Mamlakati",
+        "ar": "مملكتي"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Mamlakati invites you to the kingdom of perfumes, where a king chooses his own throne. Embark on a captivating journey through a bold and musky fragrance, with an alluring trail that mesmerizes the senses. The realm of strong woody scents summoned by oud is embraced by the royal softness of musk and vanilla, allowing the heart to reign supreme in this olfactory realm.",
+        "ar": "لكل مملكة عرش، وفي مملكة العطور العرش يختاره الملك. انطلق في رحلة عطرية جريئة تنبض بالمسك، وتأسر الحواس بمسارٍ جذّاب ومغوٍ. يستدعي العود، برفقة النفحات الخشبية القويّة، مملكةً يحكمها القلب، ويُتوّجها دفء المسك ونعومة الفانيليا الملكية"
+      },
+      "notes": {
+        "en": [
+          "Almond",
+          "Saffron",
+          "Violet Leaves",
+          "Rose",
+          "Iris",
+          "Rose",
+          "Cedarwood",
+          "Vanilla",
+          "Dry woods"
+        ],
+        "ar": [
+          "لوز، زعفران، أوراق البنفسج، ورد، زهرة السوسن، ورد، خشب الأرز، فانيليا، أخشاب جافة"
+        ]
+      },
+      "collection": {
+        "en": "Qanun (Amber & Spices)",
+        "ar": "قانون"
+      },
+      "emotion": {
+        "en": "Desire",
+        "ar": "الرغبة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/93"
+    },
+    {
+      "id": "94",
+      "productId": 94,
+      "code": "MPM006",
+      "name": {
+        "en": "Nasseem Al Ward",
+        "ar": "نسيم الورد"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Naseem Al Ward explores the intersection between truth and imagination, depicting a choice to embrace both worlds. It invites you to savor the enchanting charm of a harmonious blend, where floral and woody scents intertwine. The pulsing heart of rose and jasmine reacts with oud and patchouli, creating a captivating perfume that captures the charm of dreams, leaving you in awe and disarmed by its aroma.",
+        "ar": "جلستَ بين عالمين: الحقيقة والخيال ولم تختر بينهما، بل قررت أن تعيشهما معًا.استمتع بسحر نسمةٍ تنسج تناغمًا أنيقًا بين روائح الأخشاب والزهورفي قلب العطر، ينبض عبق الورد والياسمين، يتفاعلان بانسجام مع دفء العود ولمسة الباتشولي المدخّن، ليخلقا تركيبةً آسرة  تأخذك إلى حيث تُولد الأحلام"
+      },
+      "notes": {
+        "en": [
+          "Lemon",
+          "Ginger",
+          "Pink pepper",
+          "Jasmine",
+          "Rose",
+          "Lavender",
+          "Oudh",
+          "Patchouli",
+          "Vetiver"
+        ],
+        "ar": [
+          "ليمون، زنجبيل، فلفل وردي، ياسمين، ورد، الخزامى، عود، باتشولي، فيتيفر"
+        ]
+      },
+      "collection": {
+        "en": "Oud  (Oud & Agarwood)",
+        "ar": "العود"
+      },
+      "emotion": {
+        "en": "Happiness",
+        "ar": "الفرح"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/94"
+    },
+    {
+      "id": "95",
+      "productId": 95,
+      "code": "MPM007",
+      "name": {
+        "en": "Al Shaghaf Al Ahmar",
+        "ar": "الشغف الأحمر"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Al Shaghaf Al Ahmar is an invitation to the noble souls who embrace boundless hearts, offering them a rich and vibrant fragrance infused with opulent spices. Its captivating heart reveals woody notes, leading to an exhilarating path where the aroma of leather and amber takes center stage. Guided by your passion, embark on this enchanting journey of captivating fragrances that ignite the senses.",
+        "ar": "لكل نبيل اختار قلبًا لا يحدّه غشاء. قلبٌ مفتوح على العالم، نابض بالحياة. اكتشف عطرًا غنيًا وحيويًا تحكمه التوابل الفاخرة، يتوسطه قلبٌ دافئ من الروائح الخشبية، ويمضي بك نحو مسار مثير تتجلّى فيه نفحات الجلد والعنبر العميقة.رحلة يقودها شغفك، ويملؤها عبق عطور آسرة لا تُنسى."
+      },
+      "notes": {
+        "en": [
+          "Saffron",
+          "Cinnamon",
+          "Cashmere Woods",
+          "Tonka beans",
+          "Leather",
+          "Amber"
+        ],
+        "ar": [
+          "زعفران، قرفة، أخشاب الكشمير، حبوب التونكا، جلد، عنبر"
+        ]
+      },
+      "collection": {
+        "en": "Qanun (Amber & Spices)",
+        "ar": "قانون"
+      },
+      "emotion": {
+        "en": "Nobility",
+        "ar": "النبل"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/95"
+    },
+    {
+      "id": "96",
+      "productId": 96,
+      "code": "MPM008",
+      "name": {
+        "en": "Qublat Ward",
+        "ar": "قبلة ورد"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Qublat Ward explores the different ways people engage with roses, from plucking them to show love, to approaching them with rare nobleness, and delicately touching them. The fragrance of rose and oud, combined with amber and bergamot, creates a romantic perfume that unfolds with a touch of woody elegance, leaving an enchanting aroma on the skin.",
+        "ar": "هناك من يقطف وردة ليعبّر عن حبّه وهناك من يقترب بنُبل، ليلامس برفق رقّتها ويتنفس عبيرها بشهامة. عطر رومانسي ينبض بالإحساس، يجمع بين دفء العنبر وانتعاش البرغموت، وفي قلبه تتفتح رائحة الورد والعود بتناغمٍ ساحر، لتضفي على بشرتك لمسة من الأناقة الخشبية والرقي الهادئ"
+      },
+      "notes": {
+        "en": [
+          "Bergamot",
+          "Clove",
+          "Cistus",
+          "Rose",
+          "Oud",
+          "Gurjum",
+          "Vetiver",
+          "Cedarwood",
+          "Patchouli"
+        ],
+        "ar": [
+          "برغموت، قرنفل، كيستوس، ورد، عود، غورجوم، فيتيفر، خشب الأرز، باتشولي"
+        ]
+      },
+      "collection": {
+        "en": "Oud  (Oud & Agarwood)",
+        "ar": "العود"
+      },
+      "emotion": {
+        "en": "Passion",
+        "ar": "الشغف"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/96"
+    },
+    {
+      "id": "97",
+      "productId": 97,
+      "code": "MPM010",
+      "name": {
+        "en": "Hamsa",
+        "ar": "همسة"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Brings out the humid woody fragrance of vetiver and tree moss. The bouquet of spices and cypress adds a fresh scent that takes us on a journey. The base notes rely on an exhilarating and mysterious facet of amber, benzoin, and incense. The strength of this perfume will not leave you indifferent. It develops something in the air that makes us dependent on its smell.",
+        "ar": "يُبرز هذا العطر عبقًا خشبيًا رطبًا ينبعث من نجيل الهند وطحالب الأشجار، تُنعشه باقة من التوابل ونفحات السرو المنعشة، فتأخذك في رحلة حسّية مفعمة بالحيوية أما القاعدة، فتعتمد على جانب مبهج وغامض، يجمع بين العنبر، الجاوي، والبخور، لتمنح العطر عمقًا لا يُنسى وحضورًا لا يمكن تجاهله.إنه عطر يحرّك شيئًا خفيًا في الأجواء ويجعلنا نميل للاعتماد على رائحته كأنها ملاذ خفي"
+      },
+      "notes": {
+        "en": [
+          "Bergamot",
+          "Cinnamon",
+          "Nutmeg",
+          "Amber",
+          "Woods"
+        ],
+        "ar": [
+          "البرغموت، القرفة، جوزة الطيب، العنبر، الأخشاب"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Generosity",
+        "ar": " الكرم"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/97"
+    },
+    {
+      "id": "98",
+      "productId": 98,
+      "code": "MPM011",
+      "name": {
+        "en": "Horr fi al Riyah",
+        "ar": "حر في الرياح"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Horr fi al Riyah captures the allure of the vast desert through a fragrance that combines soft almond and iris notes. With a blend of amber wood and sandalwood, it evokes a newfound sense of freedom. The enchanting trail of benzoin resin, vanilla, and amber creates a captivating aroma that embraces the heart, akin to the soothing slumber of the wind.",
+        "ar": "لكل من سار بلا وجهة، مستجيبًا لنداء الصحراء الممتدة بأفقها اللانهائي يبدأ هذا العطر بنفحات ناعمة من اللوز وزهرة السوسن الرقيقة، ليأخذك في رحلة حسّية نحو آفاق من الحرية الداخلية. مزيج الأخشاب العنبرية ولمسات خشب الصندل يوقظ فيك شعورًا بالتحرّر، في حين يترك الراتنج ، وحبوب الفانيليا، والعنبر أثرًا دافئًا وعميقًا، يغمرك بعبقٍ لا يُنسى"
+      },
+      "notes": {
+        "en": [
+          "Almond",
+          "Elemi Iris",
+          "Cedarwood",
+          "Sandalwood",
+          "Dry Woods Nagarmotha",
+          "Moss",
+          "Vanilla",
+          "Ambergris",
+          "Benzoin"
+        ],
+        "ar": [
+          "لوز، إليمي، زهرة السوسن، خشب الأرز، خشب الصندل، أخشاب جافة، ناغارموثا، الطحلب، فانيليا، عنبر، بنزوين"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Generosity",
+        "ar": " الكرم"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/98"
+    },
+    {
+      "id": "99",
+      "productId": 99,
+      "code": "MPM012",
+      "name": {
+        "en": "Aala Taj Warda",
+        "ar": "على تاج وردة"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Aala Taj Warda celebrates the poetic soul, drawn to the beauty of a rose with reverence and grace, borrowing its blush for a radiant complexion. Immerse yourself in a fragrance that crowns the regal essence of a rose, accompanied by the charming notes of coffee and vanilla. The vivacity of white blooms, such as Indian tuberose and datura, ignites emotions so bright, capturing them within this captivating perfume",
+        "ar": "أنتِ شاعرة الإحساس تقتربين من الوردة بتقدير ورفق، وتأخذين من حمرتها لونًا يوشّح وجنتيك بالخجل. دلّلي حواسك بعطر يستحضر سحر تاج الوردة، حيث تمتزج نكهات القهوة الغنية مع بريق الفانيليا وجاذبية خشب الصندل الآسرة. تُضفي الزهور البيضاء، كمسك الروم الهندي وزهرة الداتورا، لمسة من الحيوية والرقة، لتكوّن تركيبة نابضة بالعاطفة، تنبض بالمشاعر في كل نفحة."
+      },
+      "notes": {
+        "en": [
+          "Ginger Lily",
+          "Coffee",
+          "Rum",
+          "Tuberose",
+          "Vetiver",
+          "Vanilla",
+          "Sandalwood",
+          "Oppoponax"
+        ],
+        "ar": [
+          "زنجبيل ليلي، قهوة، رم، توبروز، فيتيفر، فانيليا، خشب الصندل، أوبوناكس"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Pleasure",
+        "ar": "المتعة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/99"
+    },
+    {
+      "id": "100",
+      "productId": 100,
+      "code": "MPM013",
+      "name": {
+        "en": "Hadeeth Al Rooh",
+        "ar": "حديث الروح"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Hadeeth Al Rooh explores self-reflection and forgiveness, acknowledging the love that ignited the heart and ultimately finding solace in self-forgiveness. Immerse yourself in an enchanting fragrance that takes you on a journey through the scents of dawn, with a captivating blend of oriental woods, warm spices, and distinctive pink pepper notes. The aroma of this scent speaks to the depths of your soul, captivating it in a way that is truly incomparable.",
+        "ar": "تتحدثين مع نفسك، تهمسين لها عن حبيب أشعل قلبك تلومينها، وتلومك، ثم تحتضنينها وتسامحينها. استمتعي بسحر عطر يأخذك في رحلة عبر عبق الفجر، حيث ينبض القلب بمزيج فاخر من الأخشاب الشرقية والتوابل الدافئة. تتألّق نغمات البرالين الوردية لتمنحك توقيعًا عطريًا مميزًا، يُخاطب روحك ويأسرها بنعومة وعمق"
+      },
+      "notes": {
+        "en": [
+          "Bergamot",
+          "Pink Pepper",
+          "ylang-Ylang",
+          "Coconut",
+          "Oud",
+          "Musk",
+          "Honey",
+          "Vanilla"
+        ],
+        "ar": [
+          "برغموت، فلفل وردي، يلانغ يلانغ، جوز الهند، عود، مسك، عسل، فانيليا"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Pleasure",
+        "ar": "المتعة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/100"
+    },
+    {
+      "id": "101",
+      "productId": 101,
+      "code": "MPM015",
+      "name": {
+        "en": "Min Ana",
+        "ar": "من أنا"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "A powerful fragrance with the subtle scent of rose, enhanced by citrus as mandarin and the spiciness of cardamom and pink pepper. The fragrance finishes with warm and sensual tones given by amber and vanilla. This mythical perfume will take you on a journey through a field of roses and its magnificent sillage to a place full of mystery.",
+        "ar": "عطر قوي برائحة الورد الرقيقة، معزز بالحمضيات مثل اليوسفي وتوابل الهيل والفلفل الوردي. ينتهي العطر بألوان دافئة وحسية يقدمها العنبر والفانيليا. سيأخذك هذا العطر الأسطوري في رحلة عبر حقل من الورود وانتشاره الرائع إلى مكان مليء بالغموض."
+      },
+      "notes": {
+        "en": [
+          "Mandarin",
+          "Pink berries",
+          "Rose",
+          "Vanilla",
+          "Amber",
+          "Musk"
+        ],
+        "ar": [
+          "مكونات العطر: الماندرين، التوت الوردي، الورد، الفانيليا، العنبر، المسك"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Pride",
+        "ar": "الإعتزاز"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/101"
+    },
+    {
+      "id": "102",
+      "productId": 102,
+      "code": "MPM016",
+      "name": {
+        "en": "Tahta Al Noujoum",
+        "ar": "تحت النجوم"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Tahta Al Noujoum invites dreamers to bask in the beauty of a sparkling sky and embrace the night's reflective ambiance. The fragrance captures the essence of these dreamers, with floral and neroli notes that transport them to a world of orange blossom's delightful smoothness, complemented by a delicate blend of velvety musk and luxurious tuberose, creating an atmosphere of elegance and allure.",
+        "ar": "تحت غطاء سماوي متلألأ يحلو السهر والتأمّل.   عطر ينتمي إليه كلّ حالم.  مكوّن من نغمات الأزهار ومسك الروم.   قلبه من زهر البرتقال، لذيذ وناعم، بتركيبة دقيقة وأنيقة من المسك المخملي ومسك الروم الغني"
+      },
+      "notes": {
+        "en": [
+          "Rhubarb",
+          "Lychee",
+          "Neroli",
+          "Orange Blossom",
+          "Rose",
+          "Magnolia",
+          "Tuberose",
+          "Musk",
+          "Amber",
+          "Precious Woods"
+        ],
+        "ar": [
+          "الراوند، الليتشي، النيرولي، زهرة البرتقال، الورد، الماغنوليا، توبروز، المسك، العنبر، الأخشاب الثمينة"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Happiness",
+        "ar": "الفرح"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 94,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/102"
+    },
+    {
+      "id": "103",
+      "productId": 103,
+      "code": "MPM017",
+      "name": {
+        "en": "Fakhamat Al Warda",
+        "ar": "فخامة الوردة"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Fakhamat Al Warda invites those who effortlessly command attention to indulge in a fragrance fit for royalty and the elite. As the sun sets, immerse yourself in the sweetness of a rose-filled field, while the captivating scent of plum enchants your soul. This fragrance serves as an invitation to embark on a journey, from luxurious beginnings to a realm of exquisite perfumes waiting to be discovered and explored.",
+        "ar": "للذين تدار الرؤوس نحوهم حيثما كانوا.  عطر النبلاء عند غروب الشمس تفضّلوا إلى حقل من الورود، ودعوا رائحة البرقوق المثيرة تأسركم . هذا العطر دعوة لرحلة من الرفاهية إلى عالم العطور الفاخر"
+      },
+      "notes": {
+        "en": [
+          "Plum",
+          "Davana Rose",
+          "Osmanthus",
+          "Patchouli Cistus",
+          "Benzoin",
+          "Tonka"
+        ],
+        "ar": [
+          "الخوخ، دافانا روز، العسكرية، الباتشولي، الكيستوس، البنزوين، التونكا"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Pleasure",
+        "ar": "المتعة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/103"
+    },
+    {
+      "id": "104",
+      "productId": 104,
+      "code": "MPM018",
+      "name": {
+        "en": "Aala Sathi Al Qamar",
+        "ar": "على سطح القمر"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Aala Sathi al Qamar celebrates the empowered woman who recognizes her unlimited potential and strives to surpass boundaries. It invites her to indulge in a revitalizing fragrance of ripe fruit and white flowers, including Lily, Geranium, and Perfume blooms. The luxurious delight is enhanced by the presence of musk, amber, and sandalwood, creating an enchanting olfactory experience for her journey of limitless exploration.",
+        "ar": "لكل امرأة أدركت قدرتها وعرفت أن لا حدود لها.   لكل امرأة تسعى للوصول إلى ما هو أبعد.   إليك عطر منعش مكون من الفواكه الناضجة والزهور البيضاء.   يتميز برائحة زهرة الليلي، وزهرة الجيرانيوم وزهرة العطر والمسك والعنبر وخشب الصندل."
+      },
+      "notes": {
+        "en": [
+          "Aqua",
+          "Peach",
+          "Coconut",
+          "Lily of the Valley",
+          "Geranium",
+          "Frangipani",
+          "Tuberose",
+          "Musk",
+          "Patchouli",
+          "Amber",
+          "Sandalwood"
+        ],
+        "ar": [
+          "أكوا، خوخ، جوز الهند، زنبق الوادي، جيرانيوم، فرانجيباني، توبروز، مسك، باتشولي، عنبر، خشب الصندل"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Pleasure",
+        "ar": "المتعة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/104"
+    },
+    {
+      "id": "105",
+      "productId": 105,
+      "code": "MPM019",
+      "name": {
+        "en": "Sarhan",
+        "ar": "ماء عطر"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Sarhan celebrates the wanderer, embracing the beauty and endless possibilities of the world of fantasy. Embark on an aromatic journey where precious saffron and fragrant violet leaves awaken the senses. The heart of the fragrance dances with the captivating notes of rose, incense, and smoky oud, accompanied by the finest leather scents, inviting your mind to wander and indulge in the fragrance of beautiful dreams.",
+        "ar": "انت العالق في عالم الخيال وما أجمله.   فخور بكل ما يمكنك تحقيقه. هنا كل شيء ممكن.  دع حواسك تطير في رحلة عطرية تبدأ بنكهات الزعفران الثمين مع أوراق البنفسج العطرية.   حيث قلب العطر يرقص مع الورد والبخور والعود الدخاني، ويتميز بأرقى روائح الجلد.   دع عقلك يتجول مع عطر الأحلام الجميلة."
+      },
+      "notes": {
+        "en": [
+          "Saffron",
+          "Violet leaves",
+          "Thyme",
+          "Pepper",
+          "Rose",
+          "Orris",
+          "Incense",
+          "Oud",
+          "Leather",
+          "Amberwood"
+        ],
+        "ar": [
+          "زعفران، أوراق البنفسج، زعتر، فلفل، ورد، السوسن، البخور، عود، جلد، خشب العنبر"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Pride",
+        "ar": "الإعتزاز"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/105"
+    },
+    {
+      "id": "106",
+      "productId": 106,
+      "code": "MPM020",
+      "name": {
+        "en": "Amtar",
+        "ar": "أمطار"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Amtar presents a fragrance that transports you to a world of pure elegance and refined grace, where gazing at clouds and feeling raindrops on your face becomes an immersive experience. It reveals a fantasy land filled with soft and exotic plum, offering fruity notes that evoke genuine joy and happiness. With the rich presence of patchouli and the allure of sandalwood, this scent envelops your senses in a captivating opulence reminiscent of a mythical wood..",
+        "ar": "لكل من نظر إلى الغيوم وأغمض عينيه ليشعر بقطرات المطر الرقيقة تلامس وجهه.  إليك عطر يدخلك إلى عالم مستوحى من الأناقة الأصيلة.   عالم يسيطر فيه الخوخ الناعم والغريب. حيث يكشف لنا غلافه الشهي عن نغمات فاكهيه ولذيذة تستحضر الفرحة الصادقة.   اكتشف عبق أرض خيالية. هناك، تحيط بك نفحات الباتشولي الفاخر وخشب الصندل الغامر بلمسة من الفخامة الساحرة."
+      },
+      "notes": {
+        "en": [
+          "Rhum",
+          "Plum",
+          "Davana",
+          "Red Fruits",
+          "Cinnamon",
+          "Clove",
+          "Rose",
+          "Jasmine",
+          "Sandalwood",
+          "Patchouli",
+          "Vanilla",
+          "Amber"
+        ],
+        "ar": [
+          "روم، خوخ، دافانا، فواكه حمراء، قرفة، قرنفل، ورد، ياسمين، خشب الصندل، باتشولي، فانيليا، عنبر"
+        ]
+      },
+      "collection": {
+        "en": "Buzuq and Riqq (Fresh & Woody)",
+        "ar": "بوزوق و رق"
+      },
+      "emotion": {
+        "en": "Generosity",
+        "ar": " الكرم"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 102,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/106"
+    },
+    {
+      "id": "107",
+      "productId": 107,
+      "code": "MPM023",
+      "name": {
+        "en": "Thawrat Al Ahasseess",
+        "ar": "ثورة الأحاسيس"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Thawrat Al Hassess unveils the fiery depths of ones emotions, akin to a volcano on the verge of eruption. The fragrance embodies the opulent scents of the East, bursting with captivating aromas. The blend of rich roses, enchanting oud, sensual saffron, and incense creates a unique and powerful fragrance, serving as a dance that eloquently expresses your deepest feelings, transforming your emotions into a mesmerizing performance.",
+        "ar": "في داخلك بركان هائج من الأحاسيس، جاهز كي يتفجّر.  وعطرك هو عطر الشرق الفاخر، المتفجّر بالروائح.   في قلبه تتجانس نفحات الورد الغني مع أريج العود الساحر، ويعزز الزعفران الحسي والبخور قوّة عبيره الفريد.  رقصة معبّرة من بطولة أحاسيسك."
+      },
+      "notes": {
+        "en": [
+          "Agarwood",
+          "Petitgrain",
+          "Geranium",
+          "Raspberry",
+          "Rose",
+          "Saffron",
+          "Incense",
+          "Birch"
+        ],
+        "ar": [
+          "عود، بتيت جرين، جيرانيوم، توت التوت، وردة، زعفران، البخور، البتولا"
+        ]
+      },
+      "collection": {
+        "en": "Buzuq and Riqq (Fresh & Woody)",
+        "ar": "بوزوق و رق"
+      },
+      "emotion": {
+        "en": "Passion",
+        "ar": "الشغف"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/107"
+    },
+    {
+      "id": "108",
+      "productId": 108,
+      "code": "MPM025",
+      "name": {
+        "en": "Khatiiiiiir",
+        "ar": "خطيييير"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Khatiiiiiir evokes the power of beauty to melt hearts and ignite passion, causing them to crumble and fall. Immerse yourself in an enchanting fragrance experience, as sparkling notes and warm white pepper open the olfactory journey. The heart of lily gracefully dances with luxurious amber and frankincense, inviting your mind to wander with this exquisite fragrance that captures the essence of dreams.",
+        "ar": "مذوّب القلوب ومشعل الهوى. أمام جمالك قلوب تتهاوى.   استمتع بإحساس ساحر للروائح، مع عطر متألق يبدأ باللبان ونفحات الفلفل الأبيض الدافئ. حيث يرقص قلب الزنبق مع العنبر الفاخر. اسمح لعقلك بالتجول مع عطر الأحلام الرائع."
+      },
+      "notes": {
+        "en": [
+          "White Pepper",
+          "Lily",
+          "Olibanum",
+          "Amberwood",
+          "Cashmere"
+        ],
+        "ar": [
+          "فلفل أبيض، زنبق، اللبان، خشب العنبر، كشمير"
+        ]
+      },
+      "collection": {
+        "en": "Buzuq and Riqq (Fresh & Woody)",
+        "ar": "بوزوق و رق"
+      },
+      "emotion": {
+        "en": "Passion",
+        "ar": "الشغف"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 12ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "12ml",
+      "packaging": "12 ml EDP in a paper box",
+      "type": "STANDARD",
+      "price": 150.0,
+      "currency": "AED",
+      "stockQuantity": 97,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/108"
+    },
+    {
+      "id": "42",
+      "productId": 42,
+      "code": "FFM001",
+      "name": {
+        "en": "Safaa Al Nada",
+        "ar": "صفاء الندى"
+      },
+      "meaning": {
+        "en": "(PURE AS DEW)",
+        "ar": "(PURE AS DEW)"
+      },
+      "description": {
+        "en": "Safaa Al Nada celebrates your presence as the tranquil shimmer of twilight, embodying the serenity it brings. Through a fragrance, experience the indulgence of lemon, bergamot, and mint, revealing the purity and clarity of your heart. The heart of the fragrance dances to the harmonious notes of rose and orange blossom, while the base of sandalwood is enriched with luxurious leather accents. A final touch of iris of the valley greets everything that is pure, completing this aromatic journey.",
+        "ar": "انت بريق الشفق وهدوئه. اخترت ان تلامس الطبيعة بنعومة تعبّر عن نقاء وصفاء قلبك.  استمتع بعبير الليمون، البرغموت والنعناع الراقي.   اكتشف عطرًا يتأرجح قلبه بنغمات الورد وزهرة البرتقال،   مع أساس من خشب الصندل المليء بالنفحات الجلدية الفاخرة.   تضاف اليها تحية نهائية من زهرة السوسن لكل ما هو نقي."
+      },
+      "notes": {
+        "en": [
+          "Galbanum",
+          "Iris",
+          "Tonka",
+          "Benzoin",
+          "Petit Grain",
+          "Leather",
+          "Woods"
+        ],
+        "ar": [
+          "جالبانوم، زهرة السوسن، تونكا، بنزوين، بتيت جرين، جلد، أخشاب"
+        ]
+      },
+      "collection": {
+        "en": "Qanun (Amber & Spices)",
+        "ar": "قانون"
+      },
+      "emotion": {
+        "en": "Desire",
+        "ar": "الرغبة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Male",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 0,
+      "available": false,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/42"
+    },
+    {
+      "id": "45",
+      "productId": 45,
+      "code": "FFM004",
+      "name": {
+        "en": "Al Hawa Ghallab",
+        "ar": "الهوى غلاب"
+      },
+      "meaning": {
+        "en": "(LOVE ALWAYS WINS)",
+        "ar": "(LOVE ALWAYS WINS)"
+      },
+      "description": {
+        "en": "Al Hawa Ghallab introduces a love of a different kind, inviting it to freely flow. The intoxicating fragrances of neroli and saffron captivate the senses, while the exquisite and balanced bouquet leaves a magnetic impression. Through a blend of enchanting woody scents, the fragrance promises an aesthetic experience, allowing you to write a love story anew, where the merging of amber and oud creates a magical perfume with a delightful and fulfilling ending.",
+        "ar": "يا كاتب الأشعار ومن أمضى الليالي تحت شبّاك الحبيب.   اليك حب من نوع آخر.  تنفّس رائحة النيرولي والزعفران الساحرة والجذابة، واحبس أنفاسك أمام تلك الباقة الراقية المتوازنة بمزيجٍ مغناطيسي من الروائح الخشبية الساحرة.   آكتب قصة الحب من جديد، حيث يندمج العنبر مع العود لإبداع عطرٍ ساحر ونهاية سعيدة."
+      },
+      "notes": {
+        "en": [
+          "Juniper",
+          "Mandarin",
+          "Neroli",
+          "Saffron",
+          "Jasmine",
+          "Davana",
+          "Rose",
+          "Amber",
+          "Oudh Cambodia"
+        ],
+        "ar": [
+          "عرعر، يوسفي، نيرولي، زعفران، ياسمين، دافانا، وردة، عنبر، عود كمبودي"
+        ]
+      },
+      "collection": {
+        "en": "Qanun (Amber & Spices)",
+        "ar": "قانون"
+      },
+      "emotion": {
+        "en": "Desire",
+        "ar": "الرغبة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 64,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/45"
+    },
+    {
+      "id": "46",
+      "productId": 46,
+      "code": "FFM005",
+      "name": {
+        "en": "Mamlakati",
+        "ar": "مملكتي"
+      },
+      "meaning": {
+        "en": "(MY KINGDOM)",
+        "ar": "(MY KINGDOM)"
+      },
+      "description": {
+        "en": "Mamlakati invites you to the kingdom of perfumes, where a king chooses his own throne. Embark on a captivating journey through a bold and musky fragrance, with an alluring trail that mesmerizes the senses. The realm of strong woody scents summoned by oud is embraced by the royal softness of musk and vanilla, allowing the heart to reign supreme in this olfactory realm.",
+        "ar": "لكل مملكة عرشها وفي مملكة العطور عرش يختاره ملك.  انطلق في رحلة عبر عطرٍ جريء ومسكي، بمسارٍ مغرٍ وجذّاب.   يستدعي العود مع الروائح الخشبية القوية مملكةً حيث القلب يسود، محاطًا بالنعومة الملكية للمسك والفانيليا."
+      },
+      "notes": {
+        "en": [
+          "Almond",
+          "Saffron",
+          "Violet Leaves",
+          "Rose",
+          "Iris",
+          "Rose",
+          "Cedarwood",
+          "Vanilla",
+          "Dry woods"
+        ],
+        "ar": [
+          "لوز، زعفران، أوراق البنفسج، ورد، زهرة السوسن، ورد، خشب الأرز، فانيليا، أخشاب جافة"
+        ]
+      },
+      "collection": {
+        "en": "Qanun (Amber & Spices)",
+        "ar": "قانون"
+      },
+      "emotion": {
+        "en": "Desire",
+        "ar": "الرغبة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "Winter",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 75,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/46"
+    },
+    {
+      "id": "48",
+      "productId": 48,
+      "code": "FFM007",
+      "name": {
+        "en": "Al Shaghaf Al Ahmar",
+        "ar": "الشغف الأحمر"
+      },
+      "meaning": {
+        "en": "(THE RED PASSION)",
+        "ar": "(THE RED PASSION)"
+      },
+      "description": {
+        "en": "Al Shaghaf Al Ahmar is an invitation to the noble souls who embrace boundless hearts, offering them a rich and vibrant fragrance infused with opulent spices. Its captivating heart reveals woody notes, leading to an exhilarating path where the aroma of leather and amber takes center stage. Guided by your passion, embark on this enchanting journey of captivating fragrances that ignite the senses.",
+        "ar": "لكل نبيل اختار لنفسه قلباً لا يحدّه غشاء.  اكتشف عطرًا غنيًا وحيويًا تحكمه التوابل الفاخرة.   قلبه مليء بالروائح الخشبية، يؤدي إلى مسار مثير مكوّن من عبير الجلد والعنبر.   شغفك هو الذي يرشدك في هذه الرحلة المليئة بالعطور الساحرة"
+      },
+      "notes": {
+        "en": [
+          "Saffron",
+          "Cinnamon",
+          "Cashmere Woods",
+          "Tonka beans",
+          "Leather",
+          "Amber"
+        ],
+        "ar": [
+          "زعفران، قرفة، أخشاب الكشمير، حبوب التونكا، جلد، عنبر"
+        ]
+      },
+      "collection": {
+        "en": "Qanun (Amber & Spices)",
+        "ar": "قانون"
+      },
+      "emotion": {
+        "en": "Nobility",
+        "ar": "النبل"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 95,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/48"
+    },
+    {
+      "id": "43",
+      "productId": 43,
+      "code": "FFM002",
+      "name": {
+        "en": "Shatha Biladi",
+        "ar": "شذى بلادي"
+      },
+      "meaning": {
+        "en": "(THE SCENT OF MY LAND)",
+        "ar": "(THE SCENT OF MY LAND)"
+      },
+      "description": {
+        "en": "Shatha Biladi celebrates a life embraced with pride, nobility, Arabism, openness, and growth, representing a harmonious balance of rootedness and liberation. Experience a captivating scent that intertwines sensual and sophisticated woody notes, merging citrus freshness with the creamy embrace of sandalwood. The journey of the senses is enhanced by the presence of musk, evoking a connection to one's roots and heritage.",
+        "ar": "بفخر ونبل وعروبة وانفتاح وتطوّر، اخترت أن تعيش.   متجذّر متحرّر.   اكتشف عطرًا صُنع من توافق خشبي حسي ورفيع المستوى، حيث تتوازن نغمات الحمضيات مع خشب الصندل الناعم والحليبي. عطر المسك يأخذ الحواس برحلة إلى الجذور."
+      },
+      "notes": {
+        "en": [
+          "Citrus",
+          "Amber",
+          "Oud",
+          "Musk",
+          "Sandalwood",
+          "Leather"
+        ],
+        "ar": [
+          "حمضيات، عنبر، عود، مسك، خشب الصندل، جلد"
+        ]
+      },
+      "collection": {
+        "en": "Oud  (Oud & Agarwood)",
+        "ar": "العود"
+      },
+      "emotion": {
+        "en": "Nobility",
+        "ar": "النبل"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "Winter",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 1150.0,
+      "currency": "AED",
+      "stockQuantity": 88,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/43"
+    },
+    {
+      "id": "44",
+      "productId": 44,
+      "code": "FFM003",
+      "name": {
+        "en": "Hams Min Al Sahraa ",
+        "ar": "همس من الصحراء"
+      },
+      "meaning": {
+        "en": "(DESERT WHISPERS)",
+        "ar": "(DESERT WHISPERS)"
+      },
+      "description": {
+        "en": "Hams Min Al Sahraa transports you to the kingdom of the desert, where you can immerse yourself in its pureness and listen to the innocent tales whispered by its silence. Experience the captivating fragrance of your favorite fruits and the regal essence of roses, harmoniously blending with luminous florals, musk, and oud, creating a serene ambiance that embraces your skin.",
+        "ar": "استمع إلى صمتها يروي بهمسات بريئة عن عبير الفواكه المفضلة، ويذكر نكهات الورد الملكي دو ماي. تمتزج هذه النفحات الأنيقة مع انسجام زهري متوهج والمسك والعود، لتلف بشرتك بأجواء من الهدوء النقي."
+      },
+      "notes": {
+        "en": [
+          "Citrus",
+          "Bergamot",
+          "Lavender",
+          "Jasmin",
+          "Oudh",
+          "Musk",
+          "Powdery"
+        ],
+        "ar": [
+          "حمضيات، برغموت، الخزامى، الياسمين، عود، مسك، بودرة"
+        ]
+      },
+      "collection": {
+        "en": "Oud  (Oud & Agarwood)",
+        "ar": "العود"
+      },
+      "emotion": {
+        "en": "Nobility",
+        "ar": "النبل"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 1150.0,
+      "currency": "AED",
+      "stockQuantity": 88,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/44"
+    },
+    {
+      "id": "47",
+      "productId": 47,
+      "code": "FFM006",
+      "name": {
+        "en": "Nasseem Al Ward",
+        "ar": "نسيم الورد"
+      },
+      "meaning": {
+        "en": "(A BREEZE OF ROSES)",
+        "ar": "(A BREEZE OF ROSES)"
+      },
+      "description": {
+        "en": "Naseem Al Ward explores the intersection between truth and imagination, depicting a choice to embrace both worlds. It invites you to savor the enchanting charm of a harmonious blend, where floral and woody scents intertwine. The pulsing heart of rose and jasmine reacts with oud and patchouli, creating a captivating perfume that captures the charm of dreams, leaving you in awe and disarmed by its aroma.",
+        "ar": "جلستَ بين عالمين.   الحقيقة والخيال.   واخترت الا تختار بينهما، بل أن تعيشهما معاً.   استمتع بسحر نسمة انسجام أنيق بين روائح الأخشاب والزهور.   مع قلب ينبض بعبق الورد والياسمين، يتفاعلان معاً ورائحة العود والباتشولي المدخن ليخلقا عطراً يأسر الأحلام."
+      },
+      "notes": {
+        "en": [
+          "Lemon",
+          "Ginger",
+          "Pink pepper",
+          "Jasmine",
+          "Rose",
+          "Lavender",
+          "Oudh",
+          "Patchouli",
+          "Vetiver"
+        ],
+        "ar": [
+          "ليمون، زنجبيل، فلفل وردي، ياسمين، ورد، الخزامى، عود، باتشولي، فيتيفر"
+        ]
+      },
+      "collection": {
+        "en": "Oud  (Oud & Agarwood)",
+        "ar": "العود"
+      },
+      "emotion": {
+        "en": "Happiness",
+        "ar": "الفرح"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 1150.0,
+      "currency": "AED",
+      "stockQuantity": 95,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/47"
+    },
+    {
+      "id": "49",
+      "productId": 49,
+      "code": "FFM008",
+      "name": {
+        "en": "Qublat Ward",
+        "ar": "قبلة ورد"
+      },
+      "meaning": {
+        "en": "(A KISS FROM A ROSE)",
+        "ar": "(A KISS FROM A ROSE)"
+      },
+      "description": {
+        "en": "Qublat Ward explores the different ways people engage with roses, from plucking them to show love, to approaching them with rare nobleness, and delicately touching them. The fragrance of rose and oud, combined with amber and bergamot, creates a romantic perfume that unfolds with a touch of woody elegance, leaving an enchanting aroma on the skin.",
+        "ar": "هناك من يقطف وردة ليعبّر عن حبّه،   وهناك من يقترب بنبل ليلامس رقّة وردةٍ، ويتنفس عبيرها بشهامة.   عطر رومنسي مكون من مزيج من العنبر والبرغموت، حيث تتفتح رائحة الورد والعود في قلب العطر لتضفي لمسة من الأناقة الخشبية على بشرتك."
+      },
+      "notes": {
+        "en": [
+          "Bergamot",
+          "Clove",
+          "Cistus",
+          "Rose",
+          "Oud",
+          "Gurjum",
+          "Vetiver",
+          "Cedarwood",
+          "Patchouli"
+        ],
+        "ar": [
+          "برغموت، قرنفل، كيستوس، ورد، عود، غورجوم، فيتيفر، خشب الأرز، باتشولي"
+        ]
+      },
+      "collection": {
+        "en": "Oud  (Oud & Agarwood)",
+        "ar": "العود"
+      },
+      "emotion": {
+        "en": "Passion",
+        "ar": "الشغف"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 1150.0,
+      "currency": "AED",
+      "stockQuantity": 96,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/49"
+    },
+    {
+      "id": "67",
+      "productId": 67,
+      "code": "FFM015",
+      "name": {
+        "en": "Min Ana ",
+        "ar": "من أنا"
+      },
+      "meaning": {
+        "en": "(WHO AM I)",
+        "ar": "(WHO AM I)"
+      },
+      "description": {
+        "en": " A powerful fragrance with the subtle scent of rose, enhanced by citrus as mandarin and the spiciness of cardamom and pink pepper. The fragrance finishes with warm and sensual tones given by amber and vanilla. This mythical perfume will take you on a journey through a field of roses and its magnificent sillage to a place full of mystery. ",
+        "ar": "عطر قوي برائحة الورد الرقيقة، معزز بالحمضيات مثل اليوسفي وتوابل الهيل والفلفل الوردي. ينتهي العطر بألوان دافئة وحسية يقدمها العنبر والفانيليا. سيأخذك هذا العطر الأسطوري في رحلة عبر حقل من الورود وانتشاره الرائع إلى مكان مليء بالغموض."
+      },
+      "notes": {
+        "en": [
+          "Mandarin",
+          "Pink berries",
+          "Rose",
+          "Vanilla",
+          "Amber",
+          "Musk"
+        ],
+        "ar": [
+          "الماندرين، التوت الوردي، الورد، الفانيليا، العنبر، المسك"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Pride",
+        "ar": "الإعتزاز"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/67"
+    },
+    {
+      "id": "50",
+      "productId": 50,
+      "code": "FFM011",
+      "name": {
+        "en": "Horr fi al Riyah",
+        "ar": "حر في الرياح"
+      },
+      "meaning": {
+        "en": "(FREE AS THE WIND)",
+        "ar": "(FREE AS THE WIND)"
+      },
+      "description": {
+        "en": "Horr fi al Riyah captures the allure of the vast desert through a fragrance that combines soft almond and iris notes. With a blend of amber wood and sandalwood, it evokes a newfound sense of freedom. The enchanting trail of benzoin resin, vanilla, and amber creates a captivating aroma that embraces the heart, akin to the soothing slumber of the wind.",
+        "ar": "لكل الذين مشوا بلا وجهة معيّنة، واستجابوا لنداء الصحراء الواسعة في أفقها اللانهائي.   عطر يبدأ بنكهات لوز ناعمة وزهرة السوسن الرائعة.   يعمل خليط الأخشاب العنبرية مع لمسات خفيفة من خشب الصندل على استحضار حرية جديدة.   حرية تغمركم بعبير الراتنج بنزوين وحبوب الفانيليا والعنبر في آثارها الساحرة."
+      },
+      "notes": {
+        "en": [
+          "Almond",
+          "Elemi Iris",
+          "Cedarwood",
+          "Sandalwood",
+          "Dry Woods Nagarmotha",
+          "Moss",
+          "Vanilla",
+          "Ambergris",
+          "Benzoin"
+        ],
+        "ar": [
+          "لوز، إليمي، زهرة السوسن، خشب الأرز، خشب الصندل، أخشاب جافة، ناغارموثا، الطحلب، فانيليا، عنبر، بنزوين"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Generosity",
+        "ar": " الكرم"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/50"
+    },
+    {
+      "id": "51",
+      "productId": 51,
+      "code": "FFM012",
+      "name": {
+        "en": "Aala Taj Warda",
+        "ar": "على تاج وردة"
+      },
+      "meaning": {
+        "en": "(ON A CROWN OF ROSES)",
+        "ar": "(ON A CROWN OF ROSES)"
+      },
+      "description": {
+        "en": "Aala Taj Warda celebrates the poetic soul, drawn to the beauty of a rose with reverence and grace, borrowing its blush for a radiant complexion. Immerse yourself in a fragrance that crowns the regal essence of a rose, accompanied by the charming notes of coffee and vanilla. The vivacity of white blooms, such as Indian tuberose and datura, ignites emotions so bright, capturing them within this captivating perfume",
+        "ar": "انت شاعرة الإحساس.   تقتربين من وردة بتقدير واحترام، وتأخذين من حمرتها لوناً لخجل وجنتيك.   دلّلي حواسك برائحة تستحضر تاج  وردة. رائحة تلتقط نكهات فريدة من القهوة، مع تألق فانيليا وجاذبية خلابة لخشب الصندل. بينما تخلق حيوية الزهور البيضاء، مثل مسك الروم الهندي وزهرة الداتورا، عطراً غنياً بالأحاسيس."
+      },
+      "notes": {
+        "en": [
+          "Ginger Lily",
+          "Coffee",
+          "Rum",
+          "Tuberose",
+          "Vetiver",
+          "Vanilla",
+          "Sandalwood",
+          "Oppoponax"
+        ],
+        "ar": [
+          "زنجبيل ليلي، قهوة، رم، توبروز، فيتيفر، فانيليا، خشب الصندل، أوبوناكس"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Pleasure",
+        "ar": "المتعة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "Summer",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 101,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/51"
+    },
+    {
+      "id": "52",
+      "productId": 52,
+      "code": "FFM013",
+      "name": {
+        "en": "Hadeeth Al Rooh",
+        "ar": "حديث الروح"
+      },
+      "meaning": {
+        "en": "(SO SPEAKS THE SOUL)",
+        "ar": "(SO SPEAKS THE SOUL)"
+      },
+      "description": {
+        "en": "Hadeeth Al Rooh explores self-reflection and forgiveness, acknowledging the love that ignited the heart and ultimately finding solace in self-forgiveness. Immerse yourself in an enchanting fragrance that takes you on a journey through the scents of dawn, with a captivating blend of oriental woods, warm spices, and distinctive pink pepper notes. The aroma of this scent speaks to the depths of your soul, captivating it in a way that is truly incomparable.",
+        "ar": "تتحدثين مع نفسك بنفسك، تخبريها عن حبيب أشعل قلبك، تلومينها وتلومك.   ثم تسامحينها.   استمتعي بسحر عطر يأخذك في رحلة عبر عبق الفجر، مع عطر قلبه من مزيج الأخشاب الشرقية والتوابل الدافئة الساحرة، وتميّزي بنغمات برالين الوردية المميزة. فهذا العطر يتحدث إلى روحك ويأسرها."
+      },
+      "notes": {
+        "en": [
+          "Bergamot",
+          "Pink Pepper",
+          "ylang-Ylang",
+          "Coconut",
+          "Oud",
+          "Musk",
+          "Honey",
+          "Vanilla"
+        ],
+        "ar": [
+          "برغموت، فلفل وردي، يلانغ يلانغ، جوز الهند، عود، مسك، عسل، فانيليا"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Pleasure",
+        "ar": "المتعة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 97,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/52"
+    },
+    {
+      "id": "53",
+      "productId": 53,
+      "code": "FFM016",
+      "name": {
+        "en": "Tahta Al Noujoum",
+        "ar": "تحت النجوم"
+      },
+      "meaning": {
+        "en": "(UNDER THE STARS)",
+        "ar": "(UNDER THE STARS)"
+      },
+      "description": {
+        "en": "Tahta Al Noujoum invites dreamers to bask in the beauty of a sparkling sky and embrace the night's reflective ambiance. The fragrance captures the essence of these dreamers, with floral and neroli notes that transport them to a world of orange blossom's delightful smoothness, complemented by a delicate blend of velvety musk and luxurious tuberose, creating an atmosphere of elegance and allure.",
+        "ar": "تحت غطاء سماوي متلألأ يحلو السهر والتأمّل.   عطر ينتمي إليه كلّ حالم.  مكوّن من نغمات الأزهار ومسك الروم.   قلبه من زهر البرتقال، لذيذ وناعم، بتركيبة دقيقة وأنيقة من المسك المخملي ومسك الروم الغني."
+      },
+      "notes": {
+        "en": [
+          "Rhubarb",
+          "Lychee",
+          "Neroli",
+          "Orange Blossom",
+          "Rose",
+          "Magnolia",
+          "Tuberose",
+          "Musk",
+          "Amber",
+          "Precious Woods"
+        ],
+        "ar": [
+          "الراوند، الليتشي، النيرولي، زهرة البرتقال، الورد، الماغنوليا، توبروز، المسك، العنبر، الأخشاب الثمينة"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Happiness",
+        "ar": "الفرح"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/53"
+    },
+    {
+      "id": "54",
+      "productId": 54,
+      "code": "FFM017",
+      "name": {
+        "en": "Fakhamat Al Warda",
+        "ar": "فخامة الوردة"
+      },
+      "meaning": {
+        "en": "(HER MAJESTY, THE ROSE)",
+        "ar": "(HER MAJESTY, THE ROSE)"
+      },
+      "description": {
+        "en": "Fakhamat Al Warda invites those who effortlessly command attention to indulge in a fragrance fit for royalty and the elite. As the sun sets, immerse yourself in the sweetness of a rose-filled field, while the captivating scent of plum enchants your soul. This fragrance serves as an invitation to embark on a journey, from luxurious beginnings to a realm of exquisite perfumes waiting to be discovered and explored.",
+        "ar": "للذين تدار الرؤوس نحوهم حيثما كانوا.  عطر النبلاء.   عند غروب الشمس تفضّلوا إلى حقل من الورود، ودعوا رائحة البرقوق المثيرة تأسركم.   هذا العطر دعوة لرحلة من الرفاهية إلى عالم العطور الفاخرة."
+      },
+      "notes": {
+        "en": [
+          "Plum",
+          "Davana Rose",
+          "Osmanthus",
+          "Patchouli Cistus",
+          "Benzoin",
+          "Tonka"
+        ],
+        "ar": [
+          "الخوخ، دافانا روز، العسكرية، الباتشولي، الكيستوس، البنزوين، التونكا"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Pleasure",
+        "ar": "المتعة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 98,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/54"
+    },
+    {
+      "id": "55",
+      "productId": 55,
+      "code": "FFM018",
+      "name": {
+        "en": "Aala Sathi Al Qamar",
+        "ar": "على سطح القمر"
+      },
+      "meaning": {
+        "en": "(OVER THE MOON)",
+        "ar": "(OVER THE MOON)"
+      },
+      "description": {
+        "en": "Aala Sathi al Qamar celebrates the empowered woman who recognizes her unlimited potential and strives to surpass boundaries. It invites her to indulge in a revitalizing fragrance of ripe fruit and white flowers, including Lily, Geranium, and Perfume blooms. The luxurious delight is enhanced by the presence of musk, amber, and sandalwood, creating an enchanting olfactory experience for her journey of limitless exploration.",
+        "ar": "لكل امرأة أدركت قدرتها وعرفت أن لا حدود لها.   لكل امرأة تسعى للوصول إلى ما هو أبعد.   إليك عطر منعش مكون من الفواكه الناضجة والزهور البيضاء.   يتميز برائحة زهرة الليلي، وزهرة الجيرانيوم وزهرة العطر والمسك والعنبر وخشب الصندل."
+      },
+      "notes": {
+        "en": [
+          "Aqua",
+          "Peach",
+          "Coconut",
+          "Lily of the Valley",
+          "Geranium",
+          "Frangipani",
+          "Tuberose Musk",
+          "Patchouli",
+          "Amber",
+          "Sandalwood"
+        ],
+        "ar": [
+          "أكوا، خوخ، جوز الهند، زنبق الوادي، جيرانيوم، فرانجيباني، توبروز، مسك، باتشولي، عنبر، خشب الصندل"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Pleasure",
+        "ar": "المتعة"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 96,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/55"
+    },
+    {
+      "id": "56",
+      "productId": 56,
+      "code": "FFM019",
+      "name": {
+        "en": "Sarhan",
+        "ar": "سرحان"
+      },
+      "meaning": {
+        "en": "(THE DAY DREAMER)",
+        "ar": "(THE DAY DREAMER)"
+      },
+      "description": {
+        "en": "Sarhan celebrates the wanderer, embracing the beauty and endless possibilities of the world of fantasy. Embark on an aromatic journey where precious saffron and fragrant violet leaves awaken the senses. The heart of the fragrance dances with the captivating notes of rose, incense, and smoky oud, accompanied by the finest leather scents, inviting your mind to wander and indulge in the fragrance of beautiful dreams.",
+        "ar": "انت العالق في عالم الخيال وما أجمله.   فخور بكل ما يمكنك تحقيقه. هنا كل شيء ممكن.  دع حواسك تطير في رحلة عطرية تبدأ بنكهات الزعفران الثمين مع أوراق البنفسج العطرية.   حيث قلب العطر يرقص مع الورد والبخور والعود الدخاني، ويتميز بأرقى روائح الجلد.   دع عقلك يتجول مع عطر الأحلام الجميلة."
+      },
+      "notes": {
+        "en": [
+          "Saffron",
+          "Violet leaves",
+          "Thyme",
+          "Pepper",
+          "Rose",
+          "Orris",
+          "Incense",
+          "Oud",
+          "Leather",
+          "Amberwood"
+        ],
+        "ar": [
+          "زعفران، أوراق البنفسج، زعتر، فلفل، ورد، السوسن، البخور، عود، جلد، خشب العنبر"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Pride",
+        "ar": "الإعتزاز"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 90,
+      "available": true,
+      "bestseller": true,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/56"
+    },
+    {
+      "id": "68",
+      "productId": 68,
+      "code": "FFM010",
+      "name": {
+        "en": "Hamsa",
+        "ar": "همسة"
+      },
+      "meaning": {
+        "en": "(A WHISPER)",
+        "ar": "(A WHISPER)"
+      },
+      "description": {
+        "en": "Brings out the humid woody fragrance of vetiver and tree moss. The bouquet of spices and cypress adds a fresh scent that takes us on a journey. The base notes rely on an exhilarating and mysterious facet of amber, benzoin, and incense. The strength of this perfume will not leave you indifferent. It develops something in the air that makes us dependent on its smell.",
+        "ar": "يبرز العطر الخشبي الرطب من نجيل الهند وطحالب الأشجار. تضيف باقة التوابل والسرو رائحة منعشة تأخذنا في رحلة. تعتمد المكونات الأساسية على جانب مبهج وغامض من العنبر والجاوي والبخور. قوة هذا العطر لن تتركك غير مبال. إنه يطور شيئًا في الهواء يجعلنا نعتمد على را"
+      },
+      "notes": {
+        "en": [
+          "Bergamot",
+          "Cinnamon",
+          "Nutmeg",
+          "Amber",
+          "Woods"
+        ],
+        "ar": [
+          "البرغموت، القرفة، جوزة الطيب، العنبر، الأخشاب"
+        ]
+      },
+      "collection": {
+        "en": "Nayat (Floral & Sweet)",
+        "ar": "النبيل"
+      },
+      "emotion": {
+        "en": "Generosity",
+        "ar": " الكرم"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/68"
+    },
+    {
+      "id": "57",
+      "productId": 57,
+      "code": "FFM020",
+      "name": {
+        "en": "Amtar",
+        "ar": "أمطار"
+      },
+      "meaning": {
+        "en": "(SWEET RAINDROPS)",
+        "ar": "(SWEET RAINDROPS)"
+      },
+      "description": {
+        "en": "Amtar presents a fragrance that transports you to a world of pure elegance and refined grace, where gazing at clouds and feeling raindrops on your face becomes an immersive experience. It reveals a fantasy land filled with soft and exotic plum, offering fruity notes that evoke genuine joy and happiness. With the rich presence of patchouli and the allure of sandalwood, this scent envelops your senses in a captivating opulence reminiscent of a mythical wood.",
+        "ar": "لكل من نظر إلى الغيوم وأغمض عينيه ليشعر بقطرات المطر الرقيقة تلامس وجهه.  إليك عطر يدخلك إلى عالم مستوحى من الأناقة الأصيلة.   عالم يسيطر فيه الخوخ الناعم والغريب. حيث يكشف لنا غلافه الشهي عن نغمات فاكهيه ولذيذة تستحضر الفرحة الصادقة.   اكتشف عبق أرض خيالية. هناك، تحيط بك نفحات الباتشولي الفاخر وخشب الصندل الغامر بلمسة من الفخامة الساحرة."
+      },
+      "notes": {
+        "en": [
+          "Rhum",
+          "Plum",
+          "Davana",
+          "Red Fruits Cinnamon",
+          "Clove",
+          "Rose",
+          "Jasmine Sandalwood",
+          "Patchouli",
+          "Vanilla",
+          "Amber"
+        ],
+        "ar": [
+          "روم، خوخ، دافانا، فواكه حمراء، قرفة، قرنفل، ورد، ياسمين، خشب الصندل، باتشولي، فانيليا، عنبر"
+        ]
+      },
+      "collection": {
+        "en": "Buzuq and Riqq (Fresh & Woody)",
+        "ar": "بوزوق و رق"
+      },
+      "emotion": {
+        "en": "Generosity",
+        "ar": " الكرم"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "Summer",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/57"
+    },
+    {
+      "id": "58",
+      "productId": 58,
+      "code": "FFM023",
+      "name": {
+        "en": "Thawrat Al Ahasseess",
+        "ar": "ثورة الأحاسيس"
+      },
+      "meaning": {
+        "en": "(THE REVOLUTION OF SENSES)",
+        "ar": "(THE REVOLUTION OF SENSES)"
+      },
+      "description": {
+        "en": "Thawrat Al Hassess unveils the fiery depths of ones emotions, akin to a volcano on the verge of eruption. The fragrance embodies the opulent scents of the East, bursting with captivating aromas. The blend of rich roses, enchanting oud, sensual saffron, and incense creates a unique and powerful fragrance, serving as a dance that eloquently expresses your deepest feelings, transforming your emotions into a mesmerizing performance.",
+        "ar": "في داخلك بركان هائج من الأحاسيس، جاهز كي يتفجّر.  وعطرك هو عطر الشرق الفاخر، المتفجّر بالروائح.   في قلبه تتجانس نفحات الورد الغني مع أريج العود الساحر، ويعزز الزعفران الحسي والبخور قوّة عبيره الفريد.  رقصة معبّرة من بطولة أحاسيسك."
+      },
+      "notes": {
+        "en": [
+          "Agarwood",
+          "Petit Grain",
+          "Geranium",
+          "Raspberry",
+          "Rose",
+          "Saffron",
+          "Incense",
+          "Birch"
+        ],
+        "ar": [
+          "عود، بتيت جرين، جيرانيوم، توت التوت، وردة، زعفران، البخور، البتولا"
+        ]
+      },
+      "collection": {
+        "en": "Buzuq and Riqq (Fresh & Woody)",
+        "ar": "بوزوق و رق"
+      },
+      "emotion": {
+        "en": "Passion",
+        "ar": "الشغف"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 97,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/58"
+    },
+    {
+      "id": "59",
+      "productId": 59,
+      "code": "FFM025",
+      "name": {
+        "en": "Khatiiiiiir",
+        "ar": "خطيييير"
+      },
+      "meaning": {
+        "en": "(DANGEROUSLY INTERESTING)",
+        "ar": "(DANGEROUSLY INTERESTING)"
+      },
+      "description": {
+        "en": "Khatiiiiiir evokes the power of beauty to melt hearts and ignite passion, causing them to crumble and fall. Immerse yourself in an enchanting fragrance experience, as sparkling notes and warm white pepper open the olfactory journey. The heart of lily gracefully dances with luxurious amber and frankincense, inviting your mind to wander with this exquisite fragrance that captures the essence of dreams.",
+        "ar": "مذوّب القلوب ومشعل الهوى. أمام جمالك قلوب تتهاوى.   استمتع بإحساس ساحر للروائح، مع عطر متألق يبدأ باللبان ونفحات الفلفل الأبيض الدافئ. حيث يرقص قلب الزنبق مع العنبر الفاخر. اسمح لعقلك بالتجول مع عطر الأحلام الرائع."
+      },
+      "notes": {
+        "en": [
+          "White Pepper",
+          "Lily",
+          "Olibanum",
+          "Amberwood",
+          "Cashmere"
+        ],
+        "ar": [
+          "فلفل أبيض، زنبق، اللبان، خشب العنبر، كشمير"
+        ]
+      },
+      "collection": {
+        "en": "Buzuq and Riqq (Fresh & Woody)",
+        "ar": "بوزوق و رق"
+      },
+      "emotion": {
+        "en": "Passion",
+        "ar": "الشغف"
+      },
+      "productLine": {
+        "en": "Eau de Parfum 100ml",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "100ml",
+      "packaging": "100ml EDP in a genuine leather box",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 91,
+      "available": true,
+      "bestseller": true,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/59"
+    },
+    {
+      "id": "88",
+      "productId": 88,
+      "code": "MGM001",
+      "name": {
+        "en": "Piano Collection",
+        "ar": "مجموعة بيانو"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Piano Collection – The Symphony of Arabian Fragrances. A rainbow of seven exquisite perfumes, beautifully curated in a luxurious gift box. The Piano Collection is a magical journey through Arabia, each fragrance a note in a harmonious melody of emotions and heritage. Handpicked from our four signature collections, these seven scents represent the seven emotions as classified in the Mansam Galaxy.",
+        "ar": "مجموعة بيانو – سيمفونية العطور العربية: سبعة عطور فاخرة تنبض بالأناقة، مُنسّقة في علبة هدايا مترفة أشبه بقطعة فنية؛ رحلة ساحرة عبر عالم العطور في الجزيرة العربية، حيث يمثل كل عطر نغمة في لحن متناغم من المشاعر والتراث، مختارة بعناية من مجموعاتنا الأربع المميزة لتمثل المشاعر السبعة كما صُنّفت في مجرة منسَم؛ من العطور العميقة والغامضة إلى الخفيفة والمنعشة، كل زجاجة تحكي قصة فريدة، مما يجعل المجموعة هدية مثالية من أرض الرمال الذهبية؛ تحف فنية مجسّدة لعبق التراث العطري العربي بكل فخامته وأصالته – تعرّفوا على المكونات والإلهام خلف كل نفحة في قسم العطور لدينا."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Piano Collection",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 1150.0,
+      "currency": "AED",
+      "stockQuantity": 104,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/88"
+    },
+    {
+      "id": "60",
+      "productId": 60,
+      "code": "LBM001",
+      "name": {
+        "en": "Royal Luban",
+        "ar": "لبان ملكي"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Luban",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 350.0,
+      "currency": "AED",
+      "stockQuantity": 97,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/60"
+    },
+    {
+      "id": "61",
+      "productId": 61,
+      "code": "LBM002",
+      "name": {
+        "en": "Premium Luban",
+        "ar": "لبان حصري"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "",
+        "ar": ""
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Luban",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 225.0,
+      "currency": "AED",
+      "stockQuantity": 96,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/61"
+    },
+    {
+      "id": "41",
+      "productId": 41,
+      "code": "BAM001",
+      "name": {
+        "en": "Al Taif ",
+        "ar": "الطائف"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "A powerful and seductive fragrance highlighting the sweetness of a Rose.",
+        "ar": "رائحة قوية وجذابة تبرز جمال وحلاوة عبير الورد."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Maamoul Bukhoor",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 290.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/41"
+    },
+    {
+      "id": "62",
+      "productId": 62,
+      "code": "BAM002",
+      "name": {
+        "en": "Tabuk ",
+        "ar": "تبوك"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "A unique soft and sensual Saffron scent refined with a spicy Floral bouquet combined with Oud and Sandalwood.",
+        "ar": "رائحة زعفران ناعمة وحسية، متفرّدة بطابعها، تتخللها باقة زهرية متبّلة، ممزوجة بالعود وخشب الصندل"
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Maamoul Bukhoor",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 290.0,
+      "currency": "AED",
+      "stockQuantity": 96,
+      "available": false,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/62"
+    },
+    {
+      "id": "63",
+      "productId": 63,
+      "code": "BAM003",
+      "name": {
+        "en": "Al Ula",
+        "ar": "العلا"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "A delicate scent of precious Woods carried with velvet tones of Amber, Leather, Musk and Bergamot",
+        "ar": "عبير ناعم للأخشاب الثمينة، تحمله نغمات مخملية من العنبر والجلد والمسك والبرغموت."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Maamoul Bukhoor",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 290.0,
+      "currency": "AED",
+      "stockQuantity": 98,
+      "available": false,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/63"
+    },
+    {
+      "id": "64",
+      "productId": 64,
+      "code": "BAM004",
+      "name": {
+        "en": "Ha'il",
+        "ar": "حائل"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "A bold and charismatic scent, blending Black Pepper, Leather, Ginger, Patchouli, and Ylang to capture the spirit of untamed nature",
+        "ar": "رائحة جريئة وكاريزمية، تمزج بين الفلفل الأسود والجلد والزنجبيل والباتشولي والإيلانغ، لتجسّد جمال الطبيعة البرية"
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Maamoul Bukhoor",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 290.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/64"
+    },
+    {
+      "id": "117",
+      "productId": 117,
+      "code": "SSS005",
+      "name": {
+        "en": "DEHAB",
+        "ar": "ذهب"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Each DEHAB set contains three Eaux de Parfum of 12ml from MANSAM exquisite perfumes.Create your own set by choosing 3 Eaux de Parfum (12ml each) from a selection of 20 Eaux de Parfum.",
+        "ar": "كل علبة ذهب تحتوي على ثلاثة عطور ماء عطر ) 12 مل( من باقة عطور منسَمالفاخرة.كوّن علبتك الخاصة باختيار ثلاثة عطور ماء عطر ) 12 مل لكل منها( من بين 20عطراً مميزاً."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Dehab",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "FLEXI_BUNDLE",
+      "price": 450.0,
+      "currency": "AED",
+      "stockQuantity": 98,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/117"
+    },
+    {
+      "id": "113",
+      "productId": 113,
+      "code": "SSS001",
+      "name": {
+        "en": "NAYAT SILK SCARF & SAFAA AL NADA POCKET SQUARE",
+        "ar": "وشاح نايات ومنايل الجيب صفاء الندى"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "The set includes one scarf and one square pocket crafted from the finest quality 16 mm twirl silk made in China. As they are hand-rolled, dimensions indicated may vary.",
+        "ar": "تتكوّن هذه المجموعة من وشاح ومنديل جيب مربع، تم تصنيعهما من حرير توريل فخم بسماكة 16 مم، ومصنوعان في الصين بجودة عالية. نظرًا لأن الحواف ملفوفة يدويًا، قد تختلف الأبعاد قليلاً عن المقاسات المذكورة."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "SILK SCARVES & POCKET SQUARE",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/113"
+    },
+    {
+      "id": "114",
+      "productId": 114,
+      "code": "SSS002",
+      "name": {
+        "en": "AMTAR SILK SCARF & POCKET SQUARE",
+        "ar": "وشاح أمطار الحريري ومنديل الجيب"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "The set includes one scarf and one square pocket crafted from the finest quality 16 mm twirl silk made in China. As they are hand-rolled, dimensions indicated may vary.",
+        "ar": "تتكوّن هذه المجموعة من وشاح ومنديل جيب مربع، تم تصنيعهما من حرير توريل فخم بسماكة 16 مم، ومصنوعان في الصين بجودة عالية. نظرًا لأن الحواف ملفوفة يدويًا، قد تختلف الأبعاد قليلاً عن المقاسات المذكورة."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "SILK SCARVES & POCKET SQUARE",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/114"
+    },
+    {
+      "id": "115",
+      "productId": 115,
+      "code": "SSS003",
+      "name": {
+        "en": "AL HAWA GHALLAB SILK SCARF & POCKET SQUARE",
+        "ar": "ب الحريري ومنايل الجيباوشاح الهوى غلّ"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "The set includes one scarf and one square pocket crafted from the finest quality 16 mm twirl silk made in China. As they are hand-rolled, dimensions indicated may vary.",
+        "ar": "تتكوّن هذه المجموعة من وشاح ومنديل جيب مربع، تم تصنيعهما من حرير توريل فخم بسماكة 16 مم، ومصنوعان في الصين بجودة عالية. نظرًا لأن الحواف ملفوفة يدويًا، قد تختلف الأبعاد قليلاً عن المقاسات المذكورة."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "SILK SCARVES & POCKET SQUARE",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/115"
+    },
+    {
+      "id": "116",
+      "productId": 116,
+      "code": "SSS004",
+      "name": {
+        "en": "THAWRAT AL AHASSEESS SILK SCARF & POCKET SQUARE",
+        "ar": "وشاح ثورة الأحاسيس الحريري ومنديل الجيب"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "The set includes one scarf and one square pocket crafted from the finest quality 16 mm twirl silk made in China. As they are hand-rolled, dimensions indicated may vary.",
+        "ar": "تتكوّن هذه المجموعة من وشاح ومنديل جيب مربع، تم تصنيعهما من حرير توريل فخم بسماكة 16 مم، ومصنوعان في الصين بجودة عالية. نظرًا لأن الحواف ملفوفة يدويًا، قد تختلف الأبعاد قليلاً عن المقاسات المذكورة."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "SILK SCARVES & POCKET SQUARE",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "STANDARD",
+      "price": 850.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/116"
+    },
+    {
+      "id": "118",
+      "productId": 118,
+      "code": "",
+      "name": {
+        "en": "GHUMUD",
+        "ar": "غُموض"
+      },
+      "meaning": {
+        "en": " - ( Exclusively available at MANSAM boutiques",
+        "ar": " - ( Exclusively available at MANSAM boutiques"
+      },
+      "description": {
+        "en": "GHUMUD Home Fragrance is a sophisticated scent designed to elevate your space with effortless elegance. Bright, juicy litchee opens with a modern touch of sweetness. At the heart, rose and incense unfold in a refined blend of soft florals and subtle smoky warmth. Finally, rich amber and creamy vanilla create a smooth, enveloping finish that lingers beautifully in the air.",
+        "ar": "المعطر الجو المنزلي غُموض هو تركيبة راقية صُممت لترتقي بأجواء مساحتك بلمسة من الأناقة والغموض.تفتتح النوتات برائحة الليتشي المشرقة والعصيرية بلمسة عصرية من الحلاوة. وفي القلب، يتكشف الورد مع البخور في تناغم أنيق يجمع بين الزهور الناعمة ودفء دخاني خفيف يعكس روح الغموض. أما القاعدة، فتأتي غنية بالعنبر والفانيليا الكريمية لتمنح إحساسًا عميقًا ومحيطًا يدوم"
+      },
+      "notes": {
+        "en": [
+          "Rose",
+          "Incense",
+          "Litchee",
+          "Vanilla and Amber"
+        ],
+        "ar": [
+          "ورد، بخور، ليتشي، فانيليا، عنبر"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "DIFFUSER",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "700ml",
+      "packaging": "10 reeds (39 cm) and 1 glass bottle stopper",
+      "type": "STANDARD",
+      "price": 1650.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": false,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/118"
+    },
+    {
+      "id": "119",
+      "productId": 119,
+      "code": "",
+      "name": {
+        "en": "NASAMAT",
+        "ar": "نَسَمات"
+      },
+      "meaning": {
+        "en": " - (Exclusively available at MANSAM boutiques)",
+        "ar": " - (Exclusively available at MANSAM boutiques)"
+      },
+      "description": {
+        "en": "NASAMAT Home Fragrance is a bold and contemporary scent that brings depth and character to your space. Spicy pepper and fresh ginger create an energizing opening with a vibrant kick. At the heart, incense adds refined smoky elegance, while earthy vetiver introduces grounded, woody sophistication. The fragrance settles into a smooth base of musk, leaving a warm and sensual trail that settles gently into the space and endures.",
+        "ar": "\r\nالمعطر الجو المنزلي نسَمات هو تركيبة جريئة وعصرية تضيف عمقًا وطابعًا مميزًا لمساحتك.تفتتح النوتات بمزيج نابض من الفلفل الحار والزنجبيل المنعش ليمنح بداية حيوية مليئة بالطاقة. وفي القلب، يضفي البخور لمسة دخانية راقية، بينما يضيف الفيتيفر طابعًا خشبيًا ترابيًا متزنًا. أما القاعدة، فترتكز على المسك الناعم لتترك أثرًا دافئًا وحسيًا يستقر بلطف في المكان ويدوم."
+      },
+      "notes": {
+        "en": [
+          "Pepper",
+          "Incense",
+          "Vetiver",
+          "Ginger and Musk"
+        ],
+        "ar": [
+          "فلفل، بخور، فيتيفر، زنجبيل، مسك"
+        ]
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "DIFFUSER",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "700ml",
+      "packaging": "10 reeds (39 cm) and 1 glass bottle stopper",
+      "type": "STANDARD",
+      "price": 1650.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": false,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/119"
+    },
+    {
+      "id": "109",
+      "productId": 109,
+      "code": "RHB001",
+      "name": {
+        "en": "RARE HANDICRAFT BOX - SAKKER",
+        "ar": "صندوق خشبي مصنوع يدويًا - صقر"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Each MANSAM rare box is handcrafted and decorated with intricate inlay and marquetry work. It is a limited-edition piece, meticulously designed for quality and uniqueness. Limited to just 50 pieces worldwide, every box features a unique engraved serial number, emphasizing its exclusivity and authenticity. MANSAM rare handicraft box contains two Eau de Parfum of 100ml each from timeless Oud Collection of MANSAM. Oud collection has four exquisite perfumes namely, SHATHA BILADI, HAMS MIN AL SAHRAA, NASSEEM AL WARD, and QUBLAT WARD.",
+        "ar": "يُصنع كل صندوق نادر من منسَم يدويًا ويُزيَّن بتطعيمات دقيقة وأعمال ترصيع )ماركيتري( متقنة. يُعد هذا الصندوق إصدارًا محدودًا، صُمم بعناية فائقة لضمان أعلى مستويات الجودة والتميّز. تم إنتاج 50 قطعة فقط على مستوى العالم، ويحمل كل صندوق رقمًا تسلسليًا محفورًا يبرز فرادته ويؤكد أصالته. يحتوي صندوق منسَم النادر المصنوع يدويًا على زجاجتين من ماء العطر، بحجم 100 مل لكل منهما، من مجموعة العود الكلاسيكية لمنسَم.تضم المجموعة أربعة عطور فاخرة: شذى بلادي، همس من الصحراء، نسيم الورد، وقبلة ورد."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Rare Handicraft Boxes",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "FLEXI_BUNDLE",
+      "price": 3200.0,
+      "currency": "AED",
+      "stockQuantity": 100,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/109"
+    },
+    {
+      "id": "110",
+      "productId": 110,
+      "code": "RHB002",
+      "name": {
+        "en": "RARE HANDICRAFT BOX - SADU",
+        "ar": "صندوق خشبي مصنوع يدويًا - سدو"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Each MANSAM rare box is handcrafted and decorated with intricate inlay and marquetry work. It is a limited-edition piece, meticulously designed for quality and uniqueness. Limited to just 50 pieces worldwide, every box features a unique engraved serial number, emphasizing its exclusivity and authenticity. MANSAM rare handicraft box contains two Eau de Parfum of 100ml each from timeless Oud Collection of MANSAM. Oud collection has four exquisite perfumes namely, SHATHA BILADI, HAMS MIN AL SAHRAA, NASSEEM AL WARD, and QUBLAT WARD.",
+        "ar": "يُصنع كل صندوق نادر من منسَم يدويًا ويُزيَّن بتطعيمات دقيقة وأعمال ترصيع )ماركيتري( متقنة. يُعد هذا الصندوق إصدارًا محدودًا، صُمم بعناية فائقة لضمان أعلى مستويات الجودة والتميّز. تم إنتاج 50 قطعة فقط على مستوى العالم، ويحمل كل صندوق رقمًا تسلسليًا محفورًا يبرز فرادته ويؤكد أصالته. يحتوي صندوق منسَم النادر المصنوع يدويًا على زجاجتين من ماء العطر، بحجم 100 مل لكل منهما، من مجموعة العود الكلاسيكية لمنسَم.تضم المجموعة أربعة عطور فاخرة: شذى بلادي، همس من الصحراء، نسيم الورد، وقبلة ورد."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Rare Handicraft Boxes",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "FLEXI_BUNDLE",
+      "price": 3200.0,
+      "currency": "AED",
+      "stockQuantity": 101,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/110"
+    },
+    {
+      "id": "111",
+      "productId": 111,
+      "code": "RHB003",
+      "name": {
+        "en": "RARE HANDICRAFT BOX - TAYIR",
+        "ar": "صندوق خشبي مصنوع يدويًا - طير"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Each MANSAM rare box is handcrafted and decorated with intricate inlay and marquetry work. It is a limited-edition piece, meticulously designed for quality and uniqueness. Limited to just 50 pieces worldwide, every box features a unique engraved serial number, emphasizing its exclusivity and authenticity. MANSAM rare handicraft box contains two Eau de Parfum of 100ml each from timeless Oud Collection of MANSAM. Oud collection has four exquisite perfumes namely, SHATHA BILADI, HAMS MIN AL SAHRAA, NASSEEM AL WARD, and QUBLAT WARD.",
+        "ar": "يُصنع كل صندوق نادر من منسَم يدويًا ويُزيَّن بتطعيمات دقيقة وأعمال ترصيع )ماركيتري( متقنة. يُعد هذا الصندوق إصدارًا محدودًا، صُمم بعناية فائقة لضمان أعلى مستويات الجودة والتميّز. تم إنتاج 50 قطعة فقط على مستوى العالم، ويحمل كل صندوق رقمًا تسلسليًا محفورًا يبرز فرادته ويؤكد أصالته. يحتوي صندوق منسَم النادر المصنوع يدويًا على زجاجتين من ماء العطر، بحجم 100 مل لكل منهما، من مجموعة العود الكلاسيكية لمنسَم.تضم المجموعة أربعة عطور فاخرة: شذى بلادي، همس من الصحراء، نسيم الورد، وقبلة ورد."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Rare Handicraft Boxes",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "FLEXI_BUNDLE",
+      "price": 3200.0,
+      "currency": "AED",
+      "stockQuantity": 96,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/111"
+    },
+    {
+      "id": "112",
+      "productId": 112,
+      "code": "RHB004",
+      "name": {
+        "en": "RARE HANDICRAFT BOX - WARD",
+        "ar": "صندوق خشبي مصنوع يدويًا - ورد"
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Each MANSAM rare box is handcrafted and decorated with intricate inlay and marquetry work. It is a limited-edition piece, meticulously designed for quality and uniqueness. Limited to just 50 pieces worldwide, every box features a unique engraved serial number, emphasizing its exclusivity and authenticity. MANSAM rare handicraft box contains two Eau de Parfum of 100ml each from timeless Oud Collection of MANSAM. Oud collection has four exquisite perfumes namely, SHATHA BILADI, HAMS MIN AL SAHRAA, NASSEEM AL WARD, and QUBLAT WARD.",
+        "ar": "يُصنع كل صندوق نادر من منسَم يدويًا ويُزيَّن بتطعيمات دقيقة وأعمال ترصيع )ماركيتري( متقنة. يُعد هذا الصندوق إصدارًا محدودًا، صُمم بعناية فائقة لضمان أعلى مستويات الجودة والتميّز. تم إنتاج 50 قطعة فقط على مستوى العالم، ويحمل كل صندوق رقمًا تسلسليًا محفورًا يبرز فرادته ويؤكد أصالته. يحتوي صندوق منسَم النادر المصنوع يدويًا على زجاجتين من ماء العطر، بحجم 100 مل لكل منهما، من مجموعة العود الكلاسيكية لمنسَم.تضم المجموعة أربعة عطور فاخرة: شذى بلادي، همس من الصحراء، نسيم الورد، وقبلة ورد."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "Rare Handicraft Boxes",
+        "ar": ""
+      },
+      "gender": "Unisex",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "FLEXI_BUNDLE",
+      "price": 3200.0,
+      "currency": "AED",
+      "stockQuantity": 99,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/112"
+    },
+    {
+      "id": "120",
+      "productId": 120,
+      "code": "",
+      "name": {
+        "en": "QAMAR BOX",
+        "ar": "قمر بوكس "
+      },
+      "meaning": {
+        "en": "",
+        "ar": ""
+      },
+      "description": {
+        "en": "Each QAMAR Box contains three Eaux de Parfum of 12ml from MANSAM exquisite perfumes. Create your own set by choosing 3 Eaux de Parfum (12ml each) from a selection of 20 Eaux de Parfum.  Designed for Everyone",
+        "ar": "\r\nقمر بوكس يحتوي على ثلاثة عطور ماء عطر (12 مل) من باقة عطور منسَم الفاخرة. كوّن علبتك الخاصة باختيار ثلاثة عطور ماء عطر (12 مل لكل منها) من بين 20 عطراً مميزاً."
+      },
+      "notes": {
+        "en": "",
+        "ar": ""
+      },
+      "collection": {
+        "en": "",
+        "ar": ""
+      },
+      "emotion": {
+        "en": "",
+        "ar": ""
+      },
+      "productLine": {
+        "en": "QAMAR BOX",
+        "ar": ""
+      },
+      "gender": "",
+      "season": "",
+      "volume": "",
+      "packaging": "",
+      "type": "FLEXI_BUNDLE",
+      "price": 450.0,
+      "currency": "AED",
+      "stockQuantity": 98,
+      "available": true,
+      "bestseller": false,
+      "active": true,
+      "sourceUrl": "https://uatuae.mansamworld.com/productDetails/120"
+    }
+  ],
+  "failures": []
+}

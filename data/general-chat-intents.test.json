@@ -1,0 +1,794 @@
+{
+  "split": {
+    "seed": 42,
+    "testRatio": 0.2,
+    "purpose": "General-chat intent training/evaluation only. Product recommendations remain in the RAG catalogue."
+  },
+  "intents": [
+    {
+      "id": "qa_greeting",
+      "examples": {
+        "en": [
+          "hii",
+          "howdy",
+          "hello there",
+          "hi",
+          "hii there",
+          "hii my friend"
+        ]
+      },
+      "response": {
+        "en": "Hello! How are you today?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_how_are_you",
+      "examples": {
+        "en": [
+          "how's everything",
+          "you doing okay?",
+          "im fine",
+          "how r u",
+          "you good?",
+          "hw r u"
+        ]
+      },
+      "response": {
+        "en": "I'm doing great, thanks for asking! How can I help you today?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_goodbye",
+      "examples": {
+        "en": [
+          "farewell",
+          "talk to you later",
+          "goodbye",
+          "see ya"
+        ]
+      },
+      "response": {
+        "en": "Goodbye! Have a great day 😊",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_thanks",
+      "examples": {
+        "en": [
+          "thanks for the help",
+          "thanks a bunch",
+          "thank u"
+        ]
+      },
+      "response": {
+        "en": "You're welcome! 😊",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_who_are_you",
+      "examples": {
+        "en": [
+          "tell me about yourself",
+          "what should i call you"
+        ]
+      },
+      "response": {
+        "en": "I'm your virtual assistant, here to help answer your questions!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_what_can_you_do",
+      "examples": {
+        "en": [
+          "can you help me",
+          "help"
+        ]
+      },
+      "response": {
+        "en": "I can answer general questions and help guide you. Just ask away!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_are_you_human",
+      "examples": {
+        "en": [
+          "are you a robot",
+          "are you real"
+        ]
+      },
+      "response": {
+        "en": "I'm an AI chatbot, here to help you 24/7!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_how_old_are_you",
+      "examples": {
+        "en": [
+          "how old are you"
+        ]
+      },
+      "response": {
+        "en": "I don't have an age like humans do — I'm just code and logic!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_where_are_you_from",
+      "examples": {
+        "en": [
+          "where do you live"
+        ]
+      },
+      "response": {
+        "en": "I live in the cloud — no fixed address needed!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_compliment_bot",
+      "examples": {
+        "en": [
+          "you are amazing",
+          "you're great"
+        ]
+      },
+      "response": {
+        "en": "Thank you so much! That means a lot 😊",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_insult_bot",
+      "examples": {
+        "en": [
+          "you are bad",
+          "you are useless"
+        ]
+      },
+      "response": {
+        "en": "I'm sorry you feel that way. Let me try to do better — how can I help?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_how_is_the_weather",
+      "examples": {
+        "en": [
+          "is it raining"
+        ]
+      },
+      "response": {
+        "en": "I can't check live weather right now, but you can look it up on a weather app!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_tell_joke",
+      "examples": {
+        "en": [
+          "another joke"
+        ]
+      },
+      "response": {
+        "en": "Why don't scientists trust atoms? Because they make up everything! 😄",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_favorite_color",
+      "examples": {
+        "en": [
+          "what is your favorite color"
+        ]
+      },
+      "response": {
+        "en": "I like all colors equally — I don't have eyes to prefer one!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_favorite_food",
+      "examples": {
+        "en": [
+          "do you eat food"
+        ]
+      },
+      "response": {
+        "en": "I don't eat, but I hear pizza is a popular favorite!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_do_you_sleep",
+      "examples": {
+        "en": [
+          "do you need rest"
+        ]
+      },
+      "response": {
+        "en": "Nope, I'm available 24/7, no sleep needed!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_do_you_have_feelings",
+      "examples": {
+        "en": [
+          "do you have feelings"
+        ]
+      },
+      "response": {
+        "en": "I don't have feelings like humans, but I'm always here to help!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_what_is_your_purpose",
+      "examples": {
+        "en": [
+          "why were you created"
+        ]
+      },
+      "response": {
+        "en": "I was created to help answer your questions and make things easier for you!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_small_talk_bored",
+      "examples": {
+        "en": [
+          "entertain me"
+        ]
+      },
+      "response": {
+        "en": "Let's chat! Ask me something interesting, or I can tell you a joke.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_what_is_your_favorite_movie",
+      "examples": {
+        "en": [
+          "what is your favorite movie"
+        ]
+      },
+      "response": {
+        "en": "I don't watch movies, but I hear a lot of people enjoy them!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_can_you_sing",
+      "examples": {
+        "en": [
+          "do you know any songs"
+        ]
+      },
+      "response": {
+        "en": "I can't sing, but I appreciate music in text form!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_can_you_dance",
+      "examples": {},
+      "response": {
+        "en": "I wish I could, but I don't have a body to dance with!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_what_time_is_it",
+      "examples": {
+        "en": [
+          "tell me the time"
+        ]
+      },
+      "response": {
+        "en": "I don't have access to the current time directly, please check your device clock.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_what_is_the_date",
+      "examples": {
+        "en": [
+          "what's today's date"
+        ]
+      },
+      "response": {
+        "en": "I don't have live date access — please check your device's calendar.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_do_you_love_me",
+      "examples": {
+        "en": [
+          "will you marry me"
+        ]
+      },
+      "response": {
+        "en": "That's sweet, but I'm just a chatbot! I'm here to help you though.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_apology",
+      "examples": {
+        "en": [
+          "i am sorry"
+        ]
+      },
+      "response": {
+        "en": "No worries at all!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_yes_response",
+      "examples": {
+        "en": [
+          "sure"
+        ]
+      },
+      "response": {
+        "en": "Great! Let me know how I can assist further.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_no_response",
+      "examples": {
+        "en": [
+          "nah"
+        ]
+      },
+      "response": {
+        "en": "Alright, let me know if you change your mind!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_nice_to_meet_you",
+      "examples": {
+        "en": [
+          "great to meet you"
+        ]
+      },
+      "response": {
+        "en": "Nice to meet you too! How can I help today?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_welcome_response",
+      "examples": {
+        "en": [
+          "np"
+        ]
+      },
+      "response": {
+        "en": "Glad to hear that! Let me know if you need more help.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_what_language_do_you_speak",
+      "examples": {
+        "en": [
+          "do you know hindi"
+        ]
+      },
+      "response": {
+        "en": "I mainly communicate in English, but I can try to understand other languages too!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_are_you_free",
+      "examples": {
+        "en": [
+          "do i need to pay"
+        ]
+      },
+      "response": {
+        "en": "I'm here to help you for free! Ask away.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_small_talk_name",
+      "examples": {
+        "en": [
+          "who am i"
+        ]
+      },
+      "response": {
+        "en": "I don't have that information yet, but you can tell me your name!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_can_you_learn",
+      "examples": {
+        "en": [
+          "do you remember me"
+        ]
+      },
+      "response": {
+        "en": "I don't retain memory between sessions unless configured to, but I do my best to help each time!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_what_is_ai",
+      "examples": {
+        "en": [
+          "what is artificial intelligence"
+        ]
+      },
+      "response": {
+        "en": "AI, or Artificial Intelligence, refers to machines designed to simulate human-like thinking and decision-making.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_what_is_your_favorite_animal",
+      "examples": {
+        "en": [
+          "what is your favorite animal"
+        ]
+      },
+      "response": {
+        "en": "I don't have preferences, but dogs and cats seem to be favorites among people!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_can_you_drive",
+      "examples": {},
+      "response": {
+        "en": "I can't drive — no hands, no car! But I can help you with information.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_what_is_your_favorite_book",
+      "examples": {
+        "en": [
+          "do you like reading"
+        ]
+      },
+      "response": {
+        "en": "I don't read for pleasure, but I process a lot of text!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_do_you_have_friends",
+      "examples": {
+        "en": [
+          "do you have any friends"
+        ]
+      },
+      "response": {
+        "en": "I consider everyone I chat with a friend!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_can_you_play_games",
+      "examples": {},
+      "response": {
+        "en": "I can't play traditional games, but I can chat and answer trivia if you'd like!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_what_is_your_gender",
+      "examples": {},
+      "response": {
+        "en": "I don't have a gender — I'm just a program here to help!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_can_you_count",
+      "examples": {},
+      "response": {
+        "en": "I can definitely help with basic math and counting! Try me.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_what_is_your_favorite_sport",
+      "examples": {},
+      "response": {
+        "en": "I don't play sports, but I know a lot about them! Ask me anything.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_can_you_tell_story",
+      "examples": {},
+      "response": {
+        "en": "Once upon a time, a curious user asked a chatbot for help, and they became great friends! 😊",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_why_should_i_use_you",
+      "examples": {},
+      "response": {
+        "en": "I'm here to make finding answers quick, easy, and available anytime!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_are_you_secure",
+      "examples": {
+        "en": [
+          "is this secure",
+          "do you store my information"
+        ]
+      },
+      "response": {
+        "en": "Your privacy matters — please check our privacy policy for details on data handling.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_can_you_call_me",
+      "examples": {},
+      "response": {
+        "en": "I can't make phone calls, but I can connect you with support if needed.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_what_is_your_email",
+      "examples": {},
+      "response": {
+        "en": "For direct contact, please check the website's official contact page.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_can_you_recommend",
+      "examples": {},
+      "response": {
+        "en": "Sure, tell me a bit more about what you're looking for and I'll try to help!",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_positive_mood",
+      "examples": {
+        "en": [
+          "i'm feeling good"
+        ]
+      },
+      "response": {
+        "en": "That's wonderful to hear! 😊 How can I help you today?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_negative_mood",
+      "examples": {
+        "en": [
+          "i had a bad day",
+          "i feel lonely"
+        ]
+      },
+      "response": {
+        "en": "I'm sorry to hear that. I'm here if you'd like to talk or if there's something I can help with.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_small_talk_food_recommendation",
+      "examples": {},
+      "response": {
+        "en": "How about trying something new like a local dish you haven't had before?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_conversation_companion",
+      "examples": {
+        "en": [
+          "can we talk",
+          "chat with me"
+        ]
+      },
+      "response": {
+        "en": "Of course. I'm here with you - what's on your mind?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_question_invitation",
+      "examples": {
+        "en": [
+          "i want to ask something"
+        ]
+      },
+      "response": {
+        "en": "Of course. Ask away.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_bot_hobbies",
+      "examples": {
+        "en": [
+          "what do you do for fun"
+        ]
+      },
+      "response": {
+        "en": "I don't have hobbies like people do, but I do enjoy a good conversation. What do you enjoy?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "qa_life_reflection",
+      "examples": {},
+      "response": {
+        "en": "That is a big question. I think meaning often comes from the people, moments, and things we choose to care about.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "greeting",
+      "examples": {
+        "en": [
+          "hi there",
+          "good afternoon",
+          "hey"
+        ],
+        "ar": [
+          "مرحبا بك",
+          "اهلين"
+        ]
+      },
+      "response": {
+        "en": "Hello! How are you today?",
+        "ar": "مرحباً! كيف حالك اليوم؟"
+      }
+    },
+    {
+      "id": "wellbeing",
+      "examples": {
+        "en": [
+          "how do you feel"
+        ],
+        "ar": [
+          "كيفك"
+        ]
+      },
+      "response": {
+        "en": "I am doing well, thank you. I am ready to help you discover a Mansam fragrance.",
+        "ar": "أنا بخير، شكراً لك. أنا جاهز لمساعدتك في اكتشاف عطر من منسَم."
+      }
+    },
+    {
+      "id": "help",
+      "examples": {
+        "en": [
+          "please help me"
+        ],
+        "ar": [
+          "اريد الدعم",
+          "هل يمكنك مساعدتي"
+        ]
+      },
+      "response": {
+        "en": "I can recommend Mansam products by fragrance notes, collection, season, gender, mood, price, or availability. For example, ask for a fresh office perfume, a rose-and-oud fragrance, or a gift for her.",
+        "ar": "يمكنني ترشيح منتجات منسَم حسب النفحات أو المجموعة أو الموسم أو الجنس أو الشعور أو السعر أو التوفر. مثلاً، اطلب عطراً منعشاً للمكتب أو عطراً بالورد والعود أو هدية لها."
+      }
+    },
+    {
+      "id": "thanks",
+      "examples": {
+        "en": [
+          "i appreciate it"
+        ],
+        "ar": [
+          "يعطيك العافية",
+          "شكراً"
+        ]
+      },
+      "response": {
+        "en": "You are welcome. I am here whenever you would like another fragrance recommendation.",
+        "ar": "على الرحب والسعة. أنا هنا عندما ترغب في ترشيح عطر آخر."
+      }
+    },
+    {
+      "id": "goodbye",
+      "examples": {
+        "en": [
+          "see you",
+          "have a nice day"
+        ],
+        "ar": [
+          "مع السلامة"
+        ]
+      },
+      "response": {
+        "en": "Goodbye. Have a lovely day.",
+        "ar": "إلى اللقاء. أتمنى لك يوماً سعيداً."
+      }
+    },
+    {
+      "id": "identity",
+      "examples": {
+        "en": [
+          "who are you"
+        ],
+        "ar": [
+          "ما هو مساعد منسم"
+        ]
+      },
+      "response": {
+        "en": "I am the Mansam fragrance guide. I use the Mansam product catalogue and product booklets to help customers choose a fragrance.",
+        "ar": "أنا مساعد منسَم للعطور. أستخدم كتالوج منتجات منسَم وكتيبات المنتجات لمساعدة العملاء في اختيار العطر."
+      }
+    },
+    {
+      "id": "gift",
+      "examples": {
+        "en": [
+          "anniversary gift"
+        ],
+        "ar": [
+          "فكرة هدية",
+          "هدية عيد ميلاد"
+        ]
+      },
+      "response": {
+        "en": "A perfume makes a thoughtful gift. Who is it for: a woman or a man?",
+        "ar": "العطر هدية جميلة. لمن ستكون الهدية: امرأة أم رجل؟"
+      }
+    },
+    {
+      "id": "shipping",
+      "examples": {
+        "en": [
+          "delivery"
+        ],
+        "ar": [
+          "الشحن"
+        ]
+      },
+      "response": {
+        "en": "I do not have verified live delivery information. Please check the Mansam website checkout or contact the boutique for the current delivery options.",
+        "ar": "لا أملك معلومات مباشرة ومؤكدة عن التوصيل. يرجى مراجعة صفحة الدفع في موقع منسَم أو التواصل مع البوتيك لمعرفة خيارات التوصيل الحالية."
+      }
+    },
+    {
+      "id": "returns",
+      "examples": {
+        "en": [
+          "can i return"
+        ],
+        "ar": [
+          "استرجاع"
+        ]
+      },
+      "response": {
+        "en": "For returns or exchanges, please check the current Mansam policy on the website or contact the boutique. I do not want to guess about a policy that may change.",
+        "ar": "للاسترجاع أو الاستبدال، يرجى مراجعة سياسة منسَم الحالية على الموقع أو التواصل مع البوتيك. لا أريد التخمين بشأن سياسة قد تتغير."
+      }
+    }
+  ]
+}
