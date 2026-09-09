@@ -222,6 +222,8 @@
     const panel = document.querySelector(".mansam-chat");
     const launcher = document.querySelector(".mansam-chat-launcher");
     panel.hidden = !open;
+    panel.style.display = open ? "flex" : "none";
+    panel.setAttribute("aria-hidden", String(!open));
     launcher.setAttribute("aria-expanded", String(open));
     const launcherLabel = open ? "Close Mansam Concierge" : "Open Mansam Concierge";
     launcher.setAttribute("aria-label", launcherLabel);
