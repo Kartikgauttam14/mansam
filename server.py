@@ -1152,6 +1152,12 @@ class MansamHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         parsed_url = urlparse(self.path)
 
+        if parsed_url.path in ("", "/"):
+            self.send_response(302)
+            self.send_header("Location", "/dream.html")
+            self.end_headers()
+            return
+
         if parsed_url.path in ("/tts", "/api/tts"):
             self.proxy_tts(parsed_url.query)
             return
