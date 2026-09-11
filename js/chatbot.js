@@ -442,6 +442,11 @@
         submitVoiceTranscript(session);
         return;
       }
+      if (["network", "service-not-allowed", "language-not-supported"].includes(event.error)) {
+        stopRecognition(false);
+        startRecorderFallback();
+        return;
+      }
       const message = ["not-allowed", "service-not-allowed"].includes(event.error)
         ? copy[language()].voiceUnavailable
         : event.error === "no-speech" ? copy[language()].noSpeech : copy[language()].voiceError;
