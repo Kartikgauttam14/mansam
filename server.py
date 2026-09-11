@@ -123,7 +123,8 @@ def documentation_products(knowledge):
 
 
 def product_key(product):
-    value = normalize(localized(product.get("name"), "en")).replace(" ", "")
+    value = normalize(localized(product.get("name"), "en"))
+    value = re.sub(r"[^a-z0-9\u0600-\u06ff]+", "", value)
     return re.sub(r"(.)\1+", r"\1", value)
 
 
@@ -251,6 +252,16 @@ def product_notes(product, language="en"):
     return string_list(product.get("notes", {}).get(language, []))
 
 
+def format_price(product):
+    value = product.get("price")
+    if value is None or value == "":
+        return ""
+    try:
+        return f"{float(value):,.0f} {product.get('currency', 'AED')}"
+    except (TypeError, ValueError):
+        return f"{value} {product.get('currency', 'AED')}"
+
+
 def catalog_text(product):
     documentation = product.get("documentation", {})
     values = [
@@ -284,7 +295,7 @@ def query_term_matches(normalized_query, term):
 def query_intent(query):
     normalized = normalize(query)
     return {
-        "price": any(query_term_matches(normalized, word) for word in ("price", "cost", "aed", "how much", "السعر", "كم سعر", "بكم")),
+        "price": any(query_term_matches(normalized, word) for word in ("price", "cost", "aed", "how much", "السعر", "سعر", "كم سعر", "بكم")),
         "availability": any(query_term_matches(normalized, word) for word in ("available", "in stock", "stock", "availability", "متوفر", "المتوفر", "مخزون")),
         "notes": any(query_term_matches(normalized, word) for word in ("notes", "ingredients", "smell", "scent", "نفحات", "مكونات", "رائحة")),
         "collection": any(query_term_matches(normalized, word) for word in ("collection", "line", "category", "مجموعة", "فئة")),
@@ -374,10 +385,14 @@ def unique_products(products):
     unique = []
     seen = set()
     for product in products:
-        identity = product_identity(product)
-        if identity in seen:
+        identities = {
+            product_key({"name": product.get("name", {}).get(language, "")})
+            for language in ("en", "ar")
+            if localized(product.get("name"), language)
+        }
+        if seen.intersection(identities):
             continue
-        seen.add(identity)
+        seen.update(identities)
         unique.append(product)
     return unique
 
@@ -392,8 +407,37 @@ def is_comparison_request(message):
 def is_perfume_list_request(message):
     normalized = normalize(message)
     list_terms = ("list", "show me", "give me", "all", "catalog", "catalogue", "top", "قائمة", "اعرض", "كل", "أفضل", "افضل")
-    perfume_terms = PERFUME_QUERY_TERMS | {"attar", "oil", "oils", "bukhoor", "عطار", "بخور", "زيت"}
+    perfume_terms = PERFUME_QUERY_TERMS | {"attar", "oil", "oils", "bukhoor", "candle", "candles", "diffuser", "عطار", "بخور", "زيت", "شموع", "معطر"}
     return any(term in normalized for term in list_terms) and any(term in normalized for term in perfume_terms)
+
+
+def requested_product_lines(message):
+    normalized = normalize(message)
+    if any(term in normalized for term in ("attar", "oil", "oils", "عطار", "زيت", "زيوت")):
+        return {"signature blends (attar)"}
+    if any(term in normalized for term in ("candle", "candles", "شموع")):
+        return {"scented candles"}
+    if any(term in normalized for term in ("bukhoor", "maamoul", "بخور")):
+        return {"maamoul bukhoor"}
+    if any(term in normalized for term in ("diffuser", "diffusers", "معطر")):
+        return {"home diffusers"}
+    if any(term in normalized for term in PERFUME_QUERY_TERMS):
+        return {"eau de parfum 100ml", "eau de parfum 12ml"}
+    return set(PERFUME_PRODUCT_LINES)
+
+
+def requested_list_label(message, language):
+    normalized = normalize(message)
+    labels = (
+        (("attar", "oil", "oils", "عطار", "زيت", "زيوت"), "attars", "العطور الزيتية"),
+        (("candle", "candles", "شموع"), "candles", "الشموع"),
+        (("bukhoor", "maamoul", "بخور"), "bukhoor", "البخور"),
+        (("diffuser", "diffusers", "معطر"), "diffusers", "معطرات المنزل"),
+    )
+    for terms, english, arabic in labels:
+        if any(term in normalized for term in terms):
+            return arabic if language == "ar" else english
+    return "perfumes" if language == "en" else "العطور"
 
 
 def requested_list_count(message):
@@ -1010,7 +1054,7 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
             perfume_notes = ", ".join(product_notes(product, detail_language)[:5])
             perfume_collection = product_value(product, "collection", detail_language)
             perfume_price = product.get("price")
-            price_text = f" {perfume_price:,.0f} {product.get('currency', 'AED')}" if perfume_price is not None else ""
+            price_text = f" {format_price(product)}" if perfume_price is not None else ""
             return perfume_name, perfume_notes, perfume_collection, price_text
 
         first, second = [comparison_details(product, language) for product in comparison_products]
@@ -1041,23 +1085,25 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
     if is_perfume_list_request(message):
         requested_count = requested_list_count(message)
         list_query = f"{message} perfume"
+        product_lines = requested_product_lines(message)
         listed_products = unique_products([
             product for product in retrieve_products(list_query, limit=100)
-            if normalize(product_value(product, "productLine", "en")).strip() in PERFUME_PRODUCT_LINES
+            if normalize(product_value(product, "productLine", "en")).strip() in product_lines
         ])
         if not listed_products:
             listed_products = unique_products([
                 product for product in CATALOG_PRODUCTS
-                if normalize(product_value(product, "productLine", "en")).strip() in PERFUME_PRODUCT_LINES
+                if normalize(product_value(product, "productLine", "en")).strip() in product_lines
             ])
         if requested_count:
             listed_products = listed_products[:requested_count]
         names = ", ".join(product_value(product, "name", language) for product in listed_products)
         list_label = preference_label(preferences, language)
+        label = requested_list_label(message, language)
         if language == "ar":
-            answer = f"وجدت {len(listed_products)} عطراً مناسباً{(' لفئة ' + list_label) if list_label else ''}: {names}."
+            answer = f"وجدت {len(listed_products)} {label}{(' لفئة ' + list_label) if list_label else ''}: {names}."
         else:
-            answer = f"I found {len(listed_products)} perfumes{(' for the ' + list_label + ' style') if list_label else ''}: {names}."
+            answer = f"I found {len(listed_products)} {label}{(' for the ' + list_label + ' style') if list_label else ''}: {names}."
         return response_with_memory({
             "language": language, "answer": answer, "sources": [LIVE_SOURCE],
             "productLinks": [
@@ -1129,11 +1175,11 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
 
     if language == "ar":
         if intent["price"] and intent["notes"] and primary.get("price") is not None:
-            answer = f"بالنسبة إلى {name}، أبرز النفحات هي: {notes or 'غير مذكورة في المصادر المتاحة'}. والسعر الظاهر في كتالوج منسَم المباشر هو {primary['price']:,.0f} {primary.get('currency', 'AED')}."
+            answer = f"بالنسبة إلى {name}، أبرز النفحات هي: {notes or 'غير مذكورة في المصادر المتاحة'}. والسعر الظاهر في كتالوج منسَم المباشر هو {format_price(primary)}."
         elif intent["price"] and primary.get("price") is not None and intent["availability"]:
-            answer = f"بالنسبة إلى {name}، السعر الظاهر هو {primary['price']:,.0f} {primary.get('currency', 'AED')}. {status_text(primary, language)}"
+            answer = f"بالنسبة إلى {name}، السعر الظاهر هو {format_price(primary)}. {status_text(primary, language)}"
         elif intent["price"] and primary.get("price") is not None:
-            answer = f"بالنسبة إلى {name}، السعر الظاهر في كتالوج منسَم المباشر هو {primary['price']:,.0f} {primary.get('currency', 'AED')}."
+            answer = f"بالنسبة إلى {name}، السعر الظاهر في كتالوج منسَم المباشر هو {format_price(primary)}."
         elif intent["availability"]:
             answer = f"بالنسبة إلى {name}، {status_text(primary, language)}"
         elif intent["notes"]:
@@ -1156,11 +1202,11 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
                 answer += f" أبرز النفحات: {notes}."
     else:
         if intent["price"] and intent["notes"] and primary.get("price") is not None:
-            answer = f"For {name}, the key notes are {notes or 'not listed in the available sources'}. The live Mansam catalogue shows {primary['price']:,.0f} {primary.get('currency', 'AED')}."
+            answer = f"For {name}, the key notes are {notes or 'not listed in the available sources'}. The live Mansam catalogue shows {format_price(primary)}."
         elif intent["price"] and primary.get("price") is not None and intent["availability"]:
-            answer = f"For {name}, I found {primary['price']:,.0f} {primary.get('currency', 'AED')} in the live catalogue. {status_text(primary, language)}"
+            answer = f"For {name}, I found {format_price(primary)} in the live catalogue. {status_text(primary, language)}"
         elif intent["price"] and primary.get("price") is not None:
-            answer = f"For {name}, the live Mansam catalogue shows {primary['price']:,.0f} {primary.get('currency', 'AED')}."
+            answer = f"For {name}, the live Mansam catalogue shows {format_price(primary)}."
         elif intent["availability"]:
             answer = f"For {name}, {status_text(primary, language)}"
         elif intent["notes"]:
