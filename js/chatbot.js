@@ -43,7 +43,21 @@
       }
       if (positions.length > 1) lastRepeatedStart = Math.max(lastRepeatedStart, positions[positions.length - 1]);
     });
-    return (lastRepeatedStart > 0 ? collapsed.slice(lastRepeatedStart) : collapsed).join(" ").trim();
+    const trimmed = lastRepeatedStart > 0 ? collapsed.slice(lastRepeatedStart) : collapsed;
+    const deduped = [];
+    trimmed.forEach(word => {
+      deduped.push(word);
+      for (let size = Math.min(12, Math.floor(deduped.length / 2)); size >= 1; size -= 1) {
+        const start = deduped.length - size * 2;
+        const first = deduped.slice(start, start + size).map(item => item.toLocaleLowerCase());
+        const second = deduped.slice(start + size).map(item => item.toLocaleLowerCase());
+        if (first.length === size && first.join(" ") === second.join(" ")) {
+          deduped.splice(start + size, size);
+          break;
+        }
+      }
+    });
+    return deduped.join(" ").trim();
   }
 
   function rememberTurn(role, text) {
@@ -309,7 +323,7 @@
     }
     stopSpeaking();
     const recognition = new Recognition();
-    const session = { transcript: "", finalTranscript: "", interimTranscript: "", submitted: false, cancelled: false, silenceTimer: null };
+    const session = { transcript: "", finalTranscript: "", interimTranscript: "", submitted: false, cancelled: false, silenceTimer: null, endTimer: null };
     state.recognition = recognition;
     state.voiceSession = session;
     const isMobileVoice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -340,7 +354,7 @@
       if (input) input.value = session.transcript;
       clearTimeout(session.silenceTimer);
       if (session.transcript) {
-        session.silenceTimer = setTimeout(() => submitVoiceTranscript(session), 1800);
+        session.silenceTimer = setTimeout(() => submitVoiceTranscript(session), 2400);
       }
     };
     recognition.onerror = event => {
@@ -358,7 +372,8 @@
     recognition.onend = () => {
       if (state.voiceSession !== session) return;
       if (session.transcript && !session.submitted) {
-        submitVoiceTranscript(session);
+        clearTimeout(session.endTimer);
+        session.endTimer = setTimeout(() => submitVoiceTranscript(session), 900);
         return;
       }
       state.recognition = null;
