@@ -48,7 +48,8 @@ class ChatbotAccuracyBenchmark(unittest.TestCase):
             profile={"productIds": context_ids},
         )
         self.assertLessEqual(len(follow_up["productLinks"]), 1)
-        self.assertTrue(any(word in follow_up["answer"].lower() for word in ("notes", "aqua", "musk", "rose")))
+        self.assertEqual(len(follow_up["productLinks"]), 1)
+        self.assertNotIn("I found 20 perfumes", follow_up["answer"])
 
     def test_notes_question_without_context_requests_product(self):
         result = server.make_answer("show me the notes on this perfume", "en")
