@@ -14,6 +14,7 @@ class ChatbotAccuracyBenchmark(unittest.TestCase):
             ("I am fine how about you", "en", lambda r: r["intent"] == "wellbeing_reply"),
             ("I need a perfume for my wife", "en", lambda r: "wife" in r["answer"].lower() and len(r["productLinks"]) == 1),
             ("I need a perfume for my boyfriend", "en", lambda r: "boyfriend" in r["answer"].lower()),
+            ("bold and confident", "en", lambda r: r.get("intent") != "out_of_domain" and len(r["productLinks"]) == 1),
             ("show me top 2 perfumes", "en", lambda r: len(r["productIds"]) == 2 and len(r["productLinks"]) == 2),
             ("show me top 5 perfumes", "en", lambda r: len(r["productIds"]) == 5),
             ("give me the list of attars", "en", lambda r: len(r["productIds"]) == 8),

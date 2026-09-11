@@ -325,6 +325,10 @@ def is_domain_query(message, context_product_ids=None):
     normalized = normalize(message)
     if context_product_ids or named_product_ids(message):
         return True
+    # Mood and style phrases such as "bold and confident" are valid perfume
+    # discovery queries even when they do not contain the word perfume.
+    if query_preferences(message):
+        return True
     if any(query_term_matches(normalized, term) for term in DOMAIN_QUERY_TERMS):
         return True
     return any(query_term_matches(normalized, term) for term in SOCIAL_QUERY_TERMS)
