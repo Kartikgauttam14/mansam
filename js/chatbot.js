@@ -409,9 +409,9 @@
 
   async function requestChat(payload) {
     let lastError;
-    for (let attempt = 0; attempt < 2; attempt += 1) {
+    for (let attempt = 0; attempt < 3; attempt += 1) {
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 25000);
+      const timeout = setTimeout(() => controller.abort(), 30000);
       try {
         const response = await fetch(endpoint, {
           method: "POST",
@@ -423,7 +423,7 @@
         return await response.json();
       } catch (error) {
         lastError = error;
-        if (attempt === 0) await new Promise(resolve => setTimeout(resolve, 500));
+        if (attempt < 2) await new Promise(resolve => setTimeout(resolve, 700 * (attempt + 1)));
       } finally {
         clearTimeout(timeout);
       }

@@ -1284,6 +1284,16 @@ class MansamHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         parsed_url = urlparse(self.path)
 
+        if parsed_url.path == "/api/health":
+            body = json.dumps({"status": "ok", "service": "mansam-chatbot"}).encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(body)
+            return
+
         if parsed_url.path in ("", "/"):
             self.send_response(302)
             self.send_header("Location", "/dream.html")
@@ -1327,6 +1337,10 @@ class MansamHandler(SimpleHTTPRequestHandler):
         except (ValueError, json.JSONDecodeError) as error:
             body = json.dumps({"error": str(error)}).encode("utf-8")
             self.send_response(400)
+        except Exception as error:
+            print(f"Chat request failed: {type(error).__name__}: {error}")
+            body = json.dumps({"error": "The fragrance guide is temporarily unavailable."}).encode("utf-8")
+            self.send_response(503)
         else:
             self.send_response(200)
 
