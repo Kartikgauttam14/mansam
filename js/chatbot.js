@@ -323,21 +323,26 @@
     if (session) {
       session.cancelled = true;
       clearTimeout(session.silenceTimer);
+      clearTimeout(session.endTimer);
       if (submit) submitVoiceTranscript(session);
       else session.submitted = true;
     }
     const recognition = state.recognition;
     state.recognition = null;
     state.voiceSession = null;
-    if (recognition && state.listening) recognition.stop();
+    if (recognition) {
+      try { recognition.stop(); } catch (error) { /* already ended */ }
+    }
     setListening(false);
   }
 
   function startRecognition() {
     const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!Recognition) { setListening(false, copy[language()].voiceUnavailable); return; }
-    if (state.listening || state.voiceSession || state.recognition) {
-      if (state.listening) stopRecognition();
+    if (state.voiceSession || state.recognition) {
+      // The same button is a toggle: click once to listen, click again to
+      // submit the current transcript immediately.
+      stopRecognition(true);
       return;
     }
     stopSpeaking();
