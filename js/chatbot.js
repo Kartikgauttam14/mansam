@@ -1,6 +1,8 @@
 (function () {
   const config = window.MANSAM_CONFIG || {};
   const endpoint = config.chatEndpoint || "/api/chat";
+  const STORAGE_KEYS = { profile: "mansam-fragrance-memory", conversation: "mansam-chat-session", language: "mansam-chat-language" };
+  const STORAGE_VERSION = 2;
   const state = { open: false, busy: false, language: null, awaitingName: false, customerName: "", contextProductIds: [], profile: { name: "", preferences: [], productIds: [] }, conversation: [], inputMode: "chat", recognition: null, voiceSession: null, listening: false, speechAudio: null };
 
   const copy = {
@@ -8,7 +10,7 @@
     ar: { title: "مستشار منسَم", intro: "دليلك الشخصي لاكتشاف العطور", placeholder: "اكتب نفحاتك أو مزاجك أو مناسبتك", namePlaceholder: "اكتب اسمك", send: "إرسال", askName: "مرحباً بك في منسَم. ما اسمك؟", greeting: "مرحباً بك في منسَم يا {name} سيدي! ما العطر الذي يمكنني مساعدتك في العثور عليه اليوم؟", opening: "مرحباً. يمكنني مساعدتك في اكتشاف عطور منسَم من الكتالوج.", one: "أي عطر يحتوي على الورد والعود؟", two: "أريد عطراً منعشاً للاستخدام اليومي.", viewProduct: "عرض العطر", error: "تعذر الوصول إلى دليل العطور. حاول مرة أخرى.", chat: "كتابة", voice: "صوت", listen: "جارٍ الاستماع...", tapToSpeak: "اضغط للتحدث", voicePrompt: "أخبرني بما تبحث عنه", voiceHint: "تحدث بالعربية أو الإنجليزية", thinking: "نبحث عن العطر المناسب", available: "متاح الآن", readAloud: "استمع إلى الإجابة", clearMemory: "مسح ذاكرة العطور", voiceUnavailable: "الإدخال الصوتي غير متاح في هذا المتصفح.", noSpeech: "لم أسمع شيئاً. اضغط على الميكروفون وحاول مرة أخرى.", voiceError: "تعذر تشغيل الإدخال الصوتي. حاول مرة أخرى." }
   };
 
-  function language() { return state.language || ((document.documentElement.lang || localStorage.getItem("language") || "en").startsWith("ar") ? "ar" : "en"); }
+  function language() { return state.language || ((document.documentElement.lang || localStorage.getItem(STORAGE_KEYS.language) || localStorage.getItem("language") || "en").startsWith("ar") ? "ar" : "en"); }
   function detectLanguage(text) { return /[\u0600-\u06FF]/.test(text || "") ? "ar" : "en"; }
   function escapeHtml(value) { return String(value || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
   function cleanCustomerName(value) {
@@ -65,17 +67,27 @@
     if (!value) return;
     state.conversation.push({ role, text: value });
     state.conversation = state.conversation.slice(-8);
+    try { sessionStorage.setItem(STORAGE_KEYS.conversation, JSON.stringify({ version: STORAGE_VERSION, turns: state.conversation })); } catch (error) { /* storage may be unavailable */ }
   }
 
   function loadProfile() {
     try {
-      const stored = JSON.parse(localStorage.getItem("mansam-fragrance-memory") || "{}");
+      const stored = JSON.parse(localStorage.getItem(STORAGE_KEYS.profile) || "{}");
       return {
         name: cleanCustomerName(stored.name),
         preferences: Array.isArray(stored.preferences) ? stored.preferences.slice(0, 8) : [],
         productIds: Array.isArray(stored.productIds) ? stored.productIds.slice(0, 3) : [],
       };
     } catch (error) { return { name: "", preferences: [], productIds: [] }; }
+  }
+
+  function loadConversation() {
+    try {
+      const stored = JSON.parse(sessionStorage.getItem(STORAGE_KEYS.conversation) || "{}");
+      const turns = Array.isArray(stored.turns) ? stored.turns : Array.isArray(stored) ? stored : [];
+      return turns.filter(turn => turn && (turn.role === "customer" || turn.role === "assistant") && String(turn.text || "").trim())
+        .map(turn => ({ role: turn.role, text: String(turn.text).trim().slice(0, 1200) })).slice(-8);
+    } catch (error) { return []; }
   }
 
   function saveProfile(memory) {
@@ -86,7 +98,7 @@
       productIds: Array.isArray(memory.productIds) ? memory.productIds.slice(0, 3) : state.profile.productIds,
     };
     state.contextProductIds = state.profile.productIds.slice(0, 3);
-    try { localStorage.setItem("mansam-fragrance-memory", JSON.stringify(state.profile)); } catch (error) { /* storage may be unavailable */ }
+    try { localStorage.setItem(STORAGE_KEYS.profile, JSON.stringify({ version: STORAGE_VERSION, ...state.profile })); } catch (error) { /* storage may be unavailable */ }
   }
 
   function clearMemory() {
@@ -95,7 +107,10 @@
     state.awaitingName = Boolean(state.language);
     state.contextProductIds = [];
     state.conversation = [];
-    try { localStorage.removeItem("mansam-fragrance-memory"); } catch (error) { /* storage may be unavailable */ }
+    try {
+      localStorage.removeItem(STORAGE_KEYS.profile);
+      sessionStorage.removeItem(STORAGE_KEYS.conversation);
+    } catch (error) { /* storage may be unavailable */ }
     const messages = document.querySelector(".mansam-chat__messages");
     if (messages) { messages.innerHTML = ""; if (state.awaitingName) addMessage(copy[language()].askName, "assistant", [], true); }
   }
@@ -248,6 +263,7 @@
 
   function chooseLanguage(selectedLanguage) {
     state.language = selectedLanguage;
+    try { localStorage.setItem(STORAGE_KEYS.language, selectedLanguage); } catch (error) { /* storage may be unavailable */ }
     const panel = document.querySelector(".mansam-chat");
     panel.querySelector("[data-chat-language-choice]").hidden = true;
     panel.querySelector("[data-chat-conversation]").hidden = false;
@@ -255,10 +271,14 @@
     state.awaitingName = !state.customerName;
     refreshLanguage();
     panel.querySelector(".mansam-chat__messages").innerHTML = "";
-    const welcomeMessage = state.awaitingName
-      ? copy[selectedLanguage].askName
-      : copy[selectedLanguage].greeting.replace("{name}", state.customerName);
-    addMessage(welcomeMessage, "assistant", [], true);
+    if (state.conversation.length) {
+      state.conversation.forEach(turn => addMessage(turn.text, turn.role, [], false));
+    } else {
+      const welcomeMessage = state.awaitingName
+        ? copy[selectedLanguage].askName
+        : copy[selectedLanguage].greeting.replace("{name}", state.customerName);
+      addMessage(welcomeMessage, "assistant", [], true);
+    }
     panel.querySelector("[data-chat-input]").focus();
   }
 
@@ -495,6 +515,7 @@
     panel.querySelector("[data-chat-language-switcher]").addEventListener("change", event => { state.language = event.currentTarget.value; refreshLanguage(); panel.querySelector("[data-chat-input]").focus(); });
     panel.querySelectorAll("[data-chat-language]").forEach(button => button.addEventListener("click", () => chooseLanguage(button.dataset.chatLanguage)));
     state.profile = loadProfile();
+    state.conversation = loadConversation();
     state.customerName = state.profile.name || "";
     state.contextProductIds = state.profile.productIds.slice(0, 3);
   }
