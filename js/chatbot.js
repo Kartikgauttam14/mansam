@@ -3,7 +3,7 @@
   const endpoint = config.chatEndpoint || "/api/chat";
   const STORAGE_KEYS = { profile: "mansam-fragrance-memory", conversation: "mansam-chat-session", language: "mansam-chat-language" };
   const STORAGE_VERSION = 2;
-  const state = { open: false, busy: false, language: null, awaitingName: false, customerName: "", contextProductIds: [], profile: { name: "", preferences: [], productIds: [] }, conversation: [], inputMode: "chat", recognition: null, voiceSession: null, listening: false, speechAudio: null };
+  const state = { open: false, busy: false, language: null, awaitingName: false, customerName: "", contextProductIds: [], profile: { name: "", preferences: [], productIds: [] }, conversation: [], inputMode: "chat", recognition: null, recorder: null, voiceStream: null, voiceSession: null, listening: false, speechAudio: null };
 
   const copy = {
     en: { title: "Mansam Concierge", intro: "Your personal fragrance guide", placeholder: "Describe a note, mood, or occasion", namePlaceholder: "Enter your name", send: "Send", askName: "Welcome to Mansam. May I have your name?", greeting: "Welcome to Mansam, {name} sir! What fragrance can I help you find today?", one: "Which perfume has rose and oud?", two: "I want a fresh daily fragrance.", viewProduct: "View perfume", error: "I could not reach the fragrance guide. Please try again.", chat: "Chat", voice: "Voice", listen: "Listening...", tapToSpeak: "Tap to speak", voicePrompt: "Tell me what you are looking for", voiceHint: "Speak in English or Arabic", thinking: "Finding the right fragrance", available: "Available now", readAloud: "Read answer aloud", clearMemory: "Clear fragrance memory", voiceUnavailable: "Voice input is not available in this browser.", noSpeech: "I did not hear anything. Tap the microphone and try again.", voiceError: "Voice input could not start. Please try again." },
@@ -328,23 +328,77 @@
       else session.submitted = true;
     }
     const recognition = state.recognition;
+    const recorder = state.recorder;
     state.recognition = null;
+    state.recorder = null;
     state.voiceSession = null;
     if (recognition) {
       try { recognition.stop(); } catch (error) { /* already ended */ }
     }
+    if (recorder && recorder.state !== "inactive") {
+      recorder.stop();
+    }
+    if (state.voiceStream) {
+      state.voiceStream.getTracks().forEach(track => track.stop());
+      state.voiceStream = null;
+    }
     setListening(false);
+  }
+
+  async function startRecorderFallback() {
+    if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) {
+      setListening(false, copy[language()].voiceUnavailable);
+      return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const recorder = new MediaRecorder(stream);
+      const session = { transcript: "", finalTranscript: "", interimTranscript: "", submitted: false, cancelled: false, silenceTimer: null, endTimer: null, chunks: [] };
+      state.recorder = recorder;
+      state.voiceStream = stream;
+      state.voiceSession = session;
+      recorder.onstart = () => setListening(true);
+      recorder.ondataavailable = event => { if (event.data.size) session.chunks.push(event.data); };
+      recorder.onerror = () => setListening(false, copy[language()].voiceError);
+      recorder.onstop = async () => {
+        if (state.voiceSession !== session || session.cancelled || session.submitted) return;
+        state.voiceStream = null;
+        stream.getTracks().forEach(track => track.stop());
+        setListening(false, copy[language()].thinking);
+        try {
+          const blob = new Blob(session.chunks, { type: recorder.mimeType || "audio/webm" });
+          const response = await fetch(config.transcriptionEndpoint || "/api/transcribe", {
+            method: "POST",
+            headers: { "Content-Type": blob.type, "X-Speech-Language": language() },
+            body: blob,
+          });
+          if (!response.ok) throw new Error(`Transcription failed (${response.status})`);
+          const payload = await response.json();
+          session.transcript = cleanVoiceTranscript(payload.transcript || "");
+          submitVoiceTranscript(session);
+        } catch (error) {
+          state.recorder = null;
+          state.voiceSession = null;
+          setListening(false, copy[language()].voiceError);
+          console.error("Mansam speech fallback error:", error);
+        }
+      };
+      recorder.start();
+    } catch (error) {
+      setListening(false, copy[language()].voiceUnavailable);
+      console.error("Mansam microphone error:", error);
+    }
   }
 
   function startRecognition() {
     const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!Recognition) { setListening(false, copy[language()].voiceUnavailable); return; }
-    if (state.voiceSession || state.recognition) {
+    if (state.voiceSession || state.recognition || state.recorder) {
       // The same button is a toggle: click once to listen, click again to
       // submit the current transcript immediately.
       stopRecognition(true);
       return;
     }
+    if (!Recognition) { startRecorderFallback(); return; }
     stopSpeaking();
     const recognition = new Recognition();
     const session = { transcript: "", finalTranscript: "", interimTranscript: "", submitted: false, cancelled: false, silenceTimer: null, endTimer: null };
@@ -353,8 +407,8 @@
     const isMobileVoice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     recognition.lang = language() === "ar" ? "ar-SA" : "en-US";
     // Mobile browsers often emit cumulative interim results; one final utterance is more reliable there.
-    recognition.interimResults = !isMobileVoice;
-    recognition.continuous = !isMobileVoice;
+    recognition.interimResults = true;
+    recognition.continuous = false;
     recognition.maxAlternatives = 1;
     recognition.onstart = () => {
       if (state.voiceSession !== session || session.cancelled) {
@@ -378,7 +432,7 @@
       if (input) input.value = session.transcript;
       clearTimeout(session.silenceTimer);
       if (session.transcript) {
-        session.silenceTimer = setTimeout(() => submitVoiceTranscript(session), 2400);
+        session.silenceTimer = setTimeout(() => submitVoiceTranscript(session), 2000);
       }
     };
     recognition.onerror = event => {

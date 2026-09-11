@@ -28,6 +28,8 @@ HF_TIMEOUT_SECONDS = min(max(int(os.environ.get("HF_TIMEOUT_SECONDS", "20")), 5)
 HF_GRADIO_SPACE = os.environ.get("HF_GRADIO_SPACE", "").rstrip("/")
 HF_GRADIO_API_NAME = os.environ.get("HF_GRADIO_API_NAME", "/answer")
 HF_GRADIO_TOKEN = os.environ.get("HF_GRADIO_TOKEN", HF_TOKEN)
+ASR_MODEL = os.environ.get("ASR_MODEL", "openai/whisper-large-v3")
+ASR_API_URL = os.environ.get("ASR_API_URL", f"https://router.huggingface.co/hf-inference/models/{ASR_MODEL}")
 LIVE_REFRESH_SECONDS = max(int(os.environ.get("MANSAM_LIVE_REFRESH_SECONDS", "300")), 0)
 LIVE_REFRESH_LOCK = threading.Lock()
 LAST_LIVE_REFRESH = 0.0
@@ -1332,6 +1334,9 @@ class MansamHandler(SimpleHTTPRequestHandler):
     def do_POST(self):
         parsed_url = urlparse(self.path)
 
+        if parsed_url.path == "/api/transcribe":
+            self.transcribe_audio()
+            return
         if parsed_url.path != "/api/chat":
             self.send_error(404, "Not found")
             return
@@ -1367,6 +1372,43 @@ class MansamHandler(SimpleHTTPRequestHandler):
         else:
             self.send_response(200)
 
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write(body)
+
+    def transcribe_audio(self):
+        try:
+            content_length = int(self.headers.get("Content-Length", "0"))
+            if content_length <= 0 or content_length > 12 * 1024 * 1024:
+                raise ValueError("Audio payload must be between 1 byte and 12 MB")
+            audio = self.rfile.read(content_length)
+            if not HF_TOKEN:
+                raise RuntimeError("HF_TOKEN is not configured for speech fallback")
+            request = Request(
+                ASR_API_URL,
+                data=audio,
+                headers={
+                    "Authorization": f"Bearer {HF_TOKEN}",
+                    "Content-Type": self.headers.get("Content-Type", "audio/webm"),
+                },
+                method="POST",
+            )
+            with urlopen(request, timeout=45) as response:
+                result = json.loads(response.read().decode("utf-8"))
+            transcript = str(result.get("text", "")).strip() if isinstance(result, dict) else ""
+            if not transcript:
+                raise RuntimeError("Speech service returned no transcript")
+            body = json.dumps({"transcript": transcript}, ensure_ascii=False).encode("utf-8")
+            self.send_response(200)
+        except (ValueError, json.JSONDecodeError) as error:
+            body = json.dumps({"error": str(error)}).encode("utf-8")
+            self.send_response(400)
+        except Exception as error:
+            print(f"Transcription request failed: {type(error).__name__}: {error}")
+            body = json.dumps({"error": "Speech transcription is temporarily unavailable."}).encode("utf-8")
+            self.send_response(503)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Access-Control-Allow-Origin", "*")
