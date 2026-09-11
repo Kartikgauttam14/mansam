@@ -34,6 +34,26 @@ class ChatbotAccuracyBenchmark(unittest.TestCase):
             passed += 1
         self.assertGreaterEqual(passed / len(cases), 0.95)
 
+    def test_product_notes_follow_up_does_not_become_catalogue(self):
+        recommendation = server.make_answer("I need a perfume for my girlfriend", "en")
+        context_ids = recommendation["productIds"][:3]
+        follow_up = server.make_answer(
+            "show me the notes on this perfume",
+            "en",
+            context_product_ids=context_ids,
+            conversation=[
+                {"role": "customer", "content": "I need a perfume for my girlfriend"},
+                {"role": "assistant", "content": recommendation["answer"]},
+            ],
+            profile={"productIds": context_ids},
+        )
+        self.assertLessEqual(len(follow_up["productLinks"]), 1)
+        self.assertTrue(any(word in follow_up["answer"].lower() for word in ("notes", "aqua", "musk", "rose")))
+
+    def test_notes_question_without_context_requests_product(self):
+        result = server.make_answer("show me the notes on this perfume", "en")
+        self.assertNotEqual(result.get("intent"), "perfume_list")
+
 
 if __name__ == "__main__":
     unittest.main()

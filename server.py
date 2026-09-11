@@ -436,6 +436,16 @@ def is_comparison_request(message):
 
 def is_perfume_list_request(message):
     normalized = normalize(message)
+    # Detail questions must stay attached to the current product. For example,
+    # "show me the notes on this perfume" contains list-like words but is not a
+    # request for a catalogue.
+    detail_terms = (
+        "notes", "ingredients", "smell", "scent", "price", "cost",
+        "availability", "available", "stock", "collection", "line",
+        "نفحات", "مكونات", "رائحة", "السعر", "متوفر", "مجموعة",
+    )
+    if any(query_term_matches(normalized, term) for term in detail_terms):
+        return False
     list_terms = ("list", "show me", "give me", "all", "catalog", "catalogue", "top", "قائمة", "اعرض", "كل", "أفضل", "افضل")
     perfume_terms = PERFUME_QUERY_TERMS | {"attar", "oil", "oils", "bukhoor", "candle", "candles", "diffuser", "عطار", "بخور", "زيت", "شموع", "معطر"}
     return any(term in normalized for term in list_terms) and any(term in normalized for term in perfume_terms)
@@ -1069,6 +1079,11 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
         if preference not in preferences:
             preferences.append(preference)
 
+    intent = query_intent(message)
+    has_context = bool(context_product_ids) and (
+        intent["follow_up"] or intent["price"] or intent["availability"] or intent["notes"]
+    )
+
     if is_comparison_request(message):
         comparison_ids = list(dict.fromkeys(named_product_ids(message) + context_product_ids))
         comparison_products = unique_products([
@@ -1119,7 +1134,9 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
             "intent": "comparison",
         }, preferences, [str(product.get("id")) for product in comparison_products])
 
-    if is_perfume_list_request(message):
+    # A product follow-up such as "show me the notes on this perfume" must be
+    # answered from the remembered product, never expanded into a full list.
+    if is_perfume_list_request(message) and not has_context:
         requested_count = requested_list_count(message)
         list_query = f"{message} perfume"
         product_lines = requested_product_lines(message)
@@ -1154,11 +1171,7 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
     general_response = general_intent_response(message, language, context_product_ids)
     if general_response:
         return response_with_memory(general_response, preferences, context_product_ids)
-    intent = query_intent(message)
     direct_product_ids = named_product_ids(message)
-    has_context = bool(context_product_ids) and (
-        intent["follow_up"] or intent["price"] or intent["availability"] or intent["notes"]
-    )
     normalized_message = normalize(message)
     simple_recommendation = any(phrase in normalized_message for phrase in (
         "suggest me", "give me a suggestion", "what do you suggest", "recommend something"
@@ -1176,12 +1189,22 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
         )
     retrieval_message = " ".join([message, "perfume"] + preferences) if generic_recommendation else " ".join([message] + preferences)
     recommendation_mode = (bool(preferences) or generic_recommendation) and not direct_product_ids and not has_context
-    matches = retrieve_products(
-        retrieval_message,
-        context_product_ids,
-        limit=25 if recommendation_mode else 3,
-        exclude_product_ids=context_product_ids if recommendation_mode else [],
+    detail_follow_up = has_context and any(
+        intent[key] for key in ("notes", "price", "availability", "collection")
     )
+    if detail_follow_up:
+        # Preserve the conversation's product order. Semantic retrieval can
+        # otherwise replace "this perfume" with a different close match.
+        by_id = {str(product.get("id")): product for product in CATALOG_PRODUCTS}
+        matches = [by_id[product_id] for product_id in context_product_ids if product_id in by_id]
+        matches = matches[:3]
+    else:
+        matches = retrieve_products(
+            retrieval_message,
+            context_product_ids,
+            limit=25 if recommendation_mode else 3,
+            exclude_product_ids=context_product_ids if recommendation_mode else [],
+        )
     if not matches and recommendation_mode:
         matches = retrieve_products(retrieval_message, context_product_ids)
     if recommendation_mode and matches:
