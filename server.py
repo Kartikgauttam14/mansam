@@ -65,6 +65,20 @@ PERFUME_PRODUCT_LINES = {
     "signature blends (attar)", "maamoul bukhoor", "luban", "dehab",
 }
 PERFUME_QUERY_TERMS = {"perfume", "perfumes", "fragrance", "fragrances", "scent", "scents", "عطر", "عطور"}
+DOMAIN_QUERY_TERMS = PERFUME_QUERY_TERMS | {
+    "attar", "attars", "oil", "oils", "candle", "candles", "bukhoor", "maamoul", "diffuser", "diffusers",
+    "product", "products", "catalog", "catalogue", "collection", "notes", "ingredients", "price", "cost",
+    "aed", "sar", "availability", "available", "stock", "website", "site", "shop", "store", "boutique",
+    "link", "order", "shipping", "delivery", "mansam", "منسم", "عطار", "زيت", "زيوت", "شمعة", "شموع",
+    "بخور", "معطر", "منتج", "منتجات", "كتالوج", "مجموعة", "نفحات", "مكونات", "السعر", "سعر", "متوفر",
+    "متاحة", "رابط", "طلب", "شحن", "توصيل",
+}
+SOCIAL_QUERY_TERMS = {
+    "hello", "hi", "hey", "hii", "good morning", "good afternoon", "good evening", "how are you", "i am fine",
+    "im fine", "i'm fine", "i am good", "im good", "i'm good", "thanks", "thank you", "bye", "goodbye",
+    "who are you", "what do you do", "my name is", "مرحباً", "مرحبا", "اهلا", "أهلاً", "كيف حالك", "أنا بخير",
+    "شكرا", "مع السلامة",
+}
 
 
 def localized(value, language="en"):
@@ -302,6 +316,22 @@ def query_intent(query):
         "recommendation": any(query_term_matches(normalized, word) for word in ("recommend", "suggest", "best", "daily", "recommendation", "اقترح", "انصح", "افضل", "يومي")),
         "follow_up": any(query_term_matches(normalized, word) for word in ("it", "this", "that", "its", "this perfume", "هذا", "هذه", "عنه", "له", "تفاصيله")),
     }
+
+
+def is_domain_query(message, context_product_ids=None):
+    """Keep factual answers inside Mansam's approved catalogue and website domain."""
+    normalized = normalize(message)
+    if context_product_ids or named_product_ids(message):
+        return True
+    if any(query_term_matches(normalized, term) for term in DOMAIN_QUERY_TERMS):
+        return True
+    return any(query_term_matches(normalized, term) for term in SOCIAL_QUERY_TERMS)
+
+
+def domain_refusal(language):
+    if language == "ar":
+        return "أستطيع مساعدتك فقط في عطور ومنتجات منسَم ومعلومات الموقع مثل النفحات والأسعار والتوفّر والروابط."
+    return "I can help only with Mansam fragrances, products, and website information such as notes, prices, availability, and links."
 
 
 def preference_alias_matches(alias, normalized_query, query_tokens):
@@ -935,8 +965,9 @@ def hugging_face_answer(message, language, products):
         "Use only the supplied Mansam catalogue context. Do not invent facts, prices, "
         "availability, policies, shipping details, or product names. Sound natural and "
         "thoughtful, like a helpful boutique friend, without claiming to be human. Give a "
-        "concise answer in at most 120 words. Do not add URLs because the website renders "
-        "verified product links separately."
+        "concise answer in at most 120 words. Do not answer questions outside Mansam's "
+        "fragrance catalogue and website domain. Do not add URLs because the website "
+        "renders verified product links separately."
     )
     user_message = "Customer question:\n" + message + "\n\nVerified Mansam catalogue context:\n" + json.dumps(
         hugging_face_product_context(products, language), ensure_ascii=False
@@ -989,7 +1020,8 @@ def hugging_face_gradio_answer(message, language, products):
         "You are a warm Mansam fragrance companion. Reply only in " + language_name + ". "
         "Use only the verified catalogue context below. Do not invent products, prices, "
         "availability, policies, or links. Sound natural and thoughtful, like a helpful "
-        "boutique friend, without claiming to be human. Keep the reply below 120 words.\n\n"
+        "boutique friend, without claiming to be human. Answer only Mansam fragrance or "
+        "website questions. Keep the reply below 120 words.\n\n"
         "Customer question:\n" + message + "\n\nVerified Mansam catalogue context:\n" + json.dumps(
             hugging_face_product_context(products, language), ensure_ascii=False
         )
@@ -1018,6 +1050,11 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
     conversation = normalized_conversation(conversation)
     profile = normalized_profile(profile)
     context_product_ids = list(dict.fromkeys(profile["productIds"] + [str(value) for value in (context_product_ids or [])]))[:3]
+    if not is_domain_query(message, context_product_ids):
+        return response_with_memory({
+            "language": language, "answer": domain_refusal(language), "sources": [],
+            "productLinks": [], "productIds": [], "intent": "out_of_domain",
+        }, profile["preferences"], context_product_ids)
     preferences = profile["preferences"] + [
         preference for preference in conversation_preferences(conversation)
         if preference not in profile["preferences"]
