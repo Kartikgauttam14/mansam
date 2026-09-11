@@ -17,6 +17,7 @@ class ChatbotAccuracyBenchmark(unittest.TestCase):
             ("bold and confident", "en", lambda r: r.get("intent") != "out_of_domain" and len(r["productLinks"]) == 1),
             ("show me top 2 perfumes", "en", lambda r: len(r["productIds"]) == 2 and len(r["productLinks"]) == 2),
             ("show me top 5 perfumes", "en", lambda r: len(r["productIds"]) == 5),
+            ("show me the type of perfume", "en", lambda r: r.get("intent") == "perfume_types" and "floral" in r["answer"].lower()),
             ("give me the list of attars", "en", lambda r: len(r["productIds"]) == 8),
             ("give me the list of candles", "en", lambda r: len(r["productIds"]) == 4),
             ("give me the list of bukhoor", "en", lambda r: len(r["productIds"]) == 4),

@@ -457,6 +457,20 @@ def is_perfume_list_request(message):
     return any(term in normalized for term in list_terms) and any(term in normalized for term in perfume_terms)
 
 
+def is_perfume_type_request(message):
+    normalized = normalize(message)
+    type_terms = ("type", "types", "kind", "kinds", "style", "styles", "category", "categories", "نوع", "أنواع", "فئة", "فئات")
+    return any(query_term_matches(normalized, term) for term in type_terms) and any(
+        query_term_matches(normalized, term) for term in PERFUME_QUERY_TERMS
+    )
+
+
+def perfume_type_response(language):
+    if language == "ar":
+        return "أنواع العطور المتاحة في منسَم تشمل: منعشة وحمضية، زهرية، وردية، بالعود، خشبية، حلوة، دافئة ومتبلّة، ورومانسية. كما تتوفر بصيغ مثل ماء العطر والعطور الزيتية والبخور." 
+    return "Mansam fragrance types include fresh and citrus-led, floral, rose, oud, woody, sweet, warm and spicy, and romantic styles. They are also available as Eau de Parfum, attars, and bukhoor."
+
+
 def requested_product_lines(message):
     normalized = normalize(message)
     if any(term in normalized for term in ("attar", "oil", "oils", "عطار", "زيت", "زيوت")):
@@ -1139,6 +1153,12 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
             "productIds": [str(product.get("id")) for product in comparison_products],
             "intent": "comparison",
         }, preferences, [str(product.get("id")) for product in comparison_products])
+
+    if is_perfume_type_request(message) and not has_context:
+        return response_with_memory({
+            "language": language, "answer": perfume_type_response(language), "sources": [LIVE_SOURCE],
+            "productLinks": [], "productIds": [], "intent": "perfume_types",
+        }, preferences, context_product_ids)
 
     # A product follow-up such as "show me the notes on this perfume" must be
     # answered from the remembered product, never expanded into a full list.
