@@ -16,6 +16,7 @@ from intent_classifier import IntentClassifier
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 KNOWLEDGE_FILE = PROJECT_ROOT / "data" / "product-knowledge.json"
+SSOT_FILE = PROJECT_ROOT / "data" / "ssot-knowledge.json"
 LIVE_CATALOG_FILE = PROJECT_ROOT / "data" / "live-catalog.json"
 GENERAL_INTENTS_FILE = PROJECT_ROOT / "data" / "general-chat-intents.json"
 GENERAL_QA_FILE = PROJECT_ROOT / "general_qa_intents.json"
@@ -82,7 +83,20 @@ def string_list(value):
 
 def documentation_products(knowledge):
     products = []
+    source_products = []
+    seen_products = set()
     for product in knowledge.get("products", []):
+        source_products.append(product)
+    for product in knowledge.get("ssotProducts", []):
+        source_products.append(product)
+    for product in source_products:
+        identity = product_key(product)
+        if identity in seen_products:
+            products = [item for item in products if product_key(item) != identity]
+        seen_products.add(identity)
+        if product.get("sourceType") == "ssot":
+            products.append({**product})
+            continue
         products.append({
             **product,
             "productLine": {"en": "Eau de Parfum", "ar": "ماء عطر"},
@@ -116,6 +130,12 @@ def product_key(product):
 def load_catalog():
     with KNOWLEDGE_FILE.open(encoding="utf-8") as file:
         knowledge = json.load(file)
+    if SSOT_FILE.exists():
+        try:
+            with SSOT_FILE.open(encoding="utf-8") as file:
+                knowledge["ssotProducts"] = json.load(file).get("products", [])
+        except (OSError, json.JSONDecodeError) as error:
+            print(f"SSOT workbook data was not loaded: {type(error).__name__}")
     document_products = documentation_products(knowledge)
     product_by_key = {product_key(product): product for product in document_products}
     generated_at = ""
@@ -243,7 +263,9 @@ def catalog_text(product):
         product.get("volume", ""), product.get("packaging", ""), " ".join(product_notes(product, "en")),
         " ".join(product_notes(product, "ar")), product_value(documentation, "description", "en"),
         product_value(documentation, "description", "ar"), " ".join(product_notes(documentation, "en")),
-        " ".join(product_notes(documentation, "ar")),
+        " ".join(product_notes(documentation, "ar")), product_value(product, "keywords", "en"),
+        product_value(product, "keywords", "ar"), product_value(product, "idealFor", "en"),
+        product_value(product, "idealFor", "ar"), product.get("sourceSheet", ""),
     ]
     return " ".join(str(value) for value in values if value)
 
@@ -817,6 +839,8 @@ def product_source(product):
 
 
 def product_url(product):
+    if product.get("sourceUrl"):
+        return str(product["sourceUrl"])
     product_id = product.get("productId") or product.get("id")
     product_line = product_value(product, "productLine", "en")
     product_name = product_value(product, "name", "en")
@@ -840,9 +864,14 @@ def hugging_face_product_context(products, language):
             "notes": product_notes(product, language),
             "gender": product.get("gender", ""),
             "season": product.get("season", ""),
+            "keywords": product_value(product, "keywords", language),
+            "idealFor": product_value(product, "idealFor", language),
         }
         if product.get("price") is not None:
-            item["price"] = f"{product['price']:,.0f} {product.get('currency', 'AED')}"
+            try:
+                item["price"] = f"{float(product['price']):,.0f} {product.get('currency', 'AED')}"
+            except (TypeError, ValueError):
+                item["price"] = str(product["price"])
         if product.get("sourceType") == "live":
             item["available"] = bool(product.get("available"))
         context.append(item)
