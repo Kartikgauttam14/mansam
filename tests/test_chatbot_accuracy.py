@@ -70,6 +70,20 @@ class ChatbotAccuracyBenchmark(unittest.TestCase):
         self.assertTrue(set(result["productIds"]).isdisjoint(context))
         self.assertIn("AED", result["answer"])
 
+    def test_price_range_recommendation_respects_requested_quantity(self):
+        for count in (2, 4, 5, 6, 8, 10):
+            with self.subTest(count=count):
+                context = ["55"]
+                result = server.make_answer(
+                    f"Suggest me {count} perfumes in this price range",
+                    "en",
+                    context_product_ids=context,
+                    profile={"productIds": context},
+                )
+                self.assertEqual(result["intent"], "price_range_recommendation")
+                self.assertEqual(len(result["productIds"]), count)
+                self.assertTrue(set(result["productIds"]).isdisjoint(context))
+
 
 if __name__ == "__main__":
     unittest.main()
