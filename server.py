@@ -532,6 +532,10 @@ def requested_recommendation_count(message, default=2):
     """Read a small quantity from a recommendation request such as "two perfumes"."""
     normalized = normalize(message)
     match = re.search(r"\b(\d{1,2})\s+(?:perfumes?|fragrances?|scents?|products?)\b", normalized)
+    if not match:
+        match = re.search(r"\b(\d{1,2})\s+(?:similar\s+)?(?:products?|perfumes?)\b", normalized)
+    if not match:
+        match = re.search(r"(?:suggest|recommend|show|give)\D{0,20}\b(\d{1,2})\b", normalized)
     if match:
         return max(1, min(int(match.group(1)), 20))
     number_words = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "واحد": 1, "اثنين": 2, "اثنان": 2, "ثلاثة": 3, "اربعة": 4, "أربعة": 4, "خمسة": 5}
@@ -546,6 +550,15 @@ def is_price_range_recommendation(message):
     return any(phrase in normalized for phrase in (
         "price range", "same price", "similar price", "within this price", "in this range",
         "نطاق السعر", "نفس السعر", "سعر مشابه", "ضمن هذا السعر", "في هذا النطاق",
+    )) and any(query_term_matches(normalized, term) for term in ("suggest", "recommend", "show", "اقترح", "اعرض", "ارني"))
+
+
+def is_similar_product_recommendation(message):
+    normalized = normalize(message)
+    return any(phrase in normalized for phrase in (
+        "same category", "same type", "same kind", "similar product", "similar products",
+        "other products like this", "same collection", "نفس الفئة", "نفس النوع", "منتجات مشابهة",
+        "نفس المجموعة",
     )) and any(query_term_matches(normalized, term) for term in ("suggest", "recommend", "show", "اقترح", "اعرض", "ارني"))
 
 
@@ -1204,19 +1217,25 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
                 "productIds": [str(product.get("id"))], "intent": "product_link",
             }, preferences, [str(product.get("id"))])
 
-    if has_context and is_price_range_recommendation(message):
+    if context_product_ids and (is_price_range_recommendation(message) or is_similar_product_recommendation(message)):
         by_id = {str(product.get("id")): product for product in CATALOG_PRODUCTS}
         reference = next((by_id[product_id] for product_id in context_product_ids if product_id in by_id), None)
+        requested_count = requested_recommendation_count(message)
         try:
             reference_price = float(reference.get("price")) if reference else None
         except (TypeError, ValueError):
             reference_price = None
-        if reference_price is not None:
-            requested_count = requested_recommendation_count(message)
-            candidates = [
-                product for product in CATALOG_PRODUCTS
-                if str(product.get("id")) not in context_product_ids and product.get("price") not in (None, "")
+        candidates = [product for product in CATALOG_PRODUCTS if str(product.get("id")) not in context_product_ids]
+        if is_similar_product_recommendation(message) and reference:
+            reference_line = product_value(reference, "productLine", "en")
+            reference_collection = product_value(reference, "collection", "en")
+            same_category = [
+                product for product in candidates
+                if (reference_line and product_value(product, "productLine", "en") == reference_line)
+                or (reference_collection and product_value(product, "collection", "en") == reference_collection)
             ]
+            candidates = same_category or candidates
+        if reference_price is not None and is_price_range_recommendation(message):
             close_matches = []
             for product in candidates:
                 try:
@@ -1226,23 +1245,37 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
                 if abs(price - reference_price) <= max(reference_price * 0.2, 20):
                     close_matches.append((abs(price - reference_price), product))
             close_matches.sort(key=lambda item: item[0])
-            range_matches = [product for _, product in close_matches]
-            if len(range_matches) < requested_count:
-                remaining = sorted(candidates, key=lambda product: abs(float(product.get("price")) - reference_price))
-                range_matches += [product for product in remaining if product not in range_matches]
-            range_matches = range_matches[:requested_count]
-            if range_matches:
-                names = ", ".join(f"{product_value(product, 'name', language)} ({format_price(product)})" for product in range_matches)
+            matches = [product for _, product in close_matches]
+            if len(matches) < requested_count:
+                remaining = []
+                for product in candidates:
+                    try:
+                        remaining.append((abs(float(product.get("price")) - reference_price), product))
+                    except (TypeError, ValueError):
+                        continue
+                matches += [product for _, product in sorted(remaining) if product not in matches]
+        elif is_similar_product_recommendation(message):
+            matches = candidates[:requested_count]
+        else:
+            matches = []
+        matches = matches[:requested_count]
+        if matches:
+                names = ", ".join(f"{product_value(product, 'name', language)} ({format_price(product)})" for product in matches)
+                is_price_match = is_price_range_recommendation(message)
                 answer = (
-                    f"Here are {len(range_matches)} other Mansam perfumes in a similar price range to {product_value(reference, 'name', language)}: {names}."
+                    f"Here are {len(matches)} other Mansam perfumes in a similar price range to {product_value(reference, 'name', language)}: {names}."
+                    if is_price_match else
+                    f"Here are {len(matches)} other Mansam perfumes from a similar category to {product_value(reference, 'name', language)}: {names}."
                     if language == "en" else
-                    f"إليك {len(range_matches)} عطور أخرى من منسَم ضمن نطاق سعري مشابه لسعر {product_value(reference, 'name', language)}: {names}."
+                    f"إليك {len(matches)} عطور أخرى من منسَم ضمن فئة مشابهة لفئة {product_value(reference, 'name', language)}: {names}."
                 )
+                if language == "ar" and is_price_match:
+                    answer = f"إليك {len(matches)} عطور أخرى من منسَم ضمن نطاق سعري مشابه لسعر {product_value(reference, 'name', language)}: {names}."
                 return response_with_memory({
                     "language": language, "answer": answer, "sources": [LIVE_SOURCE],
-                    "productLinks": [{"name": product.get("name", {}), "url": product_url(product)} for product in range_matches if product_url(product)],
-                    "productIds": [str(product.get("id")) for product in range_matches], "intent": "price_range_recommendation",
-                }, preferences, [str(product.get("id")) for product in range_matches])
+                    "productLinks": [{"name": product.get("name", {}), "url": product_url(product)} for product in matches if product_url(product)],
+                    "productIds": [str(product.get("id")) for product in matches], "intent": "price_range_recommendation" if is_price_range_recommendation(message) else "similar_product_recommendation",
+                }, preferences, [str(product.get("id")) for product in matches])
 
     if is_comparison_request(message) and not direct_product_ids and any(
         query_term_matches(normalize(message), term) for term in ("oud", "floral", "fresh", "woody", "sweet", "warm", "عود", "زهري", "زهرية", "منعش", "منعشة", "خشبي", "حلو", "دافئ")

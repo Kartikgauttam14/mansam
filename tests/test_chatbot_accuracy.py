@@ -84,6 +84,20 @@ class ChatbotAccuracyBenchmark(unittest.TestCase):
                 self.assertEqual(len(result["productIds"]), count)
                 self.assertTrue(set(result["productIds"]).isdisjoint(context))
 
+    def test_similarity_words_start_new_recommendation(self):
+        context = ["55"]
+        for phrase in ("same price", "similar price", "same category", "same type", "similar products"):
+            with self.subTest(phrase=phrase):
+                result = server.make_answer(
+                    f"Suggest me 2 perfumes in the {phrase}",
+                    "en",
+                    context_product_ids=context,
+                    profile={"productIds": context},
+                )
+                self.assertIn(result["intent"], {"price_range_recommendation", "similar_product_recommendation"})
+                self.assertEqual(len(result["productIds"]), 2)
+                self.assertTrue(set(result["productIds"]).isdisjoint(context))
+
 
 if __name__ == "__main__":
     unittest.main()
