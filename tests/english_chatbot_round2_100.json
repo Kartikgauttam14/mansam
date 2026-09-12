@@ -1,0 +1,514 @@
+[
+  {
+    "q": "Hello, I am back",
+    "kind": "greeting",
+    "context": []
+  },
+  {
+    "q": "Hi, good morning",
+    "kind": "greeting",
+    "context": []
+  },
+  {
+    "q": "Hey there",
+    "kind": "greeting",
+    "context": []
+  },
+  {
+    "q": "Good day to you",
+    "kind": "greeting",
+    "context": []
+  },
+  {
+    "q": "Hello, nice to see you",
+    "kind": "greeting",
+    "context": []
+  },
+  {
+    "q": "I am okay today",
+    "kind": "wellbeing",
+    "context": []
+  },
+  {
+    "q": "I am feeling good",
+    "kind": "wellbeing",
+    "context": []
+  },
+  {
+    "q": "Doing fine, thanks",
+    "kind": "wellbeing",
+    "context": []
+  },
+  {
+    "q": "I feel awesome",
+    "kind": "wellbeing",
+    "context": []
+  },
+  {
+    "q": "Thanks a lot",
+    "kind": "thanks",
+    "context": []
+  },
+  {
+    "q": "That helped me",
+    "kind": "thanks",
+    "context": []
+  },
+  {
+    "q": "Who are you?",
+    "kind": "general",
+    "context": []
+  },
+  {
+    "q": "What can you help me with?",
+    "kind": "general",
+    "context": []
+  },
+  {
+    "q": "I want a perfume for my aunt",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Find a scent for my daughter",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I need one for my son",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Suggest something for my sister-in-law",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I want a gift for my partner",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Find a fragrance for a gentleman",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I need something for a young woman",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Show me a fragrance for a young man",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I am shopping for myself",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Find me something for a special occasion",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Recommend a signature scent",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I want a clean office scent",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Find a citrus fragrance",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I want a perfume with musk",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Suggest a fruity perfume",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I want a smoky scent",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Find something elegant and powerful",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I want a perfume for spring",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Suggest something for a cold evening",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I like amber and saffron",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I prefer leather notes",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "What fragrance families do you offer?",
+    "kind": "types",
+    "context": []
+  },
+  {
+    "q": "What are your perfume formats?",
+    "kind": "types",
+    "context": []
+  },
+  {
+    "q": "Which fragrance styles can I choose from?",
+    "kind": "types",
+    "context": []
+  },
+  {
+    "q": "Do you have perfume categories?",
+    "kind": "types",
+    "context": []
+  },
+  {
+    "q": "What kind of scent is available?",
+    "kind": "types",
+    "context": []
+  },
+  {
+    "q": "List the perfume options",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "Show me the top 1 perfume",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "Give me the top 4 perfumes",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "Show me the top 6 perfumes",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "Give me the top 8 perfumes",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "List all women's fragrances",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "List all men's fragrances",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "Show me the attar products",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "Show me the home scents",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "What are the notes in Tahta Al Noujoum?",
+    "kind": "details",
+    "context": []
+  },
+  {
+    "q": "Tell me the notes of Qublat Ward",
+    "kind": "details",
+    "context": []
+  },
+  {
+    "q": "What ingredients does Al Shaghaf Al Ahmar have?",
+    "kind": "details",
+    "context": []
+  },
+  {
+    "q": "How does Mamlakati smell?",
+    "kind": "details",
+    "context": []
+  },
+  {
+    "q": "Tell me about Hadeeth Al Rooh",
+    "kind": "details",
+    "context": []
+  },
+  {
+    "q": "How much is Tahta Al Noujoum?",
+    "kind": "price",
+    "context": []
+  },
+  {
+    "q": "What is the cost of Qublat Ward?",
+    "kind": "price",
+    "context": []
+  },
+  {
+    "q": "Show the price for Hadeeth Al Rooh",
+    "kind": "price",
+    "context": []
+  },
+  {
+    "q": "Is Al Shaghaf Al Ahmar available?",
+    "kind": "availability",
+    "context": []
+  },
+  {
+    "q": "Do you have Qublat Ward in stock?",
+    "kind": "availability",
+    "context": []
+  },
+  {
+    "q": "Compare Tahta Al Noujoum and Qublat Ward",
+    "kind": "compare",
+    "context": []
+  },
+  {
+    "q": "Which is better, Hamsa or Mamlakati?",
+    "kind": "compare",
+    "context": []
+  },
+  {
+    "q": "Compare Hadeeth Al Rooh with Al Shaghaf Al Ahmar",
+    "kind": "compare",
+    "context": []
+  },
+  {
+    "q": "Where is the Mansam shop?",
+    "kind": "website",
+    "context": []
+  },
+  {
+    "q": "Can I get a link to the Mansam catalogue?",
+    "kind": "website",
+    "context": []
+  },
+  {
+    "q": "How do I buy a Mansam perfume?",
+    "kind": "website",
+    "context": []
+  },
+  {
+    "q": "I need a bold scent for my wife",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Find an oud scent for my husband",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Suggest floral notes for my mother",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I want something sweet for my girlfriend",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Find a woody gift for my boyfriend",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Recommend something warm for my father",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I want a romantic rose fragrance",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Find a fresh summer scent for her",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Suggest a strong winter scent for him",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I want something with vanilla and musk",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Tell me about this perfume",
+    "kind": "context_details",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "Show the notes for this one",
+    "kind": "context_details",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "How much does this one cost?",
+    "kind": "context_price",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "Is this one available?",
+    "kind": "context_availability",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "Give me another option for a woman",
+    "kind": "context_recommend",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "I changed it to a man",
+    "kind": "context_recommend",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "Which Mansam perfume has oud?",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Which one has jasmine?",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Do you sell rose perfumes?",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Do you have a daily fragrance?",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "What is your best floral perfume?",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "What is your best oud perfume?",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Can you help me choose a fragrance?",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I need a perfume recommendation",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Tell me about Mansam products",
+    "kind": "types",
+    "context": []
+  },
+  {
+    "q": "What does Mansam offer?",
+    "kind": "types",
+    "context": []
+  },
+  {
+    "q": "Can you show product links?",
+    "kind": "website",
+    "context": []
+  },
+  {
+    "q": "Does Mansam have delivery?",
+    "kind": "website",
+    "context": []
+  },
+  {
+    "q": "Please recommend a perfume for a gift",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I want a fragrance that feels confident",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "I need a refined perfume for dinner",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Find a light scent for daytime",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Suggest a Mansam perfume with oud",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "Show me a floral scent for a gift",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "What notes does Al Shawk have?",
+    "kind": "details",
+    "context": []
+  },
+  {
+    "q": "What is the price of Sarhan?",
+    "kind": "price",
+    "context": []
+  }
+]

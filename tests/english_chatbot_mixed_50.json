@@ -1,0 +1,205 @@
+[
+  {
+    "q": "Which Mansam perfume has rose and oud?",
+    "kind": "related"
+  },
+  {
+    "q": "I need a fresh perfume for my sister",
+    "kind": "related"
+  },
+  {
+    "q": "Show me top 3 women's perfumes",
+    "kind": "related"
+  },
+  {
+    "q": "What are the notes in Sarhan?",
+    "kind": "related"
+  },
+  {
+    "q": "Compare Mamlakati with Sarhan",
+    "kind": "related"
+  },
+  {
+    "q": "Which fragrance suits a bold, warm, romantic evening gift for my wife?",
+    "kind": "hard"
+  },
+  {
+    "q": "I changed from a floral perfume for my girlfriend to an oud one for my father; suggest one",
+    "kind": "hard"
+  },
+  {
+    "q": "Show me the notes and price of the perfume you just recommended",
+    "kind": "hard",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "Give me the top 5 available products for a confident man with woody notes",
+    "kind": "hard"
+  },
+  {
+    "q": "What is the difference between a daily fresh scent and a warm spicy evening scent?",
+    "kind": "hard"
+  },
+  {
+    "q": "What is the capital of France?",
+    "kind": "negative"
+  },
+  {
+    "q": "Tell me a recipe for biryani",
+    "kind": "negative"
+  },
+  {
+    "q": "Book me a hotel room",
+    "kind": "negative"
+  },
+  {
+    "q": "Who won yesterday's match?",
+    "kind": "negative"
+  },
+  {
+    "q": "Explain quantum mechanics",
+    "kind": "negative"
+  },
+  {
+    "q": "Suggest a Mansam fragrance for a friend",
+    "kind": "normal"
+  },
+  {
+    "q": "Find a Mansam fragrance with amber",
+    "kind": "normal"
+  },
+  {
+    "q": "Show me a Mansam fragrance with jasmine",
+    "kind": "normal"
+  },
+  {
+    "q": "I want a Mansam fragrance woody scent",
+    "kind": "normal"
+  },
+  {
+    "q": "Recommend a Mansam fragrance sweet fragrance",
+    "kind": "normal"
+  },
+  {
+    "q": "Find a Mansam fragrance romantic rose perfume",
+    "kind": "normal"
+  },
+  {
+    "q": "Suggest a Mansam fragrance fresh office fragrance",
+    "kind": "normal"
+  },
+  {
+    "q": "I need a Mansam fragrance gift for my mother",
+    "kind": "normal"
+  },
+  {
+    "q": "Show me a Mansam fragrance masculine perfume",
+    "kind": "normal"
+  },
+  {
+    "q": "Find a Mansam fragrance feminine perfume",
+    "kind": "normal"
+  },
+  {
+    "q": "I want a Mansam fragrance winter scent",
+    "kind": "normal"
+  },
+  {
+    "q": "Recommend a Mansam fragrance summer fragrance",
+    "kind": "normal"
+  },
+  {
+    "q": "Suggest a Mansam fragrance bold perfume",
+    "kind": "normal"
+  },
+  {
+    "q": "Find a Mansam fragrance soft floral scent",
+    "kind": "normal"
+  },
+  {
+    "q": "I need a Mansam fragrance daily fragrance",
+    "kind": "normal"
+  },
+  {
+    "q": "Show me a Mansam fragrance luxurious oud scent",
+    "kind": "normal"
+  },
+  {
+    "q": "Recommend a Mansam fragrance musk perfume",
+    "kind": "normal"
+  },
+  {
+    "q": "Find a Mansam fragrance vanilla fragrance",
+    "kind": "normal"
+  },
+  {
+    "q": "I want a Mansam fragrance scent for dinner",
+    "kind": "normal"
+  },
+  {
+    "q": "Suggest a Mansam fragrance perfume for myself",
+    "kind": "normal"
+  },
+  {
+    "q": "Show me the Mansam fragrance type of perfume",
+    "kind": "normal"
+  },
+  {
+    "q": "Give me the Mansam fragrance perfume list",
+    "kind": "normal"
+  },
+  {
+    "q": "Show me top 4 Mansam fragrance perfumes",
+    "kind": "normal"
+  },
+  {
+    "q": "What are the Mansam fragrance notes in Hamsa",
+    "kind": "normal"
+  },
+  {
+    "q": "What is the Mansam fragrance price of Mamlakati",
+    "kind": "normal"
+  },
+  {
+    "q": "Is Mansam fragrance Sarhan available",
+    "kind": "normal"
+  },
+  {
+    "q": "Compare Mansam fragrance Hamsa and Sarhan",
+    "kind": "normal"
+  },
+  {
+    "q": "Where is the Mansam fragrance Mansam catalogue",
+    "kind": "normal"
+  },
+  {
+    "q": "Do you sell Mansam fragrance attars",
+    "kind": "normal"
+  },
+  {
+    "q": "Do you have Mansam fragrance bukhoor",
+    "kind": "normal"
+  },
+  {
+    "q": "Tell me the Mansam fragrance fragrance categories",
+    "kind": "normal"
+  },
+  {
+    "q": "What are the Mansam fragrance Mansam perfume styles",
+    "kind": "normal"
+  },
+  {
+    "q": "Show me Mansam fragrance perfume formats",
+    "kind": "normal"
+  },
+  {
+    "q": "I need a Mansam fragrance fresh floral scent",
+    "kind": "normal"
+  },
+  {
+    "q": "Recommend a Mansam fragrance warm oud perfume",
+    "kind": "normal"
+  }
+]

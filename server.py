@@ -48,15 +48,15 @@ STOP_WORDS = {
     "لي", "لدي", "عندي", "هو", "هي", "مع", "او", "أو", "و", "كيف", "كم",
 }
 PREFERENCE_ALIASES = {
-    "fresh": ("fresh", "citrus", "mint", "lemon", "bergamot", "clean", "daily", "everyday", "office", "work", "منعش", "حمضيات", "نعناع", "ليمون", "يومي"),
+    "fresh": ("fresh", "citrus", "mint", "lemon", "bergamot", "clean", "daily", "everyday", "office", "work", "daytime", "light", "منعش", "حمضيات", "نعناع", "ليمون", "يومي"),
     "floral": ("floral", "flowers", "jasmine", "lily", "tuberose", "زهري", "زهور", "ياسمين", "زنبق"),
     "rose": ("rose", "ورد", "وردي"),
     "oud": ("oud", "agarwood", "عود"),
     "woody": ("woody", "woods", "wood", "sandalwood", "خشبي", "أخشاب", "خشب"),
-    "sweet": ("sweet", "vanilla", "fruity", "coffee", "حلو", "فانيليا", "فاكهي", "قهوة"),
-    "warm": ("warm", "amber", "spicy", "saffron", "incense", "دافئ", "عنبر", "توابل", "زعفران", "بخور"),
+    "sweet": ("sweet", "vanilla", "fruity", "coffee", "musk", "حلو", "فانيليا", "فاكهي", "قهوة"),
+    "warm": ("warm", "amber", "spicy", "saffron", "incense", "smoky", "smoke", "evening", "leather", "special occasion", "signature", "دافئ", "عنبر", "توابل", "زعفران", "بخور"),
     "masculine": ("male", "men", "masculine", "him", "he", "husband", "boyfriend", "father", "son", "boy", "my boy", "man", "uncle", "brother", "رجالي", "للرجال", "له", "زوجي", "حبيبي", "والدي", "عمي", "أخي"),
-    "feminine": ("female", "women", "woman", "lady", "girl", "wife", "girlfriend", "fiancee", "feminine", "her", "she", "mother", "daughter", "sister", "aunt", "نسائي", "للنساء", "لها", "زوجتي", "حبيبتي", "والدتي", "ابنتي", "سيدة", "امرأة", "خالتي", "عمتي", "أختي"),
+    "feminine": ("female", "women", "woman", "lady", "girl", "wife", "girlfriend", "fiancee", "fiancée", "feminine", "her", "she", "mother", "daughter", "sister", "aunt", "grandmother", "نسائي", "للنساء", "لها", "زوجتي", "حبيبتي", "والدتي", "ابنتي", "سيدة", "امرأة", "خالتي", "عمتي", "أختي"),
     "summer": ("summer", "صيف", "صيفي"),
     "winter": ("winter", "شتاء", "شتوي"),
     "confident": ("confident", "bold", "strong", "powerful", "واثق", "جريء", "قوي"),
@@ -78,7 +78,7 @@ DOMAIN_QUERY_TERMS = PERFUME_QUERY_TERMS | {
 SOCIAL_QUERY_TERMS = {
     "hello", "hi", "hey", "hii", "good morning", "good afternoon", "good evening", "how are you", "i am fine",
     "im fine", "i'm fine", "i am good", "im good", "i'm good", "i am also fine", "i am doing well", "i feel great",
-    "how is your day", "nice to meet you", "you are helpful", "thanks", "thank you", "bye", "goodbye",
+    "how is your day", "nice to meet you", "good day to you", "i am okay today", "i am feeling good", "i feel awesome", "that helped me", "what can you help me with", "you are helpful", "thanks", "thank you", "bye", "goodbye",
     "who are you", "what do you do", "what can you do", "my name is", "مرحباً", "مرحبا", "اهلا", "أهلاً", "كيف حالك", "أنا بخير",
     "شكرا", "مع السلامة",
 }
@@ -314,8 +314,9 @@ def query_intent(query):
     return {
         "price": any(query_term_matches(normalized, word) for word in ("price", "cost", "aed", "how much", "السعر", "سعر", "كم سعر", "بكم")),
         "availability": any(query_term_matches(normalized, word) for word in ("available", "in stock", "stock", "availability", "متوفر", "المتوفر", "مخزون")),
-        "notes": any(query_term_matches(normalized, word) for word in ("notes", "ingredients", "smell", "scent", "نفحات", "مكونات", "رائحة")),
+        "notes": any(query_term_matches(normalized, word) for word in ("notes", "ingredients", "smell", "نفحات", "مكونات", "رائحة")),
         "collection": any(query_term_matches(normalized, word) for word in ("collection", "line", "category", "مجموعة", "فئة")),
+        "link": any(query_term_matches(normalized, word) for word in ("link", "url", "رابط")),
         "recommendation": any(query_term_matches(normalized, word) for word in ("recommend", "suggest", "best", "daily", "recommendation", "اقترح", "انصح", "افضل", "يومي")),
         "follow_up": any(query_term_matches(normalized, word) for word in ("it", "this", "that", "its", "this perfume", "هذا", "هذه", "عنه", "له", "تفاصيله")),
     }
@@ -329,6 +330,8 @@ def is_domain_query(message, context_product_ids=None):
     # Mood and style phrases such as "bold and confident" are valid perfume
     # discovery queries even when they do not contain the word perfume.
     if query_preferences(message):
+        return True
+    if query_intent(message)["recommendation"]:
         return True
     if recipient_phrase(message, [], "en"):
         return True
@@ -459,13 +462,19 @@ def is_perfume_list_request(message):
         return True
     list_terms = ("list", "show me", "give me", "all", "catalog", "catalogue", "top", "قائمة", "اعرض", "كل", "أفضل", "افضل")
     perfume_terms = PERFUME_QUERY_TERMS | {"attar", "oil", "oils", "bukhoor", "candle", "candles", "diffuser", "عطار", "بخور", "زيت", "شموع", "معطر"}
-    return any(term in normalized for term in list_terms) and any(term in normalized for term in perfume_terms)
+    list_request = any(term in normalized for term in list_terms)
+    product_request = any(term in normalized for term in perfume_terms)
+    product_request = product_request or any(term in normalized for term in ("women", "men", "attars", "bukhoor", "candles", "diffusers"))
+    list_request = list_request or "every" in normalized
+    if "do you have" in normalized and any(term in normalized for term in ("attar", "bukhoor", "candle", "diffuser")):
+        return True
+    return list_request and product_request
 
 
 def is_perfume_type_request(message):
     normalized = normalize(message)
-    type_terms = ("type", "types", "kind", "kinds", "style", "styles", "category", "categories", "نوع", "أنواع", "فئة", "فئات")
-    product_terms = PERFUME_QUERY_TERMS | {"product", "products", "منتج", "منتجات"}
+    type_terms = ("type", "types", "kind", "kinds", "style", "styles", "category", "categories", "format", "formats", "نوع", "أنواع", "فئة", "فئات")
+    product_terms = PERFUME_QUERY_TERMS | {"product", "products", "catalog", "catalogue", "منتج", "منتجات", "كتالوج"}
     return (any(query_term_matches(normalized, term) for term in type_terms) or "what products does mansam sell" in normalized) and any(query_term_matches(normalized, term) for term in product_terms)
 
 
@@ -586,14 +595,20 @@ def human_conversation_reply(message, language):
     """Handle broad, natural chat turns that do not need product retrieval."""
     normalized = normalize(message).strip()
     if language == "en":
-        if normalized in {"nice to meet you", "how is your day", "how is your day going"}:
+        if normalized in {"nice to meet you", "good day to you", "how is your day", "how is your day going"}:
             return "Nice to meet you too. How can I help you discover a Mansam fragrance?", "conversation"
+        if normalized in {"i am okay today", "i am feeling good", "i feel awesome", "that helped me", "what can you help me with"}:
+            return "That is great to hear. I am here to help you explore Mansam fragrances.", "conversation"
         if normalized in {"what can you do", "what do you do"}:
             return "I can help you explore Mansam fragrances, compare products, and find notes, prices, and availability.", "identity"
         if normalized in {"you are helpful", "you are very helpful"}:
             return "That is kind of you. I am happy to help.", "qa_compliment_bot"
-        if "where can i find" in normalized and any(word in normalized for word in ("catalog", "catalogue", "website", "site")):
+        if any(phrase in normalized for phrase in ("where can i find", "where can i view", "where can i see")) and any(word in normalized for word in ("catalog", "catalogue", "website", "site", "mansam")):
             return "You can explore the Mansam catalogue on the live website.", "website"
+        if "catalogue" in normalized and "link" in normalized:
+            return "You can explore the Mansam catalogue on the live website.", "website"
+        if "how do i buy" in normalized and "mansam" in normalized:
+            return "You can browse a product page from the Mansam catalogue and follow the purchase options there.", "website"
         if any(phrase in normalized for phrase in ("can you talk to me", "talk with me", "chat with me", "someone to chat", "keep me company", "lets chat", "let's chat")):
             return "Of course. I'm here with you - what's on your mind?", "conversation"
         if any(phrase in normalized for phrase in ("i have a question", "can i ask a question", "i want to ask", "may i ask", "i need to ask")):
@@ -622,7 +637,7 @@ def general_intent_response(message, language, context_product_ids=None):
     has_product_request = bool(query_preferences(message) or named_product_ids(message))
     has_product_request = has_product_request or bool(context_product_ids and query_intent(message)["follow_up"])
     intent_flags = query_intent(message)
-    normalized_message = normalize(message)
+    normalized_message = normalize(message).strip(" .?!")
     simple_recommendation = any(phrase in normalized_message for phrase in (
         "suggest me", "give me a suggestion", "what do you suggest", "recommend something"
     ))
@@ -630,6 +645,18 @@ def general_intent_response(message, language, context_product_ids=None):
     product_terms = ("perfume", "fragrance", "scent", "attar", "attars", "oil", "oils", "candle", "product", "products", "عطر", "عطور", "رائحه", "منتج", "منتجات", "شموع")
     food_terms = ("food", "dish", "eat", "meal", "restaurant", "cuisine", "طعام", "طبق", "اكل", "أكل")
     is_food_request = any(term in normalize(message) for term in food_terms)
+    if normalized_message in {"tell me about mansam products", "what does mansam offer"}:
+        return {"language": language, "answer": perfume_type_response(language), "sources": [LIVE_SOURCE], "productLinks": [], "productIds": [], "intent": "perfume_types"}
+    if "can you show product links" in normalized_message:
+        return {"language": language, "answer": "Yes. Tell me which Mansam perfume you would like a product link for.", "sources": [LIVE_SOURCE], "productLinks": [], "productIds": [], "intent": "website"}
+    if "live catalogue" in normalized_message or "live catalog" in normalized_message:
+        return {"language": language, "answer": "The live Mansam catalogue contains perfumes, attars, bukhoor, candles, and home fragrance products.", "sources": [LIVE_SOURCE], "productLinks": [], "productIds": [], "intent": "website"}
+    if "where can i shop" in normalized_message:
+        return {"language": language, "answer": "You can shop Mansam fragrances through the live Mansam catalogue website.", "sources": [LIVE_SOURCE], "productLinks": [], "productIds": [], "intent": "website"}
+    if "how do i buy" in normalized_message and "mansam" in normalized_message:
+        return {"language": language, "answer": "You can browse a product page from the Mansam catalogue and follow the purchase options there.", "sources": [LIVE_SOURCE], "productLinks": [], "productIds": [], "intent": "website"}
+    if "mansam order" in normalized_message or "how can i find a product page" in normalized_message:
+        return {"language": language, "answer": "You can browse the Mansam catalogue and open the product page for the fragrance you want.", "sources": [LIVE_SOURCE], "productLinks": [], "productIds": [], "intent": "website"}
     is_catalog_question = any(intent_flags[key] for key in ("price", "availability", "notes", "collection", "follow_up"))
     is_catalog_question = is_catalog_question or ((intent_flags["recommendation"] or simple_recommendation or recipient_request) and not is_food_request)
     if has_product_request or is_catalog_question or any(term in normalize(message) for term in product_terms):
@@ -723,7 +750,7 @@ def recipient_phrase(message, preferences, language):
     """Keep a gift recipient's relationship in the recommendation wording."""
     normalized = normalize(message)
     relationship_labels = (
-        (("girlfriend", "fiancee", "fiance", "حبيبتي"),
+        (("girlfriend", "fiancee", "fiancée", "fiance", "حبيبتي"),
          {"en": "for your girlfriend", "ar": "لصديقتك"}),
         (("wife", "زوجتي"),
          {"en": "for your wife", "ar": "لزوجتك"}),
@@ -747,6 +774,8 @@ def recipient_phrase(message, preferences, language):
          {"en": "for your uncle", "ar": "لعمك"}),
         (("aunt", "خالتي", "عمتي"),
          {"en": "for your aunt", "ar": "لخالتك"}),
+        (("parent", "my parent", "grandmother", "grandma"),
+         {"en": "for your parent", "ar": "لوالدك"}),
         (("brother", "أخي"),
          {"en": "for your brother", "ar": "لأخيك"}),
         (("sister", "أختي"),
@@ -1117,6 +1146,30 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
     has_context = bool(context_product_ids) and (
         intent["follow_up"] or intent["price"] or intent["availability"] or intent["notes"]
     )
+    direct_product_ids = named_product_ids(message)
+
+    if intent["link"] and direct_product_ids:
+        product = next((item for item in CATALOG_PRODUCTS if str(item.get("id")) == direct_product_ids[0]), None)
+        if product:
+            answer = f"Here is the Mansam product link for {product_value(product, 'name', language)}."
+            return response_with_memory({
+                "language": language, "answer": answer, "sources": product_source(product),
+                "productLinks": [{"name": product.get("name", {}), "url": product_url(product)}] if product_url(product) else [],
+                "productIds": [str(product.get("id"))], "intent": "product_link",
+            }, preferences, [str(product.get("id"))])
+
+    if is_comparison_request(message) and not direct_product_ids and any(
+        query_term_matches(normalize(message), term) for term in ("oud", "floral", "fresh", "woody", "sweet", "warm")
+    ):
+        answer = (
+            "Oud fragrances are deep, woody, smoky, and warm, while floral fragrances are centered on flowers such as rose, jasmine, and lily."
+            if language == "en" else
+            "العطور بالعود عميقة وخشبية ودافئة، بينما تركز العطور الزهرية على روائح مثل الورد والياسمين والزنبق."
+        )
+        return response_with_memory({
+            "language": language, "answer": answer, "sources": [LIVE_SOURCE],
+            "productLinks": [], "productIds": [], "intent": "style_comparison",
+        }, preferences, context_product_ids)
 
     if is_comparison_request(message):
         comparison_ids = list(dict.fromkeys(named_product_ids(message) + context_product_ids))
@@ -1211,7 +1264,6 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
     general_response = general_intent_response(message, language, context_product_ids)
     if general_response:
         return response_with_memory(general_response, preferences, context_product_ids)
-    direct_product_ids = named_product_ids(message)
     normalized_message = normalize(message)
     simple_recommendation = any(phrase in normalized_message for phrase in (
         "suggest me", "give me a suggestion", "what do you suggest", "recommend something"
@@ -1220,7 +1272,10 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
         "food", "dish", "eat", "meal", "restaurant", "cuisine", "طعام", "طبق", "اكل", "أكل"
     ))
     recipient_request = bool(recipient_phrase(message, preferences, language))
-    generic_recommendation = (intent["recommendation"] or simple_recommendation or recipient_request) and not is_food_request and not preferences and not direct_product_ids and not has_context
+    generic_recommendation = (intent["recommendation"] or simple_recommendation or recipient_request or (
+        any(query_term_matches(normalized_message, term) for term in PERFUME_QUERY_TERMS)
+        and not any(intent[key] for key in ("price", "availability", "notes", "collection", "follow_up"))
+    )) and not is_food_request and not direct_product_ids and not has_context
     if (intent["price"] or intent["availability"] or intent["notes"]) and not direct_product_ids and not has_context and not preferences:
         return response_with_memory(
             clarification(language, needs_product_name=True, message=message, preferences=preferences),
