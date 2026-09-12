@@ -528,6 +528,27 @@ def requested_list_count(message):
     return max(1, min(int(match.group(1)), 20))
 
 
+def requested_recommendation_count(message, default=2):
+    """Read a small quantity from a recommendation request such as "two perfumes"."""
+    normalized = normalize(message)
+    match = re.search(r"\b(\d{1,2})\s+(?:perfumes?|fragrances?|scents?|products?)\b", normalized)
+    if match:
+        return max(1, min(int(match.group(1)), 20))
+    number_words = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "واحد": 1, "اثنين": 2, "اثنان": 2, "ثلاثة": 3, "اربعة": 4, "أربعة": 4, "خمسة": 5}
+    for word, count in number_words.items():
+        if re.search(rf"(?:^|\s){re.escape(normalize(word))}(?:\s|$)", normalized):
+            return count
+    return default
+
+
+def is_price_range_recommendation(message):
+    normalized = normalize(message)
+    return any(phrase in normalized for phrase in (
+        "price range", "same price", "similar price", "within this price", "in this range",
+        "نطاق السعر", "نفس السعر", "سعر مشابه", "ضمن هذا السعر", "في هذا النطاق",
+    )) and any(query_term_matches(normalized, term) for term in ("suggest", "recommend", "show", "اقترح", "اعرض", "ارني"))
+
+
 def phrase_matches(message, example):
     normalized_message = normalize(message)
     normalized_example = normalize(example)
@@ -1182,6 +1203,45 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
                 "productLinks": [{"name": product.get("name", {}), "url": product_url(product)}] if product_url(product) else [],
                 "productIds": [str(product.get("id"))], "intent": "product_link",
             }, preferences, [str(product.get("id"))])
+
+    if has_context and is_price_range_recommendation(message):
+        by_id = {str(product.get("id")): product for product in CATALOG_PRODUCTS}
+        reference = next((by_id[product_id] for product_id in context_product_ids if product_id in by_id), None)
+        try:
+            reference_price = float(reference.get("price")) if reference else None
+        except (TypeError, ValueError):
+            reference_price = None
+        if reference_price is not None:
+            candidates = [
+                product for product in CATALOG_PRODUCTS
+                if str(product.get("id")) not in context_product_ids and product.get("price") not in (None, "")
+            ]
+            close_matches = []
+            for product in candidates:
+                try:
+                    price = float(product.get("price"))
+                except (TypeError, ValueError):
+                    continue
+                if abs(price - reference_price) <= max(reference_price * 0.2, 20):
+                    close_matches.append((abs(price - reference_price), product))
+            close_matches.sort(key=lambda item: item[0])
+            range_matches = [product for _, product in close_matches]
+            if len(range_matches) < requested_recommendation_count(message):
+                remaining = sorted(candidates, key=lambda product: abs(float(product.get("price")) - reference_price))
+                range_matches += [product for product in remaining if product not in range_matches]
+            range_matches = range_matches[:requested_recommendation_count(message)]
+            if range_matches:
+                names = ", ".join(product_value(product, "name", language) for product in range_matches)
+                answer = (
+                    f"Here are {len(range_matches)} other Mansam perfumes in a similar price range to {product_value(reference, 'name', language)}: {names}."
+                    if language == "en" else
+                    f"إليك {len(range_matches)} عطور أخرى من منسَم ضمن نطاق سعري مشابه لسعر {product_value(reference, 'name', language)}: {names}."
+                )
+                return response_with_memory({
+                    "language": language, "answer": answer, "sources": [LIVE_SOURCE],
+                    "productLinks": [{"name": product.get("name", {}), "url": product_url(product)} for product in range_matches if product_url(product)],
+                    "productIds": [str(product.get("id")) for product in range_matches], "intent": "price_range_recommendation",
+                }, preferences, [str(product.get("id")) for product in range_matches])
 
     if is_comparison_request(message) and not direct_product_ids and any(
         query_term_matches(normalize(message), term) for term in ("oud", "floral", "fresh", "woody", "sweet", "warm", "عود", "زهري", "زهرية", "منعش", "منعشة", "خشبي", "حلو", "دافئ")

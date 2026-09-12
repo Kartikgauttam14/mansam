@@ -1,13 +1,13 @@
 (function () {
   const config = window.MANSAM_CONFIG || {};
   const endpoint = config.chatEndpoint || "/api/chat";
-  const STORAGE_KEYS = { profile: "mansam-fragrance-memory", conversation: "mansam-chat-session", language: "mansam-chat-language" };
+  const STORAGE_KEYS = { profile: "mansam-fragrance-memory", conversation: "mansam-chat-session", language: "mansam-chat-language", speaker: "mansam-chat-speaker" };
   const STORAGE_VERSION = 2;
-  const state = { open: false, busy: false, language: null, awaitingName: false, customerName: "", contextProductIds: [], profile: { name: "", preferences: [], productIds: [] }, conversation: [], inputMode: "chat", recognition: null, recorder: null, voiceStream: null, voiceSession: null, listening: false, speechAudio: null };
+  const state = { open: false, busy: false, language: null, awaitingName: false, customerName: "", contextProductIds: [], profile: { name: "", preferences: [], productIds: [] }, conversation: [], inputMode: "chat", recognition: null, recorder: null, voiceStream: null, voiceSession: null, listening: false, speechAudio: null, speakerEnabled: true };
 
   const copy = {
-    en: { title: "Mansam Concierge", intro: "Your personal fragrance guide", placeholder: "Describe a note, mood, or occasion", namePlaceholder: "Enter your name", send: "Send", askName: "Welcome to Mansam. May I have your name?", greeting: "Welcome to Mansam, {name} sir! What fragrance can I help you find today?", one: "Which perfume has rose and oud?", two: "I want a fresh daily fragrance.", viewProduct: "View perfume", error: "I could not reach the fragrance guide. Please try again.", chat: "Chat", voice: "Voice", listen: "Listening...", tapToSpeak: "Tap to speak", voicePrompt: "Tell me what you are looking for", voiceHint: "Speak in English or Arabic", thinking: "Finding the right fragrance", available: "Available now", readAloud: "Read answer aloud", clearMemory: "Clear fragrance memory", voiceUnavailable: "Voice input is not available in this browser.", noSpeech: "I did not hear anything. Tap the microphone and try again.", voiceError: "Voice input could not start. Please try again." },
-    ar: { title: "مستشار منسَم", intro: "دليلك الشخصي لاكتشاف العطور", placeholder: "اكتب نفحاتك أو مزاجك أو مناسبتك", namePlaceholder: "اكتب اسمك", send: "إرسال", askName: "مرحباً بك في منسَم. ما اسمك؟", greeting: "مرحباً بك في منسَم يا {name} سيدي! ما العطر الذي يمكنني مساعدتك في العثور عليه اليوم؟", one: "أي عطر يحتوي على الورد والعود؟", two: "أريد عطراً منعشاً للاستخدام اليومي.", viewProduct: "عرض العطر", error: "تعذر الوصول إلى دليل العطور. حاول مرة أخرى.", chat: "كتابة", voice: "صوت", listen: "جارٍ الاستماع...", tapToSpeak: "اضغط للتحدث", voicePrompt: "أخبرني بما تبحث عنه", voiceHint: "تحدث بالعربية أو الإنجليزية", thinking: "نبحث عن العطر المناسب", available: "متاح الآن", readAloud: "استمع إلى الإجابة", clearMemory: "مسح ذاكرة العطور", voiceUnavailable: "الإدخال الصوتي غير متاح في هذا المتصفح.", noSpeech: "لم أسمع شيئاً. اضغط على الميكروفون وحاول مرة أخرى.", voiceError: "تعذر تشغيل الإدخال الصوتي. حاول مرة أخرى." }
+    en: { title: "Mansam Concierge", intro: "Your personal fragrance guide", placeholder: "Describe a note, mood, or occasion", namePlaceholder: "Enter your name", send: "Send", askName: "Welcome to Mansam. May I have your name?", greeting: "Welcome to Mansam, {name} sir! What fragrance can I help you find today?", one: "Which perfume has rose and oud?", two: "I want a fresh daily fragrance.", viewProduct: "View perfume", error: "I could not reach the fragrance guide. Please try again.", chat: "Chat", voice: "Voice", listen: "Listening...", tapToSpeak: "Tap to speak", voicePrompt: "Tell me what you are looking for", voiceHint: "Speak in English or Arabic", thinking: "Finding the right fragrance", available: "Available now", readAloud: "Read answer aloud", speakerOn: "Turn speaker off", speakerOff: "Turn speaker on", clearMemory: "Clear fragrance memory", voiceUnavailable: "Voice input is not available in this browser.", noSpeech: "I did not hear anything. Tap the microphone and try again.", voiceError: "Voice input could not start. Please try again." },
+    ar: { title: "مستشار منسَم", intro: "دليلك الشخصي لاكتشاف العطور", placeholder: "اكتب نفحاتك أو مزاجك أو مناسبتك", namePlaceholder: "اكتب اسمك", send: "إرسال", askName: "مرحباً بك في منسَم. ما اسمك؟", greeting: "مرحباً بك في منسَم يا {name} سيدي! ما العطر الذي يمكنني مساعدتك في العثور عليه اليوم؟", one: "أي عطر يحتوي على الورد والعود؟", two: "أريد عطراً منعشاً للاستخدام اليومي.", viewProduct: "عرض العطر", error: "تعذر الوصول إلى دليل العطور. حاول مرة أخرى.", chat: "كتابة", voice: "صوت", listen: "جارٍ الاستماع...", tapToSpeak: "اضغط للتحدث", voicePrompt: "أخبرني بما تبحث عنه", voiceHint: "تحدث بالعربية أو الإنجليزية", thinking: "نبحث عن العطر المناسب", available: "متاح الآن", readAloud: "استمع إلى الإجابة", speakerOn: "إيقاف صوت المساعد", speakerOff: "تشغيل صوت المساعد", clearMemory: "مسح ذاكرة العطور", voiceUnavailable: "الإدخال الصوتي غير متاح في هذا المتصفح.", noSpeech: "لم أسمع شيئاً. اضغط على الميكروفون وحاول مرة أخرى.", voiceError: "تعذر تشغيل الإدخال الصوتي. حاول مرة أخرى." }
   };
 
   function language() { return state.language || ((document.documentElement.lang || localStorage.getItem(STORAGE_KEYS.language) || localStorage.getItem("language") || "en").startsWith("ar") ? "ar" : "en"); }
@@ -166,6 +166,7 @@
   }
 
   function speakText(text, requestedLanguage) {
+    if (!state.speakerEnabled) return;
     const lang = requestedLanguage || detectLanguage(text);
     const speechText = conversationalSpeechText(text);
     if (!speechText) return;
@@ -246,6 +247,11 @@
     panel.querySelector(".mansam-chat__close").setAttribute("aria-label", lang === "ar" ? "إغلاق" : "Close");
     panel.querySelector("[data-chat-reset]").setAttribute("aria-label", text.clearMemory);
     panel.querySelector("[data-chat-reset]").title = text.clearMemory;
+    const speakerButton = panel.querySelector("[data-chat-speaker]");
+    speakerButton.innerHTML = state.speakerEnabled ? "&#128266;" : "&#128263;";
+    speakerButton.setAttribute("aria-pressed", String(!state.speakerEnabled));
+    speakerButton.setAttribute("aria-label", state.speakerEnabled ? text.speakerOn : text.speakerOff);
+    speakerButton.title = state.speakerEnabled ? text.speakerOn : text.speakerOff;
     launcher.setAttribute("aria-label", text.title);
     launcher.title = text.title;
     if (state.recognition) state.recognition.lang = lang === "ar" ? "ar-SA" : "en-US";
@@ -298,6 +304,13 @@
     panel.querySelector("[data-chat-composer]").hidden = isVoice;
     panel.querySelector("[data-chat-voice-stage-status]").textContent = "";
     if (!isVoice) stopRecognition();
+  }
+
+  function toggleSpeaker() {
+    state.speakerEnabled = !state.speakerEnabled;
+    if (!state.speakerEnabled) stopSpeaking();
+    try { localStorage.setItem(STORAGE_KEYS.speaker, state.speakerEnabled ? "on" : "off"); } catch (error) { /* storage may be unavailable */ }
+    refreshLanguage();
   }
 
   function setListening(listening, notice) {
@@ -564,7 +577,7 @@
   function mount() {
     if (document.querySelector(".mansam-chat")) return;
     const wrapper = document.createElement("div");
-    wrapper.innerHTML = `<button class="mansam-chat-launcher" type="button" aria-expanded="false" aria-label="Mansam Concierge" title="Mansam Concierge"><span class="mansam-chat-launcher__ring" aria-hidden="true"></span><span class="mansam-chat-launcher__mark" aria-hidden="true">M</span><span class="mansam-chat__sr-only">Open Mansam Concierge</span></button><section class="mansam-chat" lang="en" dir="ltr" hidden><div class="mansam-chat__language-choice" data-chat-language-choice><span class="mansam-chat__choice-mark" aria-hidden="true">M</span><p>MANSAM FRAGRANCES</p><strong>Choose your language</strong><span lang="ar" dir="rtl">اختر لغتك</span><div><button type="button" data-chat-language="en">English</button><button type="button" data-chat-language="ar" lang="ar" dir="rtl">العربية</button></div></div><div data-chat-conversation hidden><header class="mansam-chat__header"><div class="mansam-chat__brand"><span class="mansam-chat__header-mark" aria-hidden="true"><img src="logo3.png" alt=""></span><div><strong data-chat-title></strong><span data-chat-intro></span><small><i aria-hidden="true"></i><b data-chat-availability></b></small></div></div><div class="mansam-chat__header-actions"><select data-chat-language-switcher aria-label="Chat language"><option value="en">English</option><option value="ar">العربية</option></select><button class="mansam-chat__reset" data-chat-reset type="button" aria-label="Clear fragrance memory" title="Clear fragrance memory">&#8635;</button><button class="mansam-chat__close" data-chat-close type="button" aria-label="Close" title="Close">&times;</button></div></header><div class="mansam-chat__messages" aria-live="polite"></div><div class="mansam-chat__suggestions"><button type="button" data-chat-one></button><button type="button" data-chat-two></button></div><p class="mansam-chat__voice-status" data-chat-voice-status aria-live="polite"></p><form class="mansam-chat__form"><div class="mansam-chat__mode" role="group" aria-label="Input mode"><button type="button" data-chat-mode="chat" class="is-active"></button><button type="button" data-chat-mode="voice"></button></div><div class="mansam-chat__voice-stage" data-chat-voice-stage hidden><span class="mansam-chat__voice-orbit" aria-hidden="true"></span><button type="button" data-chat-voice-trigger><span aria-hidden="true">&#127908;</span><b data-chat-voice-prompt></b></button><strong data-chat-voice-stage-status></strong><small data-chat-voice-hint></small></div><div class="mansam-chat__composer" data-chat-composer><input data-chat-input type="text" autocomplete="off"><button class="mansam-chat__mic" data-chat-mic type="button" title="Start voice input" aria-label="Start voice input">&#127908;</button><button data-chat-send type="submit"></button></div></form></div></section>`;
+    wrapper.innerHTML = `<button class="mansam-chat-launcher" type="button" aria-expanded="false" aria-label="Mansam Concierge" title="Mansam Concierge"><span class="mansam-chat-launcher__ring" aria-hidden="true"></span><span class="mansam-chat-launcher__mark" aria-hidden="true">M</span><span class="mansam-chat__sr-only">Open Mansam Concierge</span></button><section class="mansam-chat" lang="en" dir="ltr" hidden><div class="mansam-chat__language-choice" data-chat-language-choice><span class="mansam-chat__choice-mark" aria-hidden="true">M</span><p>MANSAM FRAGRANCES</p><strong>Choose your language</strong><span lang="ar" dir="rtl">اختر لغتك</span><div><button type="button" data-chat-language="en">English</button><button type="button" data-chat-language="ar" lang="ar" dir="rtl">العربية</button></div></div><div data-chat-conversation hidden><header class="mansam-chat__header"><div class="mansam-chat__brand"><span class="mansam-chat__header-mark" aria-hidden="true"><img src="logo3.png" alt=""></span><div><strong data-chat-title></strong><span data-chat-intro></span><small><i aria-hidden="true"></i><b data-chat-availability></b></small></div></div><div class="mansam-chat__header-actions"><select data-chat-language-switcher aria-label="Chat language"><option value="en">English</option><option value="ar">العربية</option></select><button class="mansam-chat__reset" data-chat-reset type="button" aria-label="Clear fragrance memory" title="Clear fragrance memory">&#8635;</button><button class="mansam-chat__speaker" data-chat-speaker type="button" aria-label="Turn speaker off" title="Turn speaker off" aria-pressed="false">&#128266;</button><button class="mansam-chat__close" data-chat-close type="button" aria-label="Close" title="Close">&times;</button></div></header><div class="mansam-chat__messages" aria-live="polite"></div><div class="mansam-chat__suggestions"><button type="button" data-chat-one></button><button type="button" data-chat-two></button></div><p class="mansam-chat__voice-status" data-chat-voice-status aria-live="polite"></p><form class="mansam-chat__form"><div class="mansam-chat__mode" role="group" aria-label="Input mode"><button type="button" data-chat-mode="chat" class="is-active"></button><button type="button" data-chat-mode="voice"></button></div><div class="mansam-chat__voice-stage" data-chat-voice-stage hidden><span class="mansam-chat__voice-orbit" aria-hidden="true"></span><button type="button" data-chat-voice-trigger><span aria-hidden="true">&#127908;</span><b data-chat-voice-prompt></b></button><strong data-chat-voice-stage-status></strong><small data-chat-voice-hint></small></div><div class="mansam-chat__composer" data-chat-composer><input data-chat-input type="text" autocomplete="off"><button class="mansam-chat__mic" data-chat-mic type="button" title="Start voice input" aria-label="Start voice input">&#127908;</button><button data-chat-send type="submit"></button></div></form></div></section>`;
     document.body.appendChild(wrapper);
     const launcher = document.querySelector(".mansam-chat-launcher");
     const panel = document.querySelector(".mansam-chat");
@@ -577,6 +590,7 @@
       }
     }, true);
     panel.querySelector("[data-chat-reset]").addEventListener("click", clearMemory);
+    panel.querySelector("[data-chat-speaker]").addEventListener("click", toggleSpeaker);
     panel.querySelector(".mansam-chat__form").addEventListener("submit", event => { event.preventDefault(); send(); });
     panel.querySelector("[data-chat-input]").addEventListener("keydown", event => { if (event.key === "Enter" && !event.isComposing) { event.preventDefault(); send(); } });
     panel.querySelector("[data-chat-one]").addEventListener("click", event => send(event.currentTarget.textContent));
@@ -589,6 +603,7 @@
     panel.querySelectorAll("[data-chat-language]").forEach(button => button.addEventListener("click", () => chooseLanguage(button.dataset.chatLanguage)));
     state.profile = loadProfile();
     state.conversation = loadConversation();
+    try { state.speakerEnabled = localStorage.getItem(STORAGE_KEYS.speaker) !== "off"; } catch (error) { /* storage may be unavailable */ }
     state.customerName = state.profile.name || "";
     state.contextProductIds = state.profile.productIds.slice(0, 3);
   }
@@ -632,6 +647,7 @@
     .mansam-chat__close:hover{border-color:rgba(255,255,255,.32);background:rgba(255,255,255,.08)}
     .mansam-chat__reset{width:30px;height:30px;border:1px solid transparent;border-radius:6px;background:transparent;color:#e2d5c5;font-size:18px;line-height:1;cursor:pointer}
     .mansam-chat__reset:hover{border-color:rgba(255,255,255,.32);background:rgba(255,255,255,.08);color:#fff}
+    .mansam-chat__speaker{width:30px;height:30px;padding:0;border:1px solid transparent;border-radius:6px;background:transparent;color:#e2d5c5;font-size:15px;line-height:1;cursor:pointer}.mansam-chat__speaker:hover{border-color:rgba(255,255,255,.32);background:rgba(255,255,255,.08);color:#fff}
     .mansam-chat__messages{padding:18px 14px 10px;background:#fdfaf5;scrollbar-color:#c9b292 transparent;scrollbar-width:thin}
     .mansam-chat__message{width:auto;max-width:none;margin:0 0 13px;padding:0;background:transparent;font-size:13px;line-height:1.5;white-space:normal}
     .mansam-chat__message-row{display:flex;align-items:flex-end;gap:8px}
