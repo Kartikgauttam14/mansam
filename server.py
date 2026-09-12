@@ -556,7 +556,7 @@ def is_price_range_recommendation(message):
 def is_similar_product_recommendation(message):
     normalized = normalize(message)
     return any(phrase in normalized for phrase in (
-        "same category", "same type", "same kind", "similar product", "similar products",
+        "same category", "same type", "same kind", "similar product", "similar products", "similar to this product", "like this product",
         "other products like this", "same collection", "نفس الفئة", "نفس النوع", "منتجات مشابهة",
         "نفس المجموعة",
     )) and any(query_term_matches(normalized, term) for term in ("suggest", "recommend", "show", "اقترح", "اعرض", "ارني"))

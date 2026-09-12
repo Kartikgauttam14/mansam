@@ -86,7 +86,7 @@ class ChatbotAccuracyBenchmark(unittest.TestCase):
 
     def test_similarity_words_start_new_recommendation(self):
         context = ["55"]
-        for phrase in ("same price", "similar price", "same category", "same type", "similar products"):
+        for phrase in ("same price", "similar price", "same category", "same type", "similar products", "similar to this product"):
             with self.subTest(phrase=phrase):
                 result = server.make_answer(
                     f"Suggest me 2 perfumes in the {phrase}",
