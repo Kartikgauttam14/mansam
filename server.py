@@ -77,8 +77,9 @@ DOMAIN_QUERY_TERMS = PERFUME_QUERY_TERMS | {
 }
 SOCIAL_QUERY_TERMS = {
     "hello", "hi", "hey", "hii", "good morning", "good afternoon", "good evening", "how are you", "i am fine",
-    "im fine", "i'm fine", "i am good", "im good", "i'm good", "thanks", "thank you", "bye", "goodbye",
-    "who are you", "what do you do", "my name is", "مرحباً", "مرحبا", "اهلا", "أهلاً", "كيف حالك", "أنا بخير",
+    "im fine", "i'm fine", "i am good", "im good", "i'm good", "i am also fine", "i am doing well", "i feel great",
+    "how is your day", "nice to meet you", "you are helpful", "thanks", "thank you", "bye", "goodbye",
+    "who are you", "what do you do", "what can you do", "my name is", "مرحباً", "مرحبا", "اهلا", "أهلاً", "كيف حالك", "أنا بخير",
     "شكرا", "مع السلامة",
 }
 
@@ -329,6 +330,8 @@ def is_domain_query(message, context_product_ids=None):
     # discovery queries even when they do not contain the word perfume.
     if query_preferences(message):
         return True
+    if recipient_phrase(message, [], "en"):
+        return True
     if any(query_term_matches(normalized, term) for term in DOMAIN_QUERY_TERMS):
         return True
     return any(query_term_matches(normalized, term) for term in SOCIAL_QUERY_TERMS)
@@ -436,7 +439,7 @@ def unique_products(products):
 def is_comparison_request(message):
     normalized = normalize(message)
     return any(term in normalized for term in (
-        "compare", "comparison", "difference between", "compare with", "قارن", "مقارنة", "الفرق بين"
+        "compare", "comparison", "difference between", "compare with", "which is better", "قارن", "مقارنة", "الفرق بين"
     ))
 
 
@@ -452,6 +455,8 @@ def is_perfume_list_request(message):
     )
     if any(query_term_matches(normalized, term) for term in detail_terms):
         return False
+    if any(phrase in normalized for phrase in ("natural oils", "do you have oils", "do you have natural oils")):
+        return True
     list_terms = ("list", "show me", "give me", "all", "catalog", "catalogue", "top", "قائمة", "اعرض", "كل", "أفضل", "افضل")
     perfume_terms = PERFUME_QUERY_TERMS | {"attar", "oil", "oils", "bukhoor", "candle", "candles", "diffuser", "عطار", "بخور", "زيت", "شموع", "معطر"}
     return any(term in normalized for term in list_terms) and any(term in normalized for term in perfume_terms)
@@ -460,9 +465,8 @@ def is_perfume_list_request(message):
 def is_perfume_type_request(message):
     normalized = normalize(message)
     type_terms = ("type", "types", "kind", "kinds", "style", "styles", "category", "categories", "نوع", "أنواع", "فئة", "فئات")
-    return any(query_term_matches(normalized, term) for term in type_terms) and any(
-        query_term_matches(normalized, term) for term in PERFUME_QUERY_TERMS
-    )
+    product_terms = PERFUME_QUERY_TERMS | {"product", "products", "منتج", "منتجات"}
+    return (any(query_term_matches(normalized, term) for term in type_terms) or "what products does mansam sell" in normalized) and any(query_term_matches(normalized, term) for term in product_terms)
 
 
 def perfume_type_response(language):
@@ -567,6 +571,8 @@ def wellbeing_reply(message, language):
     arabic_positive_followups = {"انا ايضا بخير", "أنا أيضاً بخير", "انا بخير ايضا", "أنا بخير أيضاً", "انا جيد ايضا", "انا تمام ايضا"}
     if language == "en" and normalized in positive_followups:
         return "Glad to hear that. What would you like to explore today?"
+    if language == "en" and normalized in {"i am also fine", "i am doing well", "i feel great", "i feel happy", "how is your day"}:
+        return "Glad to hear that. What would you like to explore today?"
     if language == "ar" and normalized in arabic_positive_followups:
         return "يسعدني سماع ذلك. ماذا تود أن نستكشف اليوم؟"
     if language == "en" and normalized in english_replies:
@@ -580,6 +586,14 @@ def human_conversation_reply(message, language):
     """Handle broad, natural chat turns that do not need product retrieval."""
     normalized = normalize(message).strip()
     if language == "en":
+        if normalized in {"nice to meet you", "how is your day", "how is your day going"}:
+            return "Nice to meet you too. How can I help you discover a Mansam fragrance?", "conversation"
+        if normalized in {"what can you do", "what do you do"}:
+            return "I can help you explore Mansam fragrances, compare products, and find notes, prices, and availability.", "identity"
+        if normalized in {"you are helpful", "you are very helpful"}:
+            return "That is kind of you. I am happy to help.", "qa_compliment_bot"
+        if "where can i find" in normalized and any(word in normalized for word in ("catalog", "catalogue", "website", "site")):
+            return "You can explore the Mansam catalogue on the live website.", "website"
         if any(phrase in normalized for phrase in ("can you talk to me", "talk with me", "chat with me", "someone to chat", "keep me company", "lets chat", "let's chat")):
             return "Of course. I'm here with you - what's on your mind?", "conversation"
         if any(phrase in normalized for phrase in ("i have a question", "can i ask a question", "i want to ask", "may i ask", "i need to ask")):
@@ -613,7 +627,7 @@ def general_intent_response(message, language, context_product_ids=None):
         "suggest me", "give me a suggestion", "what do you suggest", "recommend something"
     ))
     recipient_request = bool(recipient_phrase(message, [], language))
-    product_terms = ("perfume", "fragrance", "scent", "attar", "candle", "product", "عطر", "عطور", "رائحه", "منتج", "منتجات", "شموع")
+    product_terms = ("perfume", "fragrance", "scent", "attar", "attars", "oil", "oils", "candle", "product", "products", "عطر", "عطور", "رائحه", "منتج", "منتجات", "شموع")
     food_terms = ("food", "dish", "eat", "meal", "restaurant", "cuisine", "طعام", "طبق", "اكل", "أكل")
     is_food_request = any(term in normalize(message) for term in food_terms)
     is_catalog_question = any(intent_flags[key] for key in ("price", "availability", "notes", "collection", "follow_up"))
@@ -1207,7 +1221,7 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
     ))
     recipient_request = bool(recipient_phrase(message, preferences, language))
     generic_recommendation = (intent["recommendation"] or simple_recommendation or recipient_request) and not is_food_request and not preferences and not direct_product_ids and not has_context
-    if (intent["price"] or intent["availability"] or intent["notes"]) and not direct_product_ids and not has_context:
+    if (intent["price"] or intent["availability"] or intent["notes"]) and not direct_product_ids and not has_context and not preferences:
         return response_with_memory(
             clarification(language, needs_product_name=True, message=message, preferences=preferences),
             preferences,
@@ -1304,7 +1318,7 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
                 answer = f"I suggest {name}"
             if collection:
                 answer += f" from the {collection} collection"
-            elif preference_text and not recipient_text:
+            if preference_text:
                 answer += f" for the {preference_text} style"
             answer += ". Would you like another perfume suggestion, or should I show you the price?"
         else:
