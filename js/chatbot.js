@@ -62,6 +62,12 @@
     return deduped.join(" ").trim();
   }
 
+  function repairVoiceTranscript(value) {
+    const text = cleanVoiceTranscript(value);
+    // English ASR can hear "gift" as "iftar" in a short request.
+    return text.replace(/\b(i\s+(?:need|want)\s+a)\s+(?:iftar|itter)\b/gi, "$1 gift");
+  }
+
   function rememberTurn(role, text) {
     const value = String(text || "").trim();
     if (!value) return;
@@ -309,7 +315,7 @@
 
   function submitVoiceTranscript(session) {
     if (!session || session.submitted) return;
-    session.transcript = cleanVoiceTranscript(session.transcript);
+    session.transcript = repairVoiceTranscript(session.transcript);
     if (!session.transcript) return;
     session.submitted = true;
     clearTimeout(session.silenceTimer);

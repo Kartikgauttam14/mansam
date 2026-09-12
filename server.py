@@ -73,7 +73,7 @@ DOMAIN_QUERY_TERMS = PERFUME_QUERY_TERMS | {
     "aed", "sar", "availability", "available", "stock", "website", "site", "shop", "store", "boutique",
     "link", "order", "shipping", "delivery", "mansam", "منسم", "عطار", "زيت", "زيوت", "شمعة", "شموع",
     "بخور", "معطر", "منتج", "منتجات", "كتالوج", "مجموعة", "نفحات", "مكونات", "السعر", "سعر", "متوفر",
-    "متاحة", "رابط", "طلب", "شحن", "توصيل", "ورد", "عود", "ياسمين", "مسك", "عنبر", "زهري", "زهرية", "منعش", "منعشة", "خشبي", "خشبية", "حلو", "حلوة", "فاكهي", "رومانسي", "جريء", "واثق", "دخان", "دخانية", "رائحه", "قوية", "ناعمة", "هادئة",
+    "متاحة", "رابط", "طلب", "شحن", "توصيل", "هدية", "هديه", "gift", "present", "ورد", "عود", "ياسمين", "مسك", "عنبر", "زهري", "زهرية", "منعش", "منعشة", "خشبي", "خشبية", "حلو", "حلوة", "فاكهي", "رومانسي", "جريء", "واثق", "دخان", "دخانية", "رائحه", "قوية", "ناعمة", "هادئة",
 }
 SOCIAL_QUERY_TERMS = {
     "hello", "hi", "hey", "hii", "good morning", "good afternoon", "good evening", "how are you", "i am fine",
@@ -319,7 +319,7 @@ def query_intent(query):
         "notes": any(query_term_matches(normalized, word) for word in ("notes", "ingredients", "smell", "نفحات", "مكونات", "رائحة")),
         "collection": any(query_term_matches(normalized, word) for word in ("collection", "line", "category", "مجموعة", "فئة")),
         "link": any(query_term_matches(normalized, word) for word in ("link", "url", "رابط")),
-        "recommendation": any(query_term_matches(normalized, word) for word in ("recommend", "suggest", "best", "daily", "recommendation", "اقترح", "انصح", "افضل", "يومي", "زهري", "زهرية", "الزهري", "الزهرية", "عود", "العود", "وردي", "الورد", "ورد", "مسك", "عنبر", "ياسمين", "عودي", "رجالي", "نسائي")),
+        "recommendation": any(query_term_matches(normalized, word) for word in ("recommend", "suggest", "best", "daily", "recommendation", "gift", "present", "اقترح", "انصح", "افضل", "يومي", "زهري", "زهرية", "الزهري", "الزهرية", "عود", "العود", "وردي", "الورد", "ورد", "مسك", "عنبر", "ياسمين", "عودي", "رجالي", "نسائي", "هدية", "هديه")),
         "follow_up": any(query_term_matches(normalized, word) for word in ("it", "this", "that", "its", "this perfume", "هذا", "هذه", "عنه", "له", "تفاصيله", "اريده", "اريدها", "لرجل", "لامرأة")),
     }
 
