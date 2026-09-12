@@ -401,12 +401,10 @@
     if (!Recognition) { startRecorderFallback(); return; }
     stopSpeaking();
     const recognition = new Recognition();
-    const session = { transcript: "", finalTranscript: "", interimTranscript: "", submitted: false, cancelled: false, silenceTimer: null, endTimer: null };
+    const session = { transcript: "", finalTranscript: "", interimTranscript: "", finalSegments: {}, interimSegments: {}, submitted: false, cancelled: false, silenceTimer: null, endTimer: null };
     state.recognition = recognition;
     state.voiceSession = session;
-    const isMobileVoice = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     recognition.lang = language() === "ar" ? "ar-SA" : "en-US";
-    // Mobile browsers often emit cumulative interim results; one final utterance is more reliable there.
     recognition.interimResults = true;
     recognition.continuous = false;
     recognition.maxAlternatives = 1;
@@ -417,23 +415,29 @@
       }
       setListening(true);
     };
+    recognition.onspeechstart = () => clearTimeout(session.silenceTimer);
+    recognition.onspeechend = () => {
+      clearTimeout(session.silenceTimer);
+      if (session.transcript) session.silenceTimer = setTimeout(() => submitVoiceTranscript(session), 2000);
+    };
     recognition.onresult = event => {
       if (state.voiceSession !== session || session.cancelled) return;
-      let interimTranscript = "";
       for (let index = event.resultIndex; index < event.results.length; index += 1) {
         const result = event.results[index];
         const transcript = result[0].transcript.trim();
-        if (result.isFinal) session.finalTranscript = `${session.finalTranscript} ${transcript}`.trim();
-        else interimTranscript = `${interimTranscript} ${transcript}`.trim();
+        if (result.isFinal) {
+          session.finalSegments[index] = transcript;
+          delete session.interimSegments[index];
+        } else {
+          session.interimSegments[index] = transcript;
+        }
       }
-      session.interimTranscript = interimTranscript;
+      session.finalTranscript = Object.keys(session.finalSegments).sort((a, b) => Number(a) - Number(b)).map(index => session.finalSegments[index]).join(" ");
+      session.interimTranscript = Object.keys(session.interimSegments).sort((a, b) => Number(a) - Number(b)).map(index => session.interimSegments[index]).join(" ");
       session.transcript = cleanVoiceTranscript(`${session.finalTranscript} ${session.interimTranscript}`);
       const input = document.querySelector("[data-chat-input]");
       if (input) input.value = session.transcript;
       clearTimeout(session.silenceTimer);
-      if (session.transcript) {
-        session.silenceTimer = setTimeout(() => submitVoiceTranscript(session), 2000);
-      }
     };
     recognition.onerror = event => {
       if (state.voiceSession !== session || session.cancelled) return;
@@ -456,7 +460,7 @@
       if (state.voiceSession !== session) return;
       if (session.transcript && !session.submitted) {
         clearTimeout(session.endTimer);
-        session.endTimer = setTimeout(() => submitVoiceTranscript(session), 900);
+        session.endTimer = setTimeout(() => submitVoiceTranscript(session), 2000);
         return;
       }
       state.recognition = null;

@@ -1,0 +1,516 @@
+[
+  {
+    "q": "مرحباً، عدت من جديد",
+    "kind": "greeting",
+    "context": []
+  },
+  {
+    "q": "أهلاً، صباح النور",
+    "kind": "greeting",
+    "context": []
+  },
+  {
+    "q": "أتمنى أن تكون بخير",
+    "kind": "wellbeing",
+    "context": []
+  },
+  {
+    "q": "أنا سعيد اليوم",
+    "kind": "wellbeing",
+    "context": []
+  },
+  {
+    "q": "شكراً، ساعدتني",
+    "kind": "thanks",
+    "context": []
+  },
+  {
+    "q": "كيف تساعدني؟",
+    "kind": "general",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لخالتي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أحتاج عطراً لجدتي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "ابحث عن عطر لزميلي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لشريكي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لشخص مميز",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أحب رائحة الحمضيات",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد رائحة دخانية",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أحب الفانيلا والمسك",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد رائحة قوية",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لفصل الربيع",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "ما فئات العطور التي تقدمونها؟",
+    "kind": "types",
+    "context": []
+  },
+  {
+    "q": "هل لديكم أنواع مختلفة من العطور؟",
+    "kind": "types",
+    "context": []
+  },
+  {
+    "q": "اعرض جميع العطور",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "أرني أفضل 4 عطور",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "أرني أفضل 6 عطور",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "أرني أفضل 8 عطور",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "اعرض منتجات النساء",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "اعرض منتجات الرجال",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "هل لديكم عطور؟",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "هل لديكم عطور بخور؟",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "هل لديكم شموع؟",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "هل لديكم معطرات؟",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "ما نفحات تحت النجوم؟",
+    "kind": "details",
+    "context": []
+  },
+  {
+    "q": "ما الذي يحتويه قبلة ورد؟",
+    "kind": "details",
+    "context": []
+  },
+  {
+    "q": "أخبرني عن الشغف الأحمر",
+    "kind": "details",
+    "context": []
+  },
+  {
+    "q": "كم سعر حديث الروح؟",
+    "kind": "price",
+    "context": []
+  },
+  {
+    "q": "أرني سعر قبلة ورد",
+    "kind": "price",
+    "context": []
+  },
+  {
+    "q": "هل الشغف الأحمر متاح؟",
+    "kind": "availability",
+    "context": []
+  },
+  {
+    "q": "هل قبلة ورد في المخزون؟",
+    "kind": "availability",
+    "context": []
+  },
+  {
+    "q": "هل يمكنني رؤية متجر منسَم؟",
+    "kind": "website",
+    "context": []
+  },
+  {
+    "q": "أين أشتري عطور منسَم؟",
+    "kind": "website",
+    "context": []
+  },
+  {
+    "q": "هل يوجد توصيل للعطور؟",
+    "kind": "website",
+    "context": []
+  },
+  {
+    "q": "قارن بين تحت النجوم وقبلة ورد",
+    "kind": "compare",
+    "context": []
+  },
+  {
+    "q": "ما الفرق بين حديث الروح والشغف الأحمر؟",
+    "kind": "compare",
+    "context": []
+  },
+  {
+    "q": "أخبرني عن هذا المنتج",
+    "kind": "context_details",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "ما نفحات هذا المنتج؟",
+    "kind": "context_details",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "أرني تكلفة هذا المنتج",
+    "kind": "context_price",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "هل المنتج متاح؟",
+    "kind": "context_availability",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "اقترح خياراً آخر لها",
+    "kind": "context_recommend",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "الآن اجعله لرجل",
+    "kind": "context_recommend",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "أي عطر لديه الياسمين؟",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "هل تبيعون عطور الورد؟",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً مكتبياً نظيفاً",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً للمساء",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً هادئاً لامرأة",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً رجولياً بالعود",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "اقترح عطراً لوالدي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "اقترح عطراً لابنة عمي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لرحلة",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لمناسبة خاصة",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "ما العطر المناسب للاستخدام اليومي؟",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد رائحة زهرية حلوة",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد رائحة دافئة بالعنبر",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد رائحة منعشة وخفيفة",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أعطني رابط عطر سرحان",
+    "kind": "website",
+    "context": []
+  },
+  {
+    "q": "أرني فئة هذا العطر",
+    "kind": "context_details",
+    "context": [
+      "48"
+    ]
+  },
+  {
+    "q": "ما سعر عطر همسة؟",
+    "kind": "price",
+    "context": []
+  },
+  {
+    "q": "هل عطر مملكتي متاح الآن؟",
+    "kind": "availability",
+    "context": []
+  },
+  {
+    "q": "أريد أن أختار بين الزهري والعود",
+    "kind": "types",
+    "context": []
+  },
+  {
+    "q": "هل يمكن مقارنة منتجين؟",
+    "kind": "compare",
+    "context": []
+  },
+  {
+    "q": "أرني عطراً بورد وعنبر",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أرني عطراً بالجلد",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً بفوحان مميز",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أحتاج هدية لزوجي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أحتاج هدية لزوجتي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لنفسي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لصديقتي المقربة",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لصديقي المقرب",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً للرجل",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً للمرأة",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أرني عطراً مناسباً لعشاء",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "ما العطر المناسب لهدية؟",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد معرفة عروض العطور",
+    "kind": "types",
+    "context": []
+  },
+  {
+    "q": "أرني خيارات العطور",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "ما أفضل عطر للاستخدام اليومي؟",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "ساعدني على العثور على عطر",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لأبي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لأمي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لابني",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لابنتي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لصديقي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطراً لصديقتي",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أحب رائحة الورد",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أحب رائحة العود",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أحب رائحة العنبر",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أحب رائحة الياسمين",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطرًا ناعمًا للنهار",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "أريد عطرًا قوياً للمساء",
+    "kind": "recommend",
+    "context": []
+  },
+  {
+    "q": "اعرض أفضل عطرين للرجال",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "اعرض أفضل 7 عطور",
+    "kind": "list",
+    "context": []
+  },
+  {
+    "q": "ما نفحات قبلة ورد؟",
+    "kind": "details",
+    "context": []
+  },
+  {
+    "q": "كم سعر سرحان؟",
+    "kind": "price",
+    "context": []
+  },
+  {
+    "q": "هل عطر الشوق متوفر؟",
+    "kind": "availability",
+    "context": []
+  },
+  {
+    "q": "قارن بين قبلة ورد وحديث الروح",
+    "kind": "compare",
+    "context": []
+  }
+]
