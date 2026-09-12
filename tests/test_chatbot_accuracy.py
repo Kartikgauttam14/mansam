@@ -57,6 +57,19 @@ class ChatbotAccuracyBenchmark(unittest.TestCase):
         result = server.make_answer("show me the notes on this perfume", "en")
         self.assertNotEqual(result.get("intent"), "perfume_list")
 
+    def test_price_range_recommendation_uses_new_products(self):
+        context = ["55"]
+        result = server.make_answer(
+            "Can you suggest me two perfumes in this price range?",
+            "en",
+            context_product_ids=context,
+            profile={"productIds": context},
+        )
+        self.assertEqual(result["intent"], "price_range_recommendation")
+        self.assertEqual(len(result["productIds"]), 2)
+        self.assertTrue(set(result["productIds"]).isdisjoint(context))
+        self.assertIn("AED", result["answer"])
+
 
 if __name__ == "__main__":
     unittest.main()

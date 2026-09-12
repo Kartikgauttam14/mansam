@@ -1212,6 +1212,7 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
         except (TypeError, ValueError):
             reference_price = None
         if reference_price is not None:
+            requested_count = requested_recommendation_count(message)
             candidates = [
                 product for product in CATALOG_PRODUCTS
                 if str(product.get("id")) not in context_product_ids and product.get("price") not in (None, "")
@@ -1226,12 +1227,12 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
                     close_matches.append((abs(price - reference_price), product))
             close_matches.sort(key=lambda item: item[0])
             range_matches = [product for _, product in close_matches]
-            if len(range_matches) < requested_recommendation_count(message):
+            if len(range_matches) < requested_count:
                 remaining = sorted(candidates, key=lambda product: abs(float(product.get("price")) - reference_price))
                 range_matches += [product for product in remaining if product not in range_matches]
-            range_matches = range_matches[:requested_recommendation_count(message)]
+            range_matches = range_matches[:requested_count]
             if range_matches:
-                names = ", ".join(product_value(product, "name", language) for product in range_matches)
+                names = ", ".join(f"{product_value(product, 'name', language)} ({format_price(product)})" for product in range_matches)
                 answer = (
                     f"Here are {len(range_matches)} other Mansam perfumes in a similar price range to {product_value(reference, 'name', language)}: {names}."
                     if language == "en" else
