@@ -9,12 +9,12 @@
       "id": "qa_greeting",
       "examples": {
         "en": [
-          "hii",
-          "howdy",
-          "hello there",
-          "hi",
-          "hii there",
-          "hii my friend"
+          "hey friend",
+          "hey there",
+          "hiii",
+          "hello bot",
+          "hey buddy",
+          "namaste"
         ]
       },
       "response": {
@@ -26,12 +26,12 @@
       "id": "qa_how_are_you",
       "examples": {
         "en": [
-          "how's everything",
-          "you doing okay?",
-          "im fine",
-          "how r u",
-          "you good?",
-          "hw r u"
+          "i am good",
+          "how are you",
+          "how are u today",
+          "i am fine",
+          "what's up",
+          "i'm fine how about you"
         ]
       },
       "response": {
@@ -43,10 +43,10 @@
       "id": "qa_goodbye",
       "examples": {
         "en": [
-          "farewell",
-          "talk to you later",
-          "goodbye",
-          "see ya"
+          "later",
+          "cya",
+          "see you",
+          "catch you later"
         ]
       },
       "response": {
@@ -58,9 +58,9 @@
       "id": "qa_thanks",
       "examples": {
         "en": [
-          "thanks for the help",
-          "thanks a bunch",
-          "thank u"
+          "thank you so much",
+          "much appreciated",
+          "many thanks"
         ]
       },
       "response": {
@@ -72,8 +72,8 @@
       "id": "qa_who_are_you",
       "examples": {
         "en": [
-          "tell me about yourself",
-          "what should i call you"
+          "do you have a name",
+          "tell me about yourself"
         ]
       },
       "response": {
@@ -85,8 +85,8 @@
       "id": "qa_what_can_you_do",
       "examples": {
         "en": [
-          "can you help me",
-          "help"
+          "what are your features",
+          "how do you work"
         ]
       },
       "response": {
@@ -99,7 +99,7 @@
       "examples": {
         "en": [
           "are you a robot",
-          "are you real"
+          "is this a bot"
         ]
       },
       "response": {
@@ -111,7 +111,7 @@
       "id": "qa_how_old_are_you",
       "examples": {
         "en": [
-          "how old are you"
+          "when were you born"
         ]
       },
       "response": {
@@ -135,8 +135,8 @@
       "id": "qa_compliment_bot",
       "examples": {
         "en": [
-          "you are amazing",
-          "you're great"
+          "nice work",
+          "you are helpful"
         ]
       },
       "response": {
@@ -148,8 +148,8 @@
       "id": "qa_insult_bot",
       "examples": {
         "en": [
-          "you are bad",
-          "you are useless"
+          "you are annoying",
+          "you are dumb"
         ]
       },
       "response": {
@@ -161,7 +161,7 @@
       "id": "qa_how_is_the_weather",
       "examples": {
         "en": [
-          "is it raining"
+          "is it sunny today"
         ]
       },
       "response": {
@@ -173,7 +173,7 @@
       "id": "qa_tell_joke",
       "examples": {
         "en": [
-          "another joke"
+          "joke please"
         ]
       },
       "response": {
@@ -185,7 +185,7 @@
       "id": "qa_favorite_color",
       "examples": {
         "en": [
-          "what is your favorite color"
+          "do you have a favorite color"
         ]
       },
       "response": {
@@ -197,7 +197,7 @@
       "id": "qa_favorite_food",
       "examples": {
         "en": [
-          "do you eat food"
+          "what is your favorite food"
         ]
       },
       "response": {
@@ -221,7 +221,7 @@
       "id": "qa_do_you_have_feelings",
       "examples": {
         "en": [
-          "do you have feelings"
+          "are you sad"
         ]
       },
       "response": {
@@ -233,7 +233,7 @@
       "id": "qa_what_is_your_purpose",
       "examples": {
         "en": [
-          "why were you created"
+          "why do you exist"
         ]
       },
       "response": {
@@ -245,7 +245,7 @@
       "id": "qa_small_talk_bored",
       "examples": {
         "en": [
-          "entertain me"
+          "i am bored"
         ]
       },
       "response": {
@@ -257,7 +257,7 @@
       "id": "qa_what_is_your_favorite_movie",
       "examples": {
         "en": [
-          "what is your favorite movie"
+          "do you like movies"
         ]
       },
       "response": {
@@ -269,7 +269,7 @@
       "id": "qa_can_you_sing",
       "examples": {
         "en": [
-          "do you know any songs"
+          "sing a song"
         ]
       },
       "response": {
@@ -301,7 +301,7 @@
       "id": "qa_what_is_the_date",
       "examples": {
         "en": [
-          "what's today's date"
+          "what day is it"
         ]
       },
       "response": {
@@ -313,7 +313,7 @@
       "id": "qa_do_you_love_me",
       "examples": {
         "en": [
-          "will you marry me"
+          "i love you"
         ]
       },
       "response": {
@@ -397,7 +397,7 @@
       "id": "qa_are_you_free",
       "examples": {
         "en": [
-          "do i need to pay"
+          "are you free"
         ]
       },
       "response": {
@@ -409,7 +409,7 @@
       "id": "qa_small_talk_name",
       "examples": {
         "en": [
-          "who am i"
+          "do you know my name"
         ]
       },
       "response": {
@@ -421,7 +421,7 @@
       "id": "qa_can_you_learn",
       "examples": {
         "en": [
-          "do you remember me"
+          "do you get smarter"
         ]
       },
       "response": {
@@ -433,7 +433,7 @@
       "id": "qa_what_is_ai",
       "examples": {
         "en": [
-          "what is artificial intelligence"
+          "define artificial intelligence"
         ]
       },
       "response": {
@@ -465,7 +465,7 @@
       "id": "qa_what_is_your_favorite_book",
       "examples": {
         "en": [
-          "do you like reading"
+          "do you read books"
         ]
       },
       "response": {
@@ -477,7 +477,7 @@
       "id": "qa_do_you_have_friends",
       "examples": {
         "en": [
-          "do you have any friends"
+          "do you have friends"
         ]
       },
       "response": {
@@ -487,7 +487,11 @@
     },
     {
       "id": "qa_can_you_play_games",
-      "examples": {},
+      "examples": {
+        "en": [
+          "do you play video games"
+        ]
+      },
       "response": {
         "en": "I can't play traditional games, but I can chat and answer trivia if you'd like!",
         "ar": ""
@@ -495,7 +499,11 @@
     },
     {
       "id": "qa_what_is_your_gender",
-      "examples": {},
+      "examples": {
+        "en": [
+          "are you a boy or girl"
+        ]
+      },
       "response": {
         "en": "I don't have a gender — I'm just a program here to help!",
         "ar": ""
@@ -503,7 +511,11 @@
     },
     {
       "id": "qa_can_you_count",
-      "examples": {},
+      "examples": {
+        "en": [
+          "do math for me"
+        ]
+      },
       "response": {
         "en": "I can definitely help with basic math and counting! Try me.",
         "ar": ""
@@ -511,7 +523,11 @@
     },
     {
       "id": "qa_what_is_your_favorite_sport",
-      "examples": {},
+      "examples": {
+        "en": [
+          "do you like sports"
+        ]
+      },
       "response": {
         "en": "I don't play sports, but I know a lot about them! Ask me anything.",
         "ar": ""
@@ -519,7 +535,11 @@
     },
     {
       "id": "qa_can_you_tell_story",
-      "examples": {},
+      "examples": {
+        "en": [
+          "tell me a story"
+        ]
+      },
       "response": {
         "en": "Once upon a time, a curious user asked a chatbot for help, and they became great friends! 😊",
         "ar": ""
@@ -527,7 +547,11 @@
     },
     {
       "id": "qa_why_should_i_use_you",
-      "examples": {},
+      "examples": {
+        "en": [
+          "why should i use you"
+        ]
+      },
       "response": {
         "en": "I'm here to make finding answers quick, easy, and available anytime!",
         "ar": ""
@@ -538,7 +562,7 @@
       "examples": {
         "en": [
           "is this secure",
-          "do you store my information"
+          "is this chat private"
         ]
       },
       "response": {
@@ -586,8 +610,8 @@
       "id": "qa_negative_mood",
       "examples": {
         "en": [
-          "i had a bad day",
-          "i feel lonely"
+          "i am stressed",
+          "i had a bad day"
         ]
       },
       "response": {
@@ -607,8 +631,8 @@
       "id": "qa_conversation_companion",
       "examples": {
         "en": [
-          "can we talk",
-          "chat with me"
+          "let's chat",
+          "i need someone to chat with"
         ]
       },
       "response": {
@@ -620,7 +644,7 @@
       "id": "qa_question_invitation",
       "examples": {
         "en": [
-          "i want to ask something"
+          "i need to ask you something"
         ]
       },
       "response": {
@@ -649,16 +673,176 @@
       }
     },
     {
+      "id": "excel_phr-001",
+      "examples": {},
+      "response": {
+        "en": "Welcome and hello — welcome to Mansam Perfumes brand.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_phr-002",
+      "examples": {},
+      "response": {
+        "en": "You are with our advisor (___). How may I serve you?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_phr-003",
+      "examples": {},
+      "response": {
+        "en": "Have you visited our boutique before, or is this your first time? Allow me to give you an idea of what we have.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_phr-004",
+      "examples": {},
+      "response": {
+        "en": "If it's your first time — would you like the perfume for yourself, or as a gift?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_phr-005",
+      "examples": {},
+      "response": {
+        "en": "Do you lean more toward oud, rose, or musk? And which note do you not enjoy?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_phr-006",
+      "examples": {},
+      "response": {
+        "en": "I recommend [SKU]. The price is [PRICE] SAR. Available today.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_phr-007",
+      "examples": {},
+      "response": {
+        "en": "Imagine yourself at Maghrib, the air calm, and this warm scent surrounds you like an embrace.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_phr-008",
+      "examples": {},
+      "response": {
+        "en": "Many of our clients chose this perfume and came back for it a second time, and recommended it within their circle.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_phr-009",
+      "examples": {},
+      "response": {
+        "en": "If the perfume's scent seems changed — I respect your view, but allow me to clarify: it may be that you've smelled many perfumes and the notes have blended for you, or is it the same perfume you chose?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_phr-010",
+      "examples": {},
+      "response": {
+        "en": "For the hesitating customer — would you like me to prepare your order?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_phr-011",
+      "examples": {},
+      "response": {
+        "en": "For the hesitating customer — would you like me to send the details on WhatsApp, so you can think it over at your own pace?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_phr-012",
+      "examples": {},
+      "response": {
+        "en": "We were honoured by your visit, and God willing you will visit us again.",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_obj-001",
+      "examples": {},
+      "response": {
+        "en": "I completely understand your question. I understand your view. The perfume's quality is built on high-grade essential oils and natural ingredients, in an Arab formulation made in France to IFRA standards. Are you looking for real value, or for a name?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_obj-002",
+      "examples": {},
+      "response": {
+        "en": "[Competitor] is a very respected brand. Mansam is not trying to be an alternative to them — we offer something different: a perfume that represents a deep-rooted Arab culture. What does your favourite perfume from [Competitor] give you exactly?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_obj-003",
+      "examples": {},
+      "response": {
+        "en": "Your question is important and I thank you for your honesty. Thank you for your honesty. I would like to add that the science of perfumery began in the Arab world — Al-Kindi wrote the first scientific book on perfume composition a thousand years before France. Would you like me to give you details about the source?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_obj-004",
+      "examples": {},
+      "response": {
+        "en": "An excellent question. An excellent question. Developing perfumes takes 12 to 18 months — the perfumes that come out every month are mass-market fragrances, not luxury niche perfumes. Would you like me to introduce you to our latest release?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_obj-005",
+      "examples": {},
+      "response": {
+        "en": "This is completely natural. Mansam doesn't rely on fame or celebrity advertising. Our customers discover us through the personal experience of someone within their circle of relationships. Would you like me to send you a link to mansamworld.com?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_obj-006",
+      "examples": {},
+      "response": {
+        "en": "A direct question and I'll answer you directly. The perfume's diffusion lasts 6 to 8 hours, and its lingering presence remains for up to 24 hours. Is your skin dry or oily?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_obj-007",
+      "examples": {},
+      "response": {
+        "en": "A very reasonable request. We have a sample programme for serious customers. I'll suggest a perfume suited to your taste, and you are welcome to visit our boutique to try it personally. May I have your name, mobile number, and address?",
+        "ar": ""
+      }
+    },
+    {
+      "id": "excel_obj-008",
+      "examples": {},
+      "response": {
+        "en": "Thank you for your honesty. I respect your view and your taste. Our brand's perfumes are difficult to judge without trying them. Have you actually tried it, or is this based on images?",
+        "ar": ""
+      }
+    },
+    {
       "id": "greeting",
       "examples": {
         "en": [
-          "hi there",
+          "hey there",
           "good afternoon",
-          "hey"
+          "good day"
         ],
         "ar": [
           "مرحبا بك",
-          "اهلين"
+          "مرحبتين"
         ]
       },
       "response": {
@@ -670,7 +854,7 @@
       "id": "wellbeing",
       "examples": {
         "en": [
-          "how do you feel"
+          "are you okay"
         ],
         "ar": [
           "كيفك"
@@ -685,11 +869,11 @@
       "id": "help",
       "examples": {
         "en": [
-          "please help me"
+          "what do you know"
         ],
         "ar": [
-          "اريد الدعم",
-          "هل يمكنك مساعدتي"
+          "كيف تساعدني",
+          "ماذا تعرف"
         ]
       },
       "response": {
@@ -701,11 +885,11 @@
       "id": "thanks",
       "examples": {
         "en": [
-          "i appreciate it"
+          "i appreciate it",
+          "thanks a lot"
         ],
         "ar": [
-          "يعطيك العافية",
-          "شكراً"
+          "مشكور"
         ]
       },
       "response": {
@@ -717,11 +901,11 @@
       "id": "goodbye",
       "examples": {
         "en": [
-          "see you",
           "have a nice day"
         ],
         "ar": [
-          "مع السلامة"
+          "نراك لاحقا",
+          "في امان الله"
         ]
       },
       "response": {
@@ -736,7 +920,7 @@
           "who are you"
         ],
         "ar": [
-          "ما هو مساعد منسم"
+          "هل انت انسان"
         ]
       },
       "response": {
@@ -748,11 +932,11 @@
       "id": "gift",
       "examples": {
         "en": [
-          "anniversary gift"
+          "birthday gift",
+          "perfume gift"
         ],
         "ar": [
-          "فكرة هدية",
-          "هدية عيد ميلاد"
+          "أريد هدية"
         ]
       },
       "response": {
@@ -767,7 +951,7 @@
           "delivery"
         ],
         "ar": [
-          "الشحن"
+          "متى يصل"
         ]
       },
       "response": {
@@ -779,10 +963,10 @@
       "id": "returns",
       "examples": {
         "en": [
-          "can i return"
+          "exchange"
         ],
         "ar": [
-          "استرجاع"
+          "إرجاع"
         ]
       },
       "response": {

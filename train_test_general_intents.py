@@ -13,6 +13,7 @@ from intent_classifier import IntentClassifier, normalize, phrase_matches
 PROJECT_ROOT = Path(__file__).resolve().parent
 SOURCE_FILE = PROJECT_ROOT / "data" / "general-chat-intents.json"
 GENERAL_QA_FILE = PROJECT_ROOT / "general_qa_intents.json"
+EXCEL_INTENTS_FILE = PROJECT_ROOT / "data" / "excel_intents.json"
 TRAIN_FILE = PROJECT_ROOT / "data" / "general-chat-intents.train.json"
 TEST_FILE = PROJECT_ROOT / "data" / "general-chat-intents.test.json"
 REPORT_FILE = PROJECT_ROOT / "reports" / "general-intents-evaluation.json"
@@ -34,6 +35,24 @@ def load_general_qa_intents():
             responses = ["Hello! How are you today?"]
         intents.append({
             "id": f"qa_{tag}",
+            "examples": {"en": patterns},
+            "response": {"en": responses[0], "ar": ""},
+        })
+    return intents
+
+def load_excel_intents():
+    if not EXCEL_INTENTS_FILE.exists():
+        return []
+    source = json.loads(EXCEL_INTENTS_FILE.read_text(encoding="utf-8"))
+    intents = []
+    for item in source.get("intents", []):
+        tag = str(item.get("tag", "")).strip().lower()
+        patterns = [str(value).strip() for value in item.get("patterns", []) if str(value).strip()]
+        responses = [str(value).strip() for value in item.get("responses", []) if str(value).strip()]
+        if not tag or not patterns or not responses:
+            continue
+        intents.append({
+            "id": f"excel_{tag}",
             "examples": {"en": patterns},
             "response": {"en": responses[0], "ar": ""},
         })
@@ -189,7 +208,7 @@ def main():
     args = parser.parse_args()
 
     source = json.loads(SOURCE_FILE.read_text(encoding="utf-8"))
-    source_intents = load_general_qa_intents() + source.get("intents", [])
+    source_intents = load_general_qa_intents() + load_excel_intents() + source.get("intents", [])
     examples = flatten_examples(source_intents)
     train_examples, test_examples = split_examples(examples)
     train_payload = make_intent_file(source_intents, train_examples)

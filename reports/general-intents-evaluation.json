@@ -1,50 +1,43 @@
 {
-  "sourceExamples": 457,
-  "trainExamples": 366,
-  "testExamples": 91,
-  "trainRatio": 0.8009,
-  "testRatio": 0.1991,
+  "sourceExamples": 485,
+  "trainExamples": 388,
+  "testExamples": 97,
+  "trainRatio": 0.8,
+  "testRatio": 0.2,
   "seed": 42,
-  "accuracy": 0.4396,
+  "accuracy": 0.4124,
   "passed": 40,
-  "failed": 51,
-  "fullCorpusRegressionAccuracy": 0.9278,
-  "fullCorpusRegressionPassed": 424,
+  "failed": 57,
+  "fullCorpusRegressionAccuracy": 0.932,
+  "fullCorpusRegressionPassed": 452,
   "fullCorpusRegressionFailed": 33,
   "results": [
     {
       "intent": "gift",
       "language": "ar",
-      "text": "فكرة هدية",
+      "text": "أريد هدية",
       "predictedIntent": "gift",
       "passed": true
     },
     {
       "intent": "gift",
       "language": "en",
-      "text": "anniversary gift",
+      "text": "birthday gift",
       "predictedIntent": "gift",
       "passed": true
     },
     {
       "intent": "gift",
-      "language": "ar",
-      "text": "هدية عيد ميلاد",
+      "language": "en",
+      "text": "perfume gift",
       "predictedIntent": "gift",
       "passed": true
     },
     {
       "intent": "goodbye",
       "language": "ar",
-      "text": "مع السلامة",
-      "predictedIntent": "greeting",
-      "passed": false
-    },
-    {
-      "intent": "goodbye",
-      "language": "en",
-      "text": "see you",
-      "predictedIntent": "qa_goodbye",
+      "text": "نراك لاحقا",
+      "predictedIntent": "thanks",
       "passed": false
     },
     {
@@ -53,6 +46,13 @@
       "text": "have a nice day",
       "predictedIntent": "qa_question_invitation",
       "passed": false
+    },
+    {
+      "intent": "goodbye",
+      "language": "ar",
+      "text": "في امان الله",
+      "predictedIntent": "goodbye",
+      "passed": true
     },
     {
       "intent": "greeting",
@@ -64,9 +64,9 @@
     {
       "intent": "greeting",
       "language": "en",
-      "text": "hi there",
-      "predictedIntent": "greeting",
-      "passed": true
+      "text": "hey there",
+      "predictedIntent": "qa_greeting",
+      "passed": false
     },
     {
       "intent": "greeting",
@@ -77,44 +77,44 @@
     },
     {
       "intent": "greeting",
-      "language": "en",
-      "text": "hey",
-      "predictedIntent": "qa_greeting",
-      "passed": false
-    },
-    {
-      "intent": "greeting",
       "language": "ar",
-      "text": "اهلين",
+      "text": "مرحبتين",
       "predictedIntent": "greeting",
       "passed": true
     },
     {
-      "intent": "help",
-      "language": "ar",
-      "text": "اريد الدعم",
-      "predictedIntent": "gift",
+      "intent": "greeting",
+      "language": "en",
+      "text": "good day",
+      "predictedIntent": "qa_greeting",
       "passed": false
     },
     {
       "intent": "help",
-      "language": "en",
-      "text": "please help me",
+      "language": "ar",
+      "text": "كيف تساعدني",
       "predictedIntent": "help",
       "passed": true
     },
     {
       "intent": "help",
+      "language": "en",
+      "text": "what do you know",
+      "predictedIntent": "qa_what_can_you_do",
+      "passed": false
+    },
+    {
+      "intent": "help",
       "language": "ar",
-      "text": "هل يمكنك مساعدتي",
+      "text": "ماذا تعرف",
       "predictedIntent": "help",
       "passed": true
     },
     {
       "intent": "identity",
       "language": "ar",
-      "text": "ما هو مساعد منسم",
-      "predictedIntent": "help",
+      "text": "هل انت انسان",
+      "predictedIntent": "wellbeing",
       "passed": false
     },
     {
@@ -134,8 +134,8 @@
     {
       "intent": "qa_are_you_free",
       "language": "en",
-      "text": "do i need to pay",
-      "predictedIntent": "qa_question_invitation",
+      "text": "are you free",
+      "predictedIntent": "qa_are_you_human",
       "passed": false
     },
     {
@@ -148,9 +148,9 @@
     {
       "intent": "qa_are_you_human",
       "language": "en",
-      "text": "are you real",
-      "predictedIntent": "qa_are_you_human",
-      "passed": true
+      "text": "is this a bot",
+      "predictedIntent": "qa_are_you_secure",
+      "passed": false
     },
     {
       "intent": "qa_are_you_secure",
@@ -162,9 +162,9 @@
     {
       "intent": "qa_are_you_secure",
       "language": "en",
-      "text": "do you store my information",
-      "predictedIntent": "qa_small_talk_name",
-      "passed": false
+      "text": "is this chat private",
+      "predictedIntent": "qa_are_you_secure",
+      "passed": true
     },
     {
       "intent": "qa_bot_hobbies",
@@ -174,66 +174,87 @@
       "passed": false
     },
     {
+      "intent": "qa_can_you_count",
+      "language": "en",
+      "text": "do math for me",
+      "predictedIntent": "qa_can_you_tell_story",
+      "passed": false
+    },
+    {
       "intent": "qa_can_you_learn",
       "language": "en",
-      "text": "do you remember me",
-      "predictedIntent": "qa_do_you_love_me",
+      "text": "do you get smarter",
+      "predictedIntent": "qa_do_you_sleep",
       "passed": false
+    },
+    {
+      "intent": "qa_can_you_play_games",
+      "language": "en",
+      "text": "do you play video games",
+      "predictedIntent": "qa_can_you_play_games",
+      "passed": true
     },
     {
       "intent": "qa_can_you_sing",
       "language": "en",
-      "text": "do you know any songs",
+      "text": "sing a song",
+      "predictedIntent": "qa_question_invitation",
+      "passed": false
+    },
+    {
+      "intent": "qa_can_you_tell_story",
+      "language": "en",
+      "text": "tell me a story",
       "predictedIntent": "qa_tell_joke",
       "passed": false
     },
     {
       "intent": "qa_compliment_bot",
       "language": "en",
-      "text": "you are amazing",
-      "predictedIntent": "qa_insult_bot",
+      "text": "nice work",
+      "predictedIntent": "qa_nice_to_meet_you",
       "passed": false
     },
     {
       "intent": "qa_compliment_bot",
       "language": "en",
-      "text": "you're great",
-      "predictedIntent": "qa_welcome_response",
+      "text": "you are helpful",
+      "predictedIntent": "qa_insult_bot",
       "passed": false
     },
     {
       "intent": "qa_conversation_companion",
       "language": "en",
-      "text": "can we talk",
+      "text": "let's chat",
       "predictedIntent": "qa_conversation_companion",
       "passed": true
     },
     {
       "intent": "qa_conversation_companion",
       "language": "en",
-      "text": "chat with me",
-      "predictedIntent": "qa_conversation_companion",
-      "passed": true
+      "text": "i need someone to chat with",
+      "predictedIntent": "qa_are_you_free",
+      "passed": false
     },
     {
       "intent": "qa_do_you_have_feelings",
       "language": "en",
-      "text": "do you have feelings",
-      "predictedIntent": "qa_do_you_have_friends",
+      "text": "are you sad",
+      "predictedIntent": "qa_are_you_human",
       "passed": false
     },
     {
       "intent": "qa_do_you_have_friends",
       "language": "en",
-      "text": "do you have any friends",
+      "text": "do you have friends",
       "predictedIntent": "qa_do_you_have_friends",
       "passed": true
     },
     {
       "intent": "qa_do_you_love_me",
       "language": "en",
-      "text": "will you marry me",
-      "predictedIntent": "qa_can_you_call_me",
+      "text": "i love you",
+      "predictedIntent": "qa_compliment_bot",
       "passed": false
     },
     {
@@ -246,170 +267,170 @@
     {
       "intent": "qa_favorite_color",
       "language": "en",
-      "text": "what is your favorite color",
-      "predictedIntent": "qa_favorite_food",
+      "text": "do you have a favorite color",
+      "predictedIntent": "qa_can_you_learn",
       "passed": false
     },
     {
       "intent": "qa_favorite_food",
       "language": "en",
-      "text": "do you eat food",
-      "predictedIntent": "qa_what_can_you_do",
+      "text": "what is your favorite food",
+      "predictedIntent": "qa_what_is_your_favorite_book",
       "passed": false
     },
     {
       "intent": "qa_goodbye",
       "language": "en",
-      "text": "farewell",
-      "predictedIntent": "qa_compliment_bot",
+      "text": "later",
+      "predictedIntent": "qa_goodbye",
+      "passed": true
+    },
+    {
+      "intent": "qa_goodbye",
+      "language": "en",
+      "text": "cya",
+      "predictedIntent": "qa_greeting",
       "passed": false
     },
     {
       "intent": "qa_goodbye",
       "language": "en",
-      "text": "talk to you later",
+      "text": "see you",
       "predictedIntent": "goodbye",
       "passed": false
     },
     {
       "intent": "qa_goodbye",
       "language": "en",
-      "text": "goodbye",
-      "predictedIntent": "goodbye",
-      "passed": false
-    },
-    {
-      "intent": "qa_goodbye",
-      "language": "en",
-      "text": "see ya",
+      "text": "catch you later",
       "predictedIntent": "qa_goodbye",
       "passed": true
     },
     {
       "intent": "qa_greeting",
       "language": "en",
-      "text": "hii",
-      "predictedIntent": "greeting",
-      "passed": false
-    },
-    {
-      "intent": "qa_greeting",
-      "language": "en",
-      "text": "howdy",
-      "predictedIntent": "qa_how_are_you",
-      "passed": false
-    },
-    {
-      "intent": "qa_greeting",
-      "language": "en",
-      "text": "hello there",
+      "text": "hey friend",
       "predictedIntent": "qa_greeting",
       "passed": true
     },
     {
       "intent": "qa_greeting",
       "language": "en",
-      "text": "hi",
-      "predictedIntent": "greeting",
-      "passed": false
+      "text": "hey there",
+      "predictedIntent": "qa_greeting",
+      "passed": true
     },
     {
       "intent": "qa_greeting",
       "language": "en",
-      "text": "hii there",
-      "predictedIntent": "greeting",
-      "passed": false
+      "text": "hiii",
+      "predictedIntent": "qa_greeting",
+      "passed": true
     },
     {
       "intent": "qa_greeting",
       "language": "en",
-      "text": "hii my friend",
-      "predictedIntent": "greeting",
+      "text": "hello bot",
+      "predictedIntent": "qa_greeting",
+      "passed": true
+    },
+    {
+      "intent": "qa_greeting",
+      "language": "en",
+      "text": "hey buddy",
+      "predictedIntent": "qa_greeting",
+      "passed": true
+    },
+    {
+      "intent": "qa_greeting",
+      "language": "en",
+      "text": "namaste",
+      "predictedIntent": "qa_who_are_you",
       "passed": false
     },
     {
       "intent": "qa_how_are_you",
       "language": "en",
-      "text": "how's everything",
+      "text": "i am good",
       "predictedIntent": "qa_how_are_you",
       "passed": true
     },
     {
       "intent": "qa_how_are_you",
       "language": "en",
-      "text": "you doing okay?",
+      "text": "how are you",
+      "predictedIntent": "wellbeing",
+      "passed": false
+    },
+    {
+      "intent": "qa_how_are_you",
+      "language": "en",
+      "text": "how are u today",
+      "predictedIntent": "wellbeing",
+      "passed": false
+    },
+    {
+      "intent": "qa_how_are_you",
+      "language": "en",
+      "text": "i am fine",
       "predictedIntent": "qa_how_are_you",
       "passed": true
     },
     {
       "intent": "qa_how_are_you",
       "language": "en",
-      "text": "im fine",
-      "predictedIntent": "qa_how_are_you",
-      "passed": true
+      "text": "what's up",
+      "predictedIntent": "qa_greeting",
+      "passed": false
     },
     {
       "intent": "qa_how_are_you",
       "language": "en",
-      "text": "how r u",
-      "predictedIntent": "qa_how_are_you",
-      "passed": true
-    },
-    {
-      "intent": "qa_how_are_you",
-      "language": "en",
-      "text": "you good?",
-      "predictedIntent": "qa_how_are_you",
-      "passed": true
-    },
-    {
-      "intent": "qa_how_are_you",
-      "language": "en",
-      "text": "hw r u",
+      "text": "i'm fine how about you",
       "predictedIntent": "qa_how_are_you",
       "passed": true
     },
     {
       "intent": "qa_how_is_the_weather",
       "language": "en",
-      "text": "is it raining",
+      "text": "is it sunny today",
       "predictedIntent": "qa_how_is_the_weather",
       "passed": true
     },
     {
       "intent": "qa_how_old_are_you",
       "language": "en",
-      "text": "how old are you",
-      "predictedIntent": "qa_how_are_you",
-      "passed": false
-    },
-    {
-      "intent": "qa_insult_bot",
-      "language": "en",
-      "text": "you are bad",
-      "predictedIntent": "qa_insult_bot",
+      "text": "when were you born",
+      "predictedIntent": "qa_how_old_are_you",
       "passed": true
     },
     {
       "intent": "qa_insult_bot",
       "language": "en",
-      "text": "you are useless",
+      "text": "you are annoying",
       "predictedIntent": "qa_compliment_bot",
       "passed": false
+    },
+    {
+      "intent": "qa_insult_bot",
+      "language": "en",
+      "text": "you are dumb",
+      "predictedIntent": "qa_insult_bot",
+      "passed": true
+    },
+    {
+      "intent": "qa_negative_mood",
+      "language": "en",
+      "text": "i am stressed",
+      "predictedIntent": "qa_negative_mood",
+      "passed": true
     },
     {
       "intent": "qa_negative_mood",
       "language": "en",
       "text": "i had a bad day",
-      "predictedIntent": "qa_how_are_you",
+      "predictedIntent": "qa_insult_bot",
       "passed": false
-    },
-    {
-      "intent": "qa_negative_mood",
-      "language": "en",
-      "text": "i feel lonely",
-      "predictedIntent": "qa_negative_mood",
-      "passed": true
     },
     {
       "intent": "qa_nice_to_meet_you",
@@ -422,7 +443,7 @@
       "intent": "qa_no_response",
       "language": "en",
       "text": "nah",
-      "predictedIntent": "qa_greeting",
+      "predictedIntent": "qa_who_are_you",
       "passed": false
     },
     {
@@ -435,51 +456,51 @@
     {
       "intent": "qa_question_invitation",
       "language": "en",
-      "text": "i want to ask something",
+      "text": "i need to ask you something",
       "predictedIntent": "qa_question_invitation",
       "passed": true
     },
     {
       "intent": "qa_small_talk_bored",
       "language": "en",
-      "text": "entertain me",
-      "predictedIntent": "qa_what_is_ai",
-      "passed": false
+      "text": "i am bored",
+      "predictedIntent": "qa_small_talk_bored",
+      "passed": true
     },
     {
       "intent": "qa_small_talk_name",
       "language": "en",
-      "text": "who am i",
-      "predictedIntent": "qa_who_are_you",
+      "text": "do you know my name",
+      "predictedIntent": "qa_tell_joke",
       "passed": false
     },
     {
       "intent": "qa_tell_joke",
       "language": "en",
-      "text": "another joke",
-      "predictedIntent": "qa_tell_joke",
-      "passed": true
+      "text": "joke please",
+      "predictedIntent": "qa_who_are_you",
+      "passed": false
     },
     {
       "intent": "qa_thanks",
       "language": "en",
-      "text": "thanks for the help",
+      "text": "thank you so much",
+      "predictedIntent": "thanks",
+      "passed": false
+    },
+    {
+      "intent": "qa_thanks",
+      "language": "en",
+      "text": "much appreciated",
       "predictedIntent": "qa_thanks",
       "passed": true
     },
     {
       "intent": "qa_thanks",
       "language": "en",
-      "text": "thanks a bunch",
-      "predictedIntent": "qa_thanks",
-      "passed": true
-    },
-    {
-      "intent": "qa_thanks",
-      "language": "en",
-      "text": "thank u",
-      "predictedIntent": "qa_thanks",
-      "passed": true
+      "text": "many thanks",
+      "predictedIntent": "thanks",
+      "passed": false
     },
     {
       "intent": "qa_welcome_response",
@@ -491,64 +512,78 @@
     {
       "intent": "qa_what_can_you_do",
       "language": "en",
-      "text": "can you help me",
-      "predictedIntent": "help",
+      "text": "what are your features",
+      "predictedIntent": "qa_who_are_you",
       "passed": false
     },
     {
       "intent": "qa_what_can_you_do",
       "language": "en",
-      "text": "help",
-      "predictedIntent": "help",
+      "text": "how do you work",
+      "predictedIntent": "qa_how_are_you",
       "passed": false
     },
     {
       "intent": "qa_what_is_ai",
       "language": "en",
-      "text": "what is artificial intelligence",
-      "predictedIntent": "qa_what_is_ai",
-      "passed": true
+      "text": "define artificial intelligence",
+      "predictedIntent": "qa_are_you_human",
+      "passed": false
     },
     {
       "intent": "qa_what_is_the_date",
       "language": "en",
-      "text": "what's today's date",
-      "predictedIntent": "qa_what_is_the_date",
-      "passed": true
+      "text": "what day is it",
+      "predictedIntent": "qa_what_time_is_it",
+      "passed": false
     },
     {
       "intent": "qa_what_is_your_favorite_animal",
       "language": "en",
       "text": "what is your favorite animal",
-      "predictedIntent": "qa_favorite_food",
+      "predictedIntent": "qa_favorite_color",
       "passed": false
     },
     {
       "intent": "qa_what_is_your_favorite_book",
       "language": "en",
-      "text": "do you like reading",
-      "predictedIntent": "qa_what_is_your_favorite_animal",
+      "text": "do you read books",
+      "predictedIntent": "qa_how_are_you",
       "passed": false
     },
     {
       "intent": "qa_what_is_your_favorite_movie",
       "language": "en",
-      "text": "what is your favorite movie",
-      "predictedIntent": "qa_favorite_food",
+      "text": "do you like movies",
+      "predictedIntent": "qa_what_is_your_favorite_movie",
+      "passed": true
+    },
+    {
+      "intent": "qa_what_is_your_favorite_sport",
+      "language": "en",
+      "text": "do you like sports",
+      "predictedIntent": "qa_what_is_your_favorite_animal",
+      "passed": false
+    },
+    {
+      "intent": "qa_what_is_your_gender",
+      "language": "en",
+      "text": "are you a boy or girl",
+      "predictedIntent": "qa_are_you_human",
       "passed": false
     },
     {
       "intent": "qa_what_is_your_purpose",
       "language": "en",
-      "text": "why were you created",
-      "predictedIntent": "qa_how_old_are_you",
+      "text": "why do you exist",
+      "predictedIntent": "qa_what_can_you_do",
       "passed": false
     },
     {
       "intent": "qa_what_language_do_you_speak",
       "language": "en",
       "text": "do you know hindi",
-      "predictedIntent": "help",
+      "predictedIntent": "qa_tell_joke",
       "passed": false
     },
     {
@@ -568,16 +603,23 @@
     {
       "intent": "qa_who_are_you",
       "language": "en",
-      "text": "tell me about yourself",
-      "predictedIntent": "identity",
+      "text": "do you have a name",
+      "predictedIntent": "qa_can_you_learn",
       "passed": false
     },
     {
       "intent": "qa_who_are_you",
       "language": "en",
-      "text": "what should i call you",
-      "predictedIntent": "qa_small_talk_food_recommendation",
+      "text": "tell me about yourself",
+      "predictedIntent": "identity",
       "passed": false
+    },
+    {
+      "intent": "qa_why_should_i_use_you",
+      "language": "en",
+      "text": "why should i use you",
+      "predictedIntent": "qa_why_should_i_use_you",
+      "passed": true
     },
     {
       "intent": "qa_yes_response",
@@ -589,22 +631,22 @@
     {
       "intent": "returns",
       "language": "ar",
-      "text": "استرجاع",
+      "text": "إرجاع",
       "predictedIntent": "returns",
       "passed": true
     },
     {
       "intent": "returns",
       "language": "en",
-      "text": "can i return",
-      "predictedIntent": "returns",
-      "passed": true
+      "text": "exchange",
+      "predictedIntent": "qa_thanks",
+      "passed": false
     },
     {
       "intent": "shipping",
       "language": "ar",
-      "text": "الشحن",
-      "predictedIntent": "thanks",
+      "text": "متى يصل",
+      "predictedIntent": "help",
       "passed": false
     },
     {
@@ -617,9 +659,9 @@
     {
       "intent": "thanks",
       "language": "ar",
-      "text": "يعطيك العافية",
-      "predictedIntent": "goodbye",
-      "passed": false
+      "text": "مشكور",
+      "predictedIntent": "thanks",
+      "passed": true
     },
     {
       "intent": "thanks",
@@ -630,10 +672,10 @@
     },
     {
       "intent": "thanks",
-      "language": "ar",
-      "text": "شكراً",
-      "predictedIntent": "thanks",
-      "passed": true
+      "language": "en",
+      "text": "thanks a lot",
+      "predictedIntent": "qa_thanks",
+      "passed": false
     },
     {
       "intent": "wellbeing",
@@ -645,7 +687,7 @@
     {
       "intent": "wellbeing",
       "language": "en",
-      "text": "how do you feel",
+      "text": "are you okay",
       "predictedIntent": "qa_how_are_you",
       "passed": false
     }

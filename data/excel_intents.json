@@ -1,0 +1,192 @@
+{
+  "intents": [
+    {
+      "tag": "PHR-001",
+      "patterns": [
+        "Default opening greeting."
+      ],
+      "responses": [
+        "Welcome and hello — welcome to Mansam Perfumes brand."
+      ]
+    },
+    {
+      "tag": "PHR-002",
+      "patterns": [
+        "Brand-anchored opening. (___) is advisor name placeholder."
+      ],
+      "responses": [
+        "You are with our advisor (___). How may I serve you?"
+      ]
+    },
+    {
+      "tag": "PHR-003",
+      "patterns": [
+        "First-time vs returning customer check."
+      ],
+      "responses": [
+        "Have you visited our boutique before, or is this your first time? Allow me to give you an idea of what we have."
+      ]
+    },
+    {
+      "tag": "PHR-004",
+      "patterns": [
+        "For first-time customers."
+      ],
+      "responses": [
+        "If it's your first time — would you like the perfume for yourself, or as a gift?"
+      ]
+    },
+    {
+      "tag": "PHR-005",
+      "patterns": [
+        "Three-way fork plus dislike question."
+      ],
+      "responses": [
+        "Do you lean more toward oud, rose, or musk? And which note do you not enjoy?"
+      ]
+    },
+    {
+      "tag": "PHR-006",
+      "patterns": [
+        "Driver type. PRICE is 850 or 1,150 depending on collection."
+      ],
+      "responses": [
+        "I recommend [SKU]. The price is [PRICE] SAR. Available today."
+      ]
+    },
+    {
+      "tag": "PHR-007",
+      "patterns": [
+        "Sensory story for Expressive type."
+      ],
+      "responses": [
+        "Imagine yourself at Maghrib, the air calm, and this warm scent surrounds you like an embrace."
+      ]
+    },
+    {
+      "tag": "PHR-008",
+      "patterns": [
+        "Social proof for Amiable type."
+      ],
+      "responses": [
+        "Many of our clients chose this perfume and came back for it a second time, and recommended it within their circle."
+      ]
+    },
+    {
+      "tag": "PHR-009",
+      "patterns": [
+        "Objection handler for scent change."
+      ],
+      "responses": [
+        "If the perfume's scent seems changed — I respect your view, but allow me to clarify: it may be that you've smelled many perfumes and the notes have blended for you, or is it the same perfume you chose?"
+      ]
+    },
+    {
+      "tag": "PHR-010",
+      "patterns": [
+        "Soft assumptive close."
+      ],
+      "responses": [
+        "For the hesitating customer — would you like me to prepare your order?"
+      ]
+    },
+    {
+      "tag": "PHR-011",
+      "patterns": [
+        "Soft nurture path."
+      ],
+      "responses": [
+        "For the hesitating customer — would you like me to send the details on WhatsApp, so you can think it over at your own pace?"
+      ]
+    },
+    {
+      "tag": "PHR-012",
+      "patterns": [
+        "Warm karam farewell."
+      ],
+      "responses": [
+        "We were honoured by your visit, and God willing you will visit us again."
+      ]
+    },
+    {
+      "tag": "OBJ-001",
+      "patterns": [
+        "The perfume is expensive",
+        "العطر غالي"
+      ],
+      "responses": [
+        "I completely understand your question. I understand your view. The perfume's quality is built on high-grade essential oils and natural ingredients, in an Arab formulation made in France to IFRA standards. Are you looking for real value, or for a name?"
+      ]
+    },
+    {
+      "tag": "OBJ-002",
+      "patterns": [
+        "I only wear [Competitor]",
+        "أنا ما ألبس إلا [X]"
+      ],
+      "responses": [
+        "[Competitor] is a very respected brand. Mansam is not trying to be an alternative to them — we offer something different: a perfume that represents a deep-rooted Arab culture. What does your favourite perfume from [Competitor] give you exactly?"
+      ]
+    },
+    {
+      "tag": "OBJ-003",
+      "patterns": [
+        "You're an Arab brand, so it should be cheaper",
+        "أنتم برند عربي يعني لازم يكون أرخص"
+      ],
+      "responses": [
+        "Your question is important and I thank you for your honesty. Thank you for your honesty. I would like to add that the science of perfumery began in the Arab world — Al-Kindi wrote the first scientific book on perfume composition a thousand years before France. Would you like me to give you details about the source?"
+      ]
+    },
+    {
+      "tag": "OBJ-004",
+      "patterns": [
+        "What's new? You haven't released anything for a year",
+        "شو في جديد؟ ما طلعتوا شي من سنة"
+      ],
+      "responses": [
+        "An excellent question. An excellent question. Developing perfumes takes 12 to 18 months — the perfumes that come out every month are mass-market fragrances, not luxury niche perfumes. Would you like me to introduce you to our latest release?"
+      ]
+    },
+    {
+      "tag": "OBJ-005",
+      "patterns": [
+        "I've never heard of you before",
+        "ما سمعت بكم من قبل"
+      ],
+      "responses": [
+        "This is completely natural. Mansam doesn't rely on fame or celebrity advertising. Our customers discover us through the personal experience of someone within their circle of relationships. Would you like me to send you a link to mansamworld.com?"
+      ]
+    },
+    {
+      "tag": "OBJ-006",
+      "patterns": [
+        "How many hours does it last?",
+        "كم ساعة يثبت؟"
+      ],
+      "responses": [
+        "A direct question and I'll answer you directly. The perfume's diffusion lasts 6 to 8 hours, and its lingering presence remains for up to 24 hours. Is your skin dry or oily?"
+      ]
+    },
+    {
+      "tag": "OBJ-007",
+      "patterns": [
+        "Send me a sample first",
+        "ابعتوا لي عينة الأول"
+      ],
+      "responses": [
+        "A very reasonable request. We have a sample programme for serious customers. I'll suggest a perfume suited to your taste, and you are welcome to visit our boutique to try it personally. May I have your name, mobile number, and address?"
+      ]
+    },
+    {
+      "tag": "OBJ-008",
+      "patterns": [
+        "Honestly, I don't see anything special",
+        "صراحة ما شفت شي مميز"
+      ],
+      "responses": [
+        "Thank you for your honesty. I respect your view and your taste. Our brand's perfumes are difficult to judge without trying them. Have you actually tried it, or is this based on images?"
+      ]
+    }
+  ]
+}

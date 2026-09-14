@@ -20,6 +20,7 @@ SSOT_FILE = PROJECT_ROOT / "data" / "ssot-knowledge.json"
 LIVE_CATALOG_FILE = PROJECT_ROOT / "data" / "live-catalog.json"
 GENERAL_INTENTS_FILE = PROJECT_ROOT / "data" / "general-chat-intents.json"
 GENERAL_QA_FILE = PROJECT_ROOT / "general_qa_intents.json"
+EXCEL_INTENTS_FILE = PROJECT_ROOT / "data" / "excel_intents.json"
 MANSAM_SITE_URL = os.environ.get("MANSAM_SITE_URL", "https://uatuae.mansamworld.com").rstrip("/")
 HF_API_URL = os.environ.get("HF_API_URL", "https://router.huggingface.co/v1/chat/completions")
 HF_MODEL = os.environ.get("HF_MODEL", "Qwen/Qwen3.8-27B:deepinfra")
@@ -222,10 +223,34 @@ def load_general_qa_intents():
         })
     return intents
 
+def load_excel_intents():
+    if not EXCEL_INTENTS_FILE.exists():
+        return []
+    try:
+        source = json.loads(EXCEL_INTENTS_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        print(f"Excel QA data was not loaded: {type(error).__name__}")
+        return []
+
+    intents = []
+    for item in source.get("intents", []):
+        tag = str(item.get("tag", "")).strip().lower()
+        patterns = [str(value).strip() for value in item.get("patterns", []) if str(value).strip()]
+        responses = [str(value).strip() for value in item.get("responses", []) if str(value).strip()]
+        if not tag or not patterns or not responses:
+            continue
+        intents.append({
+            "id": f"excel_{tag}",
+            "examples": {"en": patterns},
+            "response": {"en": responses[0], "ar": ""},
+            "responseOptions": {"en": responses},
+        })
+    return intents
+
 
 with GENERAL_INTENTS_FILE.open(encoding="utf-8") as file:
     GENERAL_INTENTS = json.load(file).get("intents", [])
-GENERAL_QA_INTENTS = load_general_qa_intents()
+GENERAL_QA_INTENTS = load_general_qa_intents() + load_excel_intents()
 CONVERSATIONAL_INTENTS = GENERAL_QA_INTENTS + GENERAL_INTENTS
 GENERAL_INTENT_BY_ID = {intent["id"]: intent for intent in CONVERSATIONAL_INTENTS}
 GENERAL_INTENT_CLASSIFIER = IntentClassifier(GENERAL_INTENTS)
