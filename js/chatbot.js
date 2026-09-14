@@ -564,18 +564,21 @@
   async function send(message, fromVoice = false) {
     const input = document.querySelector("[data-chat-input]");
     const sendButton = document.querySelector("[data-chat-send]");
-    const text = cleanVoiceTranscript(fromVoice ? (message || input.value) : (message || input.value).trim());
+    const rawText = (message || input?.value || "").trim();
+    const text = fromVoice ? cleanVoiceTranscript(rawText) : rawText;
     if (!text || state.busy) return;
     stopRecognition(false);
     state.language = detectLanguage(text);
     refreshLanguage();
-    input.value = "";
+    if (input) input.value = "";
 
     const textLower = text.toLowerCase();
-    const isFirstTime = textLower.includes("first time") || textLower.includes("الأولى") || textLower.includes("الاولى");
-    const isVisitedBefore = textLower.includes("visited") || textLower.includes("زرتكم") || textLower.includes("قبل");
+    const isFirstTime = textLower === "first time" || textLower === "مرتي الأولى" || textLower === "مرتي الاولى" || textLower === "1st time";
+    const isVisitedBefore = textLower === "visited before" || textLower === "زرتكم من قبل" || textLower === "visited";
+    const isForMyself = textLower === "for myself" || textLower === "لنفسي" || textLower === "myself";
+    const isAsGift = textLower === "as a gift" || textLower === "كهدية" || textLower === "gift";
 
-    if (state.flowStep === 1) {
+    if (state.flowStep === 1 && (isFirstTime || isVisitedBefore)) {
       addMessage(text, "customer");
       rememberTurn("customer", text);
       if (isVisitedBefore) {
@@ -583,7 +586,7 @@
         const reply = copy[language()].askReturning;
         addMessage(reply, "assistant");
         rememberTurn("assistant", reply);
-        if (fromVoice) speakText(reply, language());
+        if (fromVoice || state.inputMode === "voice") speakText(reply, language());
         updateSuggestions();
         return;
       } else {
@@ -591,27 +594,25 @@
         const reply = copy[language()].askGift;
         addMessage(reply, "assistant");
         rememberTurn("assistant", reply);
-        if (fromVoice) speakText(reply, language());
+        if (fromVoice || state.inputMode === "voice") speakText(reply, language());
         updateSuggestions();
         return;
       }
-    } else if (state.flowStep === 2) {
+    } else if (state.flowStep === 2 && (isForMyself || isAsGift)) {
       addMessage(text, "customer");
       rememberTurn("customer", text);
       state.flowStep = 3;
       const reply = copy[language()].askNotes;
       addMessage(reply, "assistant");
       rememberTurn("assistant", reply);
-      if (fromVoice) speakText(reply, language());
+      if (fromVoice || state.inputMode === "voice") speakText(reply, language());
       updateSuggestions();
       return;
-    } else if (state.flowStep === "2_returning" || state.flowStep === 3) {
-      state.flowStep = 4;
     }
 
     state.busy = true;
-    input.disabled = true;
-    sendButton.disabled = true;
+    if (input) input.disabled = true;
+    if (sendButton) sendButton.disabled = true;
     const conversation = state.conversation.slice(-8);
     addMessage(text, "customer");
     rememberTurn("customer", text);
@@ -623,7 +624,7 @@
       rememberTurn("assistant", payload.answer);
       if (payload.memory) saveProfile(payload.memory);
       else if (Array.isArray(payload.productIds)) saveProfile({ preferences: state.profile.preferences, productIds: payload.productIds.slice(0, 3) });
-      if (state.inputMode === "voice") speakText(payload.answer, payload.language || language());
+      if (fromVoice || state.inputMode === "voice") speakText(payload.answer, payload.language || language());
     } catch (error) {
       addMessage(copy[language()].error, "assistant");
       rememberTurn("assistant", copy[language()].error);
@@ -631,10 +632,10 @@
     } finally {
       setThinking(false);
       state.busy = false;
-      input.disabled = false;
-      sendButton.disabled = false;
+      if (input) input.disabled = false;
+      if (sendButton) sendButton.disabled = false;
       updateSuggestions();
-      input.focus();
+      if (input) input.focus();
     }
   }
 
