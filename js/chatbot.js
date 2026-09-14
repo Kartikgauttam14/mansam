@@ -3,11 +3,11 @@
   const endpoint = config.chatEndpoint || "/api/chat";
   const STORAGE_KEYS = { profile: "mansam-fragrance-memory", conversation: "mansam-chat-session", language: "mansam-chat-language", speaker: "mansam-chat-speaker" };
   const STORAGE_VERSION = 2;
-  const state = { open: false, busy: false, language: null, awaitingName: false, customerName: "", contextProductIds: [], profile: { name: "", preferences: [], productIds: [] }, conversation: [], inputMode: "chat", recognition: null, recorder: null, voiceStream: null, voiceSession: null, listening: false, speechAudio: null, speakerEnabled: true };
+  const state = { open: false, busy: false, language: null, awaitingName: false, customerName: "", flowStep: 1, contextProductIds: [], profile: { name: "", preferences: [], productIds: [] }, conversation: [], inputMode: "chat", recognition: null, recorder: null, voiceStream: null, voiceSession: null, listening: false, speechAudio: null, speakerEnabled: true };
 
   const copy = {
-    en: { title: "Mansam Concierge", intro: "Your personal fragrance guide", placeholder: "Describe a note, mood, or occasion", namePlaceholder: "Enter your name", send: "Send", askName: "Welcome to Mansam. May I have your name?", greeting: "Welcome to Mansam, {name} sir! What fragrance can I help you find today?", one: "Which perfume has rose and oud?", two: "I want a fresh daily fragrance.", viewProduct: "View perfume", error: "I could not reach the fragrance guide. Please try again.", chat: "Chat", voice: "Voice", listen: "Listening...", tapToSpeak: "Tap to speak", voicePrompt: "Tell me what you are looking for", voiceHint: "Speak in English or Arabic", thinking: "Finding the right fragrance", available: "Available now", readAloud: "Read answer aloud", speakerOn: "Turn speaker off", speakerOff: "Turn speaker on", clearMemory: "Clear fragrance memory", voiceUnavailable: "Voice input is not available in this browser.", noSpeech: "I did not hear anything. Tap the microphone and try again.", voiceError: "Voice input could not start. Please try again." },
-    ar: { title: "مستشار منسَم", intro: "دليلك الشخصي لاكتشاف العطور", placeholder: "اكتب نفحاتك أو مزاجك أو مناسبتك", namePlaceholder: "اكتب اسمك", send: "إرسال", askName: "مرحباً بك في منسَم. ما اسمك؟", greeting: "مرحباً بك في منسَم يا {name} سيدي! ما العطر الذي يمكنني مساعدتك في العثور عليه اليوم؟", one: "أي عطر يحتوي على الورد والعود؟", two: "أريد عطراً منعشاً للاستخدام اليومي.", viewProduct: "عرض العطر", error: "تعذر الوصول إلى دليل العطور. حاول مرة أخرى.", chat: "كتابة", voice: "صوت", listen: "جارٍ الاستماع...", tapToSpeak: "اضغط للتحدث", voicePrompt: "أخبرني بما تبحث عنه", voiceHint: "تحدث بالعربية أو الإنجليزية", thinking: "نبحث عن العطر المناسب", available: "متاح الآن", readAloud: "استمع إلى الإجابة", speakerOn: "إيقاف صوت المساعد", speakerOff: "تشغيل صوت المساعد", clearMemory: "مسح ذاكرة العطور", voiceUnavailable: "الإدخال الصوتي غير متاح في هذا المتصفح.", noSpeech: "لم أسمع شيئاً. اضغط على الميكروفون وحاول مرة أخرى.", voiceError: "تعذر تشغيل الإدخال الصوتي. حاول مرة أخرى." }
+    en: { title: "Mansam Concierge", intro: "Your personal fragrance guide", placeholder: "Describe a note, mood, or occasion", namePlaceholder: "Enter your name", send: "Send", askName: "Welcome to Mansam. May I have your name?", greeting: "Welcome to Mansam, {name} sir! What fragrance can I help you find today?", askBoutique: "Welcome and hello — welcome to Mansam Perfumes brand. You are with our advisor (Mansam AI). Have you visited our boutique before, or is this your first time?", askGift: "Allow me to give you an idea of what we have. Would you like the perfume for yourself, or as a gift?", askReturning: "Welcome back to Mansam! Which fragrance did you enjoy previously, or what note are you looking for today?", askNotes: "Do you lean more toward oud, rose, or musk? And which note do you not enjoy?", btnFirstTime: "First Time", btnVisitedBefore: "Visited Before", btnForMyself: "For Myself", btnAsGift: "As a Gift", btnOud: "Oud", btnRose: "Rose", btnMusk: "Musk", btnFresh: "Fresh Citrus", one: "Which perfume has rose and oud?", two: "I want a fresh daily fragrance.", viewProduct: "View perfume", error: "I could not reach the fragrance guide. Please try again.", chat: "Chat", voice: "Voice", listen: "Listening...", tapToSpeak: "Tap to speak", voicePrompt: "Tell me what you are looking for", voiceHint: "Speak in English or Arabic", thinking: "Finding the right fragrance", available: "Available now", readAloud: "Read answer aloud", speakerOn: "Turn speaker off", speakerOff: "Turn speaker on", clearMemory: "Clear fragrance memory", voiceUnavailable: "Voice input is not available in this browser.", noSpeech: "I did not hear anything. Tap the microphone and try again.", voiceError: "Voice input could not start. Please try again." },
+    ar: { title: "مستشار منسَم", intro: "دليلك الشخصي لاكتشاف العطور", placeholder: "اكتب نفحاتك أو مزاجك أو مناسبتك", namePlaceholder: "اكتب اسمك", send: "إرسال", askName: "مرحباً بك في منسَم. ما اسمك؟", greeting: "مرحباً بك في منسَم يا {name} سيدي! ما العطر الذي يمكنني مساعدتك في العثور عليه اليوم؟", askBoutique: "أهلاً ومرحباً بك في علامة منسَم للعطور. معك مستشار العطور (منسَم الذكي). هل زرت متجرنا من قبل أم هذه مرتك الأولى؟", askGift: "اسمحي لي / اسمح لي أن آخذك في جولة سريعة. هل تبحث عن العطر لنفسك أم كهدية؟", askReturning: "أهلاً بك مجدداً في منسَم! ما هو العطر الذي جربته وأعجبك سابقاً، أو ما هي النفحة التي تبحث عنها اليوم؟", askNotes: "هل تميل أكثر إلى العود، الورد، أم المسك؟ وما هي النفحة التي لا تفضلها؟", btnFirstTime: "مرتي الأولى", btnVisitedBefore: "زرتكم من قبل", btnForMyself: "لنفسي", btnAsGift: "كهدية", btnOud: "عود", btnRose: "ورد", btnMusk: "مسك", btnFresh: "حمضيات ومنعش", one: "أي عطر يحتوي على الورد والعود؟", two: "أريد عطراً منعشاً للاستخدام اليومي.", viewProduct: "عرض العطر", error: "تعذر الوصول إلى دليل العطور. حاول مرة أخرى.", chat: "كتابة", voice: "صوت", listen: "جارٍ الاستماع...", tapToSpeak: "اضغط للتحدث", voicePrompt: "أخبرني بما تبحث عنه", voiceHint: "تحدث بالعربية أو الإنجليزية", thinking: "نبحث عن العطر المناسب", available: "متاح الآن", readAloud: "استمع إلى الإجابة", speakerOn: "إيقاف صوت المساعد", speakerOff: "تشغيل صوت المساعد", clearMemory: "مسح ذاكرة العطور", voiceUnavailable: "الإدخال الصوتي غير متاح في هذا المتصفح.", noSpeech: "لم أسمع شيئاً. اضغط على الميكروفون وحاول مرة أخرى.", voiceError: "تعذر تشغيل الإدخال الصوتي. حاول مرة أخرى." }
   };
 
   function language() { return state.language || ((document.documentElement.lang || localStorage.getItem(STORAGE_KEYS.language) || localStorage.getItem("language") || "en").startsWith("ar") ? "ar" : "en"); }
@@ -108,10 +108,48 @@
     try { localStorage.setItem(STORAGE_KEYS.profile, JSON.stringify({ version: STORAGE_VERSION, ...state.profile })); } catch (error) { /* storage may be unavailable */ }
   }
 
+  function updateSuggestions() {
+    const suggestionsContainer = document.querySelector(".mansam-chat__suggestions");
+    if (!suggestionsContainer) return;
+    const lang = language();
+    const c = copy[lang];
+    let buttons = [];
+
+    if (state.flowStep === 1) {
+      buttons = [
+        { text: c.btnFirstTime },
+        { text: c.btnVisitedBefore }
+      ];
+    } else if (state.flowStep === 2) {
+      buttons = [
+        { text: c.btnForMyself },
+        { text: c.btnAsGift }
+      ];
+    } else if (state.flowStep === 3 || state.flowStep === "2_returning") {
+      buttons = [
+        { text: c.btnOud },
+        { text: c.btnRose },
+        { text: c.btnMusk },
+        { text: c.btnFresh }
+      ];
+    } else {
+      buttons = [
+        { text: lang === "ar" ? "أي عطر يحتوي على الورد والعود؟" : "Which perfume has rose and oud?" },
+        { text: lang === "ar" ? "أريد عطراً منعشاً للاستخدام اليومي." : "I want a fresh daily fragrance." }
+      ];
+    }
+
+    suggestionsContainer.innerHTML = buttons.map(b => `<button type="button" class="mansam-chat__suggestion-chip">${escapeHtml(b.text)}</button>`).join("");
+    suggestionsContainer.querySelectorAll("button").forEach(btn => {
+      btn.addEventListener("click", () => send(btn.textContent));
+    });
+  }
+
   function clearMemory() {
     state.profile = { name: "", preferences: [], productIds: [] };
     state.customerName = "";
-    state.awaitingName = Boolean(state.language);
+    state.awaitingName = false;
+    state.flowStep = 1;
     state.contextProductIds = [];
     state.conversation = [];
     try {
@@ -119,7 +157,13 @@
       sessionStorage.removeItem(STORAGE_KEYS.conversation);
     } catch (error) { /* storage may be unavailable */ }
     const messages = document.querySelector(".mansam-chat__messages");
-    if (messages) { messages.innerHTML = ""; if (state.awaitingName) addMessage(copy[language()].askName, "assistant", [], true); }
+    if (messages) {
+      messages.innerHTML = "";
+      if (state.language) {
+        addMessage(copy[language()].askBoutique, "assistant", [], true);
+        updateSuggestions();
+      }
+    }
   }
 
   function safeProductUrl(value) {
@@ -255,6 +299,7 @@
     launcher.setAttribute("aria-label", text.title);
     launcher.title = text.title;
     if (state.recognition) state.recognition.lang = lang === "ar" ? "ar-SA" : "en-US";
+    updateSuggestions();
   }
 
   function setOpen(open) {
@@ -279,17 +324,16 @@
     panel.querySelector("[data-chat-language-choice]").hidden = true;
     panel.querySelector("[data-chat-conversation]").hidden = false;
     state.customerName = state.profile.name || "";
-    state.awaitingName = !state.customerName;
+    state.awaitingName = false;
     refreshLanguage();
     panel.querySelector(".mansam-chat__messages").innerHTML = "";
     if (state.conversation.length) {
       state.conversation.forEach(turn => addMessage(turn.text, turn.role, [], false));
     } else {
-      const welcomeMessage = state.awaitingName
-        ? copy[selectedLanguage].askName
-        : copy[selectedLanguage].greeting.replace("{name}", state.customerName);
-      addMessage(welcomeMessage, "assistant", [], true);
+      state.flowStep = 1;
+      addMessage(copy[selectedLanguage].askBoutique, "assistant", [], true);
     }
+    updateSuggestions();
     panel.querySelector("[data-chat-input]").focus();
   }
 
@@ -523,30 +567,49 @@
     const text = cleanVoiceTranscript(fromVoice ? (message || input.value) : (message || input.value).trim());
     if (!text || state.busy) return;
     stopRecognition(false);
-    if (state.awaitingName) {
-      const name = cleanCustomerName(text);
-      if (name.length < 2) {
-        addMessage(text, "customer");
-        addMessage(copy[language()].askName, "assistant", [], true);
-        input.value = "";
-        return;
-      }
-      state.customerName = name;
-      state.awaitingName = false;
-      state.profile.name = name;
-      saveProfile(state.profile);
-      input.value = "";
-      addMessage(name, "customer");
-      const welcomeMessage = copy[language()].greeting.replace("{name}", name);
-      addMessage(welcomeMessage, "assistant", [], true);
-      if (fromVoice) speakText(welcomeMessage, language());
-      refreshLanguage();
-      return;
-    }
     state.language = detectLanguage(text);
     refreshLanguage();
-    state.busy = true;
     input.value = "";
+
+    const textLower = text.toLowerCase();
+    const isFirstTime = textLower.includes("first time") || textLower.includes("الأولى") || textLower.includes("الاولى");
+    const isVisitedBefore = textLower.includes("visited") || textLower.includes("زرتكم") || textLower.includes("قبل");
+
+    if (state.flowStep === 1) {
+      addMessage(text, "customer");
+      rememberTurn("customer", text);
+      if (isVisitedBefore) {
+        state.flowStep = "2_returning";
+        const reply = copy[language()].askReturning;
+        addMessage(reply, "assistant");
+        rememberTurn("assistant", reply);
+        if (fromVoice) speakText(reply, language());
+        updateSuggestions();
+        return;
+      } else {
+        state.flowStep = 2;
+        const reply = copy[language()].askGift;
+        addMessage(reply, "assistant");
+        rememberTurn("assistant", reply);
+        if (fromVoice) speakText(reply, language());
+        updateSuggestions();
+        return;
+      }
+    } else if (state.flowStep === 2) {
+      addMessage(text, "customer");
+      rememberTurn("customer", text);
+      state.flowStep = 3;
+      const reply = copy[language()].askNotes;
+      addMessage(reply, "assistant");
+      rememberTurn("assistant", reply);
+      if (fromVoice) speakText(reply, language());
+      updateSuggestions();
+      return;
+    } else if (state.flowStep === "2_returning" || state.flowStep === 3) {
+      state.flowStep = 4;
+    }
+
+    state.busy = true;
     input.disabled = true;
     sendButton.disabled = true;
     const conversation = state.conversation.slice(-8);
@@ -570,6 +633,7 @@
       state.busy = false;
       input.disabled = false;
       sendButton.disabled = false;
+      updateSuggestions();
       input.focus();
     }
   }

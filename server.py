@@ -1484,14 +1484,14 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
         elif intent["notes"]:
             answer = f"في {name} ستلاحظ: {notes or 'نفحات غير مذكورة في المصادر المتاحة'}."
         elif recommendation_mode:
-            answer = f"أقترح أن يكون {name} من أفضل العطور"
+            price_val = format_price(primary)
+            price_str = f" السعر هو {price_val}." if price_val else ""
+            answer = f"أرشح لك عطر {name}"
             if recipient_text:
                 answer += f" {recipient_text}"
             if collection:
                 answer += f" من مجموعة {collection}"
-            elif preference_text and not recipient_text:
-                answer += f" لعطر {preference_text}"
-            answer += ". هل تريد عطراً آخر، أم أعرض لك السعر؟"
+            answer += f".{price_str} متوفر اليوم.\n\nتخيل نفسك في وقت المغرب، والجو هادئ، وهذه الرائحة الدافئة تحيط بك كالعناق.\n\nالعديد من عملائنا اختاروا هذا العطر وعادوا لاقتنائه مجدداً، وأوصوا به في محيطهم.\n\nهل ترغب في أن أجهز لك الطلب، أم تود اقتراحاً آخر؟"
         else:
             answer = f"{name} قد يكون بداية جميلة"
             if collection:
@@ -1511,15 +1511,14 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
         elif intent["notes"]:
             answer = f"In {name}, you will notice {notes or 'notes not listed in the available sources'}."
         elif recommendation_mode:
+            price_val = format_price(primary)
+            price_str = f" The price is {price_val}." if price_val else ""
+            answer = f"I recommend {name}"
             if recipient_text:
-                answer = f"I suggest one of the best perfumes {recipient_text} is {name}"
-            else:
-                answer = f"I suggest {name}"
+                answer += f" {recipient_text}"
             if collection:
                 answer += f" from the {collection} collection"
-            if preference_text:
-                answer += f" for the {preference_text} style"
-            answer += ". Would you like another perfume suggestion, or should I show you the price?"
+            answer += f".{price_str} Available today.\n\nImagine yourself at Maghrib, the air calm, and this warm scent surrounds you like an embrace.\n\nMany of our clients chose this perfume and came back for it a second time, recommending it within their circle.\n\nWould you like me to prepare your order, or would you like another perfume suggestion?"
         else:
             answer = f"{name} could be a lovely place to start"
             if collection:
