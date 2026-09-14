@@ -272,30 +272,30 @@
     if (!panel || !launcher) return;
     panel.lang = lang;
     panel.dir = lang === "ar" ? "rtl" : "ltr";
-    panel.querySelector("[data-chat-title]").textContent = text.title;
-    panel.querySelector("[data-chat-intro]").textContent = text.intro;
-    panel.querySelector("[data-chat-availability]").textContent = text.available;
-    panel.querySelector("[data-chat-input]").placeholder = state.awaitingName ? text.namePlaceholder : text.placeholder;
-    panel.querySelector("[data-chat-send]").textContent = text.send;
-    panel.querySelector("[data-chat-one]").textContent = text.one;
-    panel.querySelector("[data-chat-two]").textContent = text.two;
-    panel.querySelector("[data-chat-language-switcher]").value = lang;
-    panel.querySelector("[data-chat-mode='chat']").textContent = text.chat;
-    panel.querySelector("[data-chat-mode='voice']").textContent = text.voice;
-    panel.querySelector("[data-chat-voice-prompt]").textContent = text.voicePrompt;
-    panel.querySelector("[data-chat-voice-hint]").textContent = text.voiceHint;
-    panel.querySelector("[data-chat-voice-trigger]").setAttribute("aria-label", text.tapToSpeak);
-    panel.querySelector("[data-chat-voice-trigger]").title = text.tapToSpeak;
-    panel.querySelector("[data-chat-voice-status]").textContent = state.listening ? text.listen : "";
-    panel.querySelector("[data-chat-mic]").setAttribute("aria-label", lang === "ar" ? "بدء الإدخال الصوتي" : "Start voice input");
-    panel.querySelector(".mansam-chat__close").setAttribute("aria-label", lang === "ar" ? "إغلاق" : "Close");
-    panel.querySelector("[data-chat-reset]").setAttribute("aria-label", text.clearMemory);
-    panel.querySelector("[data-chat-reset]").title = text.clearMemory;
+    const titleEl = panel.querySelector("[data-chat-title]"); if (titleEl) titleEl.textContent = text.title;
+    const introEl = panel.querySelector("[data-chat-intro]"); if (introEl) introEl.textContent = text.intro;
+    const availEl = panel.querySelector("[data-chat-availability]"); if (availEl) availEl.textContent = text.available;
+    const inputEl = panel.querySelector("[data-chat-input]"); if (inputEl) inputEl.placeholder = state.awaitingName ? text.namePlaceholder : text.placeholder;
+    const sendEl = panel.querySelector("[data-chat-send]"); if (sendEl) sendEl.textContent = text.send;
+    const oneEl = panel.querySelector("[data-chat-one]"); if (oneEl) oneEl.textContent = text.one;
+    const twoEl = panel.querySelector("[data-chat-two]"); if (twoEl) twoEl.textContent = text.two;
+    const langSwitchEl = panel.querySelector("[data-chat-language-switcher]"); if (langSwitchEl) langSwitchEl.value = lang;
+    const modeChatEl = panel.querySelector("[data-chat-mode='chat']"); if (modeChatEl) modeChatEl.textContent = text.chat;
+    const modeVoiceEl = panel.querySelector("[data-chat-mode='voice']"); if (modeVoiceEl) modeVoiceEl.textContent = text.voice;
+    const vPromptEl = panel.querySelector("[data-chat-voice-prompt]"); if (vPromptEl) vPromptEl.textContent = text.voicePrompt;
+    const vHintEl = panel.querySelector("[data-chat-voice-hint]"); if (vHintEl) vHintEl.textContent = text.voiceHint;
+    const vTrigEl = panel.querySelector("[data-chat-voice-trigger]"); if (vTrigEl) { vTrigEl.setAttribute("aria-label", text.tapToSpeak); vTrigEl.title = text.tapToSpeak; }
+    const vStatEl = panel.querySelector("[data-chat-voice-status]"); if (vStatEl) vStatEl.textContent = state.listening ? text.listen : "";
+    const micEl = panel.querySelector("[data-chat-mic]"); if (micEl) micEl.setAttribute("aria-label", lang === "ar" ? "بدء الإدخال الصوتي" : "Start voice input");
+    const closeEl = panel.querySelector(".mansam-chat__close"); if (closeEl) closeEl.setAttribute("aria-label", lang === "ar" ? "إغلاق" : "Close");
+    const resetEl = panel.querySelector("[data-chat-reset]"); if (resetEl) { resetEl.setAttribute("aria-label", text.clearMemory); resetEl.title = text.clearMemory; }
     const speakerButton = panel.querySelector("[data-chat-speaker]");
-    speakerButton.innerHTML = state.speakerEnabled ? "&#128266;" : "&#128263;";
-    speakerButton.setAttribute("aria-pressed", String(!state.speakerEnabled));
-    speakerButton.setAttribute("aria-label", state.speakerEnabled ? text.speakerOn : text.speakerOff);
-    speakerButton.title = state.speakerEnabled ? text.speakerOn : text.speakerOff;
+    if (speakerButton) {
+      speakerButton.innerHTML = state.speakerEnabled ? "&#128266;" : "&#128263;";
+      speakerButton.setAttribute("aria-pressed", String(!state.speakerEnabled));
+      speakerButton.setAttribute("aria-label", state.speakerEnabled ? text.speakerOn : text.speakerOff);
+      speakerButton.title = state.speakerEnabled ? text.speakerOn : text.speakerOff;
+    }
     launcher.setAttribute("aria-label", text.title);
     launcher.title = text.title;
     if (state.recognition) state.recognition.lang = lang === "ar" ? "ar-SA" : "en-US";
