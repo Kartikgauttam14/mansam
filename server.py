@@ -1346,8 +1346,65 @@ def hugging_face_gradio_answer(message, language, products):
     return answer[:1200]
 
 
+def discovery_recommendation(discovery, language):
+    """Apply explicit bottle size and recipient constraints before ranking notes."""
+    size = str(discovery.get("sizeMl", ""))
+    if size not in {"3", "20", "50", "100"}:
+        return None
+    gender = str(discovery.get("gender", "unisex"))
+    note_text = str(discovery.get("notes", ""))[:500]
+    parts = re.split(r"\b(?:but|avoid|dislike|not|hate)\b|لا أحب|لا احب|بدون", note_text, maxsplit=1, flags=re.I)
+    preferred = tokens(parts[0])
+    excluded = tokens(parts[1]) if len(parts) > 1 else set()
+    candidates = []
+    sizes = set()
+    for product in CATALOG_PRODUCTS:
+        if normalize(product_value(product, "productLine", "en")).strip() not in PERFUME_PRODUCT_LINES:
+            continue
+        product_gender = normalize(product_value(product, "gender", "en"))
+        allowed = {"unisex", gender}
+        if product_gender not in allowed:
+            continue
+        volume = re.fullmatch(r"\s*(\d+)\s*ml\s*", str(product.get("volume", "")), re.I)
+        if not volume:
+            continue
+        note_tokens = tokens(" ".join(product_notes(product, "en") + product_notes(product, "ar")))
+        if excluded & note_tokens:
+            continue
+        sizes.add(int(volume[1]))
+        if volume[1] == size:
+            candidates.append((len(preferred & note_tokens), product))
+    if not candidates:
+        available = ", ".join(f"{value} ml" for value in sorted(sizes))
+        answer = (f"I couldn't find a {size} ml fragrance matching your choices in the current catalogue."
+                  if language == "en" else f"لم أجد عطراً بحجم {size} مل يطابق اختياراتك في الكتالوج الحالي.")
+        if available:
+            answer += (f" Available sizes for these choices: {available}. Which would you prefer?"
+                       if language == "en" else f" الأحجام المتوفرة لهذه الاختيارات: {available}. أي حجم تفضل؟")
+        return {"language": language, "answer": answer, "intent": "discovery_no_match",
+                "sources": [], "productLinks": [], "productIds": []}
+    candidates.sort(key=lambda item: item[0], reverse=True)
+    product = candidates[0][1]
+    name = product_value(product, "name", language).strip()
+    notes = ", ".join(product_notes(product, language))
+    answer = (f"I recommend {name} — {size} ml." if language == "en" else f"أرشح لك {name} — {size} مل.")
+    if notes:
+        answer += (f" Key notes: {notes}." if language == "en" else f" أبرز النفحات: {notes}.")
+    if format_price(product):
+        answer += f"\n{format_price(product)}."
+    return {"language": language, "answer": answer, "intent": "discovery_recommendation",
+            "sources": product_source(product), "productIds": [str(product.get("id"))],
+            "productLinks": [{"name": product.get("name", {}), "url": product_url(product)}] if product_url(product) else []}
+
+
 def make_answer(message, language, context_product_ids=None, conversation=None, profile=None):
     language = "ar" if language == "ar" or is_arabic(message) else "en"
+    discovery = profile.get("discovery", {}) if isinstance(profile, dict) else {}
+    size_reply = re.fullmatch(r"\s*(3|20|50|100|٣|٢٠|٥٠|١٠٠)\s*(?:ml|مل)?[.!?؟]?\s*", message, re.I)
+    if isinstance(discovery, dict) and size_reply and discovery.get("sizeMl"):
+        result = discovery_recommendation({**discovery, "sizeMl": int(size_reply[1])}, language)
+        if result:
+            return result
     conversation = normalized_conversation(conversation)
     profile = normalized_profile(profile)
     context_product_ids = list(dict.fromkeys(profile["productIds"] + [str(value) for value in (context_product_ids or [])]))[:3]

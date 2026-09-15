@@ -5,6 +5,37 @@ import server
 
 
 class ChatbotAccuracyBenchmark(unittest.TestCase):
+    def test_discovery_filters_size_gender_and_disliked_notes(self):
+        products = [
+            {"id": "wrong-size", "volume": "50ml", "gender": "Unisex", "notes": {"en": ["Rose"]}},
+            {"id": "wrong-gender", "volume": "100ml", "gender": "Male", "notes": {"en": ["Rose"]}},
+            {"id": "disliked", "volume": "100ml", "gender": "Unisex", "notes": {"en": ["Rose", "Oud"]}},
+            {"id": "match", "volume": "100ml", "gender": "Unisex", "notes": {"en": ["Rose"]}},
+        ]
+        for product in products:
+            product.update(name={"en": product["id"]}, productLine={"en": "Eau de Parfum 100ml"})
+        profile = {"discovery": {"gender": "female", "notes": "rose but not oud", "sizeMl": 100}}
+        with patch.object(server, "CATALOG_PRODUCTS", products):
+            result = server.make_answer("100 ml", "en", profile=profile)
+            self.assertEqual(result["productIds"], ["match"])
+            missing = server.make_answer("20 ml", "en", profile=profile)
+            self.assertEqual(missing["intent"], "discovery_no_match")
+            self.assertEqual(missing["productLinks"], [])
+            self.assertIn("20 ml", missing["answer"])
+
+    def test_discovery_real_catalogue_sizes_and_arabic(self):
+        for size in (3, 20, 50, 100):
+            result = server.make_answer(f"{size} ml", "en", profile={"discovery": {
+                "gender": "unisex", "notes": "musk", "sizeMl": size}})
+            by_id = {str(p.get("id")): p for p in server.CATALOG_PRODUCTS}
+            for product_id in result["productIds"]:
+                self.assertEqual(by_id[product_id]["volume"].lower(), f"{size}ml")
+                self.assertEqual(by_id[product_id]["gender"].lower(), "unisex")
+        result = server.make_answer("١٠٠ مل", "ar", profile={"discovery": {
+            "gender": "unisex", "notes": "مسك", "sizeMl": 100}})
+        self.assertEqual(result["intent"], "discovery_recommendation")
+        self.assertEqual(result["language"], "ar")
+
     def test_single_gift_perfume_is_not_a_catalogue(self):
         for question in ("now show me a perfume for the gift", "show me one perfume for a gift", "give me a fragrance for a present"):
             for profile in ({}, {"preferences": ["rose"], "productIds": ["49"]}):

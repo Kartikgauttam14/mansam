@@ -10,6 +10,11 @@
     ar: { title: "مستشار منسَم", intro: "دليلك الشخصي لاكتشاف العطور", placeholder: "اكتب نفحاتك أو مزاجك أو مناسبتك", namePlaceholder: "اكتب اسمك", send: "إرسال", askName: "مرحباً بك في منسَم. ما اسمك؟", greeting: "مرحباً بك في مانسام – دار العطور الفاخرة، يا {name} سيدي.\n\nشكراً لزيارتك.\n\nأنا مساعدك الذكي من مانسام، وأعمل مع خبراء العطور لدينا لنقدم لك تجربة سهلة، شخصية، ولا تُنسى.\n\nبخبرتنا المتخصصة في عالم العطور، يسعدنا مساعدتك، والإجابة على استفساراتك، وترشيح العطر الأنسب لك أو لمن تحب، حتى تجد عطراً يعبر عن شخصيتك بكل تميز.\n\nوحين تكون جاهزاً، لنبدأ رحلتك العطرية.", askBoutique: "يسعدني مساعدتك في العثور على العطر المناسب أو الإجابة عن النفحات والأسعار والتوصيل. هل زرت متجرنا من قبل أم هذه مرتك الأولى؟", askGift: "اسمح لي أن آخذك في جولة سريعة. هل تبحث عن العطر لنفسك أم كهدية؟", askReturning: "أهلاً بك مجدداً في منسَم! ما هو العطر الذي جربته وأعجبك سابقاً، أو ما هي النفحة التي تبحث عنها اليوم؟", askNotes: "هل تميل أكثر إلى العود، الورد، أم المسك؟ وما هي النفحة التي لا تفضلها؟", askOccasionLady: "رائع — العطر لسيدة. هل هو لمناسبة خاصة أم للاستخدام اليومي؟", askOccasionGentleman: "رائع — العطر لرجل. هل هو لمناسبة خاصة أم للاستخدام اليومي؟", askOccasionSelf: "رائع — العطر لك. هل هو لمناسبة خاصة أم للاستخدام اليومي؟", askSpecialGentleman: "مناسبة خاصة له — لحظة جميلة تستحق التمييز. يمنحك عطر سرحان جلداً وعوداً جريئين بثقة هادئة للمساء. أو شذا بلادي — عود قوي وعميق ونبيل للتجمعات الرسمية. أيهما أقرب إليه؟", askSpecialLady: "مناسبة خاصة لها — لحظة جميلة تستحق التمييز. يمكنني ترشيح عطر زهري أنيق أو توقيع دافئ. هل تفضلين رائحة زهرية راقية أم رائحة غنية وحسية؟", askEveryday: "للاستخدام اليومي، أستطيع أن أرشح لك عطراً عملياً ومتعدد الاستخدامات. هل تفضل رائحة منعشة ونظيفة أم دافئة ولافتة؟", btnMyself: "لنفسي", btnSomeoneElse: "لشخص آخر", btnLady: "لسيدة", btnGentleman: "لرجل", btnSpecial: "مناسبة خاصة", btnEveryday: "استخدام يومي", btnFirstTime: "مرتي الأولى", btnVisitedBefore: "زرتكم من قبل", btnForMyself: "لنفسي", btnAsGift: "كهدية", btnOud: "عود", btnRose: "ورد", btnMusk: "مسك", btnFresh: "حمضيات ومنعش", one: "أي عطر يحتوي على الورد والعود؟", two: "أريد عطراً منعشاً للاستخدام اليومي.", viewProduct: "عرض العطر", error: "تعذر الوصول إلى دليل العطور. حاول مرة أخرى.", chat: "كتابة", voice: "صوت", listen: "جارٍ الاستماع...", tapToSpeak: "اضغط للتحدث", voicePrompt: "أخبرني بما تبحث عنه", voiceHint: "تحدث بالعربية أو الإنجليزية", thinking: "نبحث عن العطر المناسب", available: "متاح الآن", readAloud: "استمع إلى الإجابة", speakerOn: "إيقاف صوت المساعد", speakerOff: "تشغيل صوت المساعد", clearMemory: "مسح ذاكرة العطور", voiceUnavailable: "الإدخال الصوتي غير متاح في هذا المتصفح.", noSpeech: "لم أسمع شيئاً. اضغط على الميكروفون وحاول مرة أخرى.", voiceError: "تعذر تشغيل الإدخال الصوتي. حاول مرة أخرى." }
   };
 
+  copy.en.askGender = "Is this for a woman, a man, or would you prefer unisex?";
+  copy.ar.askGender = "هل العطر لامرأة، لرجل، أم تفضل عطراً للجنسين؟";
+  copy.en.askSize = "What bottle size would you like: 3 ml, 20 ml, 50 ml, or 100 ml?";
+  copy.ar.askSize = "ما حجم زجاجة العطر الذي تفضله: 3 مل، 20 مل، 50 مل، أم 100 مل؟";
+
   function language() { return state.language || ((document.documentElement.lang || localStorage.getItem(STORAGE_KEYS.language) || localStorage.getItem("language") || "en").startsWith("ar") ? "ar" : "en"); }
   function detectLanguage(text) { return /[\u0600-\u06FF]/.test(text || "") ? "ar" : "en"; }
   function escapeHtml(value) { return String(value || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
@@ -81,6 +86,7 @@
       const stored = JSON.parse(localStorage.getItem(STORAGE_KEYS.profile) || "{}");
       return {
         name: cleanCustomerName(stored.name),
+        discovery: stored.discovery || {},
         preferences: Array.isArray(stored.preferences) ? stored.preferences.slice(0, 8) : [],
         productIds: Array.isArray(stored.productIds) ? stored.productIds.slice(0, 3) : [],
       };
@@ -101,6 +107,7 @@
     if (!memory || typeof memory !== "object") return;
     state.profile = {
       name: memory.name ? cleanCustomerName(memory.name) : state.profile.name,
+      discovery: memory.discovery || state.profile.discovery || {},
       preferences: Array.isArray(memory.preferences) ? memory.preferences.slice(0, 8) : state.profile.preferences,
       productIds: Array.isArray(memory.productIds) ? memory.productIds.slice(0, 3) : state.profile.productIds,
     };
@@ -127,6 +134,10 @@
         { text: c.btnForMyself },
         { text: c.btnAsGift }
       ];
+    } else if (state.flowStep === "gender") {
+      buttons = (lang === "ar" ? ["لامرأة", "لرجل", "للجنسين"] : ["Woman", "Man", "Unisex"]).map(text => ({ text }));
+    } else if (state.flowStep === "size") {
+      buttons = [3, 20, 50, 100].map(size => ({ text: size + (lang === "ar" ? " مل" : " ml") }));
     } else if (state.flowStep === 3 || state.flowStep === "2_returning") {
       buttons = [
         { text: c.btnOud },
@@ -676,14 +687,25 @@
       }
     }
     console.warn("Mansam backend server unreachable. Using intelligent client fallback.", lastError);
+    if (payload.profile?.discovery?.sizeMl) throw new Error("Fragrance service unavailable");
     return generateClientFallbackAnswer(payload);
+  }
+
+  function advanceDiscovery(text, step, reply, fromVoice) {
+    addMessage(text, "customer");
+    rememberTurn("customer", text);
+    state.flowStep = step;
+    addMessage(reply, "assistant");
+    rememberTurn("assistant", reply);
+    if (fromVoice || state.inputMode === "voice") speakText(reply, language());
+    updateSuggestions();
   }
 
   async function send(message, fromVoice = false) {
     const input = document.querySelector("[data-chat-input]");
     const sendButton = document.querySelector("[data-chat-send]");
     const rawText = (message || input?.value || "").trim();
-    const text = fromVoice ? cleanVoiceTranscript(rawText) : rawText;
+    let text = fromVoice ? cleanVoiceTranscript(rawText) : rawText;
     if (!text || state.busy) return;
     stopRecognition(false);
     if (!state.awaitingName) state.language = detectLanguage(text);
@@ -735,35 +757,30 @@
       if (fromVoice || state.inputMode === "voice") speakText(reply, language());
       updateSuggestions();
       return;
-    } else if (state.flowStep === 1 && (isForMyself || isAsGift || isLadyRecipient || isGentlemanRecipient || isSomeoneElse)) {
-      addMessage(text, "customer");
-      rememberTurn("customer", text);
-      if (isForMyself || isLadyRecipient || isGentlemanRecipient) {
-        state.flowStep = 3;
-        const reply = copy[language()].askNotes;
-        addMessage(reply, "assistant");
-        rememberTurn("assistant", reply);
-        if (fromVoice || state.inputMode === "voice") speakText(reply, language());
-        updateSuggestions();
-        return;
-      }
-      state.flowStep = 2;
-      const reply = copy[language()].askGift;
-      addMessage(reply, "assistant");
-      rememberTurn("assistant", reply);
-      if (fromVoice || state.inputMode === "voice") speakText(reply, language());
-      updateSuggestions();
+    } else if ((state.flowStep === 1 || state.flowStep === 2) && (isForMyself || isAsGift || isLadyRecipient || isGentlemanRecipient || isSomeoneElse)) {
+      saveProfile({ discovery: { purpose: isForMyself ? "self" : "gift" } });
+      advanceDiscovery(text, "gender", copy[language()].askGender, fromVoice);
       return;
-    } else if (state.flowStep === 2 && (isForMyself || isAsGift)) {
-      addMessage(text, "customer");
-      rememberTurn("customer", text);
-      state.flowStep = 3;
-      const reply = copy[language()].askNotes;
-      addMessage(reply, "assistant");
-      rememberTurn("assistant", reply);
-      if (fromVoice || state.inputMode === "voice") speakText(reply, language());
-      updateSuggestions();
+    }
+    if (state.flowStep === "gender") {
+      const gender = /unisex|للجنسين/.test(textLower) ? "unisex" : isLadyRecipient ? "female" : isGentlemanRecipient ? "male" : "";
+      if (!gender) { addMessage(copy[language()].askGender, "assistant"); return; }
+      saveProfile({ discovery: { ...state.profile.discovery, gender } });
+      advanceDiscovery(text, 3, copy[language()].askNotes, fromVoice);
       return;
+    }
+    if (state.flowStep === 3 || state.flowStep === "2_returning") {
+      saveProfile({ discovery: { ...state.profile.discovery, notes: text } });
+      advanceDiscovery(text, "size", copy[language()].askSize, fromVoice);
+      return;
+    }
+    if (state.flowStep === "size") {
+      const sizeText = text.replace(/[٠-٩]/g, digit => "٠١٢٣٤٥٦٧٨٩".indexOf(digit));
+      const size = sizeText.match(/^(?:.*?\s)?(3|20|50|100)\s*(?:ml|مل)?[.!?؟]?$/i);
+      if (!size) { addMessage(copy[language()].askSize, "assistant"); return; }
+      saveProfile({ discovery: { ...state.profile.discovery, sizeMl: Number(size[1]) } });
+      text = Number(size[1]) + (language() === "ar" ? " مل" : " ml");
+      state.flowStep = "complete";
     }
 
     state.busy = true;
@@ -777,6 +794,7 @@
       const payload = await requestChat({ message: text, language: language(), contextProductIds: state.contextProductIds, conversation, profile: state.profile });
       if (payload.language === "ar" || payload.language === "en") { state.language = payload.language; refreshLanguage(); }
       addMessage(payload.answer, "assistant", payload.sources, false, payload.productLinks);
+      if (payload.intent === "discovery_no_match") state.flowStep = "size";
       rememberTurn("assistant", payload.answer);
       if (payload.memory) saveProfile(payload.memory);
       else if (Array.isArray(payload.productIds)) saveProfile({ preferences: state.profile.preferences, productIds: payload.productIds.slice(0, 3) });
