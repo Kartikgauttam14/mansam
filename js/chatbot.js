@@ -12,6 +12,8 @@
 
   copy.en.askGender = "Is this for a woman, a man, or would you prefer unisex?";
   copy.ar.askGender = "هل العطر لامرأة، لرجل، أم تفضل عطراً للجنسين؟";
+  copy.en.askUsage = "Is this for daily use or a special occasion?";
+  copy.ar.askUsage = "هل العطر للاستخدام اليومي أم لمناسبة خاصة؟";
   copy.en.askSize = "What bottle size would you like: 3 ml, 20 ml, 50 ml, or 100 ml?";
   copy.ar.askSize = "ما حجم زجاجة العطر الذي تفضله: 3 مل، 20 مل، 50 مل، أم 100 مل؟";
 
@@ -134,6 +136,8 @@
         { text: c.btnForMyself },
         { text: c.btnAsGift }
       ];
+    } else if (state.flowStep === "usage") {
+      buttons = (lang === "ar" ? ["للاستخدام اليومي", "لمناسبة خاصة"] : ["Daily Use", "Special Occasion"]).map(text => ({ text }));
     } else if (state.flowStep === "gender") {
       buttons = (lang === "ar" ? ["لامرأة", "لرجل", "للجنسين"] : ["Woman", "Man", "Unisex"]).map(text => ({ text }));
     } else if (state.flowStep === "size") {
@@ -766,6 +770,13 @@
       const gender = /unisex|للجنسين/.test(textLower) ? "unisex" : isLadyRecipient ? "female" : isGentlemanRecipient ? "male" : "";
       if (!gender) { addMessage(copy[language()].askGender, "assistant"); return; }
       saveProfile({ discovery: { ...state.profile.discovery, gender } });
+      advanceDiscovery(text, "usage", copy[language()].askUsage, fromVoice);
+      return;
+    }
+    if (state.flowStep === "usage") {
+      const usage = /daily|everyday|يومي/.test(textLower) ? "daily" : /occasion|special|مناسبة|مناسبه/.test(textLower) ? "occasion" : "";
+      if (!usage) { addMessage(copy[language()].askUsage, "assistant"); return; }
+      saveProfile({ discovery: { ...state.profile.discovery, usage } });
       advanceDiscovery(text, 3, copy[language()].askNotes, fromVoice);
       return;
     }
