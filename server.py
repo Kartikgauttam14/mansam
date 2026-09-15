@@ -476,7 +476,7 @@ def unique_products(products):
         identities = {
             product_key({"name": product.get("name", {}).get(language, "")})
             for language in ("en", "ar")
-            if localized(product.get("name"), language)
+            if product.get("name", {}).get(language)
         }
         if seen.intersection(identities):
             continue
@@ -601,9 +601,21 @@ def is_similar_product_recommendation(message):
     normalized = normalize(message)
     return any(phrase in normalized for phrase in (
         "same category", "same type", "same kind", "similar product", "similar products", "similar to this product", "like this product",
+        "like this", "like that", "similar to this", "similar to that",
+        "similar perfume", "similar fragrance", "similar scent",
         "other products like this", "same collection", "نفس الفئة", "نفس النوع", "منتجات مشابهة",
         "نفس المجموعة",
-    )) and any(query_term_matches(normalized, term) for term in ("suggest", "recommend", "show", "اقترح", "اعرض", "ارني"))
+    )) and any(query_term_matches(normalized, term) for term in ("suggest", "recommend", "show", "give", "اقترح", "اعرض", "ارني"))
+
+
+def is_context_category_request(message):
+    normalized = normalize(message)
+    return any(phrase in normalized for phrase in (
+        "this category", "that category", "this collection", "that collection",
+        "هذه الفئة", "هذه المجموعة",
+    )) and any(query_term_matches(normalized, term) for term in (
+        "show", "give", "suggest", "recommend", "اعرض", "اقترح", "ارني",
+    ))
 
 
 def phrase_matches(message, example):
@@ -1358,6 +1370,45 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
     )
     direct_product_ids = named_product_ids(message)
 
+    if is_context_category_request(message):
+        reference = next((product for product_id in context_product_ids
+                          for product in CATALOG_PRODUCTS if str(product.get("id")) == product_id), None)
+        if reference is None:
+            return response_with_memory({
+                "language": language,
+                "answer": "Which category or perfume do you mean?" if language == "en" else "أي فئة أو عطر تقصد؟",
+                "sources": [], "productLinks": [], "productIds": [], "intent": "category_clarification",
+            }, preferences, [])
+        field = "collection" if any(term in normalize(message) for term in ("collection", "المجموعة")) else "productLine"
+        category = product_value(reference, field, "en")
+        if not category:
+            return response_with_memory({
+                "language": language,
+                "answer": "Which category would you like to explore?" if language == "en" else "أي فئة ترغب في استكشافها؟",
+                "sources": [], "productLinks": [], "productIds": [], "intent": "category_clarification",
+            }, preferences, context_product_ids)
+        count = requested_recommendation_count(message)
+        candidates = unique_products([product for product in CATALOG_PRODUCTS
+                                      if product_value(product, field, "en") == category])
+        candidates.sort(key=lambda product: str(product.get("id")) in context_product_ids)
+        matches = candidates[:count]
+        label = product_value(reference, field, language)
+        heading = (f"Here are {len(matches)} products in {label}:" if language == "en"
+                   else f"إليك {len(matches)} منتجات من {label}:")
+        if len(matches) < count:
+            heading = (f"I found only {len(matches)} products in {label}:" if language == "en"
+                       else f"وجدت {len(matches)} منتجات فقط من {label}:")
+        lines = [f"{index}. {product_value(product, 'name', language).strip()}"
+                 + (f" — {format_price(product)}" if format_price(product) else "")
+                 for index, product in enumerate(matches, 1)]
+        return response_with_memory({
+            "language": language, "answer": heading + "\n\n" + "\n".join(lines),
+            "sources": product_source(reference), "intent": "category_recommendation",
+            "productIds": [str(product.get("id")) for product in matches],
+            "productLinks": [{"name": product.get("name", {}), "url": product_url(product)}
+                             for product in matches if product_url(product)],
+        }, preferences, [str(product.get("id")) for product in matches])
+
     if intent["link"] and direct_product_ids:
         product = next((item for item in CATALOG_PRODUCTS if str(item.get("id")) == direct_product_ids[0]), None)
         if product:
@@ -1389,7 +1440,12 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
                 if (reference_line and product_value(product, "productLine", "en") == reference_line)
                 or (reference_collection and product_value(product, "collection", "en") == reference_collection)
             ]
-            candidates = same_category or candidates
+            if len(unique_products(same_category)) >= requested_count:
+                candidates = same_category
+            else:
+                # A small collection must not silently reduce the requested count.
+                candidates = [product for product in candidates if product in same_category or
+                              normalize(product_value(product, "productLine", "en")) in PERFUME_PRODUCT_LINES]
         if reference_price is not None and is_price_range_recommendation(message):
             close_matches = []
             for product in candidates:
@@ -1410,7 +1466,23 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
                         continue
                 matches += [product for _, product in sorted(remaining) if product not in matches]
         elif is_similar_product_recommendation(message):
-            matches = candidates[:requested_count]
+            # Rank by scent overlap instead of the order of the live catalogue.
+            reference_notes = set(tokens(" ".join(product_notes(reference, "en")))) if reference else set()
+            preferred_notes = set(tokens(" ".join(
+                turn["text"] for turn in conversation if turn["role"] == "customer"
+            )))
+
+            def similarity_score(product):
+                notes = set(tokens(" ".join(product_notes(product, "en"))))
+                shared = notes & reference_notes
+                union = notes | reference_notes
+                return (
+                    len(notes & preferred_notes),
+                    len(shared) / len(union) if union else 0,
+                    bool(reference and product_value(product, "collection", "en") == product_value(reference, "collection", "en")),
+                )
+
+            matches = sorted(unique_products(candidates), key=similarity_score, reverse=True)[:requested_count]
         else:
             matches = []
         matches = matches[:requested_count]
@@ -1420,9 +1492,9 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
                 answer = (
                     f"Here are {len(matches)} other Mansam perfumes in a similar price range to {product_value(reference, 'name', language)}: {names}."
                     if is_price_match else
-                    f"Here are {len(matches)} other Mansam perfumes from a similar category to {product_value(reference, 'name', language)}: {names}."
+                    f"Here are {len(matches)} alternatives to {product_value(reference, 'name', language)}, selected using fragrance notes and your preferences: {names}."
                     if language == "en" else
-                    f"إليك {len(matches)} عطور أخرى من منسَم ضمن فئة مشابهة لفئة {product_value(reference, 'name', language)}: {names}."
+                    f"إليك {len(matches)} بدائل لعطر {product_value(reference, 'name', language)}، بناءً على النفحات العطرية وتفضيلاتك: {names}."
                 )
                 if language == "ar" and is_price_match:
                     answer = f"إليك {len(matches)} عطور أخرى من منسَم ضمن نطاق سعري مشابه لسعر {product_value(reference, 'name', language)}: {names}."

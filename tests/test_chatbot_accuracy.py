@@ -1,9 +1,63 @@
 import unittest
+from unittest.mock import patch
 
 import server
 
 
 class ChatbotAccuracyBenchmark(unittest.TestCase):
+    def test_category_request_returns_two_products_without_workbook_dump(self):
+        for product_id in ("55", "118"):
+            with self.subTest(product_id=product_id):
+                result = server.make_answer("Show me the 2 perfumes in this category.", "en",
+                                            context_product_ids=[product_id])
+                self.assertEqual(result["intent"], "category_recommendation")
+                self.assertEqual(len(set(result["productIds"])), 2)
+                self.assertEqual(len(result["productLinks"]), 2)
+                by_id = {str(p.get("id")): p for p in server.CATALOG_PRODUCTS}
+                for selected in result["productIds"]:
+                    self.assertEqual(by_id[selected]["productLine"], by_id[product_id]["productLine"])
+                self.assertNotIn("workbook", result["answer"])
+                self.assertNotIn("24_Category_Purpose", result["answer"])
+                self.assertIn("\n1. ", result["answer"])
+                self.assertIn("\n2. ", result["answer"])
+
+    def test_category_request_without_valid_context_asks_for_category(self):
+        for context in ([], ["missing-product"]):
+            result = server.make_answer("Show me the 2 perfumes in this category.", "en",
+                                        context_product_ids=context)
+            self.assertEqual(result["intent"], "category_clarification")
+            self.assertEqual(result["productLinks"], [])
+            self.assertNotIn("workbook", result["answer"])
+
+    def test_two_perfumes_like_ghumud(self):
+        for question in ("show me the 2 perfume like this", "give me two perfumes like that", "show me 2 similar fragrances"):
+            with self.subTest(question=question):
+                result = server.make_answer(
+                    question, "en", context_product_ids=["118"],
+                    conversation=[{"role": "customer", "text": "musk"}],
+                    profile={"productIds": ["118"]},
+                )
+                self.assertEqual(result["intent"], "similar_product_recommendation")
+                self.assertEqual(len(set(result["productIds"])), 2)
+                self.assertEqual(len(result["productLinks"]), 2)
+                self.assertNotIn("118", result["productIds"])
+                self.assertIn("GHUMUD", result["answer"])
+
+    def test_similar_perfumes_prioritize_preferred_shared_notes(self):
+        def product(product_id, notes):
+            return {"id": product_id, "name": {"en": product_id},
+                    "productLine": {"en": "Eau de Parfum 100ml"},
+                    "notes": {"en": notes}, "price": 100}
+        products = [product("reference", ["Musk", "Rose"]),
+                    product("unrelated", ["Oud"]), product("rose", ["Rose"]),
+                    product("musk", ["Musk"]), product("both", ["Musk", "Rose"])]
+        with patch.object(server, "CATALOG_PRODUCTS", products):
+            result = server.make_answer(
+                "show me the 2 perfume like this", "en", context_product_ids=["reference"],
+                conversation=[{"role": "customer", "text": "musk"}],
+            )
+        self.assertEqual(result["productIds"], ["both", "musk"])
+
     def check(self, question, language, assertion):
         result = server.make_answer(question, language)
         self.assertTrue(assertion(result), f"Unexpected response for: {question}\n{result}")
