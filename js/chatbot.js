@@ -115,7 +115,9 @@
     const c = copy[lang];
     let buttons = [];
 
-    if (state.flowStep === 1) {
+    if (state.awaitingName) {
+      buttons = [];
+    } else if (state.flowStep === 1) {
       buttons = [
         { text: c.btnFirstTime },
         { text: c.btnVisitedBefore }
@@ -324,14 +326,17 @@
     panel.querySelector("[data-chat-language-choice]").hidden = true;
     panel.querySelector("[data-chat-conversation]").hidden = false;
     state.customerName = state.profile.name || "";
-    state.awaitingName = false;
+    state.awaitingName = !state.customerName && !state.conversation.length;
     refreshLanguage();
     panel.querySelector(".mansam-chat__messages").innerHTML = "";
     if (state.conversation.length) {
       state.conversation.forEach(turn => addMessage(turn.text, turn.role, [], false));
     } else {
       state.flowStep = 1;
-      addMessage(copy[selectedLanguage].askBoutique, "assistant", [], true);
+      addMessage(
+        state.awaitingName ? copy[selectedLanguage].askName : copy[selectedLanguage].askBoutique,
+        "assistant", [], true
+      );
     }
     updateSuggestions();
     panel.querySelector("[data-chat-input]").focus();
@@ -686,6 +691,31 @@
     if (input) input.value = "";
 
     const textLower = text.toLowerCase();
+
+    if (state.awaitingName) {
+      const name = cleanCustomerName(text);
+      if (!name || /^(hi|hello|hey|مرحبا|مرحباً)$/i.test(name)) {
+        const prompt = copy[language()].askName;
+        addMessage(prompt, "assistant", [], true);
+        if (fromVoice || state.inputMode === "voice") speakText(prompt, language());
+        return;
+      }
+      state.customerName = name;
+      state.awaitingName = false;
+      saveProfile({ name, preferences: state.profile.preferences, productIds: state.profile.productIds });
+      addMessage(text, "customer");
+      rememberTurn("customer", text);
+      const welcome = copy[language()].greeting.replace("{name}", name);
+      const nextQuestion = copy[language()].askBoutique;
+      const reply = `${welcome}\n\n${nextQuestion}`;
+      addMessage(reply, "assistant", [], true);
+      rememberTurn("assistant", reply);
+      refreshLanguage();
+      if (fromVoice || state.inputMode === "voice") speakText(reply, language());
+      updateSuggestions();
+      return;
+    }
+
     const isFirstTime = textLower === "first time" || textLower === "مرتي الأولى" || textLower === "مرتي الاولى" || textLower === "1st time";
     const isVisitedBefore = textLower === "visited before" || textLower === "زرتكم من قبل" || textLower === "visited";
     const isForMyself = textLower === "for myself" || textLower === "لنفسي" || textLower === "myself";
