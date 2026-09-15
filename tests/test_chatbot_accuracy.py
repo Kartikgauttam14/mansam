@@ -5,6 +5,22 @@ import server
 
 
 class ChatbotAccuracyBenchmark(unittest.TestCase):
+    def test_single_gift_perfume_is_not_a_catalogue(self):
+        for question in ("now show me a perfume for the gift", "show me one perfume for a gift", "give me a fragrance for a present"):
+            for profile in ({}, {"preferences": ["rose"], "productIds": ["49"]}):
+                with self.subTest(question=question, profile=profile):
+                    result = server.make_answer(question, "en", profile=profile)
+                    self.assertNotEqual(result.get("intent"), "perfume_list")
+                    self.assertEqual(len(result["productLinks"]), 1)
+                    self.assertEqual(len(result["productIds"]), 1)
+                    self.assertIn("For a gift, I recommend", result["answer"])
+                    self.assertNotIn("I found 20", result["answer"])
+
+    def test_explicit_catalogue_request_is_preserved(self):
+        self.assertTrue(server.is_perfume_list_request("show me all perfumes for a gift"))
+        self.assertTrue(server.is_perfume_list_request("show me a list of perfumes"))
+        self.assertFalse(server.is_perfume_list_request("show me a perfume"))
+
     def test_category_request_returns_two_products_without_workbook_dump(self):
         for product_id in ("55", "118"):
             with self.subTest(product_id=product_id):

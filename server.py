@@ -494,6 +494,12 @@ def is_comparison_request(message):
 
 def is_perfume_list_request(message):
     normalized = normalize(message)
+    explicit_list = any(query_term_matches(normalized, term) for term in (
+        "list", "all", "every", "catalog", "catalogue", "top", "قائمة", "قائمه", "كل",
+    ))
+    single_product = bool(re.search(r"\b(?:a|an|one|1)\s+(?:perfume|fragrance|scent|product)\b", normalized))
+    if single_product and not explicit_list:
+        return False
     # Detail questions must stay attached to the current product. For example,
     # "show me the notes on this perfume" contains list-like words but is not a
     # request for a catalogue.
@@ -1653,6 +1659,8 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
         matches = retrieve_products(retrieval_message, context_product_ids)
     if recommendation_mode and matches:
         random.SystemRandom().shuffle(matches)
+        # Remember only the product shown to the customer, not every candidate.
+        matches = matches[:1]
 
     if not matches:
         return response_with_memory(
@@ -1733,6 +1741,14 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
                 answer += f" Key notes: {notes}."
     if llm_answer:
         answer = llm_answer
+
+    if recommendation_mode and any(query_term_matches(normalize(message), term) for term in ("gift", "present", "هدية", "هديه")):
+        answer = (f"For a gift, I recommend {name.strip()}." if language == "en"
+                  else f"للهدية، أرشح لك {name.strip()}.")
+        if notes:
+            answer += (f" Key notes: {notes}." if language == "en" else f" أبرز النفحات: {notes}.")
+        if format_price(primary):
+            answer += f"\n{format_price(primary)}."
 
     return response_with_memory({
         "language": language,
