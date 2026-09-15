@@ -52,6 +52,21 @@ def records(rows):
     return [{headers.get(key, key): value for key, value in row.items() if headers.get(key, key)} for row in rows[header_index + 1:]]
 
 
+def sheet_training_rows(sheets):
+    """Create one grounded training example for every non-empty workbook row."""
+    training = []
+    for sheet_name, raw_rows in sheets.items():
+        for record in records(raw_rows):
+            if not any(str(value).strip() for value in record.values()):
+                continue
+            training.append({
+                "instruction": "Answer only from this Mansam SSOT workbook row. Do not invent facts; keep the answer concise and use the requested language.",
+                "input": {"sheet": sheet_name, "record": record},
+                "output": {"sourceSheet": sheet_name, "grounded": True},
+            })
+    return training
+
+
 def text(row, key):
     return str(row.get(key, "")).strip()
 
@@ -117,9 +132,20 @@ def build_products(sheets):
 
 if __name__ == "__main__":
     sheets = parse_workbook()
-    payload = {"sourceFile": SOURCE.name, "sourceSheetCount": len(sheets), "generatedAt": "2026-09-11", "products": build_products(sheets), "sheets": {name: records(rows) for name, rows in sheets.items()}}
+    sheet_records = {name: records(rows) for name, rows in sheets.items()}
+    payload = {
+        "sourceFile": SOURCE.name,
+        "sourceSheetCount": len(sheets),
+        "generatedAt": "2026-09-15",
+        "products": build_products(sheets),
+        "sheets": sheet_records,
+        "sheetMeta": [
+            {"name": name, "recordCount": len(items), "columns": sorted({key for item in items for key in item})}
+            for name, items in sheet_records.items()
+        ],
+    }
     (DATA_DIR / "ssot-knowledge.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     with (DATA_DIR / "ssot-training.jsonl").open("w", encoding="utf-8") as output:
-        for product in payload["products"]:
-            output.write(json.dumps({"instruction": "Answer using only this Mansam SSOT product record. Keep it concise and include the product link when available.", "input": product, "output": {"product": product["name"], "sourceSheet": product["sourceSheet"]}}, ensure_ascii=False) + "\n")
-    print(f"Generated {len(payload['products'])} products from {len(sheets)} sheets")
+        for item in sheet_training_rows(sheets):
+            output.write(json.dumps(item, ensure_ascii=False) + "\n")
+    print(f"Generated {len(payload['products'])} products and {sum(len(items) for items in sheet_records.values())} workbook records from {len(sheets)} sheets")

@@ -1,7 +1,7 @@
 {
   "sourceFile": "Mansam_SSOT_Master_v3_6.xlsx",
   "sourceSheetCount": 26,
-  "generatedAt": "2026-09-11",
+  "generatedAt": "2026-09-15",
   "products": [
     {
       "id": "MSM-001",
@@ -7189,5 +7189,510 @@
         "ID": "HOW THIS SHEET IS USED — Mira may make no benefit claim that is not here. A blank answer makes her say she would rather the team confirmed it, which is honest; an invented answer is not. Never a price: prices live in the product sheets and change. The Never column is enforced in the prompt."
       }
     ]
-  }
+  },
+  "sheetMeta": [
+    {
+      "name": "00_README",
+      "recordCount": 19,
+      "columns": [
+        "Owner Role",
+        "Purpose",
+        "Sheet Name"
+      ]
+    },
+    {
+      "name": "01_Version_Log",
+      "recordCount": 21,
+      "columns": [
+        "Author",
+        "Date (YYYY-MM-DD)",
+        "Sheets Changed",
+        "Summary of Changes",
+        "Version"
+      ]
+    },
+    {
+      "name": "02_Products_EDP",
+      "recordCount": 20,
+      "columns": [
+        "Arabic Name (اسم العطر)",
+        "Base Notes",
+        "Base Notes (AR)",
+        "Collection",
+        "Collection (AR)",
+        "Customer Keywords",
+        "Customer Keywords (AR)",
+        "Emotion",
+        "Emotion (AR)",
+        "English Name",
+        "Fragrance Family",
+        "Fragrance Family (AR)",
+        "Fragrance Style",
+        "Fragrance Style (AR)",
+        "Free Shipping KSA & UAE",
+        "Heart Notes",
+        "Heart Notes (AR)",
+        "IFRA Compliance",
+        "Ideal For",
+        "Ideal For (AR)",
+        "Includes Second 12 ML Free",
+        "Longevity",
+        "Longevity (AR)",
+        "Made In",
+        "Oil Concentration %",
+        "Popularity Tier",
+        "Price AED",
+        "Price SAR",
+        "Price USD",
+        "SKU Code",
+        "Season",
+        "Season (AR)",
+        "Short Description",
+        "Short Description (AR)",
+        "Size",
+        "Sl No",
+        "Style",
+        "Style (AR)",
+        "Suitable For",
+        "Suitable For (AR)",
+        "Top Notes",
+        "Top Notes (AR)",
+        "Travel Pack Available",
+        "Travel Pack Packaging",
+        "Travel Pack Price AED",
+        "Travel Pack Price SAR",
+        "Travel Pack Size",
+        "Usage",
+        "Usage (AR)",
+        "Year of Launch"
+      ]
+    },
+    {
+      "name": "03_Phrases",
+      "recordCount": 12,
+      "columns": [
+        "Arabic (Saudi-reviewed v2)",
+        "Cultural Tag",
+        "Customer Type",
+        "English Translation",
+        "Last Reviewed",
+        "Phrase ID",
+        "Pronunciation (Romanised)",
+        "Reviewed By",
+        "Stage",
+        "Status",
+        "Use When"
+      ]
+    },
+    {
+      "name": "04_Objections",
+      "recordCount": 8,
+      "columns": [
+        "Acknowledge (Arabic)",
+        "Acknowledge (English)",
+        "Category",
+        "Discovery Question (Arabic)",
+        "Discovery Question (English)",
+        "Last Reviewed",
+        "Objection ID",
+        "Reframe (Arabic, Saudi v2)",
+        "Reframe (English)",
+        "Reframe (Pronunciation)",
+        "Status",
+        "Trigger Phrase (Arabic)",
+        "Trigger Phrase (English)"
+      ]
+    },
+    {
+      "name": "05_Competitors",
+      "recordCount": 25,
+      "columns": [
+        "Acknowledgement (Arabic v2)",
+        "Acknowledgement (English)",
+        "Brand ID",
+        "Brand Name",
+        "Country",
+        "Flagship Price SAR",
+        "Flagship Product",
+        "Internal Weakness Note",
+        "Key Strength",
+        "Last Verified",
+        "Tier",
+        "Verified By"
+      ]
+    },
+    {
+      "name": "06_Customer_Types",
+      "recordCount": 4,
+      "columns": [
+        "Avoid",
+        "How AI Adapts",
+        "Key Phrase ID",
+        "Pace",
+        "Signal Words (AR)",
+        "Signal Words (EN)",
+        "Type ID",
+        "Type Name (AR)",
+        "Type Name (EN)"
+      ]
+    },
+    {
+      "name": "07_Cultural_Layer",
+      "recordCount": 10,
+      "columns": [
+        "Arabic (Saudi v2)",
+        "Dimension",
+        "English Translation",
+        "Moment / Context",
+        "Notes",
+        "Pronunciation",
+        "Reference ID",
+        "When NOT to Use",
+        "When to Use"
+      ]
+    },
+    {
+      "name": "08_BANTQ_Rubric",
+      "recordCount": 10,
+      "columns": [
+        "Dimension",
+        "Discovery Question",
+        "Letter",
+        "Score 0 Signal",
+        "Score 1 Signal",
+        "Score 2 Signal",
+        "What It Measures"
+      ]
+    },
+    {
+      "name": "09_Conversation_Log_Schema",
+      "recordCount": 30,
+      "columns": [
+        "Data Type",
+        "Description",
+        "Field Name",
+        "Required?",
+        "Source"
+      ]
+    },
+    {
+      "name": "10_Settings",
+      "recordCount": 78,
+      "columns": [
+        "Description",
+        "Last Updated",
+        "Setting Key",
+        "Value"
+      ]
+    },
+    {
+      "name": "11_Memory_Phrases",
+      "recordCount": 15,
+      "columns": [
+        "Arabic (Saudi v2)",
+        "Cultural Tag",
+        "Customer Type",
+        "English Translation",
+        "Last Reviewed",
+        "Phrase ID",
+        "Placeholders",
+        "Pronunciation",
+        "Stage",
+        "Status",
+        "Tier",
+        "Use When"
+      ]
+    },
+    {
+      "name": "12_CrossSell_Phrases",
+      "recordCount": 12,
+      "columns": [
+        "Arabic (Saudi v2 — soft register)",
+        "English Translation",
+        "Forbidden When",
+        "Last Reviewed",
+        "Motion",
+        "Phrase ID",
+        "Pronunciation",
+        "Stage",
+        "Status",
+        "Target Product",
+        "Trigger",
+        "Use When"
+      ]
+    },
+    {
+      "name": "13_Attars",
+      "recordCount": 8,
+      "columns": [
+        "Attar Name",
+        "Base Notes",
+        "Customer Keywords",
+        "Fragrance Family",
+        "Heart Notes",
+        "Ideal For",
+        "Longevity",
+        "Oil Concentration %",
+        "Price AED",
+        "Price SAR",
+        "Price USD",
+        "Product Code",
+        "Season",
+        "Short Description",
+        "Size",
+        "Suitable For",
+        "Top Notes",
+        "Year of launch",
+        "اسم العطّار",
+        "الثبات",
+        "الحجم",
+        "السعر بالدرهم الإماراتي",
+        "السعر بالدولار الأمريكي",
+        "السعر بالريال السعودي",
+        "العائلة العطرية",
+        "الفئة المناسبة",
+        "الكلمات المفتاحية للعملاء",
+        "الموسم المناسب",
+        "الوصف المختصر",
+        "تركيز الزيوت العطرية %",
+        "سنة الإطلاق",
+        "مثالي ل",
+        "نوتات القاعدة",
+        "نوتات القلب",
+        "نوتات القمة"
+      ]
+    },
+    {
+      "name": "14_Candles",
+      "recordCount": 4,
+      "columns": [
+        "Application",
+        "Base Notes",
+        "Candle Name",
+        "Fragrance Family",
+        "Heart Notes",
+        "KN Product Code",
+        "Longevity",
+        "Net Weight",
+        "Oil Concentration",
+        "Price AED",
+        "Price SAR",
+        "Price USD",
+        "Top Notes",
+        "Year of launch",
+        "الاستخدام",
+        "الثبات",
+        "السعر بالدرهم الإماراتي",
+        "السعر بالدولار الأمريكي",
+        "السعر بالريال السعودي",
+        "العائلة العطرية",
+        "الوزن الصافي",
+        "تركيز الزيوت العطرية %",
+        "سنة الإطلاق",
+        "نوتات القاعدة",
+        "نوتات القلب",
+        "نوتات القمة"
+      ]
+    },
+    {
+      "name": "15_Maamoul_Bukhoor",
+      "recordCount": 4,
+      "columns": [
+        "Application",
+        "Base Notes",
+        "Fragrance Family",
+        "Heart Notes",
+        "Ideal For",
+        "Intensity",
+        "KN Product Code",
+        "Maamoul Bukhoor Name",
+        "Net Weight",
+        "Oil Concentration",
+        "Price AED",
+        "Price SAR",
+        "Price USD",
+        "Top Notes",
+        "Year of launch",
+        "اسم معمول البخور",
+        "الاستخدام",
+        "السعر بالدرهم الإماراتي",
+        "السعر بالدولار الأمريكي",
+        "السعر بالريال السعودي",
+        "العائلة العطرية",
+        "الوزن الصافي",
+        "تركيز الزيوت العطرية %",
+        "سنة الإطلاق",
+        "قوة الرائحة",
+        "مثالي ل",
+        "نوتات القاعدة",
+        "نوتات القلب",
+        "نوتات القمة"
+      ]
+    },
+    {
+      "name": "16_Home_Diffusers",
+      "recordCount": 2,
+      "columns": [
+        "Application",
+        "Base Notes",
+        "Collection",
+        "Diifuser Name",
+        "Dimensions (excluding stick)",
+        "Heart Notes",
+        "KN Product Code",
+        "Oil Concentration",
+        "Price AED",
+        "Price SAR",
+        "Price USD",
+        "Top Notes",
+        "Volume",
+        "Weight",
+        "Year of launch",
+        "اسم معطر الجو المنزلي",
+        "الأبعاد (باستثناء الأعواد):",
+        "الاستخدام",
+        "الحجم",
+        "السعر بالدرهم الإماراتي",
+        "السعر بالدولار الأمريكي",
+        "السعر بالريال السعودي",
+        "المجموعة",
+        "الوزن",
+        "تركيز الزيوت العطرية %",
+        "سنة الإطلاق",
+        "نوتات القاعدة",
+        "نوتات القلب",
+        "نوتات القمة"
+      ]
+    },
+    {
+      "name": "17_Opening_Greetings",
+      "recordCount": 12,
+      "columns": [
+        "Greeting ID",
+        "Greeting Text",
+        "Language",
+        "Name",
+        "Status",
+        "Tone"
+      ]
+    },
+    {
+      "name": "18_Boutiques",
+      "recordCount": 7,
+      "columns": [
+        "Boutique Code",
+        "Boutique Name",
+        "City",
+        "Country",
+        "Hours",
+        "Mall / Address",
+        "Map Link",
+        "Notes",
+        "Phone & WhatsApp",
+        "Status"
+      ]
+    },
+    {
+      "name": "19_Offers",
+      "recordCount": 4,
+      "columns": [
+        "Approved Phrase (AR)",
+        "Approved Phrase (EN)",
+        "Eligible Country",
+        "Eligible Customer Type",
+        "Forbidden Words",
+        "Indicative Value SAR",
+        "Max Per Conversation",
+        "Notes",
+        "Offer ID",
+        "Offer Name (AR)",
+        "Offer Name (EN)",
+        "Offer Type",
+        "Requires Advisor Confirmation",
+        "Status",
+        "Trigger — BANTQ Score",
+        "Trigger — Earliest Stage",
+        "Trigger — Extra Condition",
+        "Valid From",
+        "What The Customer Receives (AR)",
+        "What The Customer Receives (EN)"
+      ]
+    },
+    {
+      "name": "20_Supply_Status",
+      "recordCount": 11,
+      "columns": [
+        "Category",
+        "Note for Mira",
+        "Product",
+        "SKU",
+        "Since",
+        "Status"
+      ]
+    },
+    {
+      "name": "21_Scarcity_Phrases",
+      "recordCount": 7,
+      "columns": [
+        "Arabic",
+        "English",
+        "ID",
+        "Status",
+        "When to use it",
+        "Why it is worded this way"
+      ]
+    },
+    {
+      "name": "22_Close_And_Shop",
+      "recordCount": 8,
+      "columns": [
+        "Arabic",
+        "Key",
+        "Note",
+        "Status",
+        "Value",
+        "When it applies"
+      ]
+    },
+    {
+      "name": "23_Product_Links",
+      "recordCount": 59,
+      "columns": [
+        "Full URL if different",
+        "Product",
+        "SKU",
+        "Size"
+      ]
+    },
+    {
+      "name": "24_Category_Purpose",
+      "recordCount": 6,
+      "columns": [
+        "Bridge from",
+        "Bridge to",
+        "Category",
+        "Core purpose (AR)",
+        "Core purpose (EN)",
+        "How Mira bridges (AR)",
+        "How Mira bridges (EN)",
+        "ID",
+        "Never",
+        "Sizes",
+        "Status",
+        "When it is right"
+      ]
+    },
+    {
+      "name": "26_Benefit_Lines",
+      "recordCount": 14,
+      "columns": [
+        "Category / item",
+        "ID",
+        "Never say",
+        "Status",
+        "The one-line answer (EN)",
+        "What a customer asks"
+      ]
+    }
+  ]
 }

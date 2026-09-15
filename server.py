@@ -72,15 +72,17 @@ DOMAIN_QUERY_TERMS = PERFUME_QUERY_TERMS | {
     "attar", "attars", "oil", "oils", "candle", "candles", "bukhoor", "maamoul", "diffuser", "diffusers",
     "product", "products", "catalog", "catalogue", "collection", "notes", "ingredients", "price", "cost",
     "aed", "sar", "availability", "available", "stock", "website", "site", "shop", "store", "boutique",
-    "link", "order", "shipping", "delivery", "mansam", "منسم", "عطار", "زيت", "زيوت", "شمعة", "شموع",
+    "link", "order", "shipping", "delivery", "boutique", "boutiques", "offer", "offers", "supply", "status", "mansam", "منسم", "عطار", "زيت", "زيوت", "شمعة", "شموع",
     "بخور", "معطر", "منتج", "منتجات", "كتالوج", "مجموعة", "نفحات", "مكونات", "السعر", "سعر", "متوفر",
-    "متاحة", "رابط", "طلب", "شحن", "توصيل", "هدية", "هديه", "gift", "present", "ورد", "عود", "ياسمين", "مسك", "عنبر", "زهري", "زهرية", "منعش", "منعشة", "خشبي", "خشبية", "حلو", "حلوة", "فاكهي", "رومانسي", "جريء", "واثق", "دخان", "دخانية", "رائحه", "قوية", "ناعمة", "هادئة",
+    "متاحة", "رابط", "طلب", "شحن", "توصيل", "عروض", "خصم", "كوبون", "توريد", "ندرة", "متاجر", "متجر", "فئات", "نوع", "هدية", "هديه", "gift", "present", "ورد", "عود", "ياسمين", "مسك", "عنبر", "زهري", "زهرية", "منعش", "منعشة", "خشبي", "خشبية", "حلو", "حلوة", "فاكهي", "رومانسي", "جريء", "واثق", "دخان", "دخانية", "رائحه", "قوية", "ناعمة", "هادئة",
 }
 SOCIAL_QUERY_TERMS = {
     "hello", "hi", "hey", "hii", "good morning", "good afternoon", "good evening", "how are you", "i am fine",
     "im fine", "i'm fine", "i am good", "im good", "i'm good", "i am also fine", "i am doing well", "i feel great",
     "how is your day", "nice to meet you", "good day to you", "i am okay today", "i am feeling good", "i feel awesome", "that helped me", "what can you help me with", "you are helpful", "thanks", "thank you", "bye", "goodbye",
-    "who are you", "what do you do", "what can you do", "my name is", "مرحباً", "مرحبا", "اهلا", "أهلاً", "صباح الخير", "مساء الخير", "كيف حالك", "أنا بخير", "أنا أيضاً بخير", "انا ايضا بخير", "أتمنى أن تكون بخير", "اتمنى ان تكون بخير", "أنا سعيد اليوم", "انا سعيد اليوم", "كيف تساعدني", "كيف تساعدني؟", "أنت مفيد", "انت مفيد", "ماذا يمكنك أن تفعل", "ماذا يمكنك ان تفعل", "من أنت", "من انت",
+    "who are you", "what do you do", "what can you do", "my name is", "first time", "1st time", "this is my first time", "first time visit", "visited before", "for myself", "as a gift",
+    "مرحباً", "مرحبا", "اهلا", "أهلاً", "صباح الخير", "مساء الخير", "كيف حالك", "أنا بخير", "أنا أيضاً بخير", "انا ايضا بخير", "أتمنى أن تكون بخير", "اتمنى ان تكون بخير", "أنا سعيد اليوم", "انا سعيد اليوم", "كيف تساعدني", "كيف تساعدني؟", "أنت مفيد", "انت مفيد", "ماذا يمكنك أن تفعل", "ماذا يمكنك ان تفعل", "من أنت", "من انت",
+    "مرتي الأولى", "مرتي الاولى", "أول مرة", "اول مرة", "زرتكم من قبل", "لنفسي", "كهدية",
     "شكرا", "مع السلامة",
 }
 
@@ -177,6 +179,22 @@ def load_catalog():
     return document_products, generated_at
 
 
+def load_ssot_sheets():
+    """Load every workbook sheet for grounded non-product questions."""
+    if not SSOT_FILE.exists():
+        return {}
+    try:
+        source = json.loads(SSOT_FILE.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        print(f"SSOT sheet data was not loaded: {type(error).__name__}")
+        return {}
+    return {
+        str(sheet): [row for row in rows if isinstance(row, dict) and any(str(value).strip() for value in row.values())]
+        for sheet, rows in source.get("sheets", {}).items()
+        if isinstance(rows, list)
+    }
+
+
 def is_arabic(text):
     return bool(re.search(r"[\u0600-\u06FF]", text or ""))
 
@@ -258,6 +276,7 @@ GENERAL_ENGLISH_INTENT_CLASSIFIER = IntentClassifier(CONVERSATIONAL_INTENTS)
 
 
 CATALOG_PRODUCTS, CATALOG_UPDATED_AT = load_catalog()
+SSOT_SHEETS = load_ssot_sheets()
 
 
 def _refresh_live_catalog():
@@ -672,6 +691,14 @@ def human_conversation_reply(message, language):
             return "You can explore the Mansam catalogue on the live website.", "website"
         if "how do i buy" in normalized and "mansam" in normalized:
             return "You can browse a product page from the Mansam catalogue and follow the purchase options there.", "website"
+        if any(phrase in normalized for phrase in ("first time", "1st time", "never visited", "new customer", "new visitor", "first visit")):
+            return "Welcome to Mansam Perfumes! Allow me to give you an idea of what we offer. Would you like a fragrance for yourself, or as a gift?", "first_time_greeting"
+        if any(phrase in normalized for phrase in ("visited before", "visited your boutique", "bought before", "returning customer")):
+            return "Welcome back to Mansam! Which fragrance did you enjoy previously, or what notes are you looking for today?", "returning_customer_greeting"
+        if any(phrase in normalized for phrase in ("for myself", "just for me")):
+            return "Wonderful. Do you lean more toward oud, rose, or musk? And which note do you not enjoy?", "for_myself_prompt"
+        if any(phrase in normalized for phrase in ("as a gift", "for a gift", "gift for someone")):
+            return "Lovely! Who is the gift for: a woman or a man? And do they prefer floral, woody, or warm oud scents?", "gift_prompt"
         if any(phrase in normalized for phrase in ("can you talk to me", "talk with me", "chat with me", "someone to chat", "keep me company", "lets chat", "let's chat")):
             return "Of course. I'm here with you - what's on your mind?", "conversation"
         if any(phrase in normalized for phrase in ("i have a question", "can i ask a question", "i want to ask", "may i ask", "i need to ask")):
@@ -687,6 +714,14 @@ def human_conversation_reply(message, language):
         if "meaning of life" in normalized:
             return "That is a big question. I think meaning often comes from the people, moments, and things we choose to care about.", "reflection"
     if language == "ar":
+        if any(phrase in normalized for phrase in ("مرتي الأولى", "مرتي الاولى", "أول مرة", "اول مرة", "جديد", "أول زيارة")):
+            return "أهلاً ومرحباً بك في منسَم! اسمح لي أن آخذك في جولة سريعة. هل تبحث عن العطر لنفسك أم كهدية؟", "first_time_greeting"
+        if any(phrase in normalized for phrase in ("زرتكم من قبل", "زرت المتجر", "جربت منسم", "عميل سابق")):
+            return "أهلاً بك مجدداً في منسَم! ما هو العطر الذي جربته وأعجبك سابقاً، أو ما هي النفحة التي تبحث عنها اليوم؟", "returning_customer_greeting"
+        if any(phrase in normalized for phrase in ("لنفسي", "لي انا")):
+            return "ممتاز! هل تميل أكثر إلى العود، الورد، أم المسك؟ وما هي النفحة التي لا تفضلها؟", "for_myself_prompt"
+        if any(phrase in normalized for phrase in ("كهدية", "هدية لشخص", "اريد هدية")):
+            return "فكرة جميلة! لمن ستكون الهدية: امرأة أم رجل؟ وهل يفضل النفحات الزهرية أم الخشبية أم العود الدافئ؟", "gift_prompt"
         if normalized in {"مرحباً", "مرحبا", "اهلا", "أهلاً", "صباح الخير", "مساء الخير"}:
             return "مرحباً! كيف حالك اليوم؟", "greeting"
         if normalized in {"ماذا يمكنك ان تفعل", "ماذا تستطيع ان تفعل", "من انت", "كيف تساعدني"}:
@@ -939,6 +974,101 @@ def shorten_description(value, limit=430):
         return value
     sentence_end = value.rfind(".", 0, limit)
     return value[:sentence_end + 1] if sentence_end > 120 else f"{value[:limit].rstrip()}..."
+
+
+def ssot_record_text(sheet_name, record):
+    return " ".join([sheet_name] + [f"{key} {value}" for key, value in record.items()])
+
+
+def retrieve_ssot_records(query, limit=3):
+    """Rank workbook rows by lexical overlap so answers stay inside the SSOT."""
+    query_tokens = tokens(query)
+    if not query_tokens:
+        return []
+    ranked = []
+    for sheet_name, records in SSOT_SHEETS.items():
+        for record in records:
+            searchable = normalize(ssot_record_text(sheet_name, record))
+            record_tokens = tokens(searchable)
+            score = len(query_tokens & record_tokens)
+            if normalize(sheet_name) in normalize(query):
+                score += 4
+            for key, value in record.items():
+                if tokens(str(key)) & query_tokens:
+                    score += 2
+                if normalize(str(value)) in normalize(query) and str(value).strip():
+                    score += 6
+            if score:
+                ranked.append((score, record, sheet_name))
+    ranked.sort(key=lambda item: (-item[0], len(item[2])))
+    return [(sheet, record) for _, record, sheet in ranked[:limit]]
+
+
+def ssot_record_response(message, language):
+    """Answer sheet-backed operational questions without exposing unrelated rows."""
+    normalized_message = normalize(message)
+    intent = query_intent(message)
+    if any(query_term_matches(normalized_message, term) for term in SOCIAL_QUERY_TERMS):
+        return None
+    sheet_topics = {
+        "boutique": "18_Boutiques", "boutiques": "18_Boutiques", "store": "18_Boutiques", "stores": "18_Boutiques",
+        "offer": "19_Offers", "offers": "19_Offers", "coupon": "19_Offers", "discount": "19_Offers",
+        "supply": "20_Supply_Status", "stock": "20_Supply_Status", "scarcity": "21_Scarcity_Phrases",
+        "rare": "21_Scarcity_Phrases", "shipping": "22_Close_And_Shop", "delivery": "22_Close_And_Shop",
+        "category": "24_Category_Purpose", "categories": "24_Category_Purpose", "type": "24_Category_Purpose",
+        "بوتيك": "18_Boutiques", "متاجر": "18_Boutiques", "متجر": "18_Boutiques",
+        "عروض": "19_Offers", "خصم": "19_Offers", "كوبون": "19_Offers",
+        "توريد": "20_Supply_Status", "مخزون": "20_Supply_Status", "ندرة": "21_Scarcity_Phrases",
+        "توصيل": "22_Close_And_Shop", "شحن": "22_Close_And_Shop", "فئات": "24_Category_Purpose", "نوع": "24_Category_Purpose",
+    }
+    requested_topics = {sheet for term, sheet in sheet_topics.items() if query_term_matches(normalized_message, term)}
+    if any(phrase in normalized_message for phrase in ("what does mansam sell", "what does mansam offer", "what products do you have")):
+        return None
+    if query_preferences(message) or intent["recommendation"] or intent["price"] or intent["notes"] or (intent["collection"] and not requested_topics):
+        return None
+    if intent["availability"] and not requested_topics:
+        return None
+    if any(term in normalized_message for term in PERFUME_QUERY_TERMS) and not any(
+        term in normalized_message for term in ("boutique", "store", "offer", "shipping", "delivery", "policy", "customer", "category", "type", "catalog", "catalogue")
+    ):
+        return None
+    matches = retrieve_ssot_records(message, limit=1000 if requested_topics else 8)
+    if requested_topics:
+        prioritized = [(sheet, record) for sheet, record in matches if sheet in requested_topics]
+        if prioritized:
+            matches = prioritized[:8]
+        else:
+            matches = [
+                (sheet, record)
+                for sheet in requested_topics
+                for record in SSOT_SHEETS.get(sheet, [])
+            ][:8]
+    if not matches or matches[0][0] in {"00_README", "01_Version_Log", "09_Conversation_Log_Schema"} and len(matches) == 1:
+        return None
+    visible = []
+    for sheet_name, record in matches:
+        fields = []
+        for key, value in record.items():
+            value = str(value).strip()
+            if not value or key.lower() in {"id", "status", "sku", "product id"}:
+                continue
+            if language == "ar" and any(marker in key.lower() for marker in ("english", " en", "(en)")):
+                continue
+            if language == "en" and any(marker in key.lower() for marker in ("arabic", " ar", "(ar)")):
+                continue
+            fields.append(f"{key}: {value}")
+        if fields:
+            visible.append(f"{sheet_name}: " + "; ".join(fields[:5]))
+    if not visible:
+        return None
+    if language == "ar":
+        answer = "بحسب بيانات منسَم المعتمدة:\n" + "\n".join(visible)
+    else:
+        answer = "According to the approved Mansam workbook:\n" + "\n".join(visible)
+    return {
+        "language": language, "answer": answer, "sources": [DOCUMENT_SOURCE],
+        "productLinks": [], "productIds": [], "intent": "ssot_sheet_answer",
+    }
 
 
 def retrieve_products(query, context_product_ids=None, limit=3, exclude_product_ids=None):
@@ -1405,6 +1535,9 @@ def make_answer(message, language, context_product_ids=None, conversation=None, 
             "intent": "perfume_list",
         }, preferences, [str(product.get("id")) for product in listed_products])
 
+    sheet_response = ssot_record_response(message, language)
+    if sheet_response:
+        return response_with_memory(sheet_response, preferences, context_product_ids)
     general_response = general_intent_response(message, language, context_product_ids)
     if general_response:
         return response_with_memory(general_response, preferences, context_product_ids)

@@ -564,6 +564,25 @@
     const isAr = payload.language === "ar" || /[\u0600-\u06FF]/.test(msg);
     const lang = isAr ? "ar" : "en";
 
+    if (msg.includes("first time") || msg.includes("first visit") || msg.includes("1st time") || msg.includes("مرتي الأولى") || msg.includes("مرتي الاولى") || msg.includes("أول مرة") || msg.includes("اول مرة")) {
+      return {
+        language: lang,
+        answer: isAr
+          ? "أهلاً ومرحباً بك في منسَم! اسمح لي أن آخذك في جولة سريعة. هل تبحث عن العطر لنفسك أم كهدية؟"
+          : "Welcome to Mansam Perfumes! Allow me to give you an idea of what we offer. Would you like a fragrance for yourself, or as a gift?",
+        sources: [], productLinks: [], productIds: []
+      };
+    }
+    if (msg.includes("visited before") || msg.includes("visited") || msg.includes("زرتكم من قبل") || msg.includes("زرتكم")) {
+      return {
+        language: lang,
+        answer: isAr
+          ? "أهلاً بك مجدداً في منسَم! ما هو العطر الذي جربته وأعجبك سابقاً، أو ما هي النفحة التي تبحث عنها اليوم؟"
+          : "Welcome back to Mansam! Which fragrance did you enjoy previously, or what notes are you looking for today?",
+        sources: [], productLinks: [], productIds: []
+      };
+    }
+
     if (msg.includes("expensive") || msg.includes("غالي")) {
       return {
         language: lang,
