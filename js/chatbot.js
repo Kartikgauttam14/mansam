@@ -6,8 +6,8 @@
   const state = { open: false, busy: false, language: null, awaitingName: false, customerName: "", flowStep: 1, contextProductIds: [], profile: { name: "", preferences: [], productIds: [] }, conversation: [], inputMode: "chat", recognition: null, recorder: null, voiceStream: null, voiceSession: null, listening: false, speechAudio: null, speakerEnabled: true };
 
   const copy = {
-    en: { title: "Mansam Concierge", intro: "Your personal fragrance guide", placeholder: "Describe a note, mood, or occasion", namePlaceholder: "Enter your name", send: "Send", askName: "Welcome to Mansam. May I have your name?", greeting: "Welcome to Mansam, {name} sir!", askBoutique: "Welcome to Mansam — lovely to have you here. I can help you find the right fragrance, or answer anything about scents, prices, or delivery. Is the perfume for yourself, or for someone else?", askGift: "That's lovely — a gift for someone special. Is it for a lady or a gentleman?", askReturning: "Welcome back to Mansam! Which fragrance did you enjoy previously, or what note are you looking for today?", askNotes: "Do you lean more toward oud, rose, or musk? And which note do you not enjoy?", askOccasionLady: "Wonderful — for a lady, then. Is this for a special occasion, or everyday wear?", askOccasionGentleman: "Wonderful — for a gentleman, then. Is this for a special occasion, or everyday wear?", askOccasionSelf: "Wonderful — for yourself. Is this for a special occasion, or everyday wear?", askSpecialGentleman: "A special occasion for him — a beautiful moment to mark. Sarhan brings bold leather and oud, quiet confidence for the evening. Or Shatha Biladi — powerful oud, deep and noble, for formal gatherings. Which feels closer to him?", askSpecialLady: "A special occasion for her — a beautiful moment to mark. I can guide you toward a graceful floral or warm signature fragrance. Would you prefer something elegant and floral, or rich and sensual?", askEveryday: "For everyday wear, I can keep it easy and versatile. Would you prefer something fresh and clean, or warm and memorable?", btnMyself: "For Myself", btnSomeoneElse: "Someone Else", btnLady: "For a Lady", btnGentleman: "For a Gentleman", btnSpecial: "Special Occasion", btnEveryday: "Everyday Wear", btnFirstTime: "First Time", btnVisitedBefore: "Visited Before", btnForMyself: "For Myself", btnAsGift: "As a Gift", btnOud: "Oud", btnRose: "Rose", btnMusk: "Musk", btnFresh: "Fresh Citrus", one: "Which perfume has rose and oud?", two: "I want a fresh daily fragrance.", viewProduct: "View perfume", error: "I could not reach the fragrance guide. Please try again.", chat: "Chat", voice: "Voice", listen: "Listening...", tapToSpeak: "Tap to speak", voicePrompt: "Tell me what you are looking for", voiceHint: "Speak in English or Arabic", thinking: "Finding the right fragrance", available: "Available now", readAloud: "Read answer aloud", speakerOn: "Turn speaker off", speakerOff: "Turn speaker on", clearMemory: "Clear fragrance memory", voiceUnavailable: "Voice input is not available in this browser.", noSpeech: "I did not hear anything. Tap the microphone and try again.", voiceError: "Voice input could not start. Please try again." },
-    ar: { title: "مستشار منسَم", intro: "دليلك الشخصي لاكتشاف العطور", placeholder: "اكتب نفحاتك أو مزاجك أو مناسبتك", namePlaceholder: "اكتب اسمك", send: "إرسال", askName: "مرحباً بك في منسَم. ما اسمك؟", greeting: "مرحباً بك في منسَم يا {name} سيدي!", askBoutique: "أهلاً ومرحباً بك في منسَم — يسعدني مساعدتك في العثور على العطر المناسب أو الإجابة عن النفحات والأسعار والتوصيل. هل العطر لك أم لشخص آخر؟", askGift: "جميل — إنها هدية لشخص مميز. هل هي لسيدة أم لرجل؟", askReturning: "أهلاً بك مجدداً في منسَم! ما هو العطر الذي جربته وأعجبك سابقاً، أو ما هي النفحة التي تبحث عنها اليوم؟", askNotes: "هل تميل أكثر إلى العود، الورد، أم المسك؟ وما هي النفحة التي لا تفضلها؟", askOccasionLady: "رائع — العطر لسيدة. هل هو لمناسبة خاصة أم للاستخدام اليومي؟", askOccasionGentleman: "رائع — العطر لرجل. هل هو لمناسبة خاصة أم للاستخدام اليومي؟", askOccasionSelf: "رائع — العطر لك. هل هو لمناسبة خاصة أم للاستخدام اليومي؟", askSpecialGentleman: "مناسبة خاصة له — لحظة جميلة تستحق التمييز. يمنحك عطر سرحان جلداً وعوداً جريئين بثقة هادئة للمساء. أو شذا بلادي — عود قوي وعميق ونبيل للتجمعات الرسمية. أيهما أقرب إليه؟", askSpecialLady: "مناسبة خاصة لها — لحظة جميلة تستحق التمييز. يمكنني ترشيح عطر زهري أنيق أو توقيع دافئ. هل تفضلين رائحة زهرية راقية أم رائحة غنية وحسية؟", askEveryday: "للاستخدام اليومي، أستطيع أن أرشح لك عطراً عملياً ومتعدد الاستخدامات. هل تفضل رائحة منعشة ونظيفة أم دافئة ولافتة؟", btnMyself: "لنفسي", btnSomeoneElse: "لشخص آخر", btnLady: "لسيدة", btnGentleman: "لرجل", btnSpecial: "مناسبة خاصة", btnEveryday: "استخدام يومي", btnFirstTime: "مرتي الأولى", btnVisitedBefore: "زرتكم من قبل", btnForMyself: "لنفسي", btnAsGift: "كهدية", btnOud: "عود", btnRose: "ورد", btnMusk: "مسك", btnFresh: "حمضيات ومنعش", one: "أي عطر يحتوي على الورد والعود؟", two: "أريد عطراً منعشاً للاستخدام اليومي.", viewProduct: "عرض العطر", error: "تعذر الوصول إلى دليل العطور. حاول مرة أخرى.", chat: "كتابة", voice: "صوت", listen: "جارٍ الاستماع...", tapToSpeak: "اضغط للتحدث", voicePrompt: "أخبرني بما تبحث عنه", voiceHint: "تحدث بالعربية أو الإنجليزية", thinking: "نبحث عن العطر المناسب", available: "متاح الآن", readAloud: "استمع إلى الإجابة", speakerOn: "إيقاف صوت المساعد", speakerOff: "تشغيل صوت المساعد", clearMemory: "مسح ذاكرة العطور", voiceUnavailable: "الإدخال الصوتي غير متاح في هذا المتصفح.", noSpeech: "لم أسمع شيئاً. اضغط على الميكروفون وحاول مرة أخرى.", voiceError: "تعذر تشغيل الإدخال الصوتي. حاول مرة أخرى." }
+    en: { title: "Mansam Concierge", intro: "Your personal fragrance guide", placeholder: "Describe a note, mood, or occasion", namePlaceholder: "Enter your name", send: "Send", askName: "Welcome to Mansam. May I have your name?", greeting: "Welcome to Mansam, {name} sir!", askBoutique: "Welcome to Mansam — lovely to have you here. I can help you find the right fragrance, or answer anything about scents, prices, or delivery. Have you visited our boutique before, or is this your first time?", askGift: "Allow me to give you an idea of what we have. Would you like the perfume for yourself, or as a gift?", askReturning: "Welcome back to Mansam! Which fragrance did you enjoy previously, or what note are you looking for today?", askNotes: "Do you lean more toward oud, rose, or musk? And which note do you not enjoy?", askOccasionLady: "Wonderful — for a lady, then. Is this for a special occasion, or everyday wear?", askOccasionGentleman: "Wonderful — for a gentleman, then. Is this for a special occasion, or everyday wear?", askOccasionSelf: "Wonderful — for yourself. Is this for a special occasion, or everyday wear?", askSpecialGentleman: "A special occasion for him — a beautiful moment to mark. Sarhan brings bold leather and oud, quiet confidence for the evening. Or Shatha Biladi — powerful oud, deep and noble, for formal gatherings. Which feels closer to him?", askSpecialLady: "A special occasion for her — a beautiful moment to mark. I can guide you toward a graceful floral or warm signature fragrance. Would you prefer something elegant and floral, or rich and sensual?", askEveryday: "For everyday wear, I can keep it easy and versatile. Would you prefer something fresh and clean, or warm and memorable?", btnMyself: "For Myself", btnSomeoneElse: "Someone Else", btnLady: "For a Lady", btnGentleman: "For a Gentleman", btnSpecial: "Special Occasion", btnEveryday: "Everyday Wear", btnFirstTime: "First Time", btnVisitedBefore: "Visited Before", btnForMyself: "For Myself", btnAsGift: "As a Gift", btnOud: "Oud", btnRose: "Rose", btnMusk: "Musk", btnFresh: "Fresh Citrus", one: "Which perfume has rose and oud?", two: "I want a fresh daily fragrance.", viewProduct: "View perfume", error: "I could not reach the fragrance guide. Please try again.", chat: "Chat", voice: "Voice", listen: "Listening...", tapToSpeak: "Tap to speak", voicePrompt: "Tell me what you are looking for", voiceHint: "Speak in English or Arabic", thinking: "Finding the right fragrance", available: "Available now", readAloud: "Read answer aloud", speakerOn: "Turn speaker off", speakerOff: "Turn speaker on", clearMemory: "Clear fragrance memory", voiceUnavailable: "Voice input is not available in this browser.", noSpeech: "I did not hear anything. Tap the microphone and try again.", voiceError: "Voice input could not start. Please try again." },
+    ar: { title: "مستشار منسَم", intro: "دليلك الشخصي لاكتشاف العطور", placeholder: "اكتب نفحاتك أو مزاجك أو مناسبتك", namePlaceholder: "اكتب اسمك", send: "إرسال", askName: "مرحباً بك في منسَم. ما اسمك؟", greeting: "مرحباً بك في منسَم يا {name} سيدي!", askBoutique: "أهلاً ومرحباً بك في منسَم — يسعدني مساعدتك في العثور على العطر المناسب أو الإجابة عن النفحات والأسعار والتوصيل. هل زرت متجرنا من قبل أم هذه مرتك الأولى؟", askGift: "اسمح لي أن آخذك في جولة سريعة. هل تبحث عن العطر لنفسك أم كهدية؟", askReturning: "أهلاً بك مجدداً في منسَم! ما هو العطر الذي جربته وأعجبك سابقاً، أو ما هي النفحة التي تبحث عنها اليوم؟", askNotes: "هل تميل أكثر إلى العود، الورد، أم المسك؟ وما هي النفحة التي لا تفضلها؟", askOccasionLady: "رائع — العطر لسيدة. هل هو لمناسبة خاصة أم للاستخدام اليومي؟", askOccasionGentleman: "رائع — العطر لرجل. هل هو لمناسبة خاصة أم للاستخدام اليومي؟", askOccasionSelf: "رائع — العطر لك. هل هو لمناسبة خاصة أم للاستخدام اليومي؟", askSpecialGentleman: "مناسبة خاصة له — لحظة جميلة تستحق التمييز. يمنحك عطر سرحان جلداً وعوداً جريئين بثقة هادئة للمساء. أو شذا بلادي — عود قوي وعميق ونبيل للتجمعات الرسمية. أيهما أقرب إليه؟", askSpecialLady: "مناسبة خاصة لها — لحظة جميلة تستحق التمييز. يمكنني ترشيح عطر زهري أنيق أو توقيع دافئ. هل تفضلين رائحة زهرية راقية أم رائحة غنية وحسية؟", askEveryday: "للاستخدام اليومي، أستطيع أن أرشح لك عطراً عملياً ومتعدد الاستخدامات. هل تفضل رائحة منعشة ونظيفة أم دافئة ولافتة؟", btnMyself: "لنفسي", btnSomeoneElse: "لشخص آخر", btnLady: "لسيدة", btnGentleman: "لرجل", btnSpecial: "مناسبة خاصة", btnEveryday: "استخدام يومي", btnFirstTime: "مرتي الأولى", btnVisitedBefore: "زرتكم من قبل", btnForMyself: "لنفسي", btnAsGift: "كهدية", btnOud: "عود", btnRose: "ورد", btnMusk: "مسك", btnFresh: "حمضيات ومنعش", one: "أي عطر يحتوي على الورد والعود؟", two: "أريد عطراً منعشاً للاستخدام اليومي.", viewProduct: "عرض العطر", error: "تعذر الوصول إلى دليل العطور. حاول مرة أخرى.", chat: "كتابة", voice: "صوت", listen: "جارٍ الاستماع...", tapToSpeak: "اضغط للتحدث", voicePrompt: "أخبرني بما تبحث عنه", voiceHint: "تحدث بالعربية أو الإنجليزية", thinking: "نبحث عن العطر المناسب", available: "متاح الآن", readAloud: "استمع إلى الإجابة", speakerOn: "إيقاف صوت المساعد", speakerOff: "تشغيل صوت المساعد", clearMemory: "مسح ذاكرة العطور", voiceUnavailable: "الإدخال الصوتي غير متاح في هذا المتصفح.", noSpeech: "لم أسمع شيئاً. اضغط على الميكروفون وحاول مرة أخرى.", voiceError: "تعذر تشغيل الإدخال الصوتي. حاول مرة أخرى." }
   };
 
   function language() { return state.language || ((document.documentElement.lang || localStorage.getItem(STORAGE_KEYS.language) || localStorage.getItem("language") || "en").startsWith("ar") ? "ar" : "en"); }
@@ -119,18 +119,20 @@
       buttons = [];
     } else if (state.flowStep === 1) {
       buttons = [
-        { text: c.btnMyself },
-        { text: c.btnSomeoneElse }
+        { text: c.btnFirstTime },
+        { text: c.btnVisitedBefore }
       ];
     } else if (state.flowStep === 2) {
       buttons = [
-        { text: c.btnLady },
-        { text: c.btnGentleman }
+        { text: c.btnForMyself },
+        { text: c.btnAsGift }
       ];
     } else if (state.flowStep === 3 || state.flowStep === "2_returning") {
       buttons = [
-        { text: c.btnSpecial },
-        { text: c.btnEveryday }
+        { text: c.btnOud },
+        { text: c.btnRose },
+        { text: c.btnMusk },
+        { text: c.btnFresh }
       ];
     } else {
       buttons = [
@@ -714,68 +716,49 @@
       return;
     }
 
+    const isFirstTime = /\b(first time|never visited|new here)\b/.test(textLower) || /مرتي الأولى|اول مرة|أول مرة/.test(textLower);
+    const isVisitedBefore = /\b(visited before|been before|returning|came before)\b/.test(textLower) || /زرتكم من قبل|سبق وزرت/.test(textLower);
     const isMyself = /\b(for myself|myself|for me|just for me)\b/.test(textLower) || /لنفسي|لي انا/.test(textLower);
     const isLadyRecipient = /\b(wife|girlfriend|girl|lady|woman|mother|daughter|sister|aunt|her)\b/.test(textLower) || /زوجتي|حبيبتي|لها|امرأة|سيدة/.test(textLower);
     const isGentlemanRecipient = /\b(husband|boyfriend|boy|gentleman|man|father|son|brother|uncle|him)\b/.test(textLower) || /زوجي|حبيبي|له|رجل|سيدي/.test(textLower);
     const isSomeoneElse = /\b(someone else|someone|gift|present|for them|for a friend|friend|cousin|cusion)\b/.test(textLower) || /شخص آخر|شخص|هدية|لهم|صديق|قريب/.test(textLower);
-    const isLady = /\b(lady|woman|girl|female|her)\b/.test(textLower) || /لسيدة|لامرأة|امرأة|لها/.test(textLower);
-    const isGentleman = /\b(gentleman|man|male|him)\b/.test(textLower) || /لرجل|للرجل|رجل|له/.test(textLower);
-    const isSpecial = /\b(special|occasion|formal|evening)\b/.test(textLower) || /مناسبة|مساء|رسمية/.test(textLower);
-    const isEveryday = /\b(everyday|daily|day to day|regular)\b/.test(textLower) || /يومي|اليومي/.test(textLower);
+    const isForMyself = isMyself;
+    const isAsGift = /\b(as a gift|for a gift|gift)\b/.test(textLower) || /كهدية|هدية/.test(textLower);
 
-    if (state.flowStep === 1 && (isMyself || isSomeoneElse || isLadyRecipient || isGentlemanRecipient)) {
+    if (state.flowStep === 1 && (isFirstTime || isVisitedBefore)) {
       addMessage(text, "customer");
       rememberTurn("customer", text);
-      if (isLadyRecipient) {
+      state.flowStep = isVisitedBefore ? "2_returning" : 2;
+      const reply = isVisitedBefore ? copy[language()].askReturning : copy[language()].askGift;
+      addMessage(reply, "assistant");
+      rememberTurn("assistant", reply);
+      if (fromVoice || state.inputMode === "voice") speakText(reply, language());
+      updateSuggestions();
+      return;
+    } else if (state.flowStep === 1 && (isForMyself || isAsGift || isLadyRecipient || isGentlemanRecipient || isSomeoneElse)) {
+      addMessage(text, "customer");
+      rememberTurn("customer", text);
+      if (isForMyself || isLadyRecipient || isGentlemanRecipient) {
         state.flowStep = 3;
-        const reply = copy[language()].askOccasionLady;
-        addMessage(reply, "assistant");
-        rememberTurn("assistant", reply);
-        if (fromVoice || state.inputMode === "voice") speakText(reply, language());
-        updateSuggestions();
-        return;
-      } else if (isGentlemanRecipient) {
-        state.flowStep = 3;
-        const reply = copy[language()].askOccasionGentleman;
-        addMessage(reply, "assistant");
-        rememberTurn("assistant", reply);
-        if (fromVoice || state.inputMode === "voice") speakText(reply, language());
-        updateSuggestions();
-        return;
-      } else if (isSomeoneElse) {
-        state.flowStep = 2;
-        const reply = copy[language()].askGift;
-        addMessage(reply, "assistant");
-        rememberTurn("assistant", reply);
-        if (fromVoice || state.inputMode === "voice") speakText(reply, language());
-        updateSuggestions();
-        return;
-      } else {
-        state.flowStep = 3;
-        const reply = copy[language()].askOccasionSelf;
+        const reply = copy[language()].askNotes;
         addMessage(reply, "assistant");
         rememberTurn("assistant", reply);
         if (fromVoice || state.inputMode === "voice") speakText(reply, language());
         updateSuggestions();
         return;
       }
-    } else if (state.flowStep === 2 && (isLady || isGentleman)) {
-      addMessage(text, "customer");
-      rememberTurn("customer", text);
-      state.flowStep = 3;
-      const reply = isLady ? copy[language()].askOccasionLady : copy[language()].askOccasionGentleman;
+      state.flowStep = 2;
+      const reply = copy[language()].askGift;
       addMessage(reply, "assistant");
       rememberTurn("assistant", reply);
       if (fromVoice || state.inputMode === "voice") speakText(reply, language());
       updateSuggestions();
       return;
-    } else if (state.flowStep === 3 && (isSpecial || isEveryday)) {
+    } else if (state.flowStep === 2 && (isForMyself || isAsGift)) {
       addMessage(text, "customer");
       rememberTurn("customer", text);
-      state.flowStep = 4;
-      const reply = isSpecial && (isGentlemanRecipient || isGentleman)
-        ? copy[language()].askSpecialGentleman
-        : isSpecial ? copy[language()].askSpecialLady : copy[language()].askEveryday;
+      state.flowStep = 3;
+      const reply = copy[language()].askNotes;
       addMessage(reply, "assistant");
       rememberTurn("assistant", reply);
       if (fromVoice || state.inputMode === "voice") speakText(reply, language());
