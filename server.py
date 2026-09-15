@@ -1214,18 +1214,22 @@ def product_source(product):
 
 
 def product_url(product):
-    if product.get("sourceUrl"):
-        return str(product["sourceUrl"])
+    source_url = str(product.get("sourceUrl") or "")
+    # Older catalogue snapshots contain an ID-only route the storefront cannot open.
+    if source_url and not re.fullmatch(r"/productDetails/[^/]+/?", urlparse(source_url).path):
+        return source_url
     product_id = product.get("productId") or product.get("id")
     product_line = product_value(product, "productLine", "en")
     product_name = product_value(product, "name", "en")
-    if not product_id or not product_line or not product_name:
+    if not product_id or not str(product_id).isdigit() or not product_line or not product_name:
         return ""
 
     def route_part(value):
         return quote(re.sub(r"[()]", "", re.sub(r"\s+", "_", value.strip())))
 
-    return f"{MANSAM_SITE_URL}/productDetails/{route_part(product_line)}/{route_part(product_name)}/{product_id}"
+    parsed_source = urlparse(source_url)
+    base_url = f"{parsed_source.scheme}://{parsed_source.netloc}" if parsed_source.scheme in {"http", "https"} and parsed_source.netloc else MANSAM_SITE_URL
+    return f"{base_url}/productDetails/{route_part(product_line)}/{route_part(product_name)}/{product_id}"
 
 
 def hugging_face_product_context(products, language):

@@ -5,6 +5,21 @@ import server
 
 
 class ChatbotAccuracyBenchmark(unittest.TestCase):
+    def test_product_links_repair_cached_id_only_routes(self):
+        product = next(p for p in server.CATALOG_PRODUCTS if str(p.get("id")) == "20")
+        expected = "https://uatuae.mansamworld.com/productDetails/Natural_Oils_and_Blends/Zayt_Ruh_Al_Ward_Hindi/20"
+        self.assertEqual(server.product_url(product), expected)
+        self.assertEqual(server.product_url({**product, "sourceUrl": expected}), expected)
+        self.assertEqual(server.product_url({"id": "document-only", "name": {"en": "Example"},
+                                             "productLine": {"en": "Perfume"}}), "")
+
+    def test_catalogue_sync_generates_full_product_route(self):
+        import sync_live_catalog
+        self.assertEqual(sync_live_catalog.build_product_url(
+            {"productId": 20, "productNameEn": "Zayt Ruh Al Ward Hindi "},
+            {"productLineNameEn": "Natural Oils and Blends"}),
+            sync_live_catalog.SITE_URL + "/productDetails/Natural_Oils_and_Blends/Zayt_Ruh_Al_Ward_Hindi/20")
+
     def test_discovery_filters_size_gender_and_disliked_notes(self):
         products = [
             {"id": "wrong-size", "volume": "50ml", "gender": "Unisex", "notes": {"en": ["Rose"]}},

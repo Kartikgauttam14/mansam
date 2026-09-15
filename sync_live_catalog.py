@@ -4,8 +4,9 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 import json
 import os
+import re
 from pathlib import Path
-from urllib.parse import urlencode
+from urllib.parse import quote, urlencode
 from urllib.request import Request, urlopen
 
 
@@ -71,8 +72,19 @@ def normalize_product(product, product_line):
         "available": bool(product.get("saleable")) and (stock is None or stock > 0),
         "bestseller": bool(product.get("bestseller")),
         "active": bool(product.get("active")),
-        "sourceUrl": f"{SITE_URL}/productDetails/{product.get('productId', '')}",
+        "sourceUrl": build_product_url(product, product_line),
     }
+
+
+def build_product_url(product, product_line):
+    name = product.get("productNameEn") or product.get("productName") or ""
+    line = product_line.get("productLineNameEn") or product_line.get("productLineName") or ""
+    product_id = product.get("productId")
+    if not name or not line or not product_id:
+        return ""
+    def route_part(value):
+        return quote(re.sub(r"[()]", "", re.sub(r"\s+", "_", value.strip())))
+    return f"{SITE_URL}/productDetails/{route_part(line)}/{route_part(name)}/{product_id}"
 
 
 def get_line_products(product_line):
