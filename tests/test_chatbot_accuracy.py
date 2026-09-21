@@ -1,10 +1,31 @@
 import unittest
+import io
+import json
 from unittest.mock import patch
 
 import server
 
 
 class ChatbotAccuracyBenchmark(unittest.TestCase):
+    def test_flexible_discovery_and_question_interruptions(self):
+        profile = {"discovery": {"gender": "unisex", "usage": "occasion", "notes": "rose", "sizeMl": 100}}
+        result = server.make_answer("I need a 100 ml unisex rose perfume for a wedding", "en", profile=profile, guided_recommendation=True)
+        self.assertEqual(result["intent"], "discovery_recommendation")
+        self.assertEqual(len(result["productIds"]), 1)
+        followup = server.make_answer("what is its price?", "en", context_product_ids=result["productIds"], profile=profile)
+        self.assertIn("AED", followup["answer"])
+        self.assertNotEqual(followup.get("intent"), "discovery_recommendation")
+
+    def test_hugging_face_chat_preserves_grounding_and_returns_content(self):
+        response = io.BytesIO(json.dumps({"choices": [{"message": {"content": "A grounded fragrance answer."}}]}).encode())
+        with patch.object(server, "HF_TOKEN", "test-token"), patch.object(server, "HF_GRADIO_SPACE", ""), patch.object(server, "HF_MODEL", "meta-llama/Llama-3.1-8B-Instruct:novita"), patch.object(server, "urlopen", return_value=response) as request:
+            answer = server.hugging_face_answer("Tell me about this fragrance", "en", server.CATALOG_PRODUCTS[:1])
+        payload = json.loads(request.call_args.args[0].data)
+        self.assertEqual(payload["model"], "meta-llama/Llama-3.1-8B-Instruct:novita")
+        self.assertIn("Use only the supplied Mansam catalogue context", payload["messages"][0]["content"])
+        self.assertIn("Verified Mansam catalogue context", payload["messages"][1]["content"])
+        self.assertEqual(answer, "A grounded fragrance answer.")
+
     def test_product_links_repair_cached_id_only_routes(self):
         product = next(p for p in server.CATALOG_PRODUCTS if str(p.get("id")) == "20")
         expected = "https://uatuae.mansamworld.com/productDetails/Natural_Oils_and_Blends/Zayt_Ruh_Al_Ward_Hindi/20"

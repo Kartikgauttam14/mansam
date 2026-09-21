@@ -1,0 +1,17 @@
+{
+  "status": "draft; not human-reviewed",
+  "examples": {
+    "train": 344,
+    "validation": 60
+  },
+  "product_name_groups": {
+    "train": 47,
+    "validation": 12
+  },
+  "split": "deterministic by normalized product name; size variants stay together",
+  "limitations": [
+    "Template-derived examples, not real customer conversations",
+    "Does not yet cover multi-turn preference changes or retrieval planning",
+    "Human review and behavioral examples needed before production training"
+  ]
+}

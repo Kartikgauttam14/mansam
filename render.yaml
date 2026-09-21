@@ -7,6 +7,10 @@ services:
     startCommand: python3 server.py
     healthCheckPath: /dream.html
     envVars:
+      - key: HF_MODEL
+        value: meta-llama/Llama-3.1-8B-Instruct:novita
+      - key: HF_GRADIO_SPACE
+        value: ""
       - key: MANSAM_HOST
         value: 0.0.0.0
       - key: MANSAM_OPEN_BROWSER

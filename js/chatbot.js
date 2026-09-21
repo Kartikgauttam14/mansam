@@ -655,8 +655,8 @@
     const name = isAr ? chosen.nameAr : chosen.nameEn;
     const collection = isAr ? chosen.collectionAr : chosen.collectionEn;
     const answer = isAr
-      ? `أرشح لك عطر ${name} من مجموعة ${collection}. السعر هو ${chosen.price}. متوفر اليوم.\n\nتخيل نفسك في وقت المغرب، والجو هادئ، وهذه الرائحة الدافئة تحيط بك كالعناق.\n\nالعديد من عملائنا اختاروا هذا العطر وعادوا لاقتنائه مجدداً، وأوصوا به في محيطهم.\n\nهل ترغب في أن أجهز لك الطلب، أم تود اقتراحاً آخر؟`
-      : `I recommend ${name} from the ${collection} collection. The price is ${chosen.price}. Available today.\n\nImagine yourself at Maghrib, the air calm, and this warm scent surrounds you like an embrace.\n\nMany of our clients chose this perfume and came back for it a second time, recommending it within their circle.\n\nWould you like me to prepare your order, or would you like another perfume suggestion?`;
+      ? `أرشح لك عطر ${name} من مجموعة ${collection}. السعر هو ${chosen.price}. متوفر اليوم.\nعطر راقٍ ومميز يجمع بين الأناقة والدفء لمختلف أوقاتك.\nهل ترغب في تفاصيل إضافية أو اقتراح آخر؟`
+      : `I recommend ${name} from the ${collection} collection. The price is ${chosen.price}. Available today.\nA sophisticated fragrance tailored for evening and special occasions.\nWould you like more details or another suggestion?`;
 
     return {
       language: lang,

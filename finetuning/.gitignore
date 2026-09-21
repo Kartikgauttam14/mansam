@@ -1,0 +1,4 @@
+checkpoints/
+Llama-Mansam-adapter/
+__pycache__/
+.venv/

@@ -132,7 +132,7 @@ verified Mansam links remain controlled by server.py.
 Set these variables on the server, never in HTML or JavaScript:
 
   HF_TOKEN=hf_your_secret_token
-  HF_MODEL=Qwen/Qwen3.8-27B:deepinfra
+  HF_MODEL=meta-llama/Llama-3.1-8B-Instruct:novita
   HF_API_URL=https://router.huggingface.co/v1/chat/completions
   HF_TIMEOUT_SECONDS=20
 

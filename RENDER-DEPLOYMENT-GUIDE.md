@@ -72,7 +72,7 @@ For the Hugging Face Router:
 
 ```text
 HF_TOKEN=your_new_hugging_face_token
-HF_MODEL=Qwen/Qwen3.8-27B:deepinfra
+HF_MODEL=meta-llama/Llama-3.1-8B-Instruct:novita
 ```
 
 For the authenticated Gradio Space instead:
