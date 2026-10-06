@@ -57,6 +57,11 @@ LIVE_REFRESH_SECONDS = max(int(os.environ.get("MANSAM_LIVE_REFRESH_SECONDS", "30
 LIVE_REFRESH_LOCK = threading.Lock()
 LAST_LIVE_REFRESH = 0.0
 LIVE_REFRESH_IN_PROGRESS = False
+# ── Meta / Facebook integration ───────────────────────────────────────────────
+META_PIXEL_ID = os.environ.get("META_PIXEL_ID", "2617857485322638")
+META_CAPI_TOKEN = os.environ.get("META_CAPI_TOKEN", "")
+META_WEBHOOK_VERIFY_TOKEN = os.environ.get("META_WEBHOOK_VERIFY_TOKEN", "")
+
 LIVE_SOURCE = {
     "name": {"en": "Live Mansam catalogue", "ar": "كتالوج منسَم المباشر"},
     "url": MANSAM_SITE_URL,
@@ -1963,7 +1968,28 @@ class MansamHandler(SimpleHTTPRequestHandler):
             self.wfile.write(body)
             return
 
+        # ── Meta Webhook verification (Lead Ads + Graph API) ─────────────────
+        # Meta sends GET with hub.mode=subscribe, hub.verify_token, hub.challenge
+        # Docs: https://developers.facebook.com/docs/graph-api/webhooks/getting-started
+        if parsed_url.path == "/api/meta/webhook":
+            params = parse_qs(parsed_url.query)
+            mode = params.get("hub.mode", [""])[0]
+            token = params.get("hub.verify_token", [""])[0]
+            challenge = params.get("hub.challenge", [""])[0]
+            if mode == "subscribe" and META_WEBHOOK_VERIFY_TOKEN and token == META_WEBHOOK_VERIFY_TOKEN:
+                print(f"[Meta Webhook] Verification successful.")
+                self.send_response(200)
+                self.send_header("Content-Type", "text/plain")
+                self.send_header("Content-Length", str(len(challenge.encode())))
+                self.end_headers()
+                self.wfile.write(challenge.encode())
+            else:
+                print(f"[Meta Webhook] Verification FAILED — token mismatch or missing META_WEBHOOK_VERIFY_TOKEN.")
+                self.send_error(403, "Forbidden")
+            return
+
         if parsed_url.path in ("", "/"):
+
             self.send_response(302)
             self.send_header("Location", "/dream.html")
             self.end_headers()
@@ -1978,7 +2004,27 @@ class MansamHandler(SimpleHTTPRequestHandler):
     def do_POST(self):
         parsed_url = urlparse(self.path)
 
+        # ── 1. Meta Conversions API (CAPI) — server-side pixel events ─────────
+        # Mirrors browser pixel events to Meta's server for better attribution.
+        # Docs: https://developers.facebook.com/docs/marketing-api/conversions-api
+        if parsed_url.path == "/api/meta/capi":
+            self._handle_meta_capi()
+            return
+
+        # ── 2. Meta Lead Ads Webhook — receive lead form submissions ──────────
+        # Docs: https://developers.facebook.com/docs/marketing-api/guides/lead-ads/retrieving
+        if parsed_url.path == "/api/meta/leads":
+            self._handle_meta_leads()
+            return
+
+        # ── 3. Meta Graph API Webhook — page events, messages, etc. ──────────
+        # Docs: https://developers.facebook.com/docs/graph-api/webhooks
+        if parsed_url.path == "/api/meta/webhook":
+            self._handle_meta_graph_webhook()
+            return
+
         if parsed_url.path == "/api/transcribe":
+
             self.transcribe_audio()
             return
         if parsed_url.path != "/api/chat":
@@ -2062,6 +2108,203 @@ class MansamHandler(SimpleHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
         self.wfile.write(body)
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # Meta / Facebook Webhook Handlers
+    # ─────────────────────────────────────────────────────────────────────────
+
+    def _read_json_body(self, max_bytes=65536):
+        """Read and parse a JSON request body, capped at max_bytes."""
+        content_length = int(self.headers.get("Content-Length", "0"))
+        if content_length <= 0 or content_length > max_bytes:
+            raise ValueError(f"Content-Length must be 1–{max_bytes} bytes")
+        return json.loads(self.rfile.read(content_length).decode("utf-8"))
+
+    def _send_json(self, status, payload):
+        body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _handle_meta_capi(self):
+        """
+        Meta Conversions API (CAPI) — server-side event mirroring.
+
+        Your frontend calls  POST /api/meta/capi  with a JSON body:
+          {
+            "event_name": "PageView",          // or Purchase, Lead, etc.
+            "event_time": 1712345678,          // Unix timestamp (int)
+            "event_source_url": "https://...", // full page URL
+            "client_ip_address": "1.2.3.4",   // optional, for dedup
+            "client_user_agent": "Mozilla/...",// optional
+            "fbc": "fb.1.xxx",                 // optional click ID cookie
+            "fbp": "fb.1.xxx",                 // optional browser ID cookie
+            "user_data": {}                    // optional hashed user data
+          }
+
+        This handler forwards the event to Meta's Graph API CAPI endpoint.
+        Requires META_CAPI_TOKEN and META_PIXEL_ID to be set in .env.
+        Docs: https://developers.facebook.com/docs/marketing-api/conversions-api/using-the-api
+        """
+        if not META_CAPI_TOKEN:
+            print("[Meta CAPI] META_CAPI_TOKEN is not configured — skipping CAPI forward.")
+            self._send_json(200, {"status": "skipped", "reason": "CAPI token not configured"})
+            return
+
+        try:
+            payload = self._read_json_body()
+            event_name = str(payload.get("event_name", "PageView"))
+            event_time = int(payload.get("event_time", int(time.time())))
+
+            # Build CAPI event
+            capi_event = {
+                "event_name": event_name,
+                "event_time": event_time,
+                "action_source": "website",
+            }
+            if payload.get("event_source_url"):
+                capi_event["event_source_url"] = str(payload["event_source_url"])
+
+            user_data = dict(payload.get("user_data") or {})
+            if payload.get("client_ip_address"):
+                user_data["client_ip_address"] = str(payload["client_ip_address"])
+            if payload.get("client_user_agent"):
+                user_data["client_user_agent"] = str(payload["client_user_agent"])
+            if payload.get("fbc"):
+                user_data["fbc"] = str(payload["fbc"])
+            if payload.get("fbp"):
+                user_data["fbp"] = str(payload["fbp"])
+            capi_event["user_data"] = user_data
+
+            capi_payload = json.dumps({
+                "data": [capi_event],
+                "access_token": META_CAPI_TOKEN,
+            }).encode("utf-8")
+
+            capi_url = f"https://graph.facebook.com/v19.0/{META_PIXEL_ID}/events"
+            req = Request(
+                capi_url,
+                data=capi_payload,
+                headers={"Content-Type": "application/json"},
+                method="POST",
+            )
+            with urlopen(req, timeout=10) as resp:
+                result = json.loads(resp.read().decode("utf-8"))
+            print(f"[Meta CAPI] Sent '{event_name}' → events_received={result.get('events_received', '?')}")
+            self._send_json(200, {"status": "ok", "meta": result})
+
+        except (ValueError, json.JSONDecodeError) as err:
+            print(f"[Meta CAPI] Bad request: {err}")
+            self._send_json(400, {"error": str(err)})
+        except Exception as err:
+            print(f"[Meta CAPI] Forward failed: {type(err).__name__}: {err}")
+            self._send_json(502, {"error": "CAPI forward failed"})
+
+    def _handle_meta_leads(self):
+        """
+        Meta Lead Ads Webhook — receives real-time lead form submissions.
+
+        Register this endpoint in your Meta App Dashboard:
+          Webhooks → Page → leadgen → Callback URL: https://yourdomain.com/api/meta/leads
+
+        Meta POSTs a JSON body like:
+          {
+            "object": "page",
+            "entry": [{"id": "<page_id>", "time": 1234, "changes": [...]}]
+          }
+
+        Each change contains a "leadgen_id" you can then fetch via Graph API:
+          GET https://graph.facebook.com/<leadgen_id>?access_token=<PAGE_ACCESS_TOKEN>
+
+        Docs: https://developers.facebook.com/docs/marketing-api/guides/lead-ads/retrieving
+        """
+        try:
+            payload = self._read_json_body()
+            obj = payload.get("object", "")
+            entries = payload.get("entry", [])
+            print(f"[Meta Leads] Received webhook — object={obj}, entries={len(entries)}")
+
+            for entry in entries:
+                page_id = entry.get("id", "unknown")
+                for change in entry.get("changes", []):
+                    field = change.get("field", "")
+                    value = change.get("value", {})
+                    leadgen_id = value.get("leadgen_id", "")
+                    form_id = value.get("form_id", "")
+                    ad_id = value.get("ad_id", "")
+                    print(
+                        f"[Meta Leads]  page={page_id} field={field} "
+                        f"leadgen_id={leadgen_id} form_id={form_id} ad_id={ad_id}"
+                    )
+                    # TODO: Fetch lead details via Graph API and store them:
+                    # GET https://graph.facebook.com/{leadgen_id}?access_token=<PAGE_ACCESS_TOKEN>
+
+            # Meta requires a 200 OK — any other response triggers a retry.
+            self._send_json(200, {"status": "ok"})
+
+        except (ValueError, json.JSONDecodeError) as err:
+            print(f"[Meta Leads] Parse error: {err}")
+            self._send_json(200, {"status": "ok"})  # still 200 to avoid Meta retries
+        except Exception as err:
+            print(f"[Meta Leads] Handler error: {type(err).__name__}: {err}")
+            self._send_json(200, {"status": "ok"})
+
+    def _handle_meta_graph_webhook(self):
+        """
+        Meta Graph API Webhook — page events, messages, comments, etc.
+
+        Register this endpoint in your Meta App Dashboard:
+          Webhooks → Page → Callback URL: https://yourdomain.com/api/meta/webhook
+          (same URL is used for GET verification and POST events)
+
+        Meta POSTs events with a structure like:
+          {
+            "object": "page",
+            "entry": [{
+              "id": "<page_id>",
+              "time": 1234567890,
+              "messaging": [...],   // for messages
+              "changes": [...]      // for other subscriptions
+            }]
+          }
+
+        Docs: https://developers.facebook.com/docs/graph-api/webhooks/reference/page
+        """
+        try:
+            payload = self._read_json_body()
+            obj = payload.get("object", "")
+            entries = payload.get("entry", [])
+            print(f"[Meta Graph Webhook] object={obj}, entries={len(entries)}")
+
+            for entry in entries:
+                page_id = entry.get("id", "unknown")
+
+                # Messaging events (Messenger)
+                for msg_event in entry.get("messaging", []):
+                    sender = msg_event.get("sender", {}).get("id", "")
+                    message = msg_event.get("message", {}).get("text", "")
+                    print(f"[Meta Graph Webhook]  message from sender={sender}: {message!r}")
+                    # TODO: reply via Send API if needed
+
+                # Page / feed change events
+                for change in entry.get("changes", []):
+                    field = change.get("field", "")
+                    value = change.get("value", {})
+                    print(f"[Meta Graph Webhook]  page={page_id} field={field} value={json.dumps(value)[:200]}")
+                    # TODO: process comments, mentions, reactions, etc.
+
+            # Meta requires 200 OK within 20 s to avoid retries.
+            self._send_json(200, {"status": "ok"})
+
+        except (ValueError, json.JSONDecodeError) as err:
+            print(f"[Meta Graph Webhook] Parse error: {err}")
+            self._send_json(200, {"status": "ok"})
+        except Exception as err:
+            print(f"[Meta Graph Webhook] Handler error: {type(err).__name__}: {err}")
+            self._send_json(200, {"status": "ok"})
 
     def proxy_tts(self, query_string):
         params = parse_qs(query_string)
